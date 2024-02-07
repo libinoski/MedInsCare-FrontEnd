@@ -72,7 +72,7 @@ const HospitalChangePassword = () => {
         validationMessages.forEach((message) => {
           alert(`Validation failed for ${message.field}: ${message.message}`);
         });
-      } else if (error.response && error.response.status === 404) {
+      } if (error.response && error.response.status === 404) {
         alert(error.response.data.message);
       } else {
         alert('An error occurred: Network error');
@@ -89,8 +89,8 @@ const HospitalChangePassword = () => {
     <div className="hospital-change-password-container">
       <div className="card hospital-change-password-card">
         <div className="card-body">
-          <h2 className="card-title">Change Password</h2>
-          <form onSubmit={handleSubmit}>
+          <h2 className="card-title hospital-change-password-title">Change Password</h2>
+          <form onSubmit={handleSubmit} className="hospital-change-password-form">
             <div className="form-group">
               <label htmlFor="oldPassword">Old Password:</label>
               <div className="password-container">
@@ -99,6 +99,7 @@ const HospitalChangePassword = () => {
                   id="oldPassword"
                   value={oldPassword}
                   onChange={(e) => setOldPassword(e.target.value)}
+                  className="form-control"
                 />
                 <button
                   type="button"
@@ -117,6 +118,7 @@ const HospitalChangePassword = () => {
                   id="newPassword"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
+                  className="form-control"
                 />
                 <button
                   type="button"
@@ -127,7 +129,9 @@ const HospitalChangePassword = () => {
                 </button>
               </div>
             </div>
-            <button type="submit" className="btn-primary">Change Password</button>
+            <button type="submit" className="btn btn-primary">
+              Change Password
+            </button>
           </form>
         </div>
       </div>
@@ -136,3 +140,4 @@ const HospitalChangePassword = () => {
 };
 
 export default HospitalChangePassword;
+
