@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const HospitalLogin = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const initialLoginData = {
     hospitalEmail: '',
     hospitalPassword: '',
@@ -47,12 +47,11 @@ const navigate = useNavigate();
 
       switch (response.status) {
         case 200:
-          // Assuming the response contains hospitalId and token
-          const { hospitalId, token } = response.data.data;
+          const { token, hospital } = response.data.data;
 
-          // Set hospitalId and token in sessionStorage
-          sessionStorage.setItem('hospitalId', hospitalId);
+          sessionStorage.setItem('hospitalId', hospital.hospitalId);
           sessionStorage.setItem('token', token);
+
 
           alert('Login successful');
           resetForm();
@@ -114,7 +113,7 @@ const navigate = useNavigate();
           <h1 className="card-title hospital-login-title text-center">ADMIN PORTAL</h1>
           <form onSubmit={handleSubmit} noValidate className="hospital-login-form">
             {loginFailed && (
-            <div className="alert alert-danger text-center">Login failed. Please try again.</div>
+              <div className="alert alert-danger text-center">Login failed. Please try again.</div>
 
             )}
 

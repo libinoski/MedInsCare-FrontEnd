@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../../css/Hospital/HospitalChangePassword.css'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-const ChangePassword = () => {
+const HospitalChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const token = sessionStorage.getItem('token');
-    const hospitalId = sessionStorage.getItem('hospitalId'); // Get hospitalId from sessionStorage
+    const hospitalId = sessionStorage.getItem('hospitalId');
 
     const headers = {
       'Content-Type': 'application/json;charset=UTF-8',
       'Access-Control-Allow-Origin': '*',
       token, 
     };
-    console.log('Headers:', headers);
-
 
     try {
       const response = await axios.post(
         'http://localhost:1313/api/mic/hospital/hospitalChangePassword',
         {
-          hospitalId, // Use hospitalId from sessionStorage
+          hospitalId,
           oldPassword,
           newPassword,
         },
@@ -37,13 +39,14 @@ const ChangePassword = () => {
 
       switch (response.status) {
         case 200:
-          setSuccessMessage(response.data.message);
+          alert(response.data.message);
+          navigate('/hospitalLogin');
           break;
         case 400:
           if (response.data.status === 'Validation failed') {
             const validationMessages = response.data.messages;
             validationMessages.forEach((message) => {
-              console.log(`Validation failed for ${message.field}: ${message.message}`);
+              alert(`Validation failed for ${message.field}: ${message.message}`);
             });
           } else {
             alert(`Failed to change password: ${response.data.message}`);
@@ -53,9 +56,6 @@ const ChangePassword = () => {
         case 403:
           alert(`Token error: ${response.data.message}`);
           navigate('/hospitalLogin');
-          break;
-        case 404:
-          alert(response.data.message);
           break;
         case 500:
           alert(`Failed to change password: ${response.data.message}`);
@@ -67,31 +67,72 @@ const ChangePassword = () => {
     } catch (error) {
       console.error('Error changing hospital password:', error);
 
-      if (error.message === 'Hospital not found' || error.message === 'Invalid old password') {
-        alert(error.message);
+      if (error.response && error.response.status === 400 && error.response.data.status === 'Validation failed') {
+        const validationMessages = error.response.data.messages;
+        validationMessages.forEach((message) => {
+          alert(`Validation failed for ${message.field}: ${message.message}`);
+        });
+      } else if (error.response && error.response.status === 404) {
+        alert(error.response.data.message);
       } else {
         alert('An error occurred: Network error');
       }
     }
   };
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+
 
   return (
-    <div>
-      <h2>Change Password</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="oldPassword">Old Password:</label>
-          <input type="password" id="oldPassword" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
+    <div className="hospital-change-password-container">
+      <div className="card hospital-change-password-card">
+        <div className="card-body">
+          <h2 className="card-title">Change Password</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="oldPassword">Old Password:</label>
+              <div className="password-container">
+                <input
+                  type={isPasswordVisible ? 'text' : 'password'}
+                  id="oldPassword"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-button"
+                  onClick={togglePasswordVisibility}
+                >
+                  <FontAwesomeIcon icon={isPasswordVisible ? faEyeSlash : faEye} />
+                </button>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="newPassword">New Password:</label>
+              <div className="password-container">
+                <input
+                  type={isPasswordVisible ? 'text' : 'password'}
+                  id="newPassword"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-button"
+                  onClick={togglePasswordVisibility}
+                >
+                  <FontAwesomeIcon icon={isPasswordVisible ? faEyeSlash : faEye} />
+                </button>
+              </div>
+            </div>
+            <button type="submit" className="btn-primary">Change Password</button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="newPassword">New Password:</label>
-          <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-        </div>
-        <button type="submit">Change Password</button>
-      </form>
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      </div>
     </div>
   );
 };
 
-export default ChangePassword;
+export default HospitalChangePassword;
