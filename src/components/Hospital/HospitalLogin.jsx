@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalLogin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const HospitalLogin = () => {
+const navigate = useNavigate();
   const initialLoginData = {
     hospitalEmail: '',
     hospitalPassword: '',
@@ -54,6 +56,7 @@ const HospitalLogin = () => {
 
           alert('Login successful');
           resetForm();
+          navigate('/hospitalChangePassword');
           // Redirect or additional actions here
           break;
         default:
