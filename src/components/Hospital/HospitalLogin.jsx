@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalLogin.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const HospitalLogin = () => {
   const navigate = useNavigate();
@@ -15,8 +13,6 @@ const HospitalLogin = () => {
   const [loginData, setLoginData] = useState(initialLoginData);
   const [isLoading, setIsLoading] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [loginFailed, setLoginFailed] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,83 +23,56 @@ const HospitalLogin = () => {
     setLoginData(initialLoginData);
   };
 
-  const displayPasswordValidationError = (message) => {
-    alert(`Password validation failed: ${message}`);
-  };
-
-  const handleServerError = (errorMessage) => {
-    alert(errorMessage);
-    setLoginFailed(true);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setValidationErrors({});
-    setLoginFailed(false);
 
     try {
       const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalLogin', loginData);
 
       switch (response.status) {
         case 200:
-          const { token, hospital } = response.data.data;
+          const { token, hospital, message } = response.data.data;
 
           sessionStorage.setItem('hospitalId', hospital.hospitalId);
           sessionStorage.setItem('token', token);
 
-
-          alert('Login successful');
+          alert(message); // Display message from backend
           resetForm();
-          navigate('/hospitalChangePassword');
-          // Redirect or additional actions here
+          navigate('/hospitalChangePassword'); // Redirect to the next page
           break;
         default:
-          alert('Unexpected server response');
-          setLoginFailed(true);
+          alert('An unexpected response was received from the server');
           break;
       }
     } catch (error) {
-      setLoginFailed(true);
       if (error.response) {
-        switch (error.response.status) {
+        const { status, data } = error.response;
+        switch (status) {
           case 400:
-            const errors = error.response.data.details;
-            const newValidationErrors = {};
-            errors.forEach((err) => {
-              newValidationErrors[err.field] = err.message;
-              if (err.field === 'hospitalPassword') {
-                displayPasswordValidationError(err.message);
-              }
+          case 422: // Handling validation errors
+            const errors = data.results || {};
+            // let errorMessage = "Please correct the following errors:\n";
+            Object.keys(errors).forEach(key => {
+              // errorMessage += `${key}: ${errors[key]}\n`;
             });
-            setValidationErrors(newValidationErrors);
-            break;
-          case 401:
-            handleServerError('Wrong password.');
-            break;
-          case 403:
-            handleServerError('Access to the login feature is restricted.');
-            break;
-          case 404:
-            handleServerError('Hospital not found.');
+            // alert(errorMessage);
+            setValidationErrors(errors);
             break;
           case 500:
-            handleServerError('Internal server error. Please try again later.');
+            alert(data.message || 'Internal server error. Please try again later.');
             break;
           default:
-            handleServerError('An error occurred. Please try again.');
+            alert(data.message || 'An error occurred. Please try again.');
             break;
         }
       } else {
-        handleServerError('An error occurred. Please try again.');
+        alert('An error occurred. Please try again.');
       }
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
   };
 
   return (
@@ -112,11 +81,6 @@ const HospitalLogin = () => {
         <div className="card-body">
           <h1 className="card-title hospital-login-title text-center">ADMIN PORTAL</h1>
           <form onSubmit={handleSubmit} noValidate className="hospital-login-form">
-            {loginFailed && (
-              <div className="alert alert-danger text-center">Login failed. Please try again.</div>
-
-            )}
-
             <div className="form-group">
               <label htmlFor="hospitalEmail">Email</label>
               <input
@@ -136,25 +100,19 @@ const HospitalLogin = () => {
 
             <div className="form-group">
               <label htmlFor="hospitalPassword">Password</label>
-              <div className="password-container">
-                <input
-                  type={passwordVisible ? 'text' : 'password'}
-                  className={`form-control`}
-                  id="hospitalPassword"
-                  name="hospitalPassword"
-                  value={loginData.hospitalPassword}
-                  onChange={handleChange}
-                  placeholder="Enter Password"
-                  required
-                />
-                <button
-                  type="button"
-                  className="password-toggle-button"
-                  onClick={togglePasswordVisibility}
-                >
-                  <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
-                </button>
-              </div>
+              <input
+                type="password"
+                className={`form-control ${validationErrors.hospitalPassword ? 'is-invalid' : ''}`}
+                id="hospitalPassword"
+                name="hospitalPassword"
+                value={loginData.hospitalPassword}
+                onChange={handleChange}
+                placeholder="Enter Password"
+                required
+              />
+              {validationErrors.hospitalPassword && (
+                <div className="invalid-feedback">{validationErrors.hospitalPassword}</div>
+              )}
             </div>
 
             <div className="form-footer">
@@ -174,4 +132,3 @@ const HospitalLogin = () => {
 };
 
 export default HospitalLogin;
-
