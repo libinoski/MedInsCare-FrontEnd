@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import '../../css/Hospital/HospitalRegistration.css';
@@ -51,17 +50,17 @@ const HospitalRegistration = () => {
         setValidationErrors({});
         setSubmitFailed(false);
 
-        try {
-            const formData = new FormData();
-            for (const key in hospitalData) {
-                formData.append(key, hospitalData[key]);
-            }
+        const formData = new FormData();
+        for (const key in hospitalData) {
+            formData.append(key, hospitalData[key] instanceof File ? hospitalData[key] : hospitalData[key].trim());
+        }
 
+        try {
             const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalRegistration', formData);
 
             switch (response.status) {
-                case 201:
-                    alert('Hospital registered successfully');
+                case 200:
+                    alert(response.data.message || 'Hospital registered successfully');
                     resetForm();
                     break;
                 default:
@@ -72,32 +71,23 @@ const HospitalRegistration = () => {
             setSubmitFailed(true);
 
             if (error.response) {
-                const statusCode = error.response.status;
-                switch (statusCode) {
+                const { status, data } = error.response;
+                switch (status) {
                     case 400:
-                        const errorMessage = error.response.data.error;
-                        if (errorMessage === 'Validation failed') {
-                            const errors = error.response.data.details;
-                            const newValidationErrors = {};
-                            errors.forEach(err => {
-                                newValidationErrors[err.field] = err.message;
-
-                                if (err.field === 'hospitalImage' || err.field === 'hospitalPassword') {
-                                    alert(`${err.field} validation failed: ${err.message}`);
-                                }
-                            });
-                            setValidationErrors(newValidationErrors);
-                        } else if (errorMessage === 'Email already exists') {
-                            alert('Email already exists. Please use a different email.');
-                        } else if (errorMessage === 'Aadhar number already exists') {
-                            alert('Aadhar number already exists. Please use a different Aadhar number.');
-                        }
+                    case 422: // Handling validation errors
+                        const errors = data.results || {};
+                        let errorMessage = "Please correct the following errors:\n";
+                        Object.keys(errors).forEach(key => {
+                            errorMessage += `${key}: ${errors[key]}\n`;
+                        });
+                        alert(errorMessage);
+                        setValidationErrors(errors);
                         break;
                     case 500:
-                        alert('Internal server error. Please try again later.');
+                        alert(data.message || 'Internal server error. Please try again later.');
                         break;
                     default:
-                        alert('An error occurred. Please try again.');
+                        alert(data.message || 'An error occurred. Please try again.');
                         break;
                 }
             } else {
@@ -116,7 +106,6 @@ const HospitalRegistration = () => {
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
-
 
     return (
         <div className="hospital-registration-container">
@@ -292,9 +281,9 @@ const HospitalRegistration = () => {
                         </div>
 
                         <div className="form-footer mt-3">
-                        <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''}`} disabled={isLoading}>
-                            {isLoading ? 'Submitting...' : 'Register'}
-                        </button>
+                            <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''}`} disabled={isLoading}>
+                                {isLoading ? 'Submitting...' : 'Register'}
+                            </button>
                         </div>
                     </form>
                 </div>
