@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalLogin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const HospitalLogin = () => {
+  const navigate = useNavigate();
   const initialLoginData = {
     hospitalEmail: '',
     hospitalPassword: '',
@@ -45,15 +47,15 @@ const HospitalLogin = () => {
 
       switch (response.status) {
         case 200:
-          // Assuming the response contains hospitalId and token
-          const { hospitalId, token } = response.data.data;
+          const { token, hospital } = response.data.data;
 
-          // Set hospitalId and token in sessionStorage
-          sessionStorage.setItem('hospitalId', hospitalId);
+          sessionStorage.setItem('hospitalId', hospital.hospitalId);
           sessionStorage.setItem('token', token);
+
 
           alert('Login successful');
           resetForm();
+          navigate('/hospitalChangePassword');
           // Redirect or additional actions here
           break;
         default:
@@ -111,7 +113,7 @@ const HospitalLogin = () => {
           <h1 className="card-title hospital-login-title text-center">ADMIN PORTAL</h1>
           <form onSubmit={handleSubmit} noValidate className="hospital-login-form">
             {loginFailed && (
-            <div className="alert alert-danger text-center">Login failed. Please try again.</div>
+              <div className="alert alert-danger text-center">Login failed. Please try again.</div>
 
             )}
 

@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import '../../css/Hospital/HospitalRegistration.css';
@@ -21,11 +20,13 @@ const HospitalRegistration = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [selectedFileName, setSelectedFileName] = useState('');
     const [submitFailed, setSubmitFailed] = useState(false);
     const fileInputRef = useRef(null);
 
     const resetForm = () => {
         setHospitalData(initialHospitalData);
+        setSelectedFileName('');
         setValidationErrors({});
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
@@ -36,6 +37,9 @@ const HospitalRegistration = () => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
             setHospitalData({ ...hospitalData, hospitalImage: selectedFile });
+            if (!selectedFileName) {
+                setSelectedFileName(selectedFile.name);
+            }
             const reader = new FileReader();
             reader.onload = (event) => {
                 const imagePreview = document.getElementById("image-preview");
@@ -53,15 +57,19 @@ const HospitalRegistration = () => {
 
         try {
             const formData = new FormData();
-            for (const key in hospitalData) {
-                formData.append(key, hospitalData[key]);
-            }
+            Object.entries(hospitalData).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
 
-            const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalRegistration', formData);
+            const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalRegistration', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
 
             switch (response.status) {
-                case 201:
-                    alert('Hospital registered successfully');
+                case 200:
+                    alert(response.data.message || 'Hospital registered successfully');
                     resetForm();
                     break;
                 default:
@@ -72,32 +80,23 @@ const HospitalRegistration = () => {
             setSubmitFailed(true);
 
             if (error.response) {
-                const statusCode = error.response.status;
-                switch (statusCode) {
+                const { status, data } = error.response;
+                switch (status) {
                     case 400:
-                        const errorMessage = error.response.data.error;
-                        if (errorMessage === 'Validation failed') {
-                            const errors = error.response.data.details;
-                            const newValidationErrors = {};
-                            errors.forEach(err => {
-                                newValidationErrors[err.field] = err.message;
-
-                                if (err.field === 'hospitalImage' || err.field === 'hospitalPassword') {
-                                    alert(`${err.field} validation failed: ${err.message}`);
-                                }
-                            });
-                            setValidationErrors(newValidationErrors);
-                        } else if (errorMessage === 'Email already exists') {
-                            alert('Email already exists. Please use a different email.');
-                        } else if (errorMessage === 'Aadhar number already exists') {
-                            alert('Aadhar number already exists. Please use a different Aadhar number.');
-                        }
+                    case 422: // Handling validation errors
+                        const errors = data.results || {};
+                        let errorMessage = "Please correct the following errors:\n";
+                        Object.keys(errors).forEach(key => {
+                            errorMessage += `${key}: ${errors[key]}\n`;
+                        });
+                        alert(errorMessage);
+                        setValidationErrors(errors);
                         break;
                     case 500:
-                        alert('Internal server error. Please try again later.');
+                        alert(data.message || 'Internal server error. Please try again later.');
                         break;
                     default:
-                        alert('An error occurred. Please try again.');
+                        alert(data.message || 'An error occurred. Please try again.');
                         break;
                 }
             } else {
@@ -116,7 +115,6 @@ const HospitalRegistration = () => {
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
-
 
     return (
         <div className="hospital-registration-container">
@@ -253,6 +251,7 @@ const HospitalRegistration = () => {
                                             <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
                                         </button>
                                     </div>
+                                    {validationErrors.hospitalPassword && <div className="invalid-feedback">{validationErrors.hospitalPassword}</div>}
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -261,16 +260,17 @@ const HospitalRegistration = () => {
                                     <div className="file-input-container">
                                         <input
                                             type="file"
-                                            className={`form-control-file${validationErrors.hospitalImage ? ' is-invalid' : ''}`}
+                                            className={`form-control-file ${validationErrors.hospitalImage ? 'is-invalid' : ''} custom-file-input`}
                                             id="hospitalImage"
                                             name="hospitalImage"
                                             onChange={handleImagePreview}
                                             accept=".jpg, .jpeg, .png"
                                             ref={fileInputRef}
-                                            style={{ display: 'none' }} // Hide the file input
                                         />
-                                        <label htmlFor="hospitalImage" className="choose-file-button">Choose File</label>
+
+
                                     </div>
+                                    {validationErrors.hospitalImage && <div className="invalid-feedback">{validationErrors.hospitalImage}</div>}
                                 </div>
                             </div>
                         </div>
@@ -292,9 +292,9 @@ const HospitalRegistration = () => {
                         </div>
 
                         <div className="form-footer mt-3">
-                        <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''}`} disabled={isLoading}>
-                            {isLoading ? 'Submitting...' : 'Register'}
-                        </button>
+                            <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''}`} disabled={isLoading}>
+                                {isLoading ? 'Submitting...' : 'Register'}
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -304,4 +304,3 @@ const HospitalRegistration = () => {
 };
 
 export default HospitalRegistration;
-
