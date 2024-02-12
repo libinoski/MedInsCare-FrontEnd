@@ -1,160 +1,134 @@
-
 /* Hospital Registration Container */
 .hospital-registration-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-image: url('/src/images/Hospital/hospitalregistrationbackground.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  
-  /* Hospital Registration Card */
-  .hospital-registration-card {
-    width: 100%;
-    max-width: 1000px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.5);
-    position: relative;
-    backdrop-filter: blur(2px);
-  }
-  
-  .hospital-registration-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    z-index: 0;
-  }
-  
-  .hospital-registration-card .card-body {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .hospital-registration-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-  }
-  
-  /* Password Container */
-  .password-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-  }
-  
-  /* Password Input */
-  .password-input {
-      padding-right: 40px; /* Make room for the eye icon */
-  }
-  
-  /* Toggle Password Visibility Button */
-  .password-toggle-button {
-      position: absolute;
-      right: 10px;
-      height: 38px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: #007bff;
-  }
-  
-  .password-toggle-button:focus {
-      outline: none;
-  }
-  
-  .file-input-container {
-    position: relative;
-  }
-  
-  .image-preview {
-    max-width: 100%;
-    max-height: 300px;
-    height: auto;
-    object-fit: contain;
-  }
-  
-  /* Choose File Button (Custom) */
-  .choose-file-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 6px 15px;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: background-color 0.15s ease-in-out;
-  }
-  
-  .choose-file-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .choose-file-button:active {
-    background-color: #004085;
-  }
-  
-  .alert-success {
-    color: #28a745;
-  }
-  
-  .invalid-feedback {
-    color: #dc3545;
-  }
-  
-  .alert-danger {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  
-  .btn.loading {
-    pointer-events: none;
-    opacity: 0.8;
-  }
-  
-  .form-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-  
-  .btn-success {
-    margin-top: 10px;
-  }
-  
-  
-  
-  
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('/src/images/Hospital/hospitalregistrationbackground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Hospital Registration Card */
+.hospital-registration-card {
+  width: 100%;
+  max-width: 1000px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  backdrop-filter: blur(2px);
+}
+
+.hospital-registration-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.hospital-registration-card .card-body {
+  position: relative;
+  z-index: 1;
+}
+
+.hospital-registration-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+/* Password Container */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Password Input */
+.password-input {
+  padding-right: 40px; /* Make room for the eye icon */
+}
+
+/* Toggle Password Visibility Button */
+.password-toggle-button {
+  position: absolute;
+  right: 10px;
+  height: 38px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.password-toggle-button:focus {
+  outline: none;
+}
+
+.file-input-container {
+  position: relative;
+}
+
+.image-preview-container {
+  position: relative;
+  margin-bottom: 20px; /* Add margin to create space for error message */
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 300px;
+  height: auto;
+  object-fit: contain;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+}
+
+.alert-success {
+  color: #28a745;
+}
+
+.alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.btn-success {
+  margin-top: 10px;
+}

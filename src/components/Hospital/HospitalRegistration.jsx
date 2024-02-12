@@ -20,11 +20,13 @@ const HospitalRegistration = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [selectedFileName, setSelectedFileName] = useState('');
     const [submitFailed, setSubmitFailed] = useState(false);
     const fileInputRef = useRef(null);
 
     const resetForm = () => {
         setHospitalData(initialHospitalData);
+        setSelectedFileName('');
         setValidationErrors({});
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
@@ -35,6 +37,9 @@ const HospitalRegistration = () => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
             setHospitalData({ ...hospitalData, hospitalImage: selectedFile });
+            if (!selectedFileName) {
+                setSelectedFileName(selectedFile.name);
+            }
             const reader = new FileReader();
             reader.onload = (event) => {
                 const imagePreview = document.getElementById("image-preview");
@@ -50,13 +55,17 @@ const HospitalRegistration = () => {
         setValidationErrors({});
         setSubmitFailed(false);
 
-        const formData = new FormData();
-        for (const key in hospitalData) {
-            formData.append(key, hospitalData[key] instanceof File ? hospitalData[key] : hospitalData[key].trim());
-        }
-
         try {
-            const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalRegistration', formData);
+            const formData = new FormData();
+            Object.entries(hospitalData).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+
+            const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalRegistration', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
 
             switch (response.status) {
                 case 200:
@@ -242,6 +251,7 @@ const HospitalRegistration = () => {
                                             <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
                                         </button>
                                     </div>
+                                    {validationErrors.hospitalPassword && <div className="invalid-feedback">{validationErrors.hospitalPassword}</div>}
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -250,16 +260,17 @@ const HospitalRegistration = () => {
                                     <div className="file-input-container">
                                         <input
                                             type="file"
-                                            className={`form-control-file${validationErrors.hospitalImage ? ' is-invalid' : ''}`}
+                                            className={`form-control-file ${validationErrors.hospitalImage ? 'is-invalid' : ''} custom-file-input`}
                                             id="hospitalImage"
                                             name="hospitalImage"
                                             onChange={handleImagePreview}
                                             accept=".jpg, .jpeg, .png"
                                             ref={fileInputRef}
-                                            style={{ display: 'none' }} // Hide the file input
                                         />
-                                        <label htmlFor="hospitalImage" className="choose-file-button">Choose File</label>
+
+
                                     </div>
+                                    {validationErrors.hospitalImage && <div className="invalid-feedback">{validationErrors.hospitalImage}</div>}
                                 </div>
                             </div>
                         </div>
@@ -293,4 +304,3 @@ const HospitalRegistration = () => {
 };
 
 export default HospitalRegistration;
-
