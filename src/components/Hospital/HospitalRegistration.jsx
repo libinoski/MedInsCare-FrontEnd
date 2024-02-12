@@ -85,11 +85,11 @@ const HospitalRegistration = () => {
                     case 400:
                     case 422: // Handling validation errors
                         const errors = data.results || {};
-                        let errorMessage = "Please correct the following errors:\n";
+                        // let errorMessage = "Please correct the following errors:\n";
                         Object.keys(errors).forEach(key => {
-                            errorMessage += `${key}: ${errors[key]}\n`;
+                            // errorMessage += `${key}: ${errors[key]}\n`;
                         });
-                        alert(errorMessage);
+                        // alert(errorMessage);
                         setValidationErrors(errors);
                         break;
                     case 500:
