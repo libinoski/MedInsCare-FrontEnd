@@ -1,0 +1,91 @@
+.hospital-update-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; /* Ensure the blur layer doesn't overflow */
+    background-image: url('/src/images/Hospital/modern-hospital-building-perspective-art-8i7mrvuldz5iti77.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hospital-update-profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* Add glass-like blur effect to the background image */
+    z-index: 1; /* Ensure the blur layer is behind other content */
+}
+
+.hospital-update-profile-card {
+    max-width: 500px;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.6); /* Transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Shadow for glass effect */
+    padding: 40px;
+    position: relative; /* Ensure the card stays above the blur layer */
+    z-index: 2; /* Ensure the card is above the blur layer */
+}
+
+.hospital-update-profile-title {
+    margin-bottom: 30px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hospital-update-profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary.error {
+    background-color: #dc3545;
+}
+
+.btn-primary:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}

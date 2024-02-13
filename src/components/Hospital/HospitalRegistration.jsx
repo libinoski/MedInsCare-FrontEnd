@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalRegistration.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const HospitalRegistration = () => {
     const initialHospitalData = {
@@ -15,11 +14,10 @@ const HospitalRegistration = () => {
         hospitalPassword: '',
         hospitalImage: null,
     };
-
+    const navigate = useNavigate();
     const [hospitalData, setHospitalData] = useState(initialHospitalData);
     const [isLoading, setIsLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
-    const [passwordVisible, setPasswordVisible] = useState(false);
     const [selectedFileName, setSelectedFileName] = useState('');
     const [submitFailed, setSubmitFailed] = useState(false);
     const fileInputRef = useRef(null);
@@ -71,6 +69,7 @@ const HospitalRegistration = () => {
                 case 200:
                     alert(response.data.message || 'Hospital registered successfully');
                     resetForm();
+                    navigate('/hospitalViewProfile');
                     break;
                 default:
                     alert('An unexpected response was received from the server');
@@ -82,16 +81,20 @@ const HospitalRegistration = () => {
             if (error.response) {
                 const { status, data } = error.response;
                 switch (status) {
-                    case 400:
-                    case 422: // Handling validation errors
-                        const errors = data.results || {};
-                        let errorMessage = "Please correct the following errors:\n";
-                        Object.keys(errors).forEach(key => {
-                            errorMessage += `${key}: ${errors[key]}\n`;
-                        });
-                        alert(errorMessage);
-                        setValidationErrors(errors);
+                    case 400: // Handling validation errors
+                        const validationErrors400 = data.results || {};
+                        setValidationErrors(validationErrors400);
                         break;
+                        case 422: 
+    // Handle 422 status code here
+    if (data && data.error) {
+        const errorMessages = Object.values(data.error).join('\n');
+        alert(`Validation Error:\n${errorMessages}`);
+    } else {
+        alert('An error occurred. Please try again.');
+    }
+    break;
+
                     case 500:
                         alert(data.message || 'Internal server error. Please try again later.');
                         break;
@@ -110,10 +113,6 @@ const HospitalRegistration = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setHospitalData({ ...hospitalData, [name]: value });
-    };
-
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
     };
 
     return (
@@ -231,26 +230,16 @@ const HospitalRegistration = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label htmlFor="hospitalPassword" className="font-weight-bold">Password</label>
-                                    <div className="password-container">
-                                        <input
-                                            type={passwordVisible ? 'text' : 'password'}
-                                            className="form-control password-input"
-                                            id="hospitalPassword"
-                                            name="hospitalPassword"
-                                            value={hospitalData.hospitalPassword}
-                                            onChange={handleChange}
-                                            placeholder="Enter Password"
-                                            required
-                                        />
-                                        <button
-                                            type="button"
-                                            className="password-toggle-button"
-                                            onClick={togglePasswordVisibility}
-                                            aria-label="Toggle password visibility"
-                                        >
-                                            <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
-                                        </button>
-                                    </div>
+                                    <input
+                                        type="text"
+                                        className={`form-control ${validationErrors.hospitalPassword ? 'is-invalid' : ''}`}
+                                        id="hospitalPassword"
+                                        name="hospitalPassword"
+                                        value={hospitalData.hospitalPassword}
+                                        onChange={handleChange}
+                                        placeholder="Enter Password"
+                                        required
+                                    />
                                     {validationErrors.hospitalPassword && <div className="invalid-feedback">{validationErrors.hospitalPassword}</div>}
                                 </div>
                             </div>
@@ -267,10 +256,9 @@ const HospitalRegistration = () => {
                                             accept=".jpg, .jpeg, .png"
                                             ref={fileInputRef}
                                         />
-
-
+                                        <label htmlFor="hospitalImage" className="custom-file-button">Choose File</label>
+                                        {validationErrors.hospitalImage && <div className="invalid-feedback">{validationErrors.hospitalImage}</div>}
                                     </div>
-                                    {validationErrors.hospitalImage && <div className="invalid-feedback">{validationErrors.hospitalImage}</div>}
                                 </div>
                             </div>
                         </div>

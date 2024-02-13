@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../../css/Hospital/HospitalLogin.css';
+import '../../css/Hospital/HospitalLogin.css'; // Import CSS for Hospital Login page
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';
 
 const HospitalLogin = () => {
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
     const [loginData, setLoginData] = useState({ hospitalEmail: '', hospitalPassword: '' });
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessages, setErrorMessages] = useState({});
-    const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -31,8 +31,7 @@ const HospitalLogin = () => {
                 alert(response.data.message);
                 sessionStorage.setItem('hospitalId', response.data.data.hospital.hospitalId);
                 sessionStorage.setItem('token', response.data.data.token);
-                // Navigate to /hospitalChangePassword after successful login
-                navigate('/hospitalChangePassword');
+                navigate('/hospitalViewProfile');
             }
         } catch (error) {
             if (error.response) {
@@ -60,7 +59,6 @@ const HospitalLogin = () => {
         }
     };
 
-    // Function to toggle password visibility
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -78,7 +76,7 @@ const HospitalLogin = () => {
                             name="hospitalEmail"
                             value={loginData.hospitalEmail}
                             onChange={handleInputChange}
-                            className="form-control"
+                            className={`form-control ${errorMessages.hospitalEmail ? 'error' : ''}`}
                             required
                         />
                         {errorMessages.hospitalEmail && <p className="error">{errorMessages.hospitalEmail}</p>}
@@ -91,7 +89,7 @@ const HospitalLogin = () => {
                                 name="hospitalPassword"
                                 value={loginData.hospitalPassword}
                                 onChange={handleInputChange}
-                                className="form-control"
+                                className={`form-control ${errorMessages.hospitalPassword ? 'error' : ''}`}
                                 required
                             />
                             <button type="button" onClick={togglePasswordVisibility} className="eye-icon">
@@ -101,7 +99,7 @@ const HospitalLogin = () => {
                         {errorMessages.hospitalPassword && <p className="error">{errorMessages.hospitalPassword}</p>}
                     </div>
                     <div className="form-footer">
-                        <button type="submit" className="btn-primary" disabled={isLoading}>
+                        <button type="submit" className={`btn-primary ${Object.keys(errorMessages).length > 0 ? 'error' : ''}`} disabled={isLoading}>
                             {isLoading ? 'Logging in...' : 'Login'}
                         </button>
                     </div>
