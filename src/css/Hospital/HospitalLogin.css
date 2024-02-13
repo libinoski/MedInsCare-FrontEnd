@@ -1,75 +1,83 @@
-/* HospitalLogin.css */
+.password-input-container {
+  position: relative;
+}
 
-/* Hospital login container styles */
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.form-control {
+  padding-right: 40px;
+}
+
 .hospital-login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url('/src/images/Hospital/hospitalregistrationbackground.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your background image */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the background image */
-  }
-  
-  /* Card styles */
-  .hospital-login-card {
-    max-width: 400px;
-    background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
-  }
-  
-  /* Card body styles */
-  .card-body {
-    padding: 40px;
-  }
-  
-  /* Title styles */
-  .hospital-login-title {
-    margin-bottom: 30px;
-  }
-  
-  /* Form styles */
-  .hospital-login-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Form group styles */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Form input styles */
-  .form-control {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.2s ease-in-out;
-  }
-  
-  .form-control:focus {
-    border-color: #007bff;
-  }
-  
-  /* Form footer styles */
-  .form-footer {
-    display: flex;
-    justify-content: center;
-  }
-  
-  /* Login button styles */
-  .btn-primary {
-    padding: 10px 20px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/src/images/Hospital/hospitalregistrationbackground.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hospital-login-card {
+  max-width: 400px;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+.hospital-login-title {
+  margin-bottom: 20px;
+}
+
+.hospital-login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+}
