@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import '../../css/Hospital/HospitalViewProfile.css';
 
 const HospitalViewProfile = () => {
     const navigate = useNavigate();
@@ -58,27 +57,45 @@ const HospitalViewProfile = () => {
     }, [navigate]);
 
     return (
-        <div className="hospital-profile-container">
-            {isLoading && <p>Loading profile...</p>}
-            {hospitalProfile && (
-                <div className="hospital-profile-card">
-                    <h2>Hospital Profile</h2>
-                    <p>Hospital ID: {hospitalProfile.hospitalId}</p>
-                    <p>Name: {hospitalProfile.hospitalName}</p>
-                    <p>Image: {hospitalProfile.hospitalImage}</p>
-                    <p>Email: {hospitalProfile.hospitalEmail}</p>
-                    <p>Aadhar: {hospitalProfile.hospitalAadhar}</p>
-                    <p>Mobile: {hospitalProfile.hospitalMobile}</p>
-                    <p>Website: {hospitalProfile.hospitalWebSite}</p>
-                    <p>Address: {hospitalProfile.hospitalAddress}</p>
-                    <p>Registered Date: {hospitalProfile.registeredDate}</p>
-                    <div className="buttons">
-                        <Link to="/hospitalUpdateProfile">
-                            <button className="btn-update">Update Profile</button>
-                        </Link>
+        <div className="container-fluid d-flex align-items-center justify-content-center vh-100">
+            <div className="row justify-content-center">
+                <div className="col-lg-8 col-xl-6">
+                    <div className="card profile-card">
+                        {isLoading ? (
+                            <div className="card-body text-center">Loading profile...</div>
+                        ) : hospitalProfile ? (
+                            <div className="card-body">
+                                <div className="profile-image-container mb-3 text-center">
+                                    <img
+                                        src={hospitalProfile.hospitalImage}
+                                        alt="Hospital"
+                                        className="img-fluid profile-image"
+                                    />
+                                </div>
+                                <div className="row g-3">
+                                    <div className="col-md-6">
+                                        <p><strong>Hospital ID:</strong> {hospitalProfile.hospitalId}</p>
+                                        <p><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
+                                        <p><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
+                                        <p><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
+                                        <p><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
+                                        <p><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
+                                        <p><strong>Registered Date:</strong> {hospitalProfile.registeredDate}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="card-body text-center">No profile found.</div>
+                        )}
+                        <div className="card-footer text-end">
+                            <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update Profile</Link>
+                        </div>
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
