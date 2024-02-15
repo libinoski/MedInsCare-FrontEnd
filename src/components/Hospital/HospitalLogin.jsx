@@ -66,7 +66,7 @@ const HospitalLogin = () => {
     return (
         <div className="hospital-login-container">
             <div className="hospital-login-card">
-                <h2 className="hospital-login-title">Hospital Login</h2>
+                <h2 className="hospital-login-title">Welcome to the Portal</h2>
                 {errorMessages.general && <p className="error">{errorMessages.general}</p>}
                 <form onSubmit={handleSubmit} noValidate className="hospital-login-form">
                     <div className="form-group">
@@ -104,6 +104,7 @@ const HospitalLogin = () => {
                         </button>
                     </div>
                 </form>
+                <p className="create-account-text" onClick={() => navigate('/')}>Create a new account</p>
             </div>
         </div>
     );

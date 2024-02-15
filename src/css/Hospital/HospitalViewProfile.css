@@ -1,0 +1,23 @@
+.hospital-view-profile-container {
+    height: 100%;
+  }
+  
+  .bg-image {
+    background-image: url('/src/images/Hospital/image-from-rawpixel-id-13206961-jpeg.jpg'); /* Specify the path to your background image */
+    background-size: cover;
+  }
+  
+  .profile-image-container img {
+    max-width: 100%; /* Ensures the image is responsive and fits its container */
+    object-fit: contain; /* Ensures the entire image fits within the container */
+    height: auto; /* Adjusts the height automatically to maintain aspect ratio */
+    max-height: 300px; /* Optional: Adjust based on your preference */
+  }
+  
+  .profile-card {
+    max-width: 100%; /* Ensures the card is responsive */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  }
+  
+  

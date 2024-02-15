@@ -69,7 +69,7 @@ const HospitalRegistration = () => {
                 case 200:
                     alert(response.data.message || 'Hospital registered successfully');
                     resetForm();
-                    navigate('/hospitalViewProfile');
+                    navigate('/hospitalLogin');
                     break;
                 default:
                     alert('An unexpected response was received from the server');
@@ -114,6 +114,13 @@ const HospitalRegistration = () => {
         const { name, value } = e.target;
         setHospitalData({ ...hospitalData, [name]: value });
     };
+
+    const handleAlreadyHaveAccount = () => {
+        // Logic to handle "Already have an account" button click
+        navigate('/hospitalLogin');
+    };
+
+
 
     return (
         <div className="hospital-registration-container">
@@ -285,6 +292,12 @@ const HospitalRegistration = () => {
                             </button>
                         </div>
                     </form>
+                    <div className="form-footer mt-3 text-center">
+                            <button type="button" className="btn btn-secondary" onClick={handleAlreadyHaveAccount}>
+                                Already have an account? Login
+                            </button>
+                        </div>
+
                 </div>
             </div>
         </div>

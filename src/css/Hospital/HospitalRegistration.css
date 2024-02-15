@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('/src/images/Hospital/modern-warehouse-bathed-glow-setting-sun.jpg');
+  background-image: url('/src/images/Hospital/image-from-rawpixel-id-13207358-jpeg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,12 +16,11 @@
 /* Hospital Registration Card */
 .hospital-registration-card {
   width: 100%;
-  max-width: 1000px;
-  border: 2px solid #ccc;
+  max-width: 600px; /* Adjusted max-width for better readability */
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5); /* Adjusted background color and opacity */
   position: relative;
   backdrop-filter: blur(2px);
 }
@@ -33,9 +32,9 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5); /* Adjusted background color and opacity */
   border-radius: 10px;
-  z-index: 0;
+  z-index: -1;
 }
 
 .hospital-registration-card .card-body {
@@ -56,6 +55,12 @@
 
 .form-group label {
   font-weight: bold;
+}
+
+.custom-email-input,
+input[type="text"],
+input[type="file"] {
+  height: 40px; /* Set a fixed height for input fields */
 }
 
 .custom-email-input {
@@ -80,8 +85,8 @@
 
 .custom-file-button {
   display: inline-block;
-  background-color: #007bff; /* Blue color */
-  color: #fff;
+  background-color: #007bff; /* Change the background color to blue */
+  color: #fff; /* Change the text color to white */
   padding: 8px 20px;
   border-radius: 5px;
   cursor: pointer;
