@@ -1,177 +1,112 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../../css/Hospital/HospitalLogin.css';
+import '../../css/Hospital/HospitalLogin.css'; // Import CSS for Hospital Login page
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const HospitalLogin = () => {
-  const navigate = useNavigate();
-  const initialLoginData = {
-    hospitalEmail: '',
-    hospitalPassword: '',
-  };
+    const navigate = useNavigate();
+    const [loginData, setLoginData] = useState({ hospitalEmail: '', hospitalPassword: '' });
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessages, setErrorMessages] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
 
-  const [loginData, setLoginData] = useState(initialLoginData);
-  const [isLoading, setIsLoading] = useState(false);
-  const [validationErrors, setValidationErrors] = useState({});
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [loginFailed, setLoginFailed] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData({ ...loginData, [name]: value });
-  };
-
-  const resetForm = () => {
-    setLoginData(initialLoginData);
-  };
-
-  const displayPasswordValidationError = (message) => {
-    alert(`Password validation failed: ${message}`);
-  };
-
-  const handleServerError = (errorMessage) => {
-    alert(errorMessage);
-    setLoginFailed(true);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setValidationErrors({});
-    setLoginFailed(false);
-
-    try {
-      const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalLogin', loginData);
-
-      switch (response.status) {
-        case 200:
-          const { token, hospital } = response.data.data;
-
-          sessionStorage.setItem('hospitalId', hospital.hospitalId);
-          sessionStorage.setItem('token', token);
-
-
-          alert('Login successful');
-          resetForm();
-          navigate('/hospitalChangePassword');
-          // Redirect or additional actions here
-          break;
-        default:
-          alert('Unexpected server response');
-          setLoginFailed(true);
-          break;
-      }
-    } catch (error) {
-      setLoginFailed(true);
-      if (error.response) {
-        switch (error.response.status) {
-          case 400:
-            const errors = error.response.data.details;
-            const newValidationErrors = {};
-            errors.forEach((err) => {
-              newValidationErrors[err.field] = err.message;
-              if (err.field === 'hospitalPassword') {
-                displayPasswordValidationError(err.message);
-              }
-            });
-            setValidationErrors(newValidationErrors);
-            break;
-          case 401:
-            handleServerError('Wrong password.');
-            break;
-          case 403:
-            handleServerError('Access to the login feature is restricted.');
-            break;
-          case 404:
-            handleServerError('Hospital not found.');
-            break;
-          case 500:
-            handleServerError('Internal server error. Please try again later.');
-            break;
-          default:
-            handleServerError('An error occurred. Please try again.');
-            break;
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setLoginData({ ...loginData, [name]: value });
+        if (errorMessages[name]) {
+            setErrorMessages({ ...errorMessages, [name]: '' });
         }
-      } else {
-        handleServerError('An error occurred. Please try again.');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setErrorMessages({});
 
-  return (
-    <div className="hospital-login-container">
-      <div className="card hospital-login-card">
-        <div className="card-body">
-          <h1 className="card-title hospital-login-title text-center">ADMIN PORTAL</h1>
-          <form onSubmit={handleSubmit} noValidate className="hospital-login-form">
-            {loginFailed && (
-              <div className="alert alert-danger text-center">Login failed. Please try again.</div>
+        try {
+            const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalLogin', loginData);
+            if (response.status === 200) {
+                alert(response.data.message);
+                sessionStorage.setItem('hospitalId', response.data.data.hospital.hospitalId);
+                sessionStorage.setItem('token', response.data.data.token);
+                navigate('/hospitalViewProfile');
+            }
+        } catch (error) {
+            if (error.response) {
+                const { status, data } = error.response;
+                switch (status) {
+                    case 400:
+                        setErrorMessages(data.results || {});
+                        break;
+                    case 422:
+                        const errorMessage = data.error || "An error occurred during login.";
+                        alert(errorMessage);
+                        break;
+                    case 500:
+                        alert(data.message || 'Internal server error. Please try again later.');
+                        break;
+                    default:
+                        alert('An error occurred. Please try again.');
+                        break;
+                }
+            } else {
+                setErrorMessages({ ...errorMessages, general: 'An error occurred. Please check your connection and try again.' });
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-            )}
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
-            <div className="form-group">
-              <label htmlFor="hospitalEmail">Email</label>
-              <input
-                type="email"
-                className={`form-control ${validationErrors.hospitalEmail ? 'is-invalid' : ''}`}
-                id="hospitalEmail"
-                name="hospitalEmail"
-                value={loginData.hospitalEmail}
-                onChange={handleChange}
-                placeholder="Enter Email"
-                required
-              />
-              {validationErrors.hospitalEmail && (
-                <div className="invalid-feedback">{validationErrors.hospitalEmail}</div>
-              )}
+    return (
+        <div className="hospital-login-container">
+            <div className="hospital-login-card">
+                <h2 className="hospital-login-title">Hospital Login</h2>
+                {errorMessages.general && <p className="error">{errorMessages.general}</p>}
+                <form onSubmit={handleSubmit} noValidate className="hospital-login-form">
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input
+                            type="text"
+                            name="hospitalEmail"
+                            value={loginData.hospitalEmail}
+                            onChange={handleInputChange}
+                            className={`form-control ${errorMessages.hospitalEmail ? 'error' : ''}`}
+                            required
+                        />
+                        {errorMessages.hospitalEmail && <p className="error">{errorMessages.hospitalEmail}</p>}
+                    </div>
+                    <div className="form-group">
+                        <label>Password:</label>
+                        <div className="password-input-container">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                name="hospitalPassword"
+                                value={loginData.hospitalPassword}
+                                onChange={handleInputChange}
+                                className={`form-control ${errorMessages.hospitalPassword ? 'error' : ''}`}
+                                required
+                            />
+                            <button type="button" onClick={togglePasswordVisibility} className="eye-icon">
+                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                            </button>
+                        </div>
+                        {errorMessages.hospitalPassword && <p className="error">{errorMessages.hospitalPassword}</p>}
+                    </div>
+                    <div className="form-footer">
+                        <button type="submit" className={`btn-primary ${Object.keys(errorMessages).length > 0 ? 'error' : ''}`} disabled={isLoading}>
+                            {isLoading ? 'Logging in...' : 'Login'}
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div className="form-group">
-              <label htmlFor="hospitalPassword">Password</label>
-              <div className="password-container">
-                <input
-                  type={passwordVisible ? 'text' : 'password'}
-                  className={`form-control`}
-                  id="hospitalPassword"
-                  name="hospitalPassword"
-                  value={loginData.hospitalPassword}
-                  onChange={handleChange}
-                  placeholder="Enter Password"
-                  required
-                />
-                <button
-                  type="button"
-                  className="password-toggle-button"
-                  onClick={togglePasswordVisibility}
-                >
-                  <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
-                </button>
-              </div>
-            </div>
-
-            <div className="form-footer">
-              <button
-                type="submit"
-                className={`btn btn-primary ${isLoading ? 'loading' : ''}`}
-                disabled={isLoading}
-              >
-                {isLoading ? 'Logging in...' : 'Login'}
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default HospitalLogin;
-
