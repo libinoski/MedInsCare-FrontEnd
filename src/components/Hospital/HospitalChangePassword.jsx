@@ -4,6 +4,7 @@ import '../../css/Hospital/HospitalChangePassword.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './HospitalNavbar';
 
 const HospitalChangePassword = () => {
     const navigate = useNavigate();
@@ -74,7 +75,9 @@ const HospitalChangePassword = () => {
     };
 
     return (
+        <div>    <Navbar/>
         <div className="hospital-change-password-container">
+    
             <div className="hospital-change-password-card">
                 <h2 className="hospital-change-password-title">Change Password</h2>
                 {errorMessages.general && <p className="error">{errorMessages.general}</p>}
@@ -120,6 +123,7 @@ const HospitalChangePassword = () => {
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

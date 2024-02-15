@@ -7,18 +7,23 @@ import HospitalLogin from './components/Hospital/HospitalLogin';
 import HospitalChangePassword from './components/Hospital/HospitalChangePassword';
 import HospitalViewProfile from './components/Hospital/HospitalViewProfile';
 import HospitalUpdateProfile from './components/Hospital/HospitalUpdateProfile';
+import Navbar from './components/Hospital/HospitalNavbar';
+import HospitalUpdateImage from './components/Hospital/HospitalUpdateImage';
 
 
 function App() {
   return (
     <div>
+
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<HospitalRegistration />} /> 
+          <Route path='/navbar' elemet={<Navbar />} />
+          <Route path='/' element={<HospitalRegistration />} />
           <Route path='/hospitalLogin' element={<HospitalLogin />} />
           <Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />
           <Route path='/hospitalViewProfile' element={<HospitalViewProfile />} />
           <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
+          <Route path='/hospitalUpdateImage' element={<HospitalUpdateImage />} />
 
         </Routes>
       </BrowserRouter>

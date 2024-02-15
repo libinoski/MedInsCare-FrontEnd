@@ -1,0 +1,100 @@
+/* HospitalUpdateImage.css */
+
+.hospital-update-image-container {
+    height: 100%;
+    min-height: 100vh;
+    background-image: url('/src/images/Hospital/bg1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hospital-update-image-content {
+    display: flex; /* Use flexbox for the content */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.transparent-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use flexbox for the card */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 1rem 0;
+    text-align: center;
+    margin-bottom: 1.5rem; /* Add margin for spacing */
+    width: 100%; /* Ensure header takes full width */
+}
+
+.card-body {
+    width: 100%; /* Ensure body takes full width */
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.15s ease-in-out;
+    align-self: flex-end; /* Align button to the bottom */
+    margin-top: auto; /* Ensure spacing between elements and align at the bottom */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.img-preview-container {
+    display: flex;
+    justify-content: center;
+}
+
+.img-preview {
+    max-width: 100%;
+    max-height: 300px;
+    display: block;
+}

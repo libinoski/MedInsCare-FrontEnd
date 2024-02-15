@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalUpdateProfile.css';
+import Navbar from './HospitalNavbar';
 
 const HospitalUpdateProfile = () => {
     const navigate = useNavigate();
@@ -128,10 +129,14 @@ const HospitalUpdateProfile = () => {
     };
 
     return (
+        <div>
+            <Navbar/>
+
         <div className="hospital-update-profile-container">
+        
             <div className="hospital-update-profile-bg-image">
                 <div className="card hospital-update-profile-card">
-                    <h2 className="card-header hospital-update-profile-card-header">Update Profile</h2>
+                    <h2 className="card-header hospital-update-profile-card-header">Update Your Profile Details Now!</h2>
                     <div className="card-body hospital-update-profile-card-body">
                         <form onSubmit={handleSubmit} noValidate>
                             <div className="mb-3">
@@ -208,6 +213,7 @@ const HospitalUpdateProfile = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };
