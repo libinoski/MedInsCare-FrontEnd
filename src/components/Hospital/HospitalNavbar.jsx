@@ -19,8 +19,25 @@ const Navbar = () => {
                             <Link className="nav-link" to="/hospitalChangePassword">Change Password</Link>
                         </li>
                         <li className="nav-item">
+                            <Link className="nav-link" to="/hospitalRegisterStaff">Register Staff</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/hospitalViewAllStaffs">View All Staffs</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/hospitalSearchStaffs">Search Staffs</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/hospitalAddNews">Add News</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/hospitalViewAllNews">View All News</Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link" to="/hospitalLogin">Logout</Link>
                         </li>
+
+
                     </ul>
                 </div>
             </div>

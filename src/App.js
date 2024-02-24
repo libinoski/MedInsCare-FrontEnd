@@ -9,6 +9,12 @@ import HospitalViewProfile from './components/Hospital/HospitalViewProfile';
 import HospitalUpdateProfile from './components/Hospital/HospitalUpdateProfile';
 import Navbar from './components/Hospital/HospitalNavbar';
 import HospitalUpdateImage from './components/Hospital/HospitalUpdateImage';
+import HospitalRegisterStaff from './components/Hospital/HospitalRegisterStaff';
+import HospitalViewAllStaffs from './components/Hospital/HospitalViewAllStaffs';
+import HospitalViewOneStaff from './components/Hospital/HospitalViewOneStaff';
+import HospitalSearchStaffs from './components/Hospital/HospitalSearchStaffs';
+import HospitalAddNews from './components/Hospital/HospitalAddNews';
+import HospitalViewAllNews from './components/Hospital/HospitalViewAllNews';
 
 
 function App() {
@@ -24,6 +30,12 @@ function App() {
           <Route path='/hospitalViewProfile' element={<HospitalViewProfile />} />
           <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
           <Route path='/hospitalUpdateImage' element={<HospitalUpdateImage />} />
+          <Route path='/hospitalRegisterStaff' element={<HospitalRegisterStaff />} />
+          <Route path='/hospitalViewAllStaffs' element={<HospitalViewAllStaffs />} />
+          <Route path='/hospitalViewOneStaff' element={<HospitalViewOneStaff />} />
+          <Route path='/hospitalSearchStaffs' element={<HospitalSearchStaffs />} />
+          <Route path='/hospitalAddNews' element={<HospitalAddNews />} />
+          <Route path='/hospitalViewAllNews' element={<HospitalViewAllNews />} />
 
         </Routes>
       </BrowserRouter>
