@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './HospitalNavbar';
+import Footer from '../Common/Footer';
+import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 
 const HospitalUpdateProfile = () => {
     const navigate = useNavigate();
@@ -127,84 +130,103 @@ const HospitalUpdateProfile = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
-            <div className="card" style={{ maxWidth: "600px", width: "100%", margin: "auto" }}>
-                <h2 className="card-header text-center">Update Profile</h2>
-                <div className="card-body">
-                    <form onSubmit={handleSubmit} noValidate>
-                        <div className="mb-3">
-                            <label htmlFor="hospitalName" className="form-label">Hospital Name:</label>
-                            <input
-                                type="text"
-                                name="hospitalName"
-                                value={hospitalProfile.hospitalName}
-                                onChange={handleInputChange}
-                                className={`form-control ${errorMessages.hospitalName ? 'is-invalid' : ''}`}
-                                id="hospitalName"
-                                required
-                            />
-                            {errorMessages.hospitalName && <div className="invalid-feedback">{errorMessages.hospitalName}</div>}
+        <div>
+            <Navbar />
+            <div
+                className="container-fluid bg-blur"
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    minHeight: '100vh',
+                    paddingTop: '56px',
+                    position: 'relative',
+                }}
+            >
+                <div className="container py-5">
+                    <div className="row justify-content-center">
+                        <div className="col-md-6">
+                            <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit} noValidate>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalName" className="form-label">Hospital Name:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalName"
+                                                value={hospitalProfile.hospitalName}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalName ? 'is-invalid' : ''}`}
+                                                id="hospitalName"
+                                                required
+                                            />
+                                            {errorMessages.hospitalName && <div className="invalid-feedback">{errorMessages.hospitalName}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalWebSite" className="form-label">Website:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalWebSite"
+                                                value={hospitalProfile.hospitalWebSite}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalWebSite ? 'is-invalid' : ''}`}
+                                                id="hospitalWebSite"
+                                                required
+                                            />
+                                            {errorMessages.hospitalWebSite && <div className="invalid-feedback">{errorMessages.hospitalWebSite}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalAadhar" className="form-label">Aadhar:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalAadhar"
+                                                value={hospitalProfile.hospitalAadhar}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalAadhar ? 'is-invalid' : ''}`}
+                                                id="hospitalAadhar"
+                                                required
+                                            />
+                                            {errorMessages.hospitalAadhar && <div className="invalid-feedback">{errorMessages.hospitalAadhar}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalMobile" className="form-label">Mobile:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalMobile"
+                                                value={hospitalProfile.hospitalMobile}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalMobile ? 'is-invalid' : ''}`}
+                                                id="hospitalMobile"
+                                                required
+                                            />
+                                            {errorMessages.hospitalMobile && <div className="invalid-feedback">{errorMessages.hospitalMobile}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalAddress" className="form-label">Address:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalAddress"
+                                                value={hospitalProfile.hospitalAddress}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalAddress ? 'is-invalid' : ''}`}
+                                                id="hospitalAddress"
+                                                required
+                                            />
+                                            {errorMessages.hospitalAddress && <div className="invalid-feedback">{errorMessages.hospitalAddress}</div>}
+                                        </div>
+                                        <div className="text-center">
+                                            <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
+                                                {isLoading ? 'Updating Profile...' : 'Update'}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="hospitalWebSite" className="form-label">Website:</label>
-                            <input
-                                type="text"
-                                name="hospitalWebSite"
-                                value={hospitalProfile.hospitalWebSite}
-                                onChange={handleInputChange}
-                                className={`form-control ${errorMessages.hospitalWebSite ? 'is-invalid' : ''}`}
-                                id="hospitalWebSite"
-                                required
-                            />
-                            {errorMessages.hospitalWebSite && <div className="invalid-feedback">{errorMessages.hospitalWebSite}</div>}
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="hospitalAadhar" className="form-label">Aadhar:</label>
-                            <input
-                                type="text"
-                                name="hospitalAadhar"
-                                value={hospitalProfile.hospitalAadhar}
-                                onChange={handleInputChange}
-                                className={`form-control ${errorMessages.hospitalAadhar ? 'is-invalid' : ''}`}
-                                id="hospitalAadhar"
-                                required
-                            />
-                            {errorMessages.hospitalAadhar && <div className="invalid-feedback">{errorMessages.hospitalAadhar}</div>}
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="hospitalMobile" className="form-label">Mobile:</label>
-                            <input
-                                type="text"
-                                name="hospitalMobile"
-                                value={hospitalProfile.hospitalMobile}
-                                onChange={handleInputChange}
-                                className={`form-control ${errorMessages.hospitalMobile ? 'is-invalid' : ''}`}
-                                id="hospitalMobile"
-                                required
-                            />
-                            {errorMessages.hospitalMobile && <div className="invalid-feedback">{errorMessages.hospitalMobile}</div>}
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="hospitalAddress" className="form-label">Address:</label>
-                            <input
-                                type="text"
-                                name="hospitalAddress"
-                                value={hospitalProfile.hospitalAddress}
-                                onChange={handleInputChange}
-                                className={`form-control ${errorMessages.hospitalAddress ? 'is-invalid' : ''}`}
-                                id="hospitalAddress"
-                                required
-                            />
-                            {errorMessages.hospitalAddress && <div className="invalid-feedback">{errorMessages.hospitalAddress}</div>}
-                        </div>
-                        <div className="d-flex justify-content-center mt-4">
-                            <button type="submit" className="btn btn-primary btn-sm" disabled={isLoading}>
-                                {isLoading ? 'Updating Profile...' : 'Update'}
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
