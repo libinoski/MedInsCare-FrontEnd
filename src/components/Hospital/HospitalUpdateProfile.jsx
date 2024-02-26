@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalUpdateProfile.css';
 import Navbar from './HospitalNavbar';
+import Footer from '../Common/Footer';
 
 const HospitalUpdateProfile = () => {
     const navigate = useNavigate();
@@ -214,6 +215,7 @@ const HospitalUpdateProfile = () => {
                 </div>
             </div>
         </div>
+        <Footer />
         </div>
     );
 };

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './HospitalNavbar';
 import '../../css/Hospital/HospitalViewProfile.css';
+import Footer from '../Common/Footer';
 
 const HospitalViewProfile = () => {
     const navigate = useNavigate();
@@ -106,6 +107,7 @@ const HospitalViewProfile = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

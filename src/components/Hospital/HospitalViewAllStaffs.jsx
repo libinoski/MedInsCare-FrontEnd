@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
+import backgroundImage from '../../images/Hospital/hindoor2.jpg'; // Import the background image
+import Footer from '../Common/Footer';
+
 
 const HospitalViewAllStaffs = () => {
     const navigate = useNavigate();
@@ -69,72 +72,54 @@ const HospitalViewAllStaffs = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <div className="container mt-4">
-                <h2 className="text-center mb-4">All Hospital Staffs</h2>
-                {isLoading ? (
-                    <p className="text-center">Loading staffs...</p>
-                ) : (
-                    <div className="table-responsive">
-                        <table className="table table-striped table-hover text-center align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Aadhar</th>
-                                    <th>Mobile</th>
-                                    <th>Address</th>
-                                    {/* <th>Added Date</th>
-                                    <th>Updated Date</th>
-                                    <th>Delete Status</th>
-                                    <th>Is Suspended</th>
-                                    <th>Update Status</th>
-                                    <th>Is Active</th>
-                                    <th>Password Update Status</th>
-                                    <th>Profile Image</th>
-                                    <th>ID Proof Image</th> */}
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {staffList.length > 0 ? (
-                                    staffList.map((staff, index) => (
-                                        <tr key={index}>
-                                            <td>{staff.hospitalStaffName}</td>
-                                            <td>{staff.hospitalStaffEmail}</td>
-                                            <td>{staff.hospitalStaffAadhar}</td>
-                                            <td>{staff.hospitalStaffMobile}</td>
-                                            <td>{staff.hospitalStaffAddress}</td>
-                                            {/* <td>{staff.addedDate}</td>
-                                            <td>{staff.updatedDate}</td>
-                                            <td>{staff.deleteStatus}</td>
-                                            <td>{staff.isSuspended}</td>
-                                            <td>{staff.updateStatus}</td>
-                                            <td>{staff.isActive}</td>
-                                            <td>{staff.passwordUpdateStatus}</td> */}
-                                            {/* <td>
-                                                <img src={staff.hospitalStaffProfileImage} alt="Profile" style={{maxWidth: '50px'}} />
-                                            </td>
-                                            <td>
-                                                <img src={staff.hospitalStaffIdProofImage} alt="ID Proof" style={{maxWidth: '50px'}} />
-                                            </td> */}
-                                            <td>
-                                                <button className="btn btn-primary" onClick={() => handleViewStaff(staff.hospitalStaffId)}>View</button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="15" className="text-center">No staffs found.</td>
+<div className="d-flex flex-column" style={{ height: '100vh' }}>
+    <Navbar />
+    <div className="flex-grow-1 container-fluid mt-0 position-relative" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', marginTop: '-56px' }}>
+        {isLoading ? (
+            <p className="text-center">Loading staffs...</p>
+        ) : (
+            <div className="position-relative">
+                <div className="glass-effect position-absolute top-0 left-0 w-100 h-100"></div>
+                <div className="table-responsive" style={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.5)', borderRadius: '10px', padding: '20px' }}>
+                    <table className="table table-striped table-hover text-center align-middle" style={{ backgroundColor: 'transparent', borderCollapse: 'collapse' }}>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Aadhar</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {staffList.length > 0 ? (
+                                staffList.map((staff, index) => (
+                                    <tr key={index}>
+                                        <td>{staff.hospitalStaffName}</td>
+                                        <td>{staff.hospitalStaffEmail}</td>
+                                        <td>{staff.hospitalStaffAadhar}</td>
+                                        <td>{staff.hospitalStaffMobile}</td>
+                                        <td>{staff.hospitalStaffAddress}</td>
+                                        <td>
+                                            <button className="btn btn-primary" onClick={() => handleViewStaff(staff.hospitalStaffId)}>View</button>
+                                        </td>
                                     </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="6" className="text-center">No staffs found.</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        )}
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

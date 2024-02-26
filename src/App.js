@@ -15,6 +15,7 @@ import HospitalViewOneStaff from './components/Hospital/HospitalViewOneStaff';
 import HospitalSearchStaffs from './components/Hospital/HospitalSearchStaffs';
 import HospitalAddNews from './components/Hospital/HospitalAddNews';
 import HospitalViewAllNews from './components/Hospital/HospitalViewAllNews';
+import Footer from './components/Common/Footer';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/navbar' elemet={<Navbar />} />
+          <Route path='/footer' elemet={<Footer />} />
           <Route path='/' element={<HospitalRegistration />} />
           <Route path='/hospitalLogin' element={<HospitalLogin />} />
           <Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />

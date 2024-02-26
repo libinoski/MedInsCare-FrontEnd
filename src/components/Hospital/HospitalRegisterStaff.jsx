@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../css/Hospital/HospitalRegisterStaff.css';
+import Navbar from './HospitalNavbar';
 
 const HospitalRegisterStaff = () => {
     const initialStaffData = {
@@ -122,166 +123,171 @@ const HospitalRegisterStaff = () => {
     };
 
     return (
-        <div className="hospital-registration-container">
-            <div className="card hospital-registration-card">
-                <div className="card-body">
-                    <h1 className="card-title hospital-registration-title text-center">Register Staff</h1>
-                    <form onSubmit={handleSubmit} noValidate className="hospital-registration-form">
-                        {/* Hospital Staff Name */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffName">Name:</label>
-                            <input
-                                type="text"
-                                className={`form-control ${validationErrors.hospitalStaffName ? 'is-invalid' : ''}`}
-                                id="hospitalStaffName"
-                                name="hospitalStaffName"
-                                value={staffData.hospitalStaffName}
-                                onChange={handleInputChange}
-                                placeholder="Enter Name"
-                                required
-                            />
-                            {validationErrors.hospitalStaffName && <div className="invalid-feedback">{validationErrors.hospitalStaffName}</div>}
-                        </div>
+<div>
+    <Navbar/>
 
-                        {/* Hospital Staff Email */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffEmail">Email:</label>
-                            <input
-                                type="email"
-                                className={`form-control ${validationErrors.hospitalStaffEmail ? 'is-invalid' : ''}`}
-                                id="hospitalStaffEmail"
-                                name="hospitalStaffEmail"
-                                value={staffData.hospitalStaffEmail}
-                                onChange={handleInputChange}
-                                placeholder="Enter Email"
-                                required
-                            />
-                            {validationErrors.hospitalStaffEmail && <div className="invalid-feedback">{validationErrors.hospitalStaffEmail}</div>}
-                        </div>
+    <div className="hospital-staff-registration-container">
+        <div className="card hospital-staff-registration-card">
+            <div className="card-body">
+                <h1 className="card-title hospital-staff-registration-title text-center">Register Staff</h1>
+                <form onSubmit={handleSubmit} noValidate className="hospital-staff-registration-form">
+                    {/* Hospital Staff Name */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffName">Name:</label>
+                        <input
+                            type="text"
+                            className={`form-control ${validationErrors.hospitalStaffName ? 'is-invalid' : ''}`}
+                            id="hospitalStaffName"
+                            name="hospitalStaffName"
+                            value={staffData.hospitalStaffName}
+                            onChange={handleInputChange}
+                            placeholder="Enter Name"
+                            required
+                        />
+                        {validationErrors.hospitalStaffName && <div className="invalid-feedback">{validationErrors.hospitalStaffName}</div>}
+                    </div>
 
-                        {/* Hospital Staff Aadhar */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffAadhar">Aadhar Number:</label>
-                            <input
-                                type="text"
-                                className={`form-control ${validationErrors.hospitalStaffAadhar ? 'is-invalid' : ''}`}
-                                id="hospitalStaffAadhar"
-                                name="hospitalStaffAadhar"
-                                value={staffData.hospitalStaffAadhar}
-                                onChange={handleInputChange}
-                                placeholder="Enter Aadhar Number"
-                                required
-                            />
-                            {validationErrors.hospitalStaffAadhar && <div className="invalid-feedback">{validationErrors.hospitalStaffAadhar}</div>}
-                        </div>
+                    {/* Hospital Staff Email */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffEmail">Email:</label>
+                        <input
+                            type="email"
+                            className={`form-control ${validationErrors.hospitalStaffEmail ? 'is-invalid' : ''}`}
+                            id="hospitalStaffEmail"
+                            name="hospitalStaffEmail"
+                            value={staffData.hospitalStaffEmail}
+                            onChange={handleInputChange}
+                            placeholder="Enter Email"
+                            required
+                        />
+                        {validationErrors.hospitalStaffEmail && <div className="invalid-feedback">{validationErrors.hospitalStaffEmail}</div>}
+                    </div>
 
-                        {/* Hospital Staff Mobile */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffMobile">Mobile Number:</label>
-                            <input
-                                type="text"
-                                className={`form-control ${validationErrors.hospitalStaffMobile ? 'is-invalid' : ''}`}
-                                id="hospitalStaffMobile"
-                                name="hospitalStaffMobile"
-                                value={staffData.hospitalStaffMobile}
-                                onChange={handleInputChange}
-                                placeholder="Enter Mobile Number"
-                                required
-                            />
-                            {validationErrors.hospitalStaffMobile && <div className="invalid-feedback">{validationErrors.hospitalStaffMobile}</div>}
-                        </div>
+                    {/* Hospital Staff Aadhar */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffAadhar">Aadhar Number:</label>
+                        <input
+                            type="text"
+                            className={`form-control ${validationErrors.hospitalStaffAadhar ? 'is-invalid' : ''}`}
+                            id="hospitalStaffAadhar"
+                            name="hospitalStaffAadhar"
+                            value={staffData.hospitalStaffAadhar}
+                            onChange={handleInputChange}
+                            placeholder="Enter Aadhar Number"
+                            required
+                        />
+                        {validationErrors.hospitalStaffAadhar && <div className="invalid-feedback">{validationErrors.hospitalStaffAadhar}</div>}
+                    </div>
 
-                        {/* Hospital Staff Password */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffPassword">Password:</label>
-                            <input
-                                type="password"
-                                className={`form-control ${validationErrors.hospitalStaffPassword ? 'is-invalid' : ''}`}
-                                id="hospitalStaffPassword"
-                                name="hospitalStaffPassword"
-                                value={staffData.hospitalStaffPassword}
-                                onChange={handleInputChange}
-                                placeholder="Enter Password"
-                                required
-                            />
-                            {validationErrors.hospitalStaffPassword && <div className="invalid-feedback">{validationErrors.hospitalStaffPassword}</div>}
-                        </div>
+                    {/* Hospital Staff Mobile */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffMobile">Mobile Number:</label>
+                        <input
+                            type="text"
+                            className={`form-control ${validationErrors.hospitalStaffMobile ? 'is-invalid' : ''}`}
+                            id="hospitalStaffMobile"
+                            name="hospitalStaffMobile"
+                            value={staffData.hospitalStaffMobile}
+                            onChange={handleInputChange}
+                            placeholder="Enter Mobile Number"
+                            required
+                        />
+                        {validationErrors.hospitalStaffMobile && <div className="invalid-feedback">{validationErrors.hospitalStaffMobile}</div>}
+                    </div>
 
-                        {/* Hospital Staff Address */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffAddress">Address:</label>
-                            <textarea
-                                className={`form-control ${validationErrors.hospitalStaffAddress ? 'is-invalid' : ''}`}
-                                id="hospitalStaffAddress"
-                                name="hospitalStaffAddress"
-                                value={staffData.hospitalStaffAddress}
-                                onChange={handleInputChange}
-                                placeholder="Enter Address"
-                                required
-                            ></textarea>
-                            {validationErrors.hospitalStaffAddress && <div className="invalid-feedback">{validationErrors.hospitalStaffAddress}</div>}
-                        </div>
+                    {/* Hospital Staff Password */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffPassword">Password:</label>
+                        <input
+                            type="password"
+                            className={`form-control ${validationErrors.hospitalStaffPassword ? 'is-invalid' : ''}`}
+                            id="hospitalStaffPassword"
+                            name="hospitalStaffPassword"
+                            value={staffData.hospitalStaffPassword}
+                            onChange={handleInputChange}
+                            placeholder="Enter Password"
+                            required
+                        />
+                        {validationErrors.hospitalStaffPassword && <div className="invalid-feedback">{validationErrors.hospitalStaffPassword}</div>}
+                    </div>
 
-                        {/* Hospital Staff ID Proof Image */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffIdProofImage">ID Proof Image:</label>
-                            <input
-                                type="file"
-                                className={`form-control-file ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
-                                id="hospitalStaffIdProofImage"
-                                name="hospitalStaffIdProofImage"
-                                onChange={handleImageChange}
-                                accept=".jpg, .jpeg, .png"
-                                ref={fileInputIdProofRef}
-                                required
-                            />
-                            {validationErrors.hospitalStaffIdProofImage && <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>}
-                        </div>
+                    {/* Hospital Staff Address */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffAddress">Address:</label>
+                        <textarea
+                            className={`form-control ${validationErrors.hospitalStaffAddress ? 'is-invalid' : ''}`}
+                            id="hospitalStaffAddress"
+                            name="hospitalStaffAddress"
+                            value={staffData.hospitalStaffAddress}
+                            onChange={handleInputChange}
+                            placeholder="Enter Address"
+                            required
+                        ></textarea>
+                        {validationErrors.hospitalStaffAddress && <div className="invalid-feedback">{validationErrors.hospitalStaffAddress}</div>}
+                    </div>
 
-                        {/* Hospital Staff Profile Image */}
-                        <div className="form-group">
-                            <label htmlFor="hospitalStaffProfileImage">Profile Image:</label>
-                            <input
-                                type="file"
-                                className={`form-control-file ${validationErrors.hospitalStaffProfileImage ? 'is-invalid' : ''}`}
-                                id="hospitalStaffProfileImage"
-                                name="hospitalStaffProfileImage"
-                                onChange={handleImageChange}
-                                accept=".jpg, .jpeg, .png"
-                                ref={fileInputProfileRef}
-                                required
-                            />
-                            {validationErrors.hospitalStaffProfileImage && <div className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>}
-                        </div>
+                    {/* Hospital Staff ID Proof Image */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffIdProofImage">ID Proof Image:</label>
+                        <input
+                            type="file"
+                            className={`form-control-file ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
+                            id="hospitalStaffIdProofImage"
+                            name="hospitalStaffIdProofImage"
+                            onChange={handleImageChange}
+                            accept=".jpg, .jpeg, .png"
+                            ref={fileInputIdProofRef}
+                            required
+                        />
+                        {validationErrors.hospitalStaffIdProofImage && <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>}
+                    </div>
 
-                        {/* Image preview containers */}
-                        <div className="image-preview-container">
-                            {idProofImagePreview ? (
-                                <img id="idProofImagePreview" className="image-preview" src={idProofImagePreview} alt="ID Proof" />
-                            ) : (
-                                <span>No ID proof image selected</span>
-                            )}
-                            <div id="idProofImageError" className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>
-                        </div>
-                        <div className="image-preview-container">
-                            {profileImagePreview ? (
-                                <img id="profileImagePreview" className="image-preview" src={profileImagePreview} alt="Profile Pic" />
-                            ) : (
-                                <span>No profile image selected</span>
-                            )}
-                            <div id="profileImageError" className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>
-                        </div>
+                    {/* Hospital Staff Profile Image */}
+                    <div className="form-group">
+                        <label htmlFor="hospitalStaffProfileImage">Profile Image:</label>
+                        <input
+                            type="file"
+                            className={`form-control-file ${validationErrors.hospitalStaffProfileImage ? 'is-invalid' : ''}`}
+                            id="hospitalStaffProfileImage"
+                            name="hospitalStaffProfileImage"
+                            onChange={handleImageChange}
+                            accept=".jpg, .jpeg, .png"
+                            ref={fileInputProfileRef}
+                            required
+                        />
+                        {validationErrors.hospitalStaffProfileImage && <div className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>}
+                    </div>
 
-                        {/* Submit button */}
-                        <div className="form-footer mt-3">
-                            <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''}`} disabled={isLoading}>
-                                {isLoading ? 'Loading...' : 'Register'}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    {/* Image preview containers */}
+                    <div className="image-preview-container">
+                        {idProofImagePreview ? (
+                            <img id="idProofImagePreview" className="image-preview" src={idProofImagePreview} alt="ID Proof" />
+                        ) : (
+                            <span>No ID proof image selected</span>
+                        )}
+                        <div id="idProofImageError" className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>
+                    </div>
+                    <div className="image-preview-container">
+                        {profileImagePreview ? (
+                            <img id="profileImagePreview" className="image-preview" src={profileImagePreview} alt="Profile Pic" />
+                        ) : (
+                            <span>No profile image selected</span>
+                        )}
+                        <div id="profileImageError" className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>
+                    </div>
+
+                    {/* Submit button */}
+                    <div className="form-footer mt-3">
+                        <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''}`} disabled={isLoading}>
+                            {isLoading ? 'Loading...' : 'Register'}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+
     );
 };
 

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 import Navbar from './HospitalNavbar';
+import Footer from '../Common/Footer';
 
 const HospitalViewAllNews = () => {
     const navigate = useNavigate();
@@ -57,33 +60,44 @@ const HospitalViewAllNews = () => {
     }, [navigate]);
 
     return (
-        <div>
-            <Navbar />
-            <div className="container">
-                <h2 className="text-center mt-5 mb-4">All Hospital News</h2>
-                {isLoading ? (
-                    <p className="text-center">Loading news...</p>
-                ) : (
-                    <div className="row justify-content-center">
-                        <div className="col-lg-10">
-                            {allNews.length > 0 ? (
-                                allNews.map((news, index) => (
-                                    <div className="card mb-3" key={index}>
-                                        <div className="card-body">
-                                            <h5 className="card-title">{news.hospitalNewsTitle}</h5>
-                                            <p className="card-text">{news.hospitalNewsContent}</p>
-                                            <img src={news.hospitalNewsImage} className="img-fluid" alt="News" />
-                                        </div>
-                                    </div>
-                                ))
-                            ) : (
-                                <p className="text-center">No news available.</p>
-                            )}
-                        </div>
+
+<div>
+    <Navbar />
+    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
+        <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
+            <h2 className="text-center mt-5 mb-4">Latest Hospital News</h2>
+            {isLoading ? (
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
-                )}
-            </div>
+                </div>
+            ) : (
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {allNews.length > 0 ? (
+                        allNews.map((news, index) => (
+                            <div className="col" key={index}>
+                                <div className="card h-100 border-0 shadow">
+                                    <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'contain', height: '200px' }} />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{news.hospitalNewsTitle}</h5>
+                                        <p className="card-text text-muted">{news.addedDate}</p>
+                                        <p className="card-text">{news.hospitalNewsContent}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="text-center w-100">No news available.</p>
+                    )}
+                </div>
+            )}
         </div>
+    </div>
+    <Footer />
+</div>
+
+
     );
 };
 

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
+import Footer from '../Common/Footer';
 
 const HospitalChangePassword = () => {
     const navigate = useNavigate();
@@ -75,7 +76,9 @@ const HospitalChangePassword = () => {
     };
 
     return (
-        <div>    <Navbar/>
+        <div>   
+            
+         <Navbar/>
         <div className="hospital-change-password-container">
     
             <div className="hospital-change-password-card">
@@ -124,6 +127,7 @@ const HospitalChangePassword = () => {
                 </form>
             </div>
         </div>
+        <Footer />
         </div>
     );
 };
