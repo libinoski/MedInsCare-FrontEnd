@@ -59,45 +59,50 @@ const HospitalViewAllNews = () => {
         fetchAllNews();
     }, [navigate]);
 
-    return (
+    // Function to format date and time
+    const formatDate = (dateTime) => {
+        const date = new Date(dateTime);
+        const formattedDate = date.toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
+        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false }); // Format: HH:MM
+        return `${formattedDate} ${formattedTime}`;
+    };
 
-<div>
-    <Navbar />
-    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
-        <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
-            <h2 className="text-center mt-5 mb-4">Latest Hospital News</h2>
-            {isLoading ? (
-                <div className="d-flex justify-content-center">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            ) : (
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    {allNews.length > 0 ? (
-                        allNews.map((news, index) => (
-                            <div className="col" key={index}>
-                                <div className="card h-100 border-0 shadow">
-                                    <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'contain', height: '200px' }} />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{news.hospitalNewsTitle}</h5>
-                                        <p className="card-text text-muted">{news.addedDate}</p>
-                                        <p className="card-text">{news.hospitalNewsContent}</p>
-                                    </div>
-                                </div>
+    return (
+        <div>
+            <Navbar />
+            <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
+                <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
+                    <h2 className="text-center mt-5 mb-4">Latest Hospital News</h2>
+                    {isLoading ? (
+                        <div className="d-flex justify-content-center">
+                            <div className="spinner-border" role="status">
+                                <span className="visually-hidden">Loading...</span>
                             </div>
-                        ))
+                        </div>
                     ) : (
-                        <p className="text-center w-100">No news available.</p>
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {allNews.length > 0 ? (
+                                allNews.map((news, index) => (
+                                    <div className="col" key={index}>
+                                        <div className="card h-100 border-0 shadow">
+                                            <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'contain', height: '200px' }} />
+                                            <div className="card-body">
+                                                <h5 className="card-title">{news.hospitalNewsTitle}</h5>
+                                                <p className="card-text text-muted">{formatDate(news.addedDate)}</p>
+                                                <p className="card-text">{news.hospitalNewsContent}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="text-center w-100">No news available.</p>
+                            )}
+                        </div>
                     )}
                 </div>
-            )}
+            </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
-
-
     );
 };
 
