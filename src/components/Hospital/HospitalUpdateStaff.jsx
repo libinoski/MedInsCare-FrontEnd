@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 
 const HospitalUpdateStaff = () => {
     const navigate = useNavigate();
@@ -54,6 +55,9 @@ const HospitalUpdateStaff = () => {
             ...hospitalStaff,
             [name]: value
         });
+        if (errors[name]) {
+            setErrors({ ...errors, [name]: '' });
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -115,31 +119,54 @@ const HospitalUpdateStaff = () => {
     return (
         <div>
             <Navbar />
-            <div className="container py-5">
-                <h2 className="mb-4">Update Staff</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label className="form-label">Name</label>
-                        <input type="text" className="form-control" name="hospitalStaffName" value={hospitalStaff.hospitalStaffName} onChange={handleChange} />
-                        {errors.hospitalStaffName && <div className="text-danger">{errors.hospitalStaffName}</div>}
+            <div
+                className="container-fluid bg-blur"
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    minHeight: '100vh',
+                    paddingTop: '56px',
+                    position: 'relative',
+                }}
+            >
+                <div className="container py-5">
+                    <div className="row justify-content-center">
+                        <div className="col-md-6">
+                            <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit} noValidate>
+                                        <div className="mb-3">
+                                            <label className="form-label">Name</label>
+                                            <input type="text" className={`form-control ${errors.hospitalStaffName ? 'is-invalid' : ''}`} name="hospitalStaffName" value={hospitalStaff.hospitalStaffName} onChange={handleChange} />
+                                            {errors.hospitalStaffName && <div className="invalid-feedback">{errors.hospitalStaffName}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Mobile</label>
+                                            <input type="text" className={`form-control ${errors.hospitalStaffMobile ? 'is-invalid' : ''}`} name="hospitalStaffMobile" value={hospitalStaff.hospitalStaffMobile} onChange={handleChange} />
+                                            {errors.hospitalStaffMobile && <div className="invalid-feedback">{errors.hospitalStaffMobile}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Address</label>
+                                            <input type="text" className={`form-control ${errors.hospitalStaffAddress ? 'is-invalid' : ''}`} name="hospitalStaffAddress" value={hospitalStaff.hospitalStaffAddress} onChange={handleChange} />
+                                            {errors.hospitalStaffAddress && <div className="invalid-feedback">{errors.hospitalStaffAddress}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Aadhar</label>
+                                            <input type="text" className={`form-control ${errors.hospitalStaffAadhar ? 'is-invalid' : ''}`} name="hospitalStaffAadhar" value={hospitalStaff.hospitalStaffAadhar} onChange={handleChange} />
+                                            {errors.hospitalStaffAadhar && <div className="invalid-feedback">{errors.hospitalStaffAadhar}</div>}
+                                        </div>
+                                        <div className="text-center">
+                                            <button type="submit" className={`btn btn-${Object.keys(errors).length ? 'danger' : 'primary'}`} disabled={isLoading}>
+                                                {isLoading ? 'Updating...' : 'Update'}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Mobile</label>
-                        <input type="text" className="form-control" name="hospitalStaffMobile" value={hospitalStaff.hospitalStaffMobile} onChange={handleChange} />
-                        {errors.hospitalStaffMobile && <div className="text-danger">{errors.hospitalStaffMobile}</div>}
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Address</label>
-                        <input type="text" className="form-control" name="hospitalStaffAddress" value={hospitalStaff.hospitalStaffAddress} onChange={handleChange} />
-                        {errors.hospitalStaffAddress && <div className="text-danger">{errors.hospitalStaffAddress}</div>}
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Aadhar</label>
-                        <input type="text" className="form-control" name="hospitalStaffAadhar" value={hospitalStaff.hospitalStaffAadhar} onChange={handleChange} />
-                        {errors.hospitalStaffAadhar && <div className="text-danger">{errors.hospitalStaffAadhar}</div>}
-                    </div>
-                    <button type="submit" className="btn btn-primary" disabled={isLoading}>Update</button>
-                </form>
+                </div>
             </div>
             <Footer />
         </div>

@@ -106,7 +106,7 @@ const HospitalLogin = () => {
                                                 required
                                                 style={{ height: 'calc(2.25rem + 2px)' }}
                                             />
-                                            {errorMessages.hospitalEmail && <p className="error">{errorMessages.hospitalEmail}</p>}
+                                            {errorMessages.hospitalEmail && <p className="error" style={{ color: 'red' }}>{errorMessages.hospitalEmail}</p>}
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="hospitalPassword" className="form-label">Password:</label>
@@ -124,10 +124,10 @@ const HospitalLogin = () => {
                                                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                                                 </button>
                                             </div>
-                                            {errorMessages.hospitalPassword && <p className="error">{errorMessages.hospitalPassword}</p>}
+                                            {errorMessages.hospitalPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.hospitalPassword}</p>}
                                         </div>
                                         <div className="text-center">
-                                            <button type="submit" className={`btn btn-primary ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
+                                            <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
                                                 {isLoading ? 'Logging in...' : 'Login'}
                                             </button>
                                         </div>

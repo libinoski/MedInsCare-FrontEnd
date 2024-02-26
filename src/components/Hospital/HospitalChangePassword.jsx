@@ -145,7 +145,7 @@ const HospitalChangePassword = () => {
                                             {errorMessages.newPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.newPassword}</p>}
                                         </div>
                                         <div className="text-center">
-                                            <button type="submit" className={`btn btn-primary ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
+                                            <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
                                                 {isLoading ? 'Changing Password...' : 'Change Password'}
                                             </button>
                                         </div>
