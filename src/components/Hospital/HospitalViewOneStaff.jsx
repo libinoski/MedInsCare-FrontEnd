@@ -160,7 +160,17 @@ const HospitalViewOneStaff = () => {
                         <div className="row justify-content-start">
                             <div className="col-lg-6">
                                 {staffDetails ? (
-                                    <div className="card" style={{ borderRadius: '10px', padding: '20px' }}>
+                                    <div className="card" style={{ borderRadius: '10px', padding: '20px', position: 'relative' }}>
+                                        <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
+                                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><button className="dropdown-item" onClick={handleDeleteStaff}>Delete Staff</button></li>
+                                                <li><button className="dropdown-item" onClick={handleSuspendStaff}>Suspend Staff</button></li>
+                                                <li><button className="dropdown-item" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button></li>
+                                            </ul>
+                                        </div>
                                         <div className="card-body">
                                             <div className="row">
                                                 <div className="col-md-4">
@@ -186,17 +196,6 @@ const HospitalViewOneStaff = () => {
                             </div>
                         </div>
                     )}
-                    {/* Add the delete button */}
-                    <div className="row justify-content-start mt-3">
-                        <div className="col-lg-6">
-                            {staffDetails && (
-                                <div className="text-center">
-                                    <button className="btn btn-danger mr-2" onClick={handleDeleteStaff}>Delete Staff</button>
-                                    <button className="btn btn-warning" onClick={handleSuspendStaff}>Suspend Staff</button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
                 </div>
             </div>
             <Footer />

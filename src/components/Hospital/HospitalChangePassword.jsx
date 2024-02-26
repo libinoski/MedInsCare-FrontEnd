@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../../css/Hospital/HospitalChangePassword.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const HospitalChangePassword = () => {
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ const HospitalChangePassword = () => {
             });
             if (response.status === 200) {
                 alert(response.data.message);
-                navigate('/hospitalChangePassword');
+                navigate('/hospitalLogin');
             }
         } catch (error) {
             if (error.response) {
@@ -76,58 +76,87 @@ const HospitalChangePassword = () => {
     };
 
     return (
-        <div>   
-            
-         <Navbar/>
-        <div className="hospital-change-password-container">
-    
-            <div className="hospital-change-password-card">
-                <h2 className="hospital-change-password-title">Change Password</h2>
-                {errorMessages.general && <p className="error">{errorMessages.general}</p>}
-                <form onSubmit={handleSubmit} noValidate className="hospital-change-password-form">
-                    <div className="form-group">
-                        <label>Old Password:</label>
-                        <div className="password-input-container">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name="oldPassword"
-                                value={passwordData.oldPassword}
-                                onChange={handleInputChange}
-                                className="form-control"
-                                required
-                            />
-                            <button type="button" onClick={togglePasswordVisibility} className="eye-icon">
-                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                            </button>
+        <div>
+            <Navbar />
+            <div
+                className="container-fluid"
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    minHeight: '100vh',
+                    paddingTop: '56px',
+                    position: 'relative',
+                }}
+            >
+                <div
+                    className="container"
+                    style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        maxWidth: '100%',
+                        padding: '50px 15px 0',
+                        overflowY: 'auto',
+                        maxHeight: 'calc(100% - 56px)',
+                    }}
+                >
+                    <div className="row justify-content-center">
+                        <div className="col-lg-4">
+                            <div className="card" style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 0, 0, 0.1)' }}>
+                                <div className="card-body">
+                                    {errorMessages.general && <p className="error" style={{ color: 'red' }}>{errorMessages.general}</p>}
+                                    <form onSubmit={handleSubmit} noValidate>
+                                        <div className="mb-3">
+                                            <label htmlFor="oldPassword" className="form-label">Old Password:</label>
+                                            <div className="input-group">
+                                                <input
+                                                    type={showPassword ? 'text' : 'password'}
+                                                    name="oldPassword"
+                                                    value={passwordData.oldPassword}
+                                                    onChange={handleInputChange}
+                                                    className={`form-control ${errorMessages.oldPassword ? 'error' : ''}`}
+                                                    required
+                                                    style={{ height: 'calc(2.25rem + 2px)' }}
+                                                />
+                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
+                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                                </button>
+                                            </div>
+                                            {errorMessages.oldPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.oldPassword}</p>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="newPassword" className="form-label">New Password:</label>
+                                            <div className="input-group">
+                                                <input
+                                                    type={showPassword ? 'text' : 'password'}
+                                                    name="newPassword"
+                                                    value={passwordData.newPassword}
+                                                    onChange={handleInputChange}
+                                                    className={`form-control ${errorMessages.newPassword ? 'error' : ''}`}
+                                                    required
+                                                    style={{ height: 'calc(2.25rem + 2px)' }}
+                                                />
+                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
+                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                                </button>
+                                            </div>
+                                            {errorMessages.newPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.newPassword}</p>}
+                                        </div>
+                                        <div className="text-center">
+                                            <button type="submit" className={`btn btn-primary ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
+                                                {isLoading ? 'Changing Password...' : 'Change Password'}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        {errorMessages.oldPassword && <p className="error">{errorMessages.oldPassword}</p>}
                     </div>
-                    <div className="form-group">
-                        <label>New Password:</label>
-                        <div className="password-input-container">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name="newPassword"
-                                value={passwordData.newPassword}
-                                onChange={handleInputChange}
-                                className="form-control"
-                                required
-                            />
-                            <button type="button" onClick={togglePasswordVisibility} className="eye-icon">
-                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                            </button>
-                        </div>
-                        {errorMessages.newPassword && <p className="error">{errorMessages.newPassword}</p>}
-                    </div>
-                    <div className="form-footer">
-                        <button type="submit" className={`btn-primary ${Object.keys(errorMessages).length > 0 ? 'error' : ''}`} disabled={isLoading}>
-                            {isLoading ? 'Changing Password...' : 'Change Password'}
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <Footer />
+            <Footer />
         </div>
     );
 };

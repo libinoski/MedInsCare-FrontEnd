@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './HospitalNavbar';
-import '../../css/Hospital/HospitalViewProfile.css';
 import Footer from '../Common/Footer';
+import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 
 const HospitalViewProfile = () => {
     const navigate = useNavigate();
@@ -64,46 +64,52 @@ const HospitalViewProfile = () => {
     return (
         <div>
             <Navbar />
-            <div className="hospital-view-profile-container bg-image">
-                <div className="container">
-                    <div className="row justify-content-center align-items-center min-vh-100">
-                        <div className="col-md-8">
-                            <div className="card profile-card">
-                                {isLoading ? (
-                                    <div className="card-body text-center">Loading profile...</div>
-                                ) : hospitalProfile ? (
-                                    <div className="card-body">
-                                        <div className="profile-image-details-container">
-                                            <div className="profile-image-container">
-                                                <img
-                                                    src={hospitalProfile.hospitalImage}
-                                                    alt="Hospital"
-                                                    className="img-fluid profile-image"
-                                                />
-                                                <Link to="/hospitalUpdateImage">
-                                                    <FontAwesomeIcon icon={faEdit} className="update-image-icon" />
-                                                </Link>
-                                            </div>
-                                            <div className="details-container">
-                                                <p><strong>Hospital ID:</strong> {hospitalProfile.hospitalId}</p>
-                                                <p><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
-                                                <p><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
-                                                <p><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
-                                                <p><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
-                                                <p><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
-                                                <p><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
-                                                <p><strong>Registered Date:</strong> {hospitalProfile.registeredDate}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="card-body text-center">No profile found.</div>
-                                )}
-                                <div className="card-footer text-end">
-                                    <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
+            <div
+                className="hospital-view-profile-container bg-image"
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    minHeight: '100vh',
+                    paddingTop: '56px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <div className="card profile-card" style={{ width: '80%', maxWidth: '600px' }}>
+                    {isLoading ? (
+                        <div className="card-body text-center">Loading profile...</div>
+                    ) : hospitalProfile ? (
+                        <div className="card-body">
+                            <div className="profile-image-details-container">
+                                <div className="profile-image-container" style={{ position: 'relative', overflow: 'hidden', width: '200px', height: '200px', margin: '0 auto' }}>
+                                    <img
+                                        src={hospitalProfile.hospitalImage}
+                                        alt="Hospital"
+                                        className="img-fluid profile-image"
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
+                                    <Link to="/hospitalUpdateImage" style={{ position: 'absolute', right: '10px', bottom: '10px', color: '#fff' }}>
+                                        <FontAwesomeIcon icon={faEdit} className="update-image-icon" />
+                                    </Link>
+                                </div>
+                                <div className="details-container">
+                                    <p><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
+                                    <p><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
+                                    <p><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
+                                    <p><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
+                                    <p><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
+                                    <p><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
+                                    <p><strong>Registered Date:</strong> {hospitalProfile.registeredDate}</p>
                                 </div>
                             </div>
                         </div>
+                    ) : (
+                        <div className="card-body text-center">No profile found.</div>
+                    )}
+                    <div className="card-footer text-end">
+                        <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
                     </div>
                 </div>
             </div>

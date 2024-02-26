@@ -18,6 +18,7 @@ import HospitalViewAllNews from './components/Hospital/HospitalViewAllNews';
 import Footer from './components/Common/Footer';
 import HospitalViewAllSuspendedStaffs from './components/Hospital/HospitalViewAllSuspenedStaffs';
 import HospitalViewOneSuspendedStaff from './components/Hospital/HospitalViewOneSuspendedStaff';
+import HospitalUpdateStaff from './components/Hospital/HospitalUpdateStaff';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
           <Route path='/hospitalUpdateImage' element={<HospitalUpdateImage />} />
           <Route path='/hospitalRegisterStaff' element={<HospitalRegisterStaff />} />
+          <Route path='/hospitalUpdateStaff' element={<HospitalUpdateStaff />} />
           <Route path='/hospitalViewAllStaffs' element={<HospitalViewAllStaffs />} />
           <Route path='/hospitalViewOneStaff' element={<HospitalViewOneStaff />} />
           <Route path='/hospitalSearchStaffs' element={<HospitalSearchStaffs />} />

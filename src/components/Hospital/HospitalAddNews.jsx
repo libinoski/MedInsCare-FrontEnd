@@ -86,7 +86,6 @@ const HospitalAddNews = () => {
         <div className="container py-5">
             <div className="card">
                 <div className="card-body">
-                    <h2 className="card-title text-center mb-4">Add Hospital News</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="hospitalNewsTitle" className="form-label">Title</label>
@@ -145,6 +144,7 @@ const HospitalAddNews = () => {
     </div>
     <Footer />
 </div>
+
 
 
 
