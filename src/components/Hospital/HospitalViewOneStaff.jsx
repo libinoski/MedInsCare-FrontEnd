@@ -5,7 +5,6 @@ import Navbar from './HospitalNavbar';
 import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 
-
 const HospitalViewOneStaff = () => {
     const navigate = useNavigate();
     const [staffDetails, setStaffDetails] = useState(null);
@@ -17,10 +16,10 @@ const HospitalViewOneStaff = () => {
             try {
                 const token = sessionStorage.getItem('token');
                 const hospitalId = sessionStorage.getItem('hospitalId');
-                const hospitalStaffId = sessionStorage.getItem('hospitalStaffId'); // Get the hospital staff id from session storage
+                const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
                 const response = await axios.post(
                     'http://localhost:1313/api/mic/hospital/viewOneHospitalStaff',
-                    { hospitalId, hospitalStaffId }, // Pass hospitalStaffId along with hospitalId in the request body
+                    { hospitalId, hospitalStaffId },
                     {
                         headers: {
                             token
@@ -61,54 +60,147 @@ const HospitalViewOneStaff = () => {
         fetchStaffDetails();
     }, [navigate]);
 
+    const handleDeleteStaff = async () => {
+        try {
+            const token = sessionStorage.getItem('token');
+            const hospitalId = sessionStorage.getItem('hospitalId');
+            const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+            const response = await axios.post(
+                'http://localhost:1313/api/mic/hospital/deleteHospitalStaff',
+                { hospitalId, hospitalStaffId },
+                {
+                    headers: {
+                        token
+                    }
+                }
+            );
+            if (response.status === 200) {
+                alert('Staff deleted successfully.');
+                navigate('/hospitalViewAllStaffs'); // Redirect to the home page or any other appropriate page
+            }
+        } catch (error) {
+            if (error.response) {
+                const { status, data } = error.response;
+                switch (status) {
+                    case 401:
+                    case 403:
+                        alert(data.message || 'Unauthorized access. Please login again.');
+                        navigate('/hospitalLogin');
+                        break;
+                    case 422:
+                        const errorMessage422 = data.error || "An error occurred while deleting the staff.";
+                        alert(errorMessage422);
+                        break;
+                    case 500:
+                        alert(data.message || 'Internal server error. Please try again later.');
+                        break;
+                    default:
+                        alert('An error occurred. Please try again.');
+                        break;
+                }
+            } else {
+                alert('An error occurred. Please check your connection and try again.');
+            }
+        }
+    };
+
+    const handleSuspendStaff = async () => {
+        try {
+            const token = sessionStorage.getItem('token');
+            const hospitalId = sessionStorage.getItem('hospitalId');
+            const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+            const response = await axios.post(
+                'http://localhost:1313/api/mic/hospital/suspendHospitalStaff',
+                { hospitalId, hospitalStaffId },
+                {
+                    headers: {
+                        token
+                    }
+                }
+            );
+            if (response.status === 200) {
+                alert('Staff suspended successfully.');
+                navigate('/hospitalViewAllStaffs'); 
+
+            }
+        } catch (error) {
+            if (error.response) {
+                const { status, data } = error.response;
+                switch (status) {
+                    case 401:
+                    case 403:
+                        alert(data.message || 'Unauthorized access. Please login again.');
+                        navigate('/hospitalLogin');
+                        break;
+                    case 422:
+                        const errorMessage422 = data.error || "An error occurred while suspending the staff.";
+                        alert(errorMessage422);
+                        break;
+                    case 500:
+                        alert(data.message || 'Internal server error. Please try again later.');
+                        break;
+                    default:
+                        alert('An error occurred. Please try again.');
+                        break;
+                }
+            } else {
+                alert('An error occurred. Please check your connection and try again.');
+            }
+        }
+    };
+
     return (
-<div>
-    <Navbar />
-    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-            {isLoading ? (
-                <p className="text-center">Loading staff details...</p>
-            ) : (
-                <div className="row justify-content-start"> {/* Changed justify-content-center to justify-content-start */}
-                    <div className="col-lg-6"> {/* Removed offset-lg-6 */}
-                        {staffDetails ? (
-                            <div className="card" style={{ borderRadius: '10px', padding: '20px' }}>
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <img src={staffDetails.hospitalStaffProfileImage} alt="Profile" className="img-fluid" style={{ maxWidth: '100%' }} />
+        <div>
+            <Navbar />
+            <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
+                    {isLoading ? (
+                        <p className="text-center">Loading staff details...</p>
+                    ) : (
+                        <div className="row justify-content-start">
+                            <div className="col-lg-6">
+                                {staffDetails ? (
+                                    <div className="card" style={{ borderRadius: '10px', padding: '20px' }}>
+                                        <div className="card-body">
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <img src={staffDetails.hospitalStaffProfileImage} alt="Profile" className="img-fluid" style={{ maxWidth: '100%' }} />
+                                                </div>
+                                                <div className="col-md-8">
+                                                    <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
+                                                    <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                                                    <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                                                    <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                                                    <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                                                    <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="col-md-8">
-                                            <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
-                                            <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                            <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                            <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                            <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                            <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
-                                            {/* <p><strong>Updated Date:</strong> {staffDetails.updatedDate}</p>
-                                            <p><strong>Delete Status:</strong> {staffDetails.deleteStatus}</p>
-                                            <p><strong>Is Suspended:</strong> {staffDetails.isSuspended}</p>
-                                            <p><strong>Update Status:</strong> {staffDetails.updateStatus}</p>
-                                            <p><strong>Is Active:</strong> {staffDetails.isActive}</p>
-                                            <p><strong>Password Update Status:</strong> {staffDetails.passwordUpdateStatus}</p> */}
+                                        <div className="card-footer">
+                                            <img src={staffDetails.hospitalStaffIdProofImage} alt="ID Proof" className="img-fluid" style={{ maxWidth: '100%' }} />
                                         </div>
                                     </div>
-                                </div>
-                                <div className="card-footer">
-                                    <img src={staffDetails.hospitalStaffIdProofImage} alt="ID Proof" className="img-fluid" style={{ maxWidth: '100%' }} />
-                                </div>
+                                ) : (
+                                    <p className="text-center">No staff details found.</p>
+                                )}
                             </div>
-                        ) : (
-                            <p className="text-center">No staff details found.</p>
-                        )}
+                        </div>
+                    )}
+                    {/* Add the delete button */}
+                    <div className="row justify-content-start mt-3">
+                        <div className="col-lg-6">
+                            {staffDetails && (
+                                <div className="text-center">
+                                    <button className="btn btn-danger mr-2" onClick={handleDeleteStaff}>Delete Staff</button>
+                                    <button className="btn btn-warning" onClick={handleSuspendStaff}>Suspend Staff</button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            )}
+            </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
-
     );
 };
 
