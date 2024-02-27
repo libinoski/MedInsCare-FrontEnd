@@ -19,6 +19,9 @@ import Footer from './components/Common/Footer';
 import HospitalViewAllSuspendedStaffs from './components/Hospital/HospitalViewAllSuspenedStaffs';
 import HospitalViewOneSuspendedStaff from './components/Hospital/HospitalViewOneSuspendedStaff';
 import HospitalUpdateStaff from './components/Hospital/HospitalUpdateStaff';
+import HospitalViewOneNews from './components/Hospital/HospitalViewOneNews';
+import HospitalUpdateNews from './components/Hospital/HospitalUpdateNews';
+import HospitalSendNotificationToStaff from './components/Hospital/HospitalSendNotificationToStaff';
 
 
 function App() {
@@ -41,9 +44,12 @@ function App() {
           <Route path='/hospitalViewOneStaff' element={<HospitalViewOneStaff />} />
           <Route path='/hospitalSearchStaffs' element={<HospitalSearchStaffs />} />
           <Route path='/hospitalAddNews' element={<HospitalAddNews />} />
+          <Route path='/hospitalViewOneNews' element={<HospitalViewOneNews />} />
+          <Route path='/hospitalUpdateNews' element={<HospitalUpdateNews />} />
           <Route path='/hospitalViewAllNews' element={<HospitalViewAllNews />} />
           <Route path='/hospitalViewAllSuspendedStaffs' element={<HospitalViewAllSuspendedStaffs />} />
           <Route path='/hospitalViewOneSuspendedStaff' element={<HospitalViewOneSuspendedStaff />} />
+          <Route path='/hospitalSendNotificationToStaff' element={<HospitalSendNotificationToStaff />} />
 
         </Routes>
       </BrowserRouter>

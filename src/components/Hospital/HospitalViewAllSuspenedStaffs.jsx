@@ -68,24 +68,22 @@ const HospitalViewAllSuspendedStaffs = () => {
     <Navbar />
     <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-            {/* Removed heading here */}
             {isLoading ? (
                 <p className="text-center">Loading suspended staffs...</p>
             ) : (
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {suspendedStaffs.length > 0 ? (
                         suspendedStaffs.map((staff, index) => (
-                            <div className="col" key={index}>
-                                <div className="card h-100 border-0 shadow">
+                            <div className="col" key={index} onClick={() => handleViewDetails(staff.hospitalStaffId)}>
+                                <div className="card h-100 border-0 shadow" style={{ cursor: 'pointer' }}>
+                                    <img src={staff.hospitalStaffProfileImage} className="card-img-top" alt="Staff" style={{ height: '200px', objectFit: 'cover' }} />
                                     <div className="card-body">
                                         <h5 className="card-title">{staff.hospitalStaffName}</h5>
                                         <p className="card-text"><strong>Email:</strong> {staff.hospitalStaffEmail}</p>
                                         <p className="card-text"><strong>Mobile:</strong> {staff.hospitalStaffMobile}</p>
                                         <p className="card-text"><strong>Address:</strong> {staff.hospitalStaffAddress}</p>
                                     </div>
-                                    <div className="card-footer">
-                                        <button className="btn btn-primary" onClick={() => handleViewDetails(staff.hospitalStaffId)}>View</button>
-                                    </div>
+                                    {/* Removed button from card footer */}
                                 </div>
                             </div>
                         ))
@@ -98,6 +96,8 @@ const HospitalViewAllSuspendedStaffs = () => {
     </div>
     <Footer />
 </div>
+
+
 
     );
 };

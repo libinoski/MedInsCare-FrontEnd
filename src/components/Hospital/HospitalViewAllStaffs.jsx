@@ -74,14 +74,13 @@ const HospitalViewAllStaffs = () => {
     return (
 <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
     <Navbar />
-    {/* Adjusted marginTop to create space between navbar and table */}
-    <div className="flex-grow-1 container-fluid mt-0 position-relative" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}> {/* Adjusted marginTop to 0 */}
+    <div className="flex-grow-1 container-fluid mt-0 position-relative" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         {isLoading ? (
             <p className="text-center">Loading staffs...</p>
         ) : (
-            <div className="position-relative d-flex align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 70px)' }}> {/* Added minHeight and centered content vertically */}
+            <div className="position-relative d-flex align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 70px)' }}>
                 <div className="glass-effect position-absolute top-0 left-0 w-100 h-100"></div>
-                <div className="table-responsive" style={{ maxWidth: '100%', overflowY: 'auto', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.75)', borderRadius: '20px', padding: '20px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', margin: '20px' }}> {/* Adjusted maxWidth and removed marginTop */}
+                <div className="table-responsive" style={{ maxWidth: '100%', overflowY: 'auto', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.75)', borderRadius: '20px', padding: '20px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', margin: '20px' }}>
                     <table className="table text-center align-middle" style={{ backgroundColor: 'transparent', borderCollapse: 'separate', borderColor: '#e1e1e1' }}>
                         <thead>
                             <tr style={{ fontSize: '1rem', fontWeight: '600', color: '#495057', backgroundColor: 'rgba(255, 255, 255, 0.85)', borderRadius: '10px' }}>
@@ -90,26 +89,23 @@ const HospitalViewAllStaffs = () => {
                                 <th>Aadhar</th>
                                 <th>Mobile</th>
                                 <th>Address</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {staffList.length > 0 ? (
                                 staffList.map((staff, index) => (
-                                    <tr key={index} style={{ backgroundColor: 'rgba(255, 255, 255, 0.65)', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', transition: 'background-color 0.3s ease' }}>
+                                    <tr key={index} style={{ backgroundColor: 'rgba(255, 255, 255, 0.65)', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', transition: 'background-color 0.3s ease', cursor: 'pointer' }}
+                                        onClick={() => handleViewStaff(staff.hospitalStaffId)}>
                                         <td>{staff.hospitalStaffName}</td>
                                         <td>{staff.hospitalStaffEmail}</td>
                                         <td>{staff.hospitalStaffAadhar}</td>
                                         <td>{staff.hospitalStaffMobile}</td>
                                         <td>{staff.hospitalStaffAddress}</td>
-                                        <td>
-                                            <button className="btn" style={{ backgroundColor: '#007bff', color: 'white', fontWeight: '500', boxShadow: '0 2px 2px rgba(0,0,0,0.1)' }} onClick={() => handleViewStaff(staff.hospitalStaffId)}>View</button>
-                                        </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="6" className="text-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.65)', color: '#6c757d' }}>No staffs found.</td>
+                                    <td colSpan="5" className="text-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.65)', color: '#6c757d' }}>No staffs found.</td>
                                 </tr>
                             )}
                         </tbody>
@@ -120,6 +116,9 @@ const HospitalViewAllStaffs = () => {
     </div>
     <Footer />
 </div>
+
+
+
 
 
 

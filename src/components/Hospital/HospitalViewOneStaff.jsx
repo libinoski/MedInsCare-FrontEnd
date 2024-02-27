@@ -149,6 +149,10 @@ const HospitalViewOneStaff = () => {
         }
     };
 
+    const handleSendNotificationToStaff = () => {
+        navigate('/hospitalSendNotificationToStaff');
+    };
+
     return (
         <div>
             <Navbar />
@@ -168,6 +172,7 @@ const HospitalViewOneStaff = () => {
                                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <li><button className="dropdown-item" onClick={handleDeleteStaff}>Delete Staff</button></li>
                                                 <li><button className="dropdown-item" onClick={handleSuspendStaff}>Suspend Staff</button></li>
+                                                <li><button className="dropdown-item" onClick={handleSendNotificationToStaff}>Send Notification</button></li>
                                                 <li><button className="dropdown-item" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button></li>
                                             </ul>
                                         </div>

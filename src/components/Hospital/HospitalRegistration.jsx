@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 
@@ -129,7 +128,7 @@ const HospitalRegistration = () => {
 
     return (
         <div>
-            <Navbar />
+
             <div
                 className="container-fluid"
                 style={{
@@ -325,12 +324,12 @@ const HospitalRegistration = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className={`form-footer mt-3 text-center ${Object.keys(validationErrors).length > 0 ? 'text-danger' : ''}`}>
+    <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''} ${Object.keys(validationErrors).length > 0 ? 'btn-danger' : ''}`} disabled={isLoading}>
+        {isLoading ? 'Submitting...' : 'Register'}
+    </button>
+</div>
 
-                                <div className="form-footer mt-3">
-                                    <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''}`} disabled={isLoading}>
-                                        {isLoading ? 'Submitting...' : 'Register'}
-                                    </button>
-                                </div>
                             </form>
                             <div className="form-footer mt-3 text-center">
                                 <button type="button" className="btn btn-secondary" onClick={handleAlreadyHaveAccount}>

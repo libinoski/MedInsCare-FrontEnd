@@ -67,12 +67,16 @@ const HospitalViewAllNews = () => {
         return `${formattedDate} ${formattedTime}`;
     };
 
+    const handleViewNews = (newsId) => {
+        sessionStorage.setItem('hospitalNewsId', newsId);
+        navigate('/hospitalViewOneNews');
+    };
+
     return (
 <div>
     <Navbar />
     <div className="container-fluid py-4" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
         <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
-            {/* Removed heading <h2 className="text-center mt-3 mb-4 p-3" style={{ background: 'rgba(255, 255, 255, 0.8)', borderRadius: '10px', backdropFilter: 'blur(10px)', marginTop: '30px' }}>Latest Hospital News</h2> */}
             {isLoading ? (
                 <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status">
@@ -83,7 +87,7 @@ const HospitalViewAllNews = () => {
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {allNews.length > 0 ? (
                         allNews.map((news, index) => (
-                            <div className="col" key={index}>
+                            <div className="col" key={index} onClick={() => handleViewNews(news.hospitalNewsId)} style={{cursor: 'pointer'}}>
                                 <div className="card h-100 border-0 shadow">
                                     <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'cover', height: '200px' }} />
                                     <div className="card-body" style={{ background: '#f0f0f0', padding: '20px' }}>
@@ -103,7 +107,6 @@ const HospitalViewAllNews = () => {
     </div>
     <Footer />
 </div>
-
 
     );
 };
