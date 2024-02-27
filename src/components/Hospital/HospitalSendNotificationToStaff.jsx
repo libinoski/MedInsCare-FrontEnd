@@ -96,6 +96,7 @@ const HospitalSendNotificationToStaff = () => {
     </div>
   </div>
   <Footer />
+  {/*  */}
 </div>
 
 
