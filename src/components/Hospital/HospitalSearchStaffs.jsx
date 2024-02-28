@@ -1,103 +1,60 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 
-const HospitalRegisterStaff = () => {
-    const initialStaffData = {
-        hospitalStaffName: '',
-        hospitalStaffEmail: '',
-        hospitalStaffAadhar: '',
-        hospitalStaffMobile: '',
-        hospitalStaffPassword: '',
-        hospitalStaffAddress: '',
-        hospitalId: sessionStorage.getItem('hospitalId'),
-        hospitalStaffIdProofImage: null,
-        hospitalStaffProfileImage: null,
-    };
-
+const HospitalSearchStaffs = () => {
     const navigate = useNavigate();
-    const [staffData, setStaffData] = useState(initialStaffData);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResult, setSearchResult] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [validationErrors, setValidationErrors] = useState({});
-    const [showPassword, setShowPassword] = useState(false);
-    const fileInputIdProofRef = useRef(null);
-    const fileInputProfileRef = useRef(null);
+    const [searchExecuted, setSearchExecuted] = useState(false);
 
-    const resetForm = () => {
-        setStaffData(initialStaffData);
-        setValidationErrors({});
-        if (fileInputIdProofRef.current && fileInputProfileRef.current) {
-            fileInputIdProofRef.current.value = '';
-            fileInputProfileRef.current.value = '';
-        }
-    };
-
-    const handleImageChange = (event) => {
-        const { name, files } = event.target;
-        const file = files[0];
-        setStaffData({ ...staffData, [name]: file });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSearch = async () => {
         setIsLoading(true);
-        setValidationErrors({});
-
+        setSearchExecuted(true);
         try {
-            const formData = new FormData();
-            Object.entries(staffData).forEach(([key, value]) => {
-                formData.append(key, value);
-            });
-
-            const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalStaffRegister', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'token': sessionStorage.getItem('token'),
-                },
-            });
-
-            switch (response.status) {
-                case 200:
-                    alert(response.data.message || 'Staff registered successfully');
-                    resetForm();
-                    navigate('/hospitalViewProfile');
-                    break;
-                default:
-                    alert('An unexpected response was received from the server');
-                    break;
+            const token = sessionStorage.getItem('token');
+            const hospitalId = sessionStorage.getItem('hospitalId');
+            const response = await axios.post(
+                'http://localhost:1313/api/mic/hospital/searchHospitalStaff',
+                { hospitalId, searchQuery },
+                {
+                    headers: {
+                        token
+                    }
+                }
+            );
+            if (response.status === 200) {
+                setSearchResult(response.data.data);
             }
         } catch (error) {
             if (error.response) {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        setValidationErrors(data.results || {});
+                        alert(data.results || {})
+                        setSearchResult([]);
                         break;
                     case 401:
                     case 403:
                         alert(data.message || 'Unauthorized access. Please login again.');
+                        setSearchResult([]);
                         navigate('/hospitalLogin');
                         break;
-                        case 422:
-                            if (data && data.error) {
-                                // Extracting error messages from the data.error object
-                                const errorMessages = Object.values(data.error).map(errors => errors.join('\n')).join('\n');
-                                alert(`Validation Error:\n${errorMessages}`);
-                            } else {
-                                alert('An error occurred. Please try again.');
-                            }
-                            break;
-                        
+                    case 422:
+                        alert(data.error || 'No hospital staffs found.');
+                        setSearchResult([]);
+                        break;
                     case 500:
                         alert(data.message || 'Internal server error. Please try again later.');
+                        setSearchResult([]);
                         break;
                     default:
                         alert('An error occurred. Please try again.');
+                        setSearchResult([]);
                         break;
                 }
             } else {
@@ -106,18 +63,6 @@ const HospitalRegisterStaff = () => {
         } finally {
             setIsLoading(false);
         }
-    };
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setStaffData({ ...staffData, [name]: value });
-        if (validationErrors[name]) {
-            setValidationErrors({ ...validationErrors, [name]: '' });
-        }
-    };
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
     };
 
     return (
@@ -149,144 +94,110 @@ const HospitalRegisterStaff = () => {
                 >
                     <div className="row justify-content-center mb-5">
                         <div className="col-lg-8">
-                            <div className="card h-100" style={{ textAlign: 'left', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                                <div className="card-body d-flex flex-column">
-                                    <h5 className="card-title">Hospital Staff Registration</h5>
-                                    <form onSubmit={handleSubmit} className="flex-grow-1 overflow-y-auto">
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffName" className="form-label">Name:</label>
-                                            <input
-                                                type="text"
-                                                className={`form-control ${validationErrors.hospitalStaffName ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffName"
-                                                name="hospitalStaffName"
-                                                value={staffData.hospitalStaffName}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter Name"
-                                            />
-                                            {validationErrors.hospitalStaffName && <div className="invalid-feedback">{validationErrors.hospitalStaffName}</div>}
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffEmail" className="form-label">Email:</label>
-                                            <input
-                                                type="email"
-                                                className={`form-control ${validationErrors.hospitalStaffEmail ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffEmail"
-                                                name="hospitalStaffEmail"
-                                                value={staffData.hospitalStaffEmail}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter Email"
-                                            />
-                                            {validationErrors.hospitalStaffEmail && <div className="invalid-feedback">{validationErrors.hospitalStaffEmail}</div>}
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffAadhar" className="form-label">Aadhar Number:</label>
-                                            <input
-                                                type="text"
-                                                className={`form-control ${validationErrors.hospitalStaffAadhar ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffAadhar"
-                                                name="hospitalStaffAadhar"
-                                                value={staffData.hospitalStaffAadhar}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter Aadhar Number"
-                                            />
-                                            {validationErrors.hospitalStaffAadhar && <div className="invalid-feedback">{validationErrors.hospitalStaffAadhar}</div>}
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffMobile" className="form-label">Mobile Number:</label>
-                                            <input
-                                                type="text"
-                                                className={`form-control ${validationErrors.hospitalStaffMobile ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffMobile"
-                                                name="hospitalStaffMobile"
-                                                value={staffData.hospitalStaffMobile}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter Mobile Number"
-                                            />
-                                            {validationErrors.hospitalStaffMobile && <div className="invalid-feedback">{validationErrors.hospitalStaffMobile}</div>}
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffPassword" className="form-label">Password:</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type={showPassword ? "text" : "password"}
-                                                    className={`form-control ${validationErrors.hospitalStaffPassword ? 'is-invalid' : ''}`}
-                                                    id="hospitalStaffPassword"
-                                                    name="hospitalStaffPassword"
-                                                    value={staffData.hospitalStaffPassword}
-                                                    onChange={handleInputChange}
-                                                    placeholder="Enter Password"
-                                                    style={{ height: 'calc(2.25rem + 2px)' }}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-outline-secondary"
-                                                    onClick={togglePasswordVisibility}
-                                                    style={{ height: 'calc(2.25rem + 2px)' }}
-                                                >
-                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                                                </button>
-                                            </div>
-                                            {validationErrors.hospitalStaffPassword && <div className="invalid-feedback">{validationErrors.hospitalStaffPassword}</div>}
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffAddress" className="form-label">Address:</label>
-                                            <textarea
-                                                className={`form-control ${validationErrors.hospitalStaffAddress ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffAddress"
-                                                name="hospitalStaffAddress"
-                                                value={staffData.hospitalStaffAddress}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter Address"
-                                            ></textarea>
-                                            {validationErrors.hospitalStaffAddress && <div className="invalid-feedback">{validationErrors.hospitalStaffAddress}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffIdProofImage" className="form-label">ID Proof Image:</label>
-                                            <input
-                                                type="file"
-                                                className={`form-control-file ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffIdProofImage"
-                                                name="hospitalStaffIdProofImage"
-                                                onChange={handleImageChange}
-                                                accept=".jpg, .jpeg, .png"
-                                            />
-                                            {validationErrors.hospitalStaffIdProofImage && <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>}
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffProfileImage" className="form-label">Profile Image:</label>
-                                            <input
-                                                type="file"
-                                                className={`form-control-file ${validationErrors.hospitalStaffProfileImage ? 'is-invalid' : ''}`}
-                                                id="hospitalStaffProfileImage"
-                                                name="hospitalStaffProfileImage"
-                                                onChange={handleImageChange}
-                                                accept=".jpg, .jpeg, .png"
-                                            />
-                                            {validationErrors.hospitalStaffProfileImage && <div className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>}
-                                        </div>
-
-                                        <div className="text-center">
-                                            <button type="submit" className={`btn btn-success ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                                                {isLoading ? 'Loading...' : 'Register'}
-                                            </button>
-                                        </div>
-                                    </form>
+                            <div className="input-group" style={{ width: '100%' }}>
+                                <input
+                                    type="text"
+                                    className="form-control py-3"
+                                    placeholder="Enter search query"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    style={{
+                                        borderRadius: '30px 0 0 30px',
+                                        fontSize: '1.2rem', // Increase font size
+                                        padding: '15px 20px', // Increase padding
+                                        height: 'auto', // Adjust height
+                                    }}
+                                />
+                                <div className="input-group-append">
+                                    <button
+                                        className="btn btn-primary px-5 py-3"
+                                        type="button"
+                                        onClick={handleSearch}
+                                        style={{
+                                            borderRadius: '0 30px 30px 0',
+                                            fontSize: '1.2rem', // Increase font size
+                                            padding: '15px 30px', // Increase padding
+                                            height: 'auto', // Adjust height
+                                        }}
+                                    >
+                                        Search
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {isLoading ? (
+                        <p className="text-center">Searching staffs...</p>
+                    ) : (
+                        <>
+                            {searchResult.length > 0 ? (
+                                <div className="row justify-content-center">
+                                    {searchResult.map((staff, index) => (
+                                        <div className="col-lg-3 col-md-4 mb-4" key={index}>
+                                            <div
+                                                className="card"
+                                                style={{
+                                                    backgroundColor: 'white',
+                                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                                    transition: 'border-color 0.3s ease',
+                                                    textAlign: 'center',
+                                                    height: '100%',
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.borderColor = 'blue';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.borderColor = 'transparent';
+                                                }}
+                                            >
+                                                <div className="card-body" style={{ border: '2px solid transparent', padding: '20px' }}>
+                                                    <div className="mb-4">
+                                                        <div className="image-frame">
+                                                            <img
+                                                                src={staff.hospitalStaffProfileImage}
+                                                                alt="Profile"
+                                                                style={{ maxHeight: '150px', maxWidth: '100%', borderRadius: '10px' }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                                        {staff.hospitalStaffName}
+                                                    </h5>
+                                                    <div className="card-text-frame mb-4" style={{ backgroundColor: '#f8f9fa', color: 'black', fontWeight: 'bold', padding: '10px', borderRadius: '10px' }}>
+                                                        <p>
+                                                            <strong>Email:</strong> {staff.hospitalStaffEmail}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Aadhar:</strong> {staff.hospitalStaffAadhar}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Mobile:</strong> {staff.hospitalStaffMobile}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Address:</strong> {staff.hospitalStaffAddress}
+                                                        </p>
+                                                    </div>
+                                                    <div className="image-frame">
+                                                        <img
+                                                            src={staff.hospitalStaffIdProofImage}
+                                                            alt="ID Proof"
+                                                            style={{ maxHeight: '150px', maxWidth: '100%', borderRadius: '10px' }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : searchExecuted && <p className="text-center">No staffs found.</p>}
+                        </>
+                    )}
                 </div>
             </div>
             <Footer />
         </div>
+
     );
 };
 
-export default HospitalRegisterStaff;
+export default HospitalSearchStaffs;

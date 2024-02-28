@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 import Footer from '../Common/Footer';
+import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import HospitalStaffNavbar from './HospitalStaffNavbar';
 
-const HospitalStaffLogin = () => {
+const HospitalStaffChangePassword = () => {
     const navigate = useNavigate();
-    const [loginData, setLoginData] = useState({ hospitalStaffEmail: '', hospitalStaffPassword: '' });
+    const [passwordData, setPasswordData] = useState({ oldPassword: '', newPassword: '' });
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessages, setErrorMessages] = useState({});
     const [showPassword, setShowPassword] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setLoginData({ ...loginData, [name]: value });
+        setPasswordData({ ...passwordData, [name]: value });
         if (errorMessages[name]) {
             setErrorMessages({ ...errorMessages, [name]: '' });
         }
@@ -27,13 +28,15 @@ const HospitalStaffLogin = () => {
         setErrorMessages({});
 
         try {
-            const response = await axios.post('http://localhost:1313/api/mic/hospitalStaff/hospitalStaffLogin', loginData);
+            const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+            const response = await axios.post('http://localhost:1313/api/mic/hospitalStaff/hospitalStaffChangePassword', { ...passwordData, hospitalStaffId }, {
+                headers: {
+                    'token': sessionStorage.getItem('token'),
+                },
+            });
             if (response.status === 200) {
                 alert(response.data.message);
-                sessionStorage.setItem('hospitalStaffId', response.data.data.hospitalStaff.hospitalStaffId);
-                sessionStorage.setItem('hospitalId', response.data.data.hospitalStaff.hospitalId);
-                sessionStorage.setItem('token', response.data.data.token);
-                navigate('/hospitalStaffViewProfile');
+                navigate('/hospitalStaffLogin');
             }
         } catch (error) {
             if (error.response) {
@@ -42,8 +45,15 @@ const HospitalStaffLogin = () => {
                     case 400:
                         setErrorMessages(data.results || {});
                         break;
+                    case 401:
+                        alert(data.message || 'Unauthorized access. Please login again.');
+                        break; // Do not navigate
+                    case 403:
+                        alert(data.message || 'Unauthorized access. Please login again.');
+                        navigate('/hospitalStaffLogin');
+                        break;
                     case 422:
-                        const errorMessage = data.error || "An error occurred during login.";
+                        const errorMessage = data.error || "An error occurred during password change.";
                         alert(errorMessage);
                         break;
                     case 500:
@@ -67,6 +77,7 @@ const HospitalStaffLogin = () => {
 
     return (
         <div>
+            <HospitalStaffNavbar />
             <div
                 className="container-fluid"
                 style={{
@@ -78,46 +89,22 @@ const HospitalStaffLogin = () => {
                     position: 'relative',
                 }}
             >
-                <div
-                    className="container"
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        maxWidth: '100%',
-                        padding: '50px 15px 0',
-                        overflowY: 'auto',
-                        maxHeight: 'calc(100% - 56px)',
-                    }}
-                >
+                <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '50px 15px 0', overflowY: 'auto', maxHeight: 'calc(100% - 56px)' }}>
                     <div className="row justify-content-center">
                         <div className="col-lg-4">
                             <div className="card" style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 0, 0, 0.1)' }}>
                                 <div className="card-body">
+                                    {errorMessages.general && <p className="error" style={{ color: 'red' }}>{errorMessages.general}</p>}
                                     <form onSubmit={handleSubmit} noValidate>
                                         <div className="mb-3">
-                                            <label htmlFor="hospitalStaffEmail" className="form-label">Email:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalStaffEmail"
-                                                value={loginData.hospitalStaffEmail}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalStaffEmail ? 'error' : ''}`}
-                                                required
-                                                style={{ height: 'calc(2.25rem + 2px)' }}
-                                            />
-                                            {errorMessages.hospitalStaffEmail && <p className="error" style={{ color: 'red' }}>{errorMessages.hospitalStaffEmail}</p>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalStaffPassword" className="form-label">Password:</label>
+                                            <label htmlFor="oldPassword" className="form-label">Old Password:</label>
                                             <div className="input-group">
                                                 <input
                                                     type={showPassword ? 'text' : 'password'}
-                                                    name="hospitalStaffPassword"
-                                                    value={loginData.hospitalStaffPassword}
+                                                    name="oldPassword"
+                                                    value={passwordData.oldPassword}
                                                     onChange={handleInputChange}
-                                                    className={`form-control ${errorMessages.hospitalStaffPassword ? 'error' : ''}`}
+                                                    className={`form-control ${errorMessages.oldPassword ? 'error' : ''}`}
                                                     required
                                                     style={{ height: 'calc(2.25rem + 2px)' }}
                                                 />
@@ -125,18 +112,32 @@ const HospitalStaffLogin = () => {
                                                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                                                 </button>
                                             </div>
-                                            {errorMessages.hospitalStaffPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.hospitalStaffPassword}</p>}
+                                            {errorMessages.oldPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.oldPassword}</p>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="newPassword" className="form-label">New Password:</label>
+                                            <div className="input-group">
+                                                <input
+                                                    type={showPassword ? 'text' : 'password'}
+                                                    name="newPassword"
+                                                    value={passwordData.newPassword}
+                                                    onChange={handleInputChange}
+                                                    className={`form-control ${errorMessages.newPassword ? 'error' : ''}`}
+                                                    required
+                                                    style={{ height: 'calc(2.25rem + 2px)' }}
+                                                />
+                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
+                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                                </button>
+                                            </div>
+                                            {errorMessages.newPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.newPassword}</p>}
                                         </div>
                                         <div className="text-center">
                                             <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                                                {isLoading ? 'Logging in...' : 'Login'}
+                                                {isLoading ? 'Changing Password...' : 'Change Password'}
                                             </button>
                                         </div>
                                     </form>
-                                    <p className="text-center mt-3 mb-0">Create a new account</p>
-                                    <p className="text-center mb-0">
-                                        <button className="btn btn-link" onClick={() => navigate('/')}>Sign up</button>
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -148,4 +149,4 @@ const HospitalStaffLogin = () => {
     );
 };
 
-export default HospitalStaffLogin;
+export default HospitalStaffChangePassword;

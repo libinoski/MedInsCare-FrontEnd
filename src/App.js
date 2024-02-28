@@ -23,6 +23,16 @@ import HospitalViewOneNews from './components/Hospital/HospitalViewOneNews';
 import HospitalUpdateNews from './components/Hospital/HospitalUpdateNews';
 import HospitalSendNotificationToStaff from './components/Hospital/HospitalSendNotificationToStaff';
 import HospitalStaffLogin from './components/Hospital Staff/HospitalStaffLogin';
+import HospitalStaffNavbar from './components/Hospital Staff/HospitalStaffNavbar';
+import HospitalStaffViewProfile from './components/Hospital Staff/HospitalStaffViewProfile';
+import HospitalStaffUpdateProfile from './components/Hospital Staff/HospitalStaffUpdateProfile';
+import HospitalStaffUpdateIdProofImage from './components/Hospital Staff/HospitalStaffChangeIdProofImage';
+import HospitalStaffUpdateProfileImage from './components/Hospital Staff/HospitalStaffChangeProfileImage';
+import HospitalStaffChangePassword from './components/Hospital Staff/HospitalStaffChangePassword';
+import HospitalStaffViewAllNews from './components/Hospital Staff/HospitalStaffViewAllNews';
+import HospitalStaffViewOneNews from './components/Hospital Staff/HospitalStaffViewOneNews';
+import HospitalStaffViewAllNotifications from './components/Hospital Staff/HospitalStaffViewAllNotifications';
+import HospitalStaffViewOneNotification from './components/Hospital Staff/HospitalStaffViewOneNotification';
 
 
 function App() {
@@ -32,13 +42,16 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/navbar' elemet={<Navbar />} />
+          <Route path='/hospitalStaffNavbar' elemet={<HospitalStaffNavbar />} />
           <Route path='/footer' elemet={<Footer />} />
           <Route path='/' element={<HospitalRegistration />} />
           <Route path='/hospitalLogin' element={<HospitalLogin />} />
           <Route path='/hospitalStaffLogin' element={<HospitalStaffLogin />} />
           <Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />
           <Route path='/hospitalViewProfile' element={<HospitalViewProfile />} />
+          <Route path='/hospitalstaffViewProfile' element={<HospitalStaffViewProfile />} />
           <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
+          <Route path='/hospitalStaffUpdateProfile' element={<HospitalStaffUpdateProfile />} />
           <Route path='/hospitalUpdateImage' element={<HospitalUpdateImage />} />
           <Route path='/hospitalRegisterStaff' element={<HospitalRegisterStaff />} />
           <Route path='/hospitalUpdateStaff' element={<HospitalUpdateStaff />} />
@@ -53,6 +66,13 @@ function App() {
           <Route path='/hospitalViewOneSuspendedStaff' element={<HospitalViewOneSuspendedStaff />} />
           <Route path='/hospitalSendNotificationToStaff' element={<HospitalSendNotificationToStaff />} />
 
+          <Route path='/hospitalStaffChangeIdProofImage' element={<HospitalStaffUpdateIdProofImage />} />
+          <Route path='/hospitalStaffChangeProfileImage' element={<HospitalStaffUpdateProfileImage />} />
+          <Route path='/hospitalStaffChangePassword' element={<HospitalStaffChangePassword />} />
+          <Route path='/hospitalStaffViewAllNews' element={<HospitalStaffViewAllNews />} />
+          <Route path='/hospitalStaffViewOneNews' element={<HospitalStaffViewOneNews />} />
+          <Route path='/hospitalStaffViewAllNotifications' element={<HospitalStaffViewAllNotifications />} />
+          <Route path='/hospitalStaffViewOneNotification' element={<HospitalStaffViewOneNotification />} />
         </Routes>
       </BrowserRouter>
     </div>

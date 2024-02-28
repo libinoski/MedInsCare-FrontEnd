@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/doc.jpg';
+import HospitalStaffNavbar from './HospitalStaffNavbar';
 
-const HospitalViewProfile = () => {
+const HospitalStaffViewProfile = () => {
     const navigate = useNavigate();
-    const [hospitalProfile, setHospitalProfile] = useState(null);
+    const [staffProfile, setStaffProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -17,10 +15,10 @@ const HospitalViewProfile = () => {
             setIsLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
-                const hospitalId = sessionStorage.getItem('hospitalId');
+                const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
                 const response = await axios.post(
-                    'http://localhost:1313/api/mic/hospital/hospitalViewProfile',
-                    { hospitalId },
+                    'http://localhost:1313/api/mic/hospitalStaff/hospitalStaffViewProfile',
+                    { hospitalStaffId },
                     {
                         headers: {
                             token
@@ -28,7 +26,7 @@ const HospitalViewProfile = () => {
                     }
                 );
                 if (response.status === 200) {
-                    setHospitalProfile(response.data.data);
+                    setStaffProfile(response.data.data);
                 }
             } catch (error) {
                 if (error.response) {
@@ -37,7 +35,7 @@ const HospitalViewProfile = () => {
                         case 401:
                         case 403:
                             alert(data.message || 'Unauthorized access. Please login again.');
-                            navigate('/hospitalLogin');
+                            navigate('/hospitalStaffLogin');
                             break;
                         case 422:
                             const errorMessage422 = data.error || "An error occurred during profile view.";
@@ -71,48 +69,61 @@ const HospitalViewProfile = () => {
 
     return (
         <div>
-            <Navbar />
+            <HospitalStaffNavbar />
             <div
                 className="hospital-view-profile-container bg-image"
                 style={{
                     backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    minHeight: 'calc(100vh - 56px)', // Adjusted for the navbar height
+                    minHeight: 'calc(100vh - 56px - 80px)',
                     paddingTop: '56px',
-                    paddingBottom: '80px', // Adjusted for the footer height
+                    paddingBottom: '80px',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}
             >
-                <div className="card profile-card shadow-lg" style={{ width: '80%', maxWidth: '600px', borderRadius: '15px', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.5)', height: '100%', marginBottom: '20px' }}>
+                <div className="card profile-card shadow-lg" style={{ width: '80%', maxWidth: '600px', borderRadius: '15px', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.5)', height: '100%', marginBottom: '20px', position: 'relative' }}>
+                    <div className="position-absolute top-0 end-0" style={{ marginTop: '10px', marginRight: '10px', zIndex: 1 }}>
+                        <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><Link to="/hospitalStaffChangeProfileImage" className="dropdown-item">Change Profile Image</Link></li>
+                                <li><Link to="/hospitalStaffChangeIdProofImage" className="dropdown-item">Change ID Proof Image</Link></li>
+                                {staffProfile && (
+                                    <li>
+                                        {/* Additional action */}
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
                     {isLoading ? (
                         <div className="card-body text-center">Loading profile...</div>
-                    ) : hospitalProfile ? (
+                    ) : staffProfile ? (
                         <div className="card-body">
                             <div className="profile-image-details-container text-center mb-4">
-                                <div className="profile-image-container mb-3 position-relative">
+                                <div className="profile-image-container mb-3 position-relative d-flex justify-content-center" style={{ zIndex: 0 }}>
                                     <div className="profile-image-frame border border-2 border-primary rounded-circle d-flex align-items-center justify-content-center position-relative" style={{ width: '220px', height: '220px' }}>
                                         <img
-                                            src={hospitalProfile.hospitalImage}
-                                            alt="Hospital"
+                                            src={staffProfile.hospitalStaffProfileImage}
+                                            alt="Staff"
                                             className="img-fluid rounded-circle profile-image"
                                             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                                         />
-                                        <Link to="/hospitalUpdateImage" className="edit-image-link position-absolute" style={{ bottom: '10px', right: '10px', zIndex: '2', color: '#000' }}>
-                                            <FontAwesomeIcon icon={faEdit} className="update-image-icon" />
-                                        </Link>
                                     </div>
                                 </div>
                                 <div className="details-container text-start">
-                                    <p className="profile-info"><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
-                                    <p className="profile-info"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
-                                    <p className="profile-info"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
-                                    <p className="profile-info"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
-                                    <p className="profile-info"><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
-                                    <p className="profile-info"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
-                                    <p className="profile-info"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
+                                    <h2 className="profile-name">{staffProfile.hospitalStaffName}</h2>
+                                    <p className="profile-info"><strong>Email:</strong> {staffProfile.hospitalStaffEmail}</p>
+                                    <p className="profile-info"><strong>Aadhar:</strong> {staffProfile.hospitalStaffAadhar}</p>
+                                    <p className="profile-info"><strong>Mobile:</strong> {staffProfile.hospitalStaffMobile}</p>
+                                    <p className="profile-info"><strong>Address:</strong> {staffProfile.hospitalStaffAddress}</p>
+                                    <p className="profile-info"><strong>Registered Date:</strong> {formatDate(staffProfile.addedDate)}</p>
+                                    <p className="profile-info"><strong>Last Updated:</strong> {formatDate(staffProfile.updatedDate)}</p>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +131,7 @@ const HospitalViewProfile = () => {
                         <div className="card-body text-center">No profile found.</div>
                     )}
                     <div className="card-footer text-end">
-                        <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
+                        <Link to="/hospitalStaffUpdateProfile" className="btn btn-primary">Update details</Link>
                     </div>
                 </div>
             </div>
@@ -129,4 +140,4 @@ const HospitalViewProfile = () => {
     );
 };
 
-export default HospitalViewProfile;
+export default HospitalStaffViewProfile;

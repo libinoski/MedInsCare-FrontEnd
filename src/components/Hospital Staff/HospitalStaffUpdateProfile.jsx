@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
+import Navbar from './HospitalStaffNavbar';
 import Footer from '../Common/Footer';
 import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 
-const HospitalUpdateNews = () => {
+const HospitalStaffUpdateProfile = () => {
     const navigate = useNavigate();
-    const [newsData, setNewsData] = useState({
-        hospitalNewsTitle: '',
-        hospitalNewsContent: '',
-        hospitalNewsImage: null,
-        existingImageUrl: '', // Store existing image URL
+    const [profileData, setProfileData] = useState({
+        hospitalStaffName: '',
+        hospitalStaffMobile: '',
+        hospitalStaffAddress: '',
+        hospitalStaffAadhar: '',
     });
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessages, setErrorMessages] = useState({});
 
     useEffect(() => {
-        const fetchNewsData = async () => {
+        const fetchProfile = async () => {
             setIsLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
-                const hospitalId = sessionStorage.getItem('hospitalId');
-                const hospitalNewsId = sessionStorage.getItem('hospitalNewsId');
+                const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
                 const response = await axios.post(
-                    'http://localhost:1313/api/mic/hospital/viewOneHospitalNews',
-                    { hospitalId, hospitalNewsId },
+                    'http://localhost:1313/api/mic/hospitalStaff/hospitalStaffViewProfile',
+                    { hospitalStaffId },
                     {
                         headers: {
                             token
@@ -33,13 +32,13 @@ const HospitalUpdateNews = () => {
                     }
                 );
                 if (response.status === 200) {
-                    const { hospitalNewsTitle, hospitalNewsContent, hospitalNewsImage } = response.data.data;
-                    setNewsData(prevData => ({
-                        ...prevData,
-                        hospitalNewsTitle,
-                        hospitalNewsContent,
-                        existingImageUrl: hospitalNewsImage, // Set existing image URL
-                    }));
+                    const { hospitalStaffName, hospitalStaffMobile, hospitalStaffAddress, hospitalStaffAadhar } = response.data.data;
+                    setProfileData({
+                        hospitalStaffName,
+                        hospitalStaffMobile,
+                        hospitalStaffAddress,
+                        hospitalStaffAadhar,
+                    });
                 }
             } catch (error) {
                 if (error.response) {
@@ -48,10 +47,10 @@ const HospitalUpdateNews = () => {
                         case 401:
                         case 403:
                             alert(data.message || 'Unauthorized access. Please login again.');
-                            navigate('/hospitalLogin');
+                            navigate('/hospitalStaffLogin');
                             break;
                         case 422:
-                            const errorMessage422 = data.error || "An error occurred during news view.";
+                            const errorMessage422 = data.error || "An error occurred during profile view.";
                             alert(errorMessage422);
                             break;
                         case 500:
@@ -69,16 +68,12 @@ const HospitalUpdateNews = () => {
             }
         };
 
-        fetchNewsData();
-    }, [navigate, setNewsData]); // Include navigate and setNewsData in the dependency array
+        fetchProfile();
+    }, [navigate]);
 
     const handleInputChange = (event) => {
-        const { name, value, files } = event.target;
-        if (name === 'hospitalNewsImage') {
-            setNewsData(prevData => ({ ...prevData, hospitalNewsImage: files[0] }));
-        } else {
-            setNewsData(prevData => ({ ...prevData, [name]: value }));
-        }
+        const { name, value } = event.target;
+        setProfileData({ ...profileData, [name]: value });
         if (errorMessages[name]) {
             setErrorMessages({ ...errorMessages, [name]: '' });
         }
@@ -91,24 +86,15 @@ const HospitalUpdateNews = () => {
 
         try {
             const token = sessionStorage.getItem('token');
-            const hospitalId = sessionStorage.getItem('hospitalId');
-            const hospitalNewsId = sessionStorage.getItem('hospitalNewsId');
-            const formData = new FormData();
-            formData.append('hospitalId', hospitalId);
-            formData.append('hospitalNewsId', hospitalNewsId);
-            formData.append('hospitalNewsTitle', newsData.hospitalNewsTitle);
-            formData.append('hospitalNewsContent', newsData.hospitalNewsContent);
-            formData.append('hospitalNewsImage', newsData.hospitalNewsImage);
-            
-            const response = await axios.post('http://localhost:1313/api/mic/hospital/updateHospitalNews', formData, {
+            const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+            const response = await axios.post('http://localhost:1313/api/mic/hospitalStaff/hospitalStaffUpdateProfile', { ...profileData, hospitalStaffId }, {
                 headers: {
                     'token': token,
-                    'Content-Type': 'multipart/form-data'
                 },
             });
             if (response.status === 200) {
                 alert(response.data.message);
-                navigate('/hospitalViewAllNews');
+                navigate('/hospitalStaffViewProfile');
             }
         } catch (error) {
             if (error.response) {
@@ -120,10 +106,10 @@ const HospitalUpdateNews = () => {
                     case 401:
                     case 403:
                         alert(data.message || 'Unauthorized access. Please login again.');
-                        navigate('/hospitalLogin');
+                        navigate('/hospitalStaffLogin');
                         break;
                     case 422:
-                        const errorMessage = data.error || "An error occurred during news update.";
+                        const errorMessage = data.error || "An error occurred during profile update.";
                         alert(errorMessage);
                         break;
                     case 500:
@@ -162,46 +148,60 @@ const HospitalUpdateNews = () => {
                                 <div className="card-body">
                                     <form onSubmit={handleSubmit} noValidate>
                                         <div className="mb-3">
-                                            <label htmlFor="hospitalNewsTitle" className="form-label">News Title:</label>
+                                            <label htmlFor="hospitalStaffName" className="form-label">Name:</label>
                                             <input
                                                 type="text"
-                                                name="hospitalNewsTitle"
-                                                value={newsData.hospitalNewsTitle}
+                                                name="hospitalStaffName"
+                                                value={profileData.hospitalStaffName}
                                                 onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalNewsTitle ? 'is-invalid' : ''}`}
-                                                id="hospitalNewsTitle"
+                                                className={`form-control ${errorMessages.hospitalStaffName ? 'is-invalid' : ''}`}
+                                                id="hospitalStaffName"
                                                 required
                                             />
-                                            {errorMessages.hospitalNewsTitle && <div className="invalid-feedback">{errorMessages.hospitalNewsTitle}</div>}
+                                            {errorMessages.hospitalStaffName && <div className="invalid-feedback">{errorMessages.hospitalStaffName}</div>}
                                         </div>
                                         <div className="mb-3">
-                                            <label htmlFor="hospitalNewsContent" className="form-label">News Content:</label>
-                                            <textarea
-                                                name="hospitalNewsContent"
-                                                value={newsData.hospitalNewsContent}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalNewsContent ? 'is-invalid' : ''}`}
-                                                id="hospitalNewsContent"
-                                                rows="5"
-                                                required
-                                            ></textarea>
-                                            {errorMessages.hospitalNewsContent && <div className="invalid-feedback">{errorMessages.hospitalNewsContent}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalNewsImage" className="form-label">News Image:</label>
+                                            <label htmlFor="hospitalStaffMobile" className="form-label">Mobile:</label>
                                             <input
-                                                type="file"
-                                                name="hospitalNewsImage"
+                                                type="text"
+                                                name="hospitalStaffMobile"
+                                                value={profileData.hospitalStaffMobile}
                                                 onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalNewsImage ? 'is-invalid' : ''}`}
-                                                id="hospitalNewsImage"
+                                                className={`form-control ${errorMessages.hospitalStaffMobile ? 'is-invalid' : ''}`}
+                                                id="hospitalStaffMobile"
+                                                required
                                             />
-                                            {errorMessages.hospitalNewsImage && <div className="invalid-feedback">{errorMessages.hospitalNewsImage}</div>}
-                                            {newsData.existingImageUrl && <img src={newsData.existingImageUrl} alt="Existing News" style={{ marginTop: '10px', maxWidth: '100%' }} />}
+                                            {errorMessages.hospitalStaffMobile && <div className="invalid-feedback">{errorMessages.hospitalStaffMobile}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalStaffAddress" className="form-label">Address:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalStaffAddress"
+                                                value={profileData.hospitalStaffAddress}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalStaffAddress ? 'is-invalid' : ''}`}
+                                                id="hospitalStaffAddress"
+                                                required
+                                            />
+                                            {errorMessages.hospitalStaffAddress && <div className="invalid-feedback">{errorMessages.hospitalStaffAddress}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalStaffAadhar" className="form-label">Aadhar Number:</label>
+                                            <input
+                                                type="text"
+                                                name="hospitalStaffAadhar"
+                                                value={profileData.hospitalStaffAadhar}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.hospitalStaffAadhar ? 'is-invalid' : ''}`}
+                                                id="hospitalStaffAadhar"
+                                                required
+                                            />
+                                            {errorMessages.hospitalStaffAadhar && <div className="invalid-feedback">{errorMessages.hospitalStaffAadhar}</div>}
                                         </div>
                                         <div className="text-center">
                                             <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
-                                                {isLoading ? 'Updating News...' : 'Update'}
+                                                {isLoading ? 'Updating Profile...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
@@ -216,4 +216,4 @@ const HospitalUpdateNews = () => {
     );
 };
 
-export default HospitalUpdateNews;
+export default HospitalStaffUpdateProfile;
