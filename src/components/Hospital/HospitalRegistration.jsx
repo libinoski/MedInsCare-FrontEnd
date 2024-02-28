@@ -91,10 +91,14 @@ const HospitalRegistration = () => {
                         break;
                     case 422:
                         if (data && data.error) {
-                            const errorMessages = Object.values(data.error).join('\n');
-                            alert(`Validation Error:\n${errorMessages}`);
+                            // Construct a readable error message from the error object
+                            let errorMessage = '';
+                            Object.entries(data.error).forEach(([field, messages]) => {
+                                errorMessage += `${field}: ${messages.join(', ')}\n`;
+                            });
+                            alert(errorMessage);
                         } else {
-                            alert('An error occurred. Please try again.');
+                            alert('Validation error during registration');
                         }
                         break;
                     case 500:
@@ -128,7 +132,6 @@ const HospitalRegistration = () => {
 
     return (
         <div>
-
             <div
                 className="container-fluid"
                 style={{
@@ -325,11 +328,10 @@ const HospitalRegistration = () => {
                                     </div>
                                 </div>
                                 <div className={`form-footer mt-3 text-center ${Object.keys(validationErrors).length > 0 ? 'text-danger' : ''}`}>
-    <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''} ${Object.keys(validationErrors).length > 0 ? 'btn-danger' : ''}`} disabled={isLoading}>
-        {isLoading ? 'Submitting...' : 'Register'}
-    </button>
-</div>
-
+                                    <button type="submit" className={`btn btn-success ${isLoading ? 'loading' : ''} ${submitFailed ? 'failed' : ''} ${Object.keys(validationErrors).length > 0 ? 'btn-danger' : ''}`} disabled={isLoading}>
+                                        {isLoading ? 'Submitting...' : 'Register'}
+                                    </button>
+                                </div>
                             </form>
                             <div className="form-footer mt-3 text-center">
                                 <button type="button" className="btn btn-secondary" onClick={handleAlreadyHaveAccount}>

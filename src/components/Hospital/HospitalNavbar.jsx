@@ -36,6 +36,7 @@ const Navbar = () => {
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownStaff">
                                 <li><Link className="dropdown-item" to="/hospitalRegisterStaff">Register Staff</Link></li>
+                                <li><Link className="dropdown-item" to="/hospitalStaffLogin">Login Staff</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalViewAllStaffs">View All Staffs</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalViewAllSuspendedStaffs">View All Suspended Staffs</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalSearchStaffs">Search Staffs</Link></li>

@@ -22,6 +22,7 @@ import HospitalUpdateStaff from './components/Hospital/HospitalUpdateStaff';
 import HospitalViewOneNews from './components/Hospital/HospitalViewOneNews';
 import HospitalUpdateNews from './components/Hospital/HospitalUpdateNews';
 import HospitalSendNotificationToStaff from './components/Hospital/HospitalSendNotificationToStaff';
+import HospitalStaffLogin from './components/Hospital Staff/HospitalStaffLogin';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/footer' elemet={<Footer />} />
           <Route path='/' element={<HospitalRegistration />} />
           <Route path='/hospitalLogin' element={<HospitalLogin />} />
+          <Route path='/hospitalStaffLogin' element={<HospitalStaffLogin />} />
           <Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />
           <Route path='/hospitalViewProfile' element={<HospitalViewProfile />} />
           <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />

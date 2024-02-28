@@ -85,12 +85,16 @@ const HospitalRegisterStaff = () => {
                         break;
                     case 422:
                         if (data && data.error) {
-                            setValidationErrors(data.error);
+                            // Construct a readable error message from the error object
+                            let errorMessage = '';
+                            Object.entries(data.error).forEach(([field, messages]) => {
+                                errorMessage += `${field}: ${messages.join(', ')}\n`;
+                            });
+                            alert(errorMessage);
                         } else {
-                            alert('An error occurred. Please try again.');
+                            alert('Validation error during registration');
                         }
                         break;
-
                     case 500:
                         alert(data.message || 'Internal server error. Please try again later.');
                         break;
@@ -244,32 +248,32 @@ const HospitalRegisterStaff = () => {
                                             ></textarea>
                                             {validationErrors.hospitalStaffAddress && <div className="invalid-feedback">{validationErrors.hospitalStaffAddress}</div>}
                                         </div>
+                                        
                                         <div className="mb-3">
-    <label htmlFor="hospitalStaffIdProofImage" className="form-label">ID Proof Image:</label>
-    <input
-        type="file"
-        className={`form-control-file ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
-        id="hospitalStaffIdProofImage"
-        name="hospitalStaffIdProofImage"
-        onChange={handleImageChange}
-        accept=".jpg, .jpeg, .png"
-    />
-    {validationErrors.hospitalStaffIdProofImage && <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>}
-</div>
+                                            <label htmlFor="hospitalStaffIdProofImage" className="form-label">ID Proof Image:</label>
+                                            <input
+                                                type="file"
+                                                className={`form-control-file ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
+                                                id="hospitalStaffIdProofImage"
+                                                name="hospitalStaffIdProofImage"
+                                                onChange={handleImageChange}
+                                                accept=".jpg, .jpeg, .png"
+                                            />
+                                            {validationErrors.hospitalStaffIdProofImage && <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>}
+                                        </div>
 
-<div className="mb-3">
-    <label htmlFor="hospitalStaffProfileImage" className="form-label">Profile Image:</label>
-    <input
-        type="file"
-        className={`form-control-file ${validationErrors.hospitalStaffProfileImage ? 'is-invalid' : ''}`}
-        id="hospitalStaffProfileImage"
-        name="hospitalStaffProfileImage"
-        onChange={handleImageChange}
-        accept=".jpg, .jpeg, .png"
-    />
-    {validationErrors.hospitalStaffProfileImage && <div className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>}
-</div>
-
+                                        <div className="mb-3">
+                                            <label htmlFor="hospitalStaffProfileImage" className="form-label">Profile Image:</label>
+                                            <input
+                                                type="file"
+                                                className={`form-control-file ${validationErrors.hospitalStaffProfileImage ? 'is-invalid' : ''}`}
+                                                id="hospitalStaffProfileImage"
+                                                name="hospitalStaffProfileImage"
+                                                onChange={handleImageChange}
+                                                accept=".jpg, .jpeg, .png"
+                                            />
+                                            {validationErrors.hospitalStaffProfileImage && <div className="invalid-feedback">{validationErrors.hospitalStaffProfileImage}</div>}
+                                        </div>
 
                                         <div className="text-center">
                                             <button type="submit" className={`btn btn-success ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>

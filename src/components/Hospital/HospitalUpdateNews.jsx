@@ -70,7 +70,7 @@ const HospitalUpdateNews = () => {
         };
 
         fetchNewsData();
-    }, [navigate]);
+    }, [navigate, newsData]);
 
     const handleInputChange = (event) => {
         const { name, value, files } = event.target;
@@ -197,7 +197,7 @@ const HospitalUpdateNews = () => {
                                                 id="hospitalNewsImage"
                                             />
                                             {errorMessages.hospitalNewsImage && <div className="invalid-feedback">{errorMessages.hospitalNewsImage}</div>}
-                                            {newsData.existingImageUrl && <img src={newsData.existingImageUrl} alt="Existing News Image" style={{ marginTop: '10px', maxWidth: '100%' }} />}
+                                            {newsData.existingImageUrl && <img src={newsData.existingImageUrl} alt="Existing News" style={{ marginTop: '10px', maxWidth: '100%' }} />}
                                         </div>
                                         <div className="text-center">
                                             <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
