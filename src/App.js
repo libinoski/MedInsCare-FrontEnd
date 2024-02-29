@@ -33,6 +33,7 @@ import HospitalStaffViewAllNews from './components/Hospital Staff/HospitalStaffV
 import HospitalStaffViewOneNews from './components/Hospital Staff/HospitalStaffViewOneNews';
 import HospitalStaffViewAllNotifications from './components/Hospital Staff/HospitalStaffViewAllNotifications';
 import HospitalStaffViewOneNotification from './components/Hospital Staff/HospitalStaffViewOneNotification';
+import HospitalStaffRegisterPatient from './components/Hospital Staff/HospitalStaffRegisterPatient';
 
 
 function App() {
@@ -73,6 +74,8 @@ function App() {
           <Route path='/hospitalStaffViewOneNews' element={<HospitalStaffViewOneNews />} />
           <Route path='/hospitalStaffViewAllNotifications' element={<HospitalStaffViewAllNotifications />} />
           <Route path='/hospitalStaffViewOneNotification' element={<HospitalStaffViewOneNotification />} />
+          <Route path='/hospitalStaffRegisterPatient' element={<HospitalStaffRegisterPatient />} />
+
         </Routes>
       </BrowserRouter>
     </div>
