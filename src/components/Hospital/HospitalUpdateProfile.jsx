@@ -16,6 +16,7 @@ const HospitalUpdateProfile = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessages, setErrorMessages] = useState({});
+    const [showConfirmation, setShowConfirmation] = useState(false); // New state for confirmation
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -81,11 +82,9 @@ const HospitalUpdateProfile = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         setIsLoading(true);
         setErrorMessages({});
-
         try {
             const token = sessionStorage.getItem('token');
             const hospitalId = sessionStorage.getItem('hospitalId');
@@ -127,6 +126,23 @@ const HospitalUpdateProfile = () => {
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const handleConfirmation = () => {
+        // Check if there are any validation errors
+        const hasErrors = Object.keys(errorMessages).length > 0;
+        if (!hasErrors) {
+            // If no errors, then show confirmation and submit
+            setShowConfirmation(true);
+        } else {
+            // If there are errors, submit without showing confirmation
+            handleSubmit();
+        }
+    };
+
+    const handleConfirmSubmit = () => {
+        setShowConfirmation(false);
+        handleSubmit();
     };
 
     return (
@@ -215,9 +231,17 @@ const HospitalUpdateProfile = () => {
                                             {errorMessages.hospitalAddress && <div className="invalid-feedback">{errorMessages.hospitalAddress}</div>}
                                         </div>
                                         <div className="text-center">
-                                            <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
-                                                {isLoading ? 'Updating Profile...' : 'Update'}
-                                            </button>
+                                            {showConfirmation ? (
+                                                <div>
+                                                    <p>Are you sure you want to update the hospital profile?</p>
+                                                    <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
+                                                    <button type="button" className="btn btn-success" onClick={handleConfirmSubmit}>Confirm</button>
+                                                </div>
+                                            ) : (
+                                                <button type="button" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} onClick={handleConfirmation} style={{width: '100px'}}>
+                                                    {isLoading ? 'Updating Profile...' : 'Update'}
+                                                </button>
+                                            )}
                                         </div>
                                     </form>
                                 </div>

@@ -90,6 +90,16 @@ const HospitalUpdateNews = () => {
         setErrorMessages({});
 
         try {
+            // Check if there are any validation errors
+            if (Object.keys(errorMessages).length === 0) {
+                // If no validation errors, show confirmation dialog
+                const confirmed = window.confirm("Are you sure you want to update?");
+                if (!confirmed) {
+                    setIsLoading(false);
+                    return;
+                }
+            }
+
             const token = sessionStorage.getItem('token');
             const hospitalId = sessionStorage.getItem('hospitalId');
             const hospitalNewsId = sessionStorage.getItem('hospitalNewsId');
@@ -107,7 +117,7 @@ const HospitalUpdateNews = () => {
                 },
             });
             if (response.status === 200) {
-                alert(response.data.message);
+                // alert(response.data.message);
                 navigate('/hospitalViewAllNews');
             }
         } catch (error) {

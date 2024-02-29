@@ -29,7 +29,7 @@ const HospitalStaffLogin = () => {
         try {
             const response = await axios.post('http://localhost:1313/api/mic/hospitalStaff/hospitalStaffLogin', loginData);
             if (response.status === 200) {
-                alert(response.data.message);
+                // alert(response.data.message);
                 sessionStorage.setItem('hospitalStaffId', response.data.data.hospitalStaff.hospitalStaffId);
                 sessionStorage.setItem('hospitalId', response.data.data.hospitalStaff.hospitalId);
                 sessionStorage.setItem('token', response.data.data.token);

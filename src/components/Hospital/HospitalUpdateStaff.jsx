@@ -17,6 +17,7 @@ const HospitalUpdateStaff = () => {
     });
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [showConfirmation, setShowConfirmation] = useState(false); // New state for confirmation
 
     useEffect(() => {
         // Fetch hospital staff details based on staffId or from session storage
@@ -60,9 +61,9 @@ const HospitalUpdateStaff = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         setIsLoading(true);
+        setShowConfirmation(false); // Close the confirmation dialog
         try {
             const token = sessionStorage.getItem('token');
             const response = await axios.post(
@@ -83,6 +84,18 @@ const HospitalUpdateStaff = () => {
             handleRequestError(error);
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const handleConfirmation = () => {
+        // Check if there are any validation errors
+        const hasErrors = Object.keys(errors).length > 0;
+        if (!hasErrors) {
+            // If no errors, then show confirmation and submit
+            setShowConfirmation(true);
+        } else {
+            // If there are errors, submit without showing confirmation
+            handleSubmit();
         }
     };
 
@@ -157,11 +170,18 @@ const HospitalUpdateStaff = () => {
                                             {errors.hospitalStaffAadhar && <div className="invalid-feedback">{errors.hospitalStaffAadhar}</div>}
                                         </div>
                                         <div className="text-center">
-                                            <button type="submit" className={`btn btn-${Object.keys(errors).length ? 'danger' : 'primary'}`} disabled={isLoading}>
+                                            <button type="button" className="btn btn-primary" onClick={handleConfirmation} disabled={isLoading}>
                                                 {isLoading ? 'Updating...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
+                                    {showConfirmation && (
+                                        <div className="mt-3 text-center">
+                                            <p>Are you sure you want to update the hospital staff details?</p>
+                                            <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
+                                            <button type="button" className="btn btn-success" onClick={handleSubmit}>Confirm</button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

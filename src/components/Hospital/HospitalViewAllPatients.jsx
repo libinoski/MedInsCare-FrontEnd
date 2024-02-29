@@ -5,10 +5,9 @@ import Navbar from './HospitalNavbar';
 import backgroundImage from '../../images/Hospital/hindoor2.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 
-
-const HospitalViewAllStaffs = () => {
+const HospitalViewAllPatients = () => {
     const navigate = useNavigate();
-    const [staffList, setStaffList] = useState([]);
+    const [patientList, setPatientList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const HospitalViewAllStaffs = () => {
                         navigate('/hospitalLogin');
                         break;
                     case 422:
-                        const errorMessage422 = data.error || "An error occurred while fetching staffs.";
+                        const errorMessage422 = data.error || "An error occurred while fetching patients.";
                         alert(errorMessage422);
                         break;
                     case 500:
@@ -37,13 +36,13 @@ const HospitalViewAllStaffs = () => {
             }
         };
 
-        const fetchStaffs = async () => {
+        const fetchPatients = async () => {
             setIsLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
                 const hospitalId = sessionStorage.getItem('hospitalId');
                 const response = await axios.post(
-                    'http://localhost:1313/api/mic/hospital/viewAllHospitalStaffs',
+                    'http://localhost:1313/api/mic/hospital/viewAllPatients',
                     { hospitalId },
                     {
                         headers: {
@@ -52,9 +51,7 @@ const HospitalViewAllStaffs = () => {
                     }
                 );
                 if (response.status === 200) {
-                    setStaffList(response.data.data);
-                    const staffIds = response.data.data.map(staff => staff.hospitalStaffId);
-                    sessionStorage.setItem('hospitalStaffIds', JSON.stringify(staffIds));
+                    setPatientList(response.data.data);
                 }
             } catch (error) {
                 handleErrors(error);
@@ -63,12 +60,12 @@ const HospitalViewAllStaffs = () => {
             }
         };
 
-        fetchStaffs();
+        fetchPatients();
     }, [navigate]);
 
-    const handleViewStaff = (hospitalStaffId) => {
-        sessionStorage.setItem('hospitalStaffId', hospitalStaffId);
-        navigate(`/hospitalViewOneStaff`);
+    const handleViewPatient = (patientId) => {
+        sessionStorage.setItem('patientId', patientId);
+        navigate(`/hospitalViewOnePatient`);
     };
 
     return (
@@ -85,52 +82,55 @@ const HospitalViewAllStaffs = () => {
                 }}
             >
                 {isLoading ? (
-                    <p className="text-center">Loading staffs...</p>
-                ) : staffList.length > 0 ? (
+                    <p className="text-center">Loading patients...</p>
+                ) : patientList.length > 0 ? (
                     <div className="d-flex flex-column align-items-center justify-content-center pt-5 pb-5" style={{ maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
-                        {staffList.map((staff, index) => (
+                        {patientList.map((patient, index) => (
                             <div
                                 key={index}
                                 className="d-flex align-items-center justify-content-start bg-white shadow rounded-3 mb-3 p-3 w-75"
                                 style={{
                                     cursor: 'pointer',
                                     backdropFilter: 'blur(5px)',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.85)', // Adjusted for better readability
+                                    backgroundColor: 'rgba(255, 255, 255, 0.85)',
                                 }}
-                                onClick={() => handleViewStaff(staff.hospitalStaffId)}
+                                onClick={() => handleViewPatient(patient.patientId)}
                             >
-                                {staff.hospitalStaffProfileImage && (
-                                    <div className="me-3">
-                                        <div className="d-flex justify-content-center align-items-center rounded-circle border border-primary" style={{ width: '60px', height: '60px', overflow: 'hidden' }}>
+                                <div className="me-3">
+                                    <div className="d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
+                                        {patient.patientProfileImage && (
                                             <img
-                                                src={staff.hospitalStaffProfileImage}
-                                                className="img-fluid"
-                                                alt="Staff"
+                                                src={patient.patientProfileImage}
+                                                className="img-fluid rounded-circle"
+                                                alt="Patient"
                                                 style={{
                                                     objectFit: 'cover',
-                                                    minWidth: '100%',
-                                                    minHeight: '100%',
+                                                    width: '100%',
+                                                    height: '100%',
                                                 }}
                                             />
-                                        </div>
+                                        )}
                                     </div>
-                                )}
+                                </div>
                                 <div className="flex-grow-1">
                                     <p className="mb-1 fw-bold text-dark" style={{ fontSize: '1rem' }}>
-                                        {staff.hospitalStaffName}
+                                        {patient.patientName}
                                     </p>
                                     <p className="mb-1 text-muted" style={{ fontSize: '0.9rem' }}>
-                                        {staff.hospitalStaffEmail}
+                                        Registered Date: {new Date(patient.patientRegisteredDate).toLocaleDateString()} {/* Display registered date */}
                                     </p>
                                     <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                                        Aadhar: {staff.hospitalStaffAadhar}, Mobile: {staff.hospitalStaffMobile}, Address: {staff.hospitalStaffAddress}
+                                        Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'} {/* Display discharge status */}
+                                    </p>
+                                    <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
+                                        Aadhar: {patient.patientAadhar}, Mobile: {patient.patientMobile}, Address: {patient.patientAddress}
                                     </p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <p className="text-center mt-4">No staffs found.</p>
+                    <p className="text-center mt-4">No patients found.</p>
                 )}
             </div>
             <Footer />
@@ -138,4 +138,4 @@ const HospitalViewAllStaffs = () => {
     );
 };
 
-export default HospitalViewAllStaffs;
+export default HospitalViewAllPatients;

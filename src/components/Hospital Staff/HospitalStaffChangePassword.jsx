@@ -24,6 +24,11 @@ const HospitalStaffChangePassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Prompt user for confirmation
+        const confirmed = window.confirm("Are you sure you want to change the password?");
+        if (!confirmed) return;
+
         setIsLoading(true);
         setErrorMessages({});
 

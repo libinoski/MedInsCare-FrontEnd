@@ -32,12 +32,11 @@ const HospitalStaffNavbar = () => {
                             <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownStaff" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {/* Apply color to the nurse icon */}
                                 <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#17a2b8' }} />
-                                Staff Management
+                                Patient Management
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownStaff">
                                 <li><Link className="dropdown-item" to="/hospitalStaffRegisterPatient">Register patient</Link></li>
-                                <li><Link className="dropdown-item" to="/hospitalViewAllStaffs">View All Staffs</Link></li>
-                                <li><Link className="dropdown-item" to="/hospitalViewAllSuspendedStaffs">View All Suspended Staffs</Link></li>
+                                <li><Link className="dropdown-item" to="/hospitalStaffViewAllPatients">View All patients</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalSearchStaffs">Search Staffs</Link></li>
                             </ul>
                         </li>

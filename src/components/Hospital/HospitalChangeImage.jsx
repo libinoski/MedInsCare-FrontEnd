@@ -5,7 +5,7 @@ import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 
-const HospitalUpdateImage = () => {
+const HospitalChangeImage = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
@@ -145,4 +145,4 @@ const HospitalUpdateImage = () => {
     );
 };
 
-export default HospitalUpdateImage;
+export default HospitalChangeImage;

@@ -70,6 +70,12 @@ const HospitalViewOneNews = () => {
 
     const handleDeleteNews = async (newsId) => {
         try {
+            // Ask for confirmation before deleting news
+            const confirmDeletion = window.confirm('Are you sure you want to delete this news?');
+            if (!confirmDeletion) {
+                return;
+            }
+
             const token = sessionStorage.getItem('token');
             const hospitalId = sessionStorage.getItem('hospitalId');
             const response = await axios.post(
@@ -82,10 +88,8 @@ const HospitalViewOneNews = () => {
                 }
             );
             if (response.status === 200) {
-                alert(response.data.message);
-                navigate('/hospitalViewAllNews')
-
-                // Redirect or perform any other necessary actions after deletion
+                // alert(response.data.message);
+                navigate('/hospitalViewAllNews');
             }
         } catch (error) {
             if (error.response) {

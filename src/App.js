@@ -8,7 +8,6 @@ import HospitalChangePassword from './components/Hospital/HospitalChangePassword
 import HospitalViewProfile from './components/Hospital/HospitalViewProfile';
 import HospitalUpdateProfile from './components/Hospital/HospitalUpdateProfile';
 import Navbar from './components/Hospital/HospitalNavbar';
-import HospitalUpdateImage from './components/Hospital/HospitalUpdateImage';
 import HospitalRegisterStaff from './components/Hospital/HospitalRegisterStaff';
 import HospitalViewAllStaffs from './components/Hospital/HospitalViewAllStaffs';
 import HospitalViewOneStaff from './components/Hospital/HospitalViewOneStaff';
@@ -26,14 +25,23 @@ import HospitalStaffLogin from './components/Hospital Staff/HospitalStaffLogin';
 import HospitalStaffNavbar from './components/Hospital Staff/HospitalStaffNavbar';
 import HospitalStaffViewProfile from './components/Hospital Staff/HospitalStaffViewProfile';
 import HospitalStaffUpdateProfile from './components/Hospital Staff/HospitalStaffUpdateProfile';
-import HospitalStaffUpdateIdProofImage from './components/Hospital Staff/HospitalStaffChangeIdProofImage';
-import HospitalStaffUpdateProfileImage from './components/Hospital Staff/HospitalStaffChangeProfileImage';
 import HospitalStaffChangePassword from './components/Hospital Staff/HospitalStaffChangePassword';
 import HospitalStaffViewAllNews from './components/Hospital Staff/HospitalStaffViewAllNews';
 import HospitalStaffViewOneNews from './components/Hospital Staff/HospitalStaffViewOneNews';
 import HospitalStaffViewAllNotifications from './components/Hospital Staff/HospitalStaffViewAllNotifications';
 import HospitalStaffViewOneNotification from './components/Hospital Staff/HospitalStaffViewOneNotification';
 import HospitalStaffRegisterPatient from './components/Hospital Staff/HospitalStaffRegisterPatient';
+import HospitalViewAllPatients from './components/Hospital/HospitalViewAllPatients';
+import HospitalViewOnePatient from './components/Hospital/HospitalViewOnePatient';
+import HospitalSendNotificationToPatient from './components/Hospital/HospitalSendNotificationToPatient';
+import HospitalStaffViewAllPatients from './components/Hospital Staff/HospitalStaffViewAllPatients';
+import HospitalStaffViewOnePatient from './components/Hospital Staff/HospitalStaffViewOnePatient';
+import HospitalStaffSendNotificationToPatient from './components/Hospital Staff/HospitalStaffSendNotificationtToPatient';
+import HospitalStaffChangeIdProofImage from './components/Hospital Staff/HospitalStaffChangeIdProofImage';
+import HospitalStaffChangeProfileImage from './components/Hospital Staff/HospitalStaffChangeProfileImage';
+import HospitalChangeImage from './components/Hospital/HospitalChangeImage';
+import InsuranceProviderRegistration from './components/InsuranceProviders/InsuranceProviderRegister';
+import InsuranceProviderNavbar from './components/InsuranceProviders/InsuranceProviderNavbar';
 
 
 function App() {
@@ -53,7 +61,7 @@ function App() {
           <Route path='/hospitalstaffViewProfile' element={<HospitalStaffViewProfile />} />
           <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
           <Route path='/hospitalStaffUpdateProfile' element={<HospitalStaffUpdateProfile />} />
-          <Route path='/hospitalUpdateImage' element={<HospitalUpdateImage />} />
+          <Route path='/hospitalChangeImage' element={<HospitalChangeImage />} />
           <Route path='/hospitalRegisterStaff' element={<HospitalRegisterStaff />} />
           <Route path='/hospitalUpdateStaff' element={<HospitalUpdateStaff />} />
           <Route path='/hospitalViewAllStaffs' element={<HospitalViewAllStaffs />} />
@@ -67,14 +75,22 @@ function App() {
           <Route path='/hospitalViewOneSuspendedStaff' element={<HospitalViewOneSuspendedStaff />} />
           <Route path='/hospitalSendNotificationToStaff' element={<HospitalSendNotificationToStaff />} />
 
-          <Route path='/hospitalStaffChangeIdProofImage' element={<HospitalStaffUpdateIdProofImage />} />
-          <Route path='/hospitalStaffChangeProfileImage' element={<HospitalStaffUpdateProfileImage />} />
+          <Route path='/hospitalStaffChangeIdProofImage' element={<HospitalStaffChangeIdProofImage />} />
+          <Route path='/hospitalStaffChangeProfileImage' element={<HospitalStaffChangeProfileImage />} />
           <Route path='/hospitalStaffChangePassword' element={<HospitalStaffChangePassword />} />
           <Route path='/hospitalStaffViewAllNews' element={<HospitalStaffViewAllNews />} />
           <Route path='/hospitalStaffViewOneNews' element={<HospitalStaffViewOneNews />} />
           <Route path='/hospitalStaffViewAllNotifications' element={<HospitalStaffViewAllNotifications />} />
           <Route path='/hospitalStaffViewOneNotification' element={<HospitalStaffViewOneNotification />} />
           <Route path='/hospitalStaffRegisterPatient' element={<HospitalStaffRegisterPatient />} />
+          <Route path='/hospitalViewAllPatients' element={<HospitalViewAllPatients />} />
+          <Route path='/hospitalStaffViewAllPatients' element={<HospitalStaffViewAllPatients />} />
+          <Route path='/hospitalViewOnePatient' element={<HospitalViewOnePatient />} />
+          <Route path='/hospitalSendNotificationToPatient' element={<HospitalSendNotificationToPatient />} />
+          <Route path='/hospitalStaffViewOnePatient' element={<HospitalStaffViewOnePatient />} />
+          <Route path='/hospitalStaffSendNotificationToPatient' element={<HospitalStaffSendNotificationToPatient />} />
+          <Route path='/insuranceProviderRegistration' element={<InsuranceProviderRegistration />} />
+          <Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
 
         </Routes>
       </BrowserRouter>

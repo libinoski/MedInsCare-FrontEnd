@@ -5,7 +5,7 @@ import Footer from '../Common/Footer';
 import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 
-const HospitalStaffUpdateProfileImage = () => {
+const HospitalStaffChangeProfileImage = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
@@ -35,6 +35,12 @@ const HospitalStaffUpdateProfileImage = () => {
 
     const handleProfileImageUpload = async (e) => {
         e.preventDefault(); // Prevent default form submission
+
+        if (Object.keys(validationErrors).length === 0) {
+            const confirmed = window.confirm("Are you sure you want to upload this image?");
+            if (!confirmed) return;
+        }
+
         setIsLoading(true);
         setValidationErrors({});
 
@@ -141,4 +147,4 @@ const HospitalStaffUpdateProfileImage = () => {
     );
 };
 
-export default HospitalStaffUpdateProfileImage;
+export default HospitalStaffChangeProfileImage;

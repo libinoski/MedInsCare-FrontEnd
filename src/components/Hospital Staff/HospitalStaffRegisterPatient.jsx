@@ -192,9 +192,12 @@ const HospitalStaffRegisterPatient = () => {
                                                 {validationErrors.patientProfileImage && <div className="invalid-feedback">{validationErrors.patientProfileImage}</div>}
                                                 <label htmlFor="patientProfileImage" className="form-label">Upload Profile Image *</label>
                                             </div>
-                                            <div className="col-12">
-                                                <button type="submit" className={`btn btn-primary w-100 ${submitFailed ? 'btn-danger' : ''}`} disabled={isLoading}>{isLoading ? 'Loading...' : 'Register'}</button>
-                                            </div>
+                                            <div className="col-12 text-center">
+    <button type="submit" className={`btn btn-primary ${submitFailed ? 'btn-danger' : ''}`} disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Register'}
+    </button>
+</div>
+
                                         </div>
                                     </form>
                                 </div>

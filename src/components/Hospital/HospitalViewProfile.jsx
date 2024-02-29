@@ -100,7 +100,7 @@ const HospitalViewProfile = () => {
                                             className="img-fluid rounded-circle profile-image"
                                             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                                         />
-                                        <Link to="/hospitalUpdateImage" className="edit-image-link position-absolute" style={{ bottom: '10px', right: '10px', zIndex: '2', color: '#000' }}>
+                                        <Link to="/hospitalChangeImage" className="edit-image-link position-absolute" style={{ bottom: '10px', right: '10px', zIndex: '2', color: '#000' }}>
                                             <FontAwesomeIcon icon={faEdit} className="update-image-icon" />
                                         </Link>
                                     </div>

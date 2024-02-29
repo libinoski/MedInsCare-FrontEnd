@@ -13,6 +13,9 @@ const HospitalSendNotificationToStaff = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const confirmed = window.confirm("Are you sure you want to send this notification to staff?");
+        if (!confirmed) return;
+
         setIsLoading(true);
         try {
             const token = sessionStorage.getItem('token');
@@ -29,7 +32,7 @@ const HospitalSendNotificationToStaff = () => {
                 }
             );
             if (response.status === 200) {
-                alert(response.data.message);
+                // alert(response.data.message);
                 navigate('/hospitalViewOneStaff', { state: { hospitalStaffId } }); // Navigate to the view one staff page with state
             }
         } catch (error) {

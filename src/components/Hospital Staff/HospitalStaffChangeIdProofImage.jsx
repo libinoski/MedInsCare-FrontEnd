@@ -5,7 +5,7 @@ import Footer from '../Common/Footer';
 import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 
-const HospitalStaffUpdateIdProofImage = () => {
+const HospitalStaffChangeIdProofImage = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
@@ -35,6 +35,12 @@ const HospitalStaffUpdateIdProofImage = () => {
 
     const handleIdProofImageUpload = async (e) => {
         e.preventDefault(); // Prevent default form submission
+
+        if (Object.keys(validationErrors).length === 0) {
+            const confirmed = window.confirm("Are you sure you want to upload this image?");
+            if (!confirmed) return;
+        }
+
         setIsLoading(true);
         setValidationErrors({});
 
@@ -107,13 +113,13 @@ const HospitalStaffUpdateIdProofImage = () => {
                                             <div className="mb-3">
                                                 <img
                                                     src={currentImage}
-                                                    alt="Current ID Proof"
+                                                    alt="Current Id Proof"
                                                     className="img-fluid img-preview"
                                                 />
                                             </div>
                                         )}
                                         <div className="mb-3">
-                                            <label htmlFor="hospitalStaffIdProofImage" className="form-label">Choose New ID Proof Image:</label>
+                                            <label htmlFor="hospitalStaffIdProofImage" className="form-label">Choose New Id Proof Image:</label>
                                             <input
                                                 type="file"
                                                 className={`form-control ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
@@ -141,4 +147,4 @@ const HospitalStaffUpdateIdProofImage = () => {
     );
 };
 
-export default HospitalStaffUpdateIdProofImage;
+export default HospitalStaffChangeIdProofImage;
