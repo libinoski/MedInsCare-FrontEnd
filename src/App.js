@@ -42,6 +42,9 @@ import HospitalStaffChangeProfileImage from './components/Hospital Staff/Hospita
 import HospitalChangeImage from './components/Hospital/HospitalChangeImage';
 import InsuranceProviderRegistration from './components/InsuranceProviders/InsuranceProviderRegister';
 import InsuranceProviderNavbar from './components/InsuranceProviders/InsuranceProviderNavbar';
+import InsuranceProviderLogin from './components/InsuranceProviders/InsuranceProviderLogin';
+import HospitalViewAllUnApprovedInsuranceProviders from './components/Hospital/HospitalViewAllUnApprovedInsuranceProviders';
+import HospitalViewOneUnapprovedInsuranceProvider from './components/Hospital/HospitalViewOneUnApprovedInsuranceProvider';
 
 
 function App() {
@@ -91,6 +94,9 @@ function App() {
           <Route path='/hospitalStaffSendNotificationToPatient' element={<HospitalStaffSendNotificationToPatient />} />
           <Route path='/insuranceProviderRegistration' element={<InsuranceProviderRegistration />} />
           <Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
+          <Route path='/insuranceProviderLogin' element={<InsuranceProviderLogin />} />
+          <Route path='/hospitalViewAllUnApprovedInsuranceProviders' element={<HospitalViewAllUnApprovedInsuranceProviders />} />
+          <Route path='/hospitalViewOneUnApprovedInsuranceProvider' element={<HospitalViewOneUnapprovedInsuranceProvider />} />
 
         </Routes>
       </BrowserRouter>

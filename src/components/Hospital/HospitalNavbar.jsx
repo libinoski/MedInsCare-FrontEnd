@@ -40,7 +40,16 @@ const Navbar = () => {
                                 <li><Link className="dropdown-item" to="/hospitalViewAllSuspendedStaffs">View All Suspended Staffs</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalSearchStaffs">Search Staffs</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalViewAllPatients">View all patients</Link></li>
-                                <li><Link className="dropdown-item" to="/insuranceProviderRegistration">Register insurance providers</Link></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownInsurance" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {/* Apply color to the insurance icon */}
+                                <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#ffc107' }} />
+                                Insurance Providers
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
+                                <li><Link className="dropdown-item" to="/hospitalViewAllUnApprovedInsuranceProviders">View all unapproved insurance providers</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
