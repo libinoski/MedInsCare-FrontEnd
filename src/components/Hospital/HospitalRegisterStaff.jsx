@@ -142,7 +142,7 @@ const HospitalRegisterStaff = () => {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-8">
-                            <div className="card">
+                        <div className="card" style={{ backdropFilter: 'blur(8px)', backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
                                 <div className="card-body">
                                     <h1 className="text-center mb-4">Hospital Staff Registration</h1>
                                     <form onSubmit={handleSubmit} noValidate>

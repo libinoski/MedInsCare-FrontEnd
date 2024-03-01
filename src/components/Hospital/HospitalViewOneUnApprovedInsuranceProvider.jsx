@@ -162,48 +162,65 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-                    {isLoading ? (
-                        <p className="text-center">Loading provider details...</p>
-                    ) : (
-                        <div className="row justify-content-center">
-                            <div className="col-lg-6">
-                                {providerDetails ? (
-                                    <div className="card shadow-lg border-0">
-                                        <div className="card-body">
-                                            <div className="d-flex justify-content-center mb-4">
-                                                <div className="rounded-circle" style={{ width: '200px', height: '200px', background: `url(${providerDetails.insuranceProviderProfileImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-                                            </div>
-                                            <h5 className="card-title text-center mt-3 mb-4">{providerDetails.insuranceProviderName}</h5>
-                                            <ul className="list-unstyled mb-4">
-                                                <li><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</li>
-                                                <li><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</li>
-                                                <li><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</li>
-                                                <li><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</li>
-                                                <li><strong>Registered Date:</strong> {formatDate(providerDetails.RegisteredDate)}</li>
-                                            </ul>
-                                            <div className="text-center">
-                                                <img src={providerDetails.insuranceProviderIdProofImage} alt="Provider ID Proof" style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover', borderRadius: '10px' }} />
-                                            </div>
-                                        </div>
-                                        <div className="card-footer d-flex justify-content-center">
-                                            <button className="btn btn-success me-3" onClick={handleApproveProvider}>Approve</button>
-                                            <button className="btn btn-danger" onClick={handleDeleteProvider}>Delete</button>
+<div>
+    <Navbar />
+    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
+            {isLoading ? (
+                <p className="text-center">Loading provider details...</p>
+            ) : (
+                <div className="row justify-content-center">
+                    <div className="col-lg-6">
+                        {providerDetails ? (
+                            <div className="card profile-card shadow-lg border-0 w-100">
+                                <div className="card-body">
+                                    <div className="d-flex justify-content-center mb-4">
+                                        <div className="rounded-circle overflow-hidden" style={{ width: '200px', height: '200px' }}>
+                                            <img src={providerDetails.insuranceProviderProfileImage} alt="Provider" className="img-fluid" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                                         </div>
                                     </div>
-                                ) : (
-                                    <p className="text-center">No provider details found.</p>
-                                )}
+                                    <div className="mb-4">
+                                        <h2 className="mb-3" style={{ color: '#000', fontWeight: 'bold' }}>Provider Details</h2>
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Provider Name:</strong> {providerDetails.insuranceProviderName}</p>
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Registered Date:</strong> {formatDate(providerDetails.RegisteredDate)}</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <img src={providerDetails.insuranceProviderIdProofImage} alt="Provider ID Proof" className="img-fluid" style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover', borderRadius: '10px' }} />
+                                    </div>
+                                </div>
+                                <div className="card-footer text-center">
+                                    <button className="btn btn-success me-2" onClick={handleApproveProvider}>Approve</button>
+                                    <button className="btn btn-danger" onClick={handleDeleteProvider}>Delete</button>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        ) : (
+                            <p className="text-center">No provider details found.</p>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <Footer />
+            )}
         </div>
+    </div>
+    <Footer />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     );
 };
 

@@ -160,57 +160,58 @@ const HospitalViewOneStaff = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-                    {isLoading ? (
-                        <p className="text-center">Loading staff details...</p>
-                    ) : (
-                        <div className="row justify-content-start">
-                            <div className="col-lg-6">
-                                {staffDetails ? (
-                                    <div className="card" style={{ borderRadius: '10px', padding: '20px', position: 'relative' }}>
-                                        <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
-                                            <button className="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style={{ borderColor: '#007bff', color: '#007bff', boxShadow: '0 0 10px rgba(0,123,255,.5)' }}>
-                                                Actions
-                                            </button>
-                                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ position: 'absolute', left: '100%', top: '0', borderRadius: '0.5rem', backgroundColor: '#f8f9fa', boxShadow: '0 4px 6px rgba(0,0,0,.1)', transform: 'translateX(10px)' }}>
-                                                <li><button className="dropdown-item" onClick={handleDeleteStaff}>Delete Staff</button></li>
-                                                <li><button className="dropdown-item" onClick={handleSuspendStaff}>Suspend Staff</button></li>
-                                                <li><button className="dropdown-item" onClick={handleSendNotificationToStaff}>Send Notification</button></li>
-                                                <li><button className="dropdown-item" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button></li>
-                                            </ul>
+<div>
+    <Navbar />
+    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
+            {isLoading ? (
+                <p className="text-center">Loading staff details...</p>
+            ) : (
+                <div className="row justify-content-start">
+                    <div className="col-lg-6">
+                        {staffDetails ? (
+                            <div className="card profile-card shadow-lg border-0 w-100" style={{ borderRadius: '10px', padding: '20px', position: 'relative' }}>
+                                <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
+                                    <button className="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style={{ borderColor: '#007bff', color: '#007bff', boxShadow: '0 0 10px rgba(0,123,255,.5)' }}>
+                                        Actions
+                                    </button>
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ position: 'absolute', left: '100%', top: '0', borderRadius: '0.5rem', backgroundColor: '#f8f9fa', boxShadow: '0 4px 6px rgba(0,0,0,.1)', transform: 'translateX(10px)' }}>
+                                        <li><button className="dropdown-item" onClick={handleDeleteStaff}>Delete Staff</button></li>
+                                        <li><button className="dropdown-item" onClick={handleSuspendStaff}>Suspend Staff</button></li>
+                                        <li><button className="dropdown-item" onClick={handleSendNotificationToStaff}>Send Notification</button></li>
+                                        <li><button className="dropdown-item" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button></li>
+                                    </ul>
+                                </div>
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <img src={staffDetails.hospitalStaffProfileImage} alt="Profile" className="img-fluid" style={{ maxWidth: '100%' }} />
                                         </div>
-                                        <div className="card-body">
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <img src={staffDetails.hospitalStaffProfileImage} alt="Profile" className="img-fluid" style={{ maxWidth: '100%' }} />
-                                                </div>
-                                                <div className="col-md-8">
-                                                    <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
-                                                    <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                                    <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                                    <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                                    <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                                    <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="card-footer">
-                                            <img src={staffDetails.hospitalStaffIdProofImage} alt="ID Proof" className="img-fluid" style={{ maxWidth: '100%' }} />
+                                        <div className="col-md-8">
+                                            <h5 className="card-title" style={{ color: '#000', fontWeight: 'bold', marginBottom: '10px' }}>{staffDetails.hospitalStaffName}</h5>
+                                            <p><strong style={{ color: '#000' }}>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                                            <p><strong style={{ color: '#000' }}>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                                            <p><strong style={{ color: '#000' }}>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                                            <p><strong style={{ color: '#000' }}>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                                            <p><strong style={{ color: '#000' }}>Added Date:</strong> {staffDetails.addedDate}</p>
                                         </div>
                                     </div>
-                                ) : (
-                                    <p className="text-center">No staff details found.</p>
-                                )}
+                                </div>
+                                <div className="card-footer text-center">
+                                    <img src={staffDetails.hospitalStaffIdProofImage} alt="ID Proof" className="img-fluid" style={{ maxWidth: '100%' }} />
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        ) : (
+                            <p className="text-center">No staff details found.</p>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <Footer />
+            )}
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 
