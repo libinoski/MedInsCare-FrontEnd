@@ -35,7 +35,7 @@ const HospitalSearchStaffs = () => {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        alert(data.results || {})
+                        alert(data.results || {});
                         setSearchResult([]);
                         break;
                     case 401:
@@ -63,6 +63,11 @@ const HospitalSearchStaffs = () => {
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const handleViewStaff = (hospitalStaffId) => {
+        sessionStorage.setItem('hospitalStaffId', hospitalStaffId);
+        navigate('/hospitalViewOneStaff');
     };
 
     return (
@@ -149,6 +154,7 @@ const HospitalSearchStaffs = () => {
                                                 onMouseLeave={(e) => {
                                                     e.currentTarget.style.borderColor = 'transparent';
                                                 }}
+                                                onClick={() => handleViewStaff(staff.hospitalStaffId)}
                                             >
                                                 <div className="card-body" style={{ border: '2px solid transparent', padding: '20px' }}>
                                                     <div className="mb-4">
@@ -196,7 +202,6 @@ const HospitalSearchStaffs = () => {
             </div>
             <Footer />
         </div>
-
     );
 };
 

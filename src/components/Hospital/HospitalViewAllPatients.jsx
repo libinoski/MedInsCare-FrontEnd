@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
-import backgroundImage from '../../images/Hospital/hindoor2.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 
 const HospitalViewAllPatients = () => {

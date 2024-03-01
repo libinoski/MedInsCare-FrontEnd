@@ -129,15 +129,15 @@ const HospitalStaffRegisterPatient = () => {
     };
 
     return (
-        <div>
-            <HospitalStaffNavbar />
-            <div className="container-fluid d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: 'calc(100vh - 56px)', paddingTop: '56px', position: 'relative', paddingBottom: '56px' }}>
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h1 className="text-center mb-4">Patient Registration</h1>
+<div>
+    <HospitalStaffNavbar />
+    <div className="container-fluid d-flex align-items-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: 'calc(100vh - 56px)', paddingTop: '56px', position: 'relative', paddingBottom: '56px' }}>
+        <div className="container">
+            <div class="row">
+                <div class="col-md-8">
+                <div class="card" style={{ backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.5)', border: 'none' }}>
+                        <div class="card-body">
+                            <h1 class="text-center mb-4">Patient Registration</h1>
                                     <form onSubmit={handleSubmit} noValidate>
                                         <div className="row g-3">
                                             <div className="col-md-6">

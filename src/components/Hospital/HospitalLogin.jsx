@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hospitallogin.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -64,86 +64,140 @@ const HospitalLogin = () => {
         setShowPassword(!showPassword);
     };
 
+        // Define navigateToSignUp function here
+        const navigateToSignUp = () => {
+            navigate('/hospitalRegistration'); // Change '/signup' to the path you use for your signup page
+        };
+
     return (
-        <div>
-            <div
-                className="container-fluid"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '100vh',
-                    paddingTop: '56px',
-                    position: 'relative',
-                }}
-            >
-                <div
-                    className="container"
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        maxWidth: '100%',
-                        padding: '50px 15px 0',
-                        overflowY: 'auto',
-                        maxHeight: 'calc(100% - 56px)',
-                    }}
-                >
-                    <div className="row justify-content-center">
-                        <div className="col-lg-4">
-                            <div className="card" style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 0, 0, 0.1)' }}>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit} noValidate>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalEmail" className="form-label">Email:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalEmail"
-                                                value={loginData.hospitalEmail}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalEmail ? 'error' : ''}`}
-                                                required
-                                                style={{ height: 'calc(2.25rem + 2px)' }}
-                                            />
-                                            {errorMessages.hospitalEmail && <p className="error" style={{ color: 'red' }}>{errorMessages.hospitalEmail}</p>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalPassword" className="form-label">Password:</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type={showPassword ? 'text' : 'password'}
-                                                    name="hospitalPassword"
-                                                    value={loginData.hospitalPassword}
-                                                    onChange={handleInputChange}
-                                                    className={`form-control ${errorMessages.hospitalPassword ? 'error' : ''}`}
-                                                    required
-                                                    style={{ height: 'calc(2.25rem + 2px)' }}
-                                                />
-                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
-                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                                                </button>
-                                            </div>
-                                            {errorMessages.hospitalPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.hospitalPassword}</p>}
-                                        </div>
-                                        <div className="text-center">
-                                            <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                                                {isLoading ? 'Logging in...' : 'Login'}
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <p className="text-center mt-3 mb-0">Create a new account</p>
-                                    <p className="text-center mb-0">
-                                        <button className="btn btn-link" onClick={() => navigate('/')}>Sign up</button>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div>
+  <div className="container-fluid d-flex flex-column min-vh-100">
+    <div className="row flex-grow-1">
+      {/* Background Image Container - Displayed only on smaller screens */}
+      <div className="col-12 d-md-none p-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      </div>
+
+      {/* Login Form Card */}
+      <div className="col-12 col-md-6 d-flex align-items-center justify-content-center p-0">
+        <div className={`card mx-auto mb-3 border border-2 ${errorMessages.hospitalEmail || errorMessages.hospitalPassword ? 'border-danger' : 'border-primary'} shadow`} style={{ 
+          width: '90%', 
+          maxWidth: '400px', 
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+          boxShadow: '0 0.5rem 1rem rgba(0, 0, 255, 0.15), 0 0.5rem 1rem rgba(0, 0, 255, 0.3)' /* Added an extra shadow with increased spread radius */
+        }}>
+          <div className="card-body">
+            {/* Login Form */}
+            <h2 className="card-title text-center">Login</h2>
+            <form onSubmit={handleSubmit} noValidate>
+              {/* Email Field */}
+              <div className="mb-3">
+                <label htmlFor="hospitalEmail" className="form-label">Email:</label>
+                <input
+                    type="email"
+                    name="hospitalEmail"
+                    value={loginData.hospitalEmail}
+                    onChange={handleInputChange}
+                    className={`form-control ${errorMessages.hospitalEmail ? 'is-invalid' : ''}`}
+                    required
+                />
+                {errorMessages.hospitalEmail && <div className="invalid-feedback">{errorMessages.hospitalEmail}</div>}
+              </div>
+              
+              {/* Password Field */}
+              <div className="mb-3">
+                <label htmlFor="hospitalPassword" className="form-label">Password:</label>
+                <div className="input-group">
+                  <input
+                      type={showPassword ? 'text' : 'password'}
+                      name="hospitalPassword"
+                      value={loginData.hospitalPassword}
+                      onChange={handleInputChange}
+                      className={`form-control ${errorMessages.hospitalPassword ? 'is-invalid' : ''}`}
+                      required
+                  />
+                  <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
+                      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                  </button>
+                  {errorMessages.hospitalPassword && <div className="invalid-feedback" style={{display: 'block'}}>{errorMessages.hospitalPassword}</div>}
                 </div>
+              </div>
+
+              <div className="text-center">
+                <button type="submit" className={`btn btn-primary ${errorMessages.hospitalEmail || errorMessages.hospitalPassword ? 'btn-danger' : ''}`} disabled={isLoading} style={{ width: 'auto' }}>
+                  {isLoading ? 'Logging in...' : 'Login'}
+                </button>
+              </div>
+
+            </form>
+            <div className="text-center mt-3">
+              <p>Don't have an account?</p>
+              <button onClick={navigateToSignUp} className="btn btn-primary rounded-pill" style={{ 
+                width: '100%', 
+                background: 'linear-gradient(to right, #8A2BE2, #A74AC7)', 
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
+                outline: 'none', 
+                border: 'none', 
+                color: '#fff' 
+              }}>
+                Sign up
+              </button>
             </div>
-            <Footer />
+          </div>
         </div>
+      </div>
+      
+      {/* Background Image Container - Displayed only on medium and larger screens */}
+      <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center p-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      </div>
+      
+    </div>
+  </div>
+  {/* Footer component */}
+  <footer className="mt-auto">
+    <Footer/>
+  </footer>
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     );
 };
 

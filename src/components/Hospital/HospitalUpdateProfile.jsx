@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
 
 const HospitalUpdateProfile = () => {
     const navigate = useNavigate();

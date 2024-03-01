@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/signcntrct.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -64,85 +64,106 @@ const InsuranceProviderLogin = () => {
     };
 
     return (
-        <div>
-            <div
-                className="container-fluid"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '100vh',
-                    paddingTop: '56px',
-                    position: 'relative',
-                }}
-            >
-                <div
-                    className="container"
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        maxWidth: '100%',
-                        padding: '50px 15px 0',
-                        overflowY: 'auto',
-                        maxHeight: 'calc(100% - 56px)',
-                    }}
-                >
-                    <div className="row justify-content-center">
-                        <div className="col-lg-4">
-                            <div className="card" style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 0, 0, 0.1)' }}>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit} noValidate>
-                                        <div className="mb-3">
-                                            <label htmlFor="insuranceProviderEmail" className="form-label">Email:</label>
-                                            <input
-                                                type="text"
-                                                name="insuranceProviderEmail"
-                                                value={loginData.insuranceProviderEmail}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.insuranceProviderEmail ? 'error' : ''}`}
-                                                required
-                                                style={{ height: 'calc(2.25rem + 2px)' }}
-                                            />
-                                            {errorMessages.insuranceProviderEmail && <p className="error" style={{ color: 'red' }}>{errorMessages.insuranceProviderEmail}</p>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="insuranceProviderPassword" className="form-label">Password:</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type={showPassword ? 'text' : 'password'}
-                                                    name="insuranceProviderPassword"
-                                                    value={loginData.insuranceProviderPassword}
-                                                    onChange={handleInputChange}
-                                                    className={`form-control ${errorMessages.insuranceProviderPassword ? 'error' : ''}`}
-                                                    required
-                                                    style={{ height: 'calc(2.25rem + 2px)' }}
-                                                />
-                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
-                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                                                </button>
-                                            </div>
-                                            {errorMessages.insuranceProviderPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.insuranceProviderPassword}</p>}
-                                        </div>
-                                        <div className="text-center">
-                                            <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                                                {isLoading ? 'Logging in...' : 'Login'}
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <p className="text-center mt-3 mb-0">Create a new account</p>
-                                    <p className="text-center mb-0">
-                                        <button className="btn btn-link" onClick={() => navigate('/insuranceProviderSignUp')}>Sign up</button>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+<div>
+    <div
+        className="container-fluid"
+        style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '100vh',
+            paddingTop: '56px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}
+    >
+        <div
+            className="container"
+            style={{
+                maxWidth: '400px',
+                background: 'rgba(255, 255, 255, 0.5)', // Adjusted alpha from 0.8 to 0.75 for more transparency
+                backdropFilter: 'blur(10px)',
+                borderRadius: '20px',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                padding: '40px',
+                border: '1px solid rgba(0, 0, 0, 0.05)',
+            }}
+        >
+            <div className="text-center mb-4">
+                <h2>Login</h2>
+            </div>
+            <form onSubmit={handleSubmit} noValidate>
+                {/* Email Field */}
+                <div className="mb-3">
+                    <label htmlFor="insuranceProviderEmail" className="form-label">Email:</label>
+                    <input
+                        type="email" // Make sure to use type="email" for proper validation
+                        name="insuranceProviderEmail"
+                        value={loginData.insuranceProviderEmail}
+                        onChange={handleInputChange}
+                        className={`form-control ${errorMessages.insuranceProviderEmail ? 'is-invalid' : ''}`}
+                        required
+                    />
+                    {errorMessages.insuranceProviderEmail && <div className="invalid-feedback">{errorMessages.insuranceProviderEmail}</div>}
+                </div>
+                
+                {/* Password Field */}
+                <div className="mb-3">
+                    <label htmlFor="insuranceProviderPassword" className="form-label">Password:</label>
+                    <div className="input-group">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            name="insuranceProviderPassword"
+                            value={loginData.insuranceProviderPassword}
+                            onChange={handleInputChange}
+                            className={`form-control ${errorMessages.insuranceProviderPassword ? 'is-invalid' : ''}`}
+                            required
+                        />
+                        <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
+                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                        </button>
+                        {errorMessages.insuranceProviderPassword && <div className="invalid-feedback" style={{display: 'block'}}>{errorMessages.insuranceProviderPassword}</div>}
                     </div>
                 </div>
+
+                <div className="text-center">
+                    <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading} style={{ width: '100%' }}>
+                        {isLoading ? 'Logging in...' : 'Login'}
+                    </button>
+                </div>
+            </form>
+            <div className="text-center mt-3">
+                <p>Create a new account</p>
+                <button
+                    className="btn btn-outline-primary"
+                    onClick={() => navigate('/insuranceProviderRegistration')}
+                    style={{
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+                        width: '100%',
+                        fontWeight: 'bold',
+                    }}
+                    onMouseOver={(e) => {
+                        e.target.style.transform = 'scale(1.05)';
+                        e.target.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                        e.target.style.transform = 'scale(1)';
+                        e.target.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
+                    }}
+                >
+                    Sign up
+                </button>
             </div>
-            <Footer />
         </div>
+    </div>
+    <Footer />
+</div>
+
+
+
+
     );
 };
 

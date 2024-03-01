@@ -67,35 +67,59 @@ const HospitalStaffViewOneNews = () => {
     }, [navigate]);
 
     return (
-        <div>
-            <HospitalStaffNavbar />
-            <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%', height: '80vh' }}> 
-                    {isLoading ? (
-                        <p className="text-center">Loading news details...</p>
-                    ) : (
-                        <div className="row justify-content-center">
-                            <div className="col-lg-8">
-                                {newsDetails ? (
-                                    <div className="card mb-4" style={{ borderRadius: '10px', position: 'relative' }}>
-                                        <div className="card-body">
-                                            <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
-                                            <img src={newsDetails.hospitalNewsImage} className="card-img-top" alt="News" style={{ maxWidth: '100%', height: 'auto', borderRadius: '10px', objectFit: 'cover' }} />
-                                            <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p> 
-                                            <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p> 
-                                            {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <p className="text-center">No news details found.</p>
-                                )}
+<div>
+    <HospitalStaffNavbar />
+    <div className="container-fluid py-5" style={{ 
+        backgroundImage: `url(${backgroundImage})`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center', 
+        minHeight: '100vh', 
+        position: 'relative', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+    }}>
+        <div className="container" style={{ 
+            maxWidth: '100%', 
+            padding: '0 15px', 
+            overflowY: 'auto', 
+            maxHeight: '100%', 
+            height: '80vh' 
+        }}> 
+            {isLoading ? (
+                <p className="text-center">Loading news details...</p>
+            ) : (
+                <div className="row justify-content-center">
+                    <div className="col-lg-8">
+                        {newsDetails ? (
+                            <div className="card mb-4 shadow-sm">
+                                <div className="card-body">
+                                    <h5 className="card-title text-center mb-4" style={{ 
+                                        fontSize: '24px', 
+                                        fontWeight: 'bold', 
+                                        color: '#333' 
+                                    }}>{newsDetails.hospitalNewsTitle}</h5>
+                                    <img src={newsDetails.hospitalNewsImage} className="card-img-top img-fluid rounded" alt="News" />
+                                    <p className="card-text" style={{ 
+                                        fontSize: '18px', 
+                                        lineHeight: '1.6', 
+                                        color: '#333' 
+                                    }}>{newsDetails.hospitalNewsContent}</p> 
+                                    <p className="card-text bg-yellow text-dark rounded-pill px-3 py-1 mb-2">Published on: {formatDate(newsDetails.addedDate)}</p> 
+                                    {newsDetails.updatedDate && <p className="card-text bg-lightgreen text-dark rounded-pill px-3 py-1">Updated on: {formatDate(newsDetails.updatedDate)}</p>}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        ) : (
+                            <p className="text-center">No news details found.</p>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <Footer />
+            )}
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

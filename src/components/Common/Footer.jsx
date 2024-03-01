@@ -1,63 +1,63 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faUsers } from '@fortawesome/free-solid-svg-icons'; // Import faUsers icon
 import { faInstagram, faYoutube, faFacebook, faTelegram } from '@fortawesome/free-brands-svg-icons';
-import { faCopy, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
   return (
-    <footer className="text-center text-lg-start bg-light text-muted">
-      {/* Social media links */}
-      <section className="p-4 border-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="d-flex flex-column flex-lg-row justify-content-center mb-4 mb-lg-0">
-                <span className="mb-2 mb-lg-0 me-lg-5">Connect with us on social media:</span>
-                <a href="https://www.instagram.com" className="me-4 text-reset" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faInstagram} style={{ color: '#E1306C' }} /> Instagram
-                </a>
-                <a href="https://www.youtube.com" className="me-4 text-reset" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0000' }} /> YouTube
-                </a>
-                <a href="https://www.facebook.com" className="me-4 text-reset" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faFacebook} style={{ color: '#3b5998' }} /> Facebook
-                </a>
-                <a href="https://t.me" className="me-4 text-reset" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faTelegram} style={{ color: '#0088cc' }} /> Telegram
-                </a>
-                <a href="mailto:yourgmail@gmail.com" className="me-4 text-reset" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faEnvelope} style={{ color: '#d14836' }} /> Gmail
-                </a>
-                <span className="text-reset" style={{ color: '#000' }}>
-                  <FontAwesomeIcon icon={faPhone} /> 123456787
-                </span>
-              </div>
+    <footer className="py-5" style={{ background: 'linear-gradient(45deg, rgba(142, 68, 173, 0.8), rgba(192, 57, 43, 0.8))', border: '2px solid #9400D3' }}>
+      <div className="container">
+        <div className="row">
+          {/* Social media links */}
+          <div className="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center justify-content-lg-start">
+            {/* Connect with us */}
+            <p className="me-3 mb-0 fs-5 text-white fw-bold"><FontAwesomeIcon icon={faUsers} className="me-2" />Connect with us:</p>
+            <div className="me-4">
+              <Link to="https://www.instagram.com" className="text-reset text-decoration-none">
+                <FontAwesomeIcon icon={faInstagram} size="3x" style={{ color: '#E4405F' }} />
+              </Link>
+            </div>
+            <div className="me-4">
+              <Link to="https://www.youtube.com" className="text-reset text-decoration-none">
+                <FontAwesomeIcon icon={faYoutube} size="3x" style={{ color: '#FF0000' }} />
+              </Link>
+            </div>
+            <div className="me-4">
+              <Link to="https://www.facebook.com" className="text-reset text-decoration-none">
+                <FontAwesomeIcon icon={faFacebook} size="3x" style={{ color: '#3B5998' }} />
+              </Link>
+            </div>
+            <div className="me-4">
+              <Link to="https://t.me" className="text-reset text-decoration-none">
+                <FontAwesomeIcon icon={faTelegram} size="3x" style={{ color: '#0088cc' }} />
+              </Link>
+            </div>
+            <div className="me-4">
+              <Link to="mailto:yourgmail@gmail.com" className="text-reset text-decoration-none">
+                <FontAwesomeIcon icon={faEnvelope} size="3x" style={{ color: '#EA4335' }} />
+              </Link>
+            </div>
+            <div>
+              <span className="text-reset">
+                <FontAwesomeIcon icon={faPhone} size="3x" style={{ color: '#6CC24A' }} />
+              </span>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* About Us link */}
-      <section>
-        <div className="container text-center text-md-start mt-5">
-          <div className="row mt-3">
-            <div className="col-12 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
-                About Us
-              </h6>
-              <p>
-                <Link to="/aboutus" className="text-reset">Learn more about our mission and services</Link>
-              </p>
-            </div>
+          {/* About Us link */}
+          <div className="col-lg-6 text-center text-lg-end">
+            <h5 className="mb-3 text-white fw-bold"><FontAwesomeIcon icon={faInfoCircle} /> About Us</h5>
+            {/* Remove the paragraph with the link */}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Copyright notice */}
-      <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        <p className="mb-0">
-          <FontAwesomeIcon icon={faCopy} /> {new Date().getFullYear()} Liboski. All rights reserved.
+      <div className="container-fluid text-center mt-4">
+        <p className="mb-0 fs-6 fw-bold" style={{ color: '#000000' }}>
+          &copy; {new Date().getFullYear()} Liboski. All rights reserved.
         </p>
       </div>
     </footer>
