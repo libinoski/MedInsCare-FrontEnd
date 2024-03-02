@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalViewOneNews = () => {
     const navigate = useNavigate();

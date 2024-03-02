@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/doc.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 import { useNavigate } from 'react-router-dom';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 

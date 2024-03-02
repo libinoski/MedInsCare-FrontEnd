@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Hospital/hospitallogin.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hl.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -66,25 +66,47 @@ const HospitalLogin = () => {
 
         // Define navigateToSignUp function here
         const navigateToSignUp = () => {
-            navigate('/hospitalRegistration'); // Change '/signup' to the path you use for your signup page
+            navigate('/'); // Change '/signup' to the path you use for your signup page
         };
 
     return (
 <div>
+  {/* Navbar */}
+  <nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
+  <div className="container-fluid">
+    <span className="navbar-brand mb-0 h1 text-dark" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Login</span>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
   <div className="container-fluid d-flex flex-column min-vh-100">
     <div className="row flex-grow-1">
-      {/* Background Image Container - Displayed only on smaller screens */}
-      <div className="col-12 d-md-none p-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      {/* Background Image Container - Now displayed on medium and larger screens on the left */}
+      <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center p-0 bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: `url(${backgroundImage})`,
+          minHeight: '100vh',
+          backgroundSize: 'contain', /* Fits the entire image but may not fill container */
+          backgroundPosition: 'center', /* Centers the background image */
+          backgroundRepeat: 'no-repeat' /* Ensures image doesn't tile */
+        }}>
       </div>
 
-      {/* Login Form Card */}
+      {/* Login Form Card - Now displayed on the right for medium and larger screens */}
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center p-0">
-        <div className={`card mx-auto mb-3 border border-2 ${errorMessages.hospitalEmail || errorMessages.hospitalPassword ? 'border-danger' : 'border-primary'} shadow`} style={{ 
-          width: '90%', 
-          maxWidth: '400px', 
-          backgroundColor: 'rgba(255, 255, 255, 0.8)', 
-          boxShadow: '0 0.5rem 1rem rgba(0, 0, 255, 0.15), 0 0.5rem 1rem rgba(0, 0, 255, 0.3)' /* Added an extra shadow with increased spread radius */
-        }}>
+        <div className={`card mx-auto mb-3 ${errorMessages.hospitalEmail || errorMessages.hospitalPassword ? 'border-danger' : ''} shadow`} style={{
+            width: '90%',
+            maxWidth: '400px',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            boxShadow: '0 0.5rem 1rem rgba(0, 0, 255, 0.15), 0 0.5rem 1rem rgba(0, 0, 255, 0.3)', /* Keep your original shadow styling */
+            border: errorMessages.hospitalEmail || errorMessages.hospitalPassword ? '' : '2px solid #8A2BE2', /* Purple border when there are no errors */
+            marginTop: '20px' // Add margin at the top
+          }}>
           <div className="card-body">
             {/* Login Form */}
             <h2 className="card-title text-center">Login</h2>
@@ -93,32 +115,32 @@ const HospitalLogin = () => {
               <div className="mb-3">
                 <label htmlFor="hospitalEmail" className="form-label">Email:</label>
                 <input
-                    type="email"
-                    name="hospitalEmail"
-                    value={loginData.hospitalEmail}
-                    onChange={handleInputChange}
-                    className={`form-control ${errorMessages.hospitalEmail ? 'is-invalid' : ''}`}
-                    required
+                  type="email"
+                  name="hospitalEmail"
+                  value={loginData.hospitalEmail}
+                  onChange={handleInputChange}
+                  className={`form-control ${errorMessages.hospitalEmail ? 'is-invalid' : ''}`}
+                  required
                 />
                 {errorMessages.hospitalEmail && <div className="invalid-feedback">{errorMessages.hospitalEmail}</div>}
               </div>
-              
+
               {/* Password Field */}
               <div className="mb-3">
                 <label htmlFor="hospitalPassword" className="form-label">Password:</label>
                 <div className="input-group">
                   <input
-                      type={showPassword ? 'text' : 'password'}
-                      name="hospitalPassword"
-                      value={loginData.hospitalPassword}
-                      onChange={handleInputChange}
-                      className={`form-control ${errorMessages.hospitalPassword ? 'is-invalid' : ''}`}
-                      required
+                    type={showPassword ? 'text' : 'password'}
+                    name="hospitalPassword"
+                    value={loginData.hospitalPassword}
+                    onChange={handleInputChange}
+                    className={`form-control ${errorMessages.hospitalPassword ? 'is-invalid' : ''}`}
+                    required
                   />
                   <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
-                      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                   </button>
-                  {errorMessages.hospitalPassword && <div className="invalid-feedback" style={{display: 'block'}}>{errorMessages.hospitalPassword}</div>}
+                  {errorMessages.hospitalPassword && <div className="invalid-feedback" style={{ display: 'block' }}>{errorMessages.hospitalPassword}</div>}
                 </div>
               </div>
 
@@ -127,36 +149,44 @@ const HospitalLogin = () => {
                   {isLoading ? 'Logging in...' : 'Login'}
                 </button>
               </div>
-
             </form>
+
             <div className="text-center mt-3">
               <p>Don't have an account?</p>
-              <button onClick={navigateToSignUp} className="btn btn-primary rounded-pill" style={{ 
-                width: '100%', 
-                background: 'linear-gradient(to right, #8A2BE2, #A74AC7)', 
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
-                outline: 'none', 
-                border: 'none', 
-                color: '#fff' 
-              }}>
+              <button onClick={navigateToSignUp} className="btn btn-primary rounded-pill" style={{
+                  width: '100%',
+                  background: 'linear-gradient(to right, #8A2BE2, #A74AC7)',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  outline: 'none',
+                  border: 'none',
+                  color: '#fff'
+                }}>
                 Sign up
               </button>
             </div>
           </div>
         </div>
       </div>
-      
-      {/* Background Image Container - Displayed only on medium and larger screens */}
-      <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center p-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+
+      {/* Background Image Container - Still displayed only on smaller screens */}
+      <div className="col-12 d-md-none p-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh', backgroundSize: 'cover', backgroundPosition: 'center'}}>
       </div>
-      
     </div>
   </div>
   {/* Footer component */}
-  <footer className="mt-auto">
+  <footer >
     <Footer/>
   </footer>
 </div>
+
+
+  
+
+
+
+
+
+
 
   
 

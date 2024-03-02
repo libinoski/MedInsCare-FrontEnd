@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/bg1.jpg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalStaffViewOneNotification = () => {
     const [notification, setNotification] = useState(null);

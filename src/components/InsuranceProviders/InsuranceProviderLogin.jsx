@@ -1,7 +1,10 @@
+
+
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/InsuranceProvider/signcntrct.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/6976407_4587.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -29,9 +32,11 @@ const InsuranceProviderLogin = () => {
         try {
             const response = await axios.post('http://localhost:1313/api/mic/insuranceProvider/insuranceProviderLogin', loginData);
             if (response.status === 200) {
+                alert(response.data.message);
                 sessionStorage.setItem('insuranceProviderId', response.data.data.insuranceProvider.insuranceProviderId);
+                sessionStorage.setItem('insuranceProviderId', response.data.data.insuranceProvider.hopsitalId);
                 sessionStorage.setItem('token', response.data.data.token);
-                navigate('/insuranceProviderDashboard');
+                // navigate('/insuranceProviderViewProfile');
             }
         } catch (error) {
             if (error.response) {
@@ -63,103 +68,166 @@ const InsuranceProviderLogin = () => {
         setShowPassword(!showPassword);
     };
 
+    // Define navigateToSignUp function here
+    const navigateToSignUp = () => {
+        navigate('/insuranceProviderRegistration'); // Change '/signup' to the path you use for your signup page
+    };
+
     return (
 <div>
-    <div
-        className="container-fluid"
-        style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh',
-            paddingTop: '56px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        }}
-    >
-        <div
-            className="container"
-            style={{
-                maxWidth: '400px',
-                background: 'rgba(255, 255, 255, 0.5)', // Adjusted alpha from 0.8 to 0.75 for more transparency
-                backdropFilter: 'blur(10px)',
-                borderRadius: '20px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                padding: '40px',
-                border: '1px solid rgba(0, 0, 0, 0.05)',
-            }}
-        >
-            <div className="text-center mb-4">
-                <h2>Login</h2>
+    {/* Navbar */}
+    <nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
+        <div className="container-fluid">
+            <span className="navbar-brand mb-0 h1 text-dark" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Login</span>
+        </div>
+    </nav>
+    <div className="container-fluid d-flex flex-column min-vh-100">
+        <div className="row flex-grow-1">
+            {/* Background Image Container - Now displayed on medium and larger screens on the left */}
+            <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center p-0" style={{
+                minHeight: '100vh',
+                background: `url(${backgroundImage}) no-repeat center center`,
+                backgroundSize: 'contain',
+            }}>
             </div>
-            <form onSubmit={handleSubmit} noValidate>
-                {/* Email Field */}
-                <div className="mb-3">
-                    <label htmlFor="insuranceProviderEmail" className="form-label">Email:</label>
-                    <input
-                        type="email" // Make sure to use type="email" for proper validation
-                        name="insuranceProviderEmail"
-                        value={loginData.insuranceProviderEmail}
-                        onChange={handleInputChange}
-                        className={`form-control ${errorMessages.insuranceProviderEmail ? 'is-invalid' : ''}`}
-                        required
-                    />
-                    {errorMessages.insuranceProviderEmail && <div className="invalid-feedback">{errorMessages.insuranceProviderEmail}</div>}
-                </div>
-                
-                {/* Password Field */}
-                <div className="mb-3">
-                    <label htmlFor="insuranceProviderPassword" className="form-label">Password:</label>
-                    <div className="input-group">
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            name="insuranceProviderPassword"
-                            value={loginData.insuranceProviderPassword}
-                            onChange={handleInputChange}
-                            className={`form-control ${errorMessages.insuranceProviderPassword ? 'is-invalid' : ''}`}
-                            required
-                        />
-                        <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
-                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                        </button>
-                        {errorMessages.insuranceProviderPassword && <div className="invalid-feedback" style={{display: 'block'}}>{errorMessages.insuranceProviderPassword}</div>}
+
+            {/* Login Form Card - Now displayed on the right for medium and larger screens */}
+            <div className="col-12 col-md-6 d-flex align-items-center justify-content-center p-0">
+                <div className={`card mx-auto mb-3 ${errorMessages.insuranceProviderEmail || errorMessages.insuranceProviderEmail ? 'border-danger' : ''} shadow`} style={{
+                    width: '90%',
+                    maxWidth: '400px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    boxShadow: '0 0.5rem 1rem rgba(0, 0, 255, 0.15), 0 0.5rem 1rem rgba(0, 0, 255, 0.3)',
+                    border: errorMessages.insuranceProviderEmail || errorMessages.insuranceProviderEmail ? '' : '2px solid #8A2BE2',
+                    marginTop: '20px'
+                }}>
+                    <div className="card-body">
+                        {/* Login Form */}
+                        <h2 className="card-title text-center">Login</h2>
+                        <form onSubmit={handleSubmit} noValidate>
+                            {/* Email Field */}
+                            <div className="mb-3">
+                                <label htmlFor="insuranceProviderEmail" className="form-label">Email:</label>
+                                <input
+                                    type="email"
+                                    name="insuranceProviderEmail"
+                                    value={loginData.insuranceProviderEmail}
+                                    onChange={handleInputChange}
+                                    className={`form-control ${errorMessages.insuranceProviderEmail ? 'is-invalid' : ''}`}
+                                    required
+                                />
+                                {errorMessages.insuranceProviderEmail && <div className="invalid-feedback">{errorMessages.insuranceProviderEmail}</div>}
+                            </div>
+
+                            {/* Password Field */}
+                            <div className="mb-3">
+                                <label htmlFor="insuranceProviderPassword" className="form-label">Password:</label>
+                                <div className="input-group">
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        name="insuranceProviderPassword"
+                                        value={loginData.insuranceProviderPassword}
+                                        onChange={handleInputChange}
+                                        className={`form-control ${errorMessages.insuranceProviderPassword ? 'is-invalid' : ''}`}
+                                        required
+                                    />
+                                    <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
+                                        <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                    </button>
+                                    {errorMessages.insuranceProviderPassword && <div className="invalid-feedback" style={{ display: 'block' }}>{errorMessages.insuranceProviderPassword}</div>}
+                                </div>
+                            </div>
+
+                            <div className="text-center">
+                                <button type="submit" className={`btn btn-primary ${errorMessages.insuranceProviderPassword || errorMessages.insuranceProviderPassword ? 'btn-danger' : ''}`} disabled={isLoading} style={{ width: 'auto' }}>
+                                    {isLoading ? 'Logging in...' : 'Login'}
+                                </button>
+                            </div>
+                        </form>
+                        <div className="text-center mt-3">
+                            <p>Don't have an account?</p>
+                            <button onClick={navigateToSignUp} className="btn btn-primary rounded-pill" style={{
+                                width: '100%',
+                                background: 'linear-gradient(to right, #8A2BE2, #A74AC7)',
+                                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                                outline: 'none',
+                                border: 'none',
+                                color: '#fff'
+                            }}>
+                                Sign up
+                            </button>
+                        </div>
+
+
+
                     </div>
                 </div>
+            </div>
 
-                <div className="text-center">
-                    <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading} style={{ width: '100%' }}>
-                        {isLoading ? 'Logging in...' : 'Login'}
-                    </button>
-                </div>
-            </form>
-            <div className="text-center mt-3">
-                <p>Create a new account</p>
-                <button
-                    className="btn btn-outline-primary"
-                    onClick={() => navigate('/insuranceProviderRegistration')}
-                    style={{
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
-                        width: '100%',
-                        fontWeight: 'bold',
-                    }}
-                    onMouseOver={(e) => {
-                        e.target.style.transform = 'scale(1.05)';
-                        e.target.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-                    }}
-                    onMouseOut={(e) => {
-                        e.target.style.transform = 'scale(1)';
-                        e.target.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
-                    }}
-                >
-                    Sign up
-                </button>
+            {/* Background Image Container - Still displayed only on smaller screens */}
+            <div className="col-12 d-md-none p-0" style={{ background: `url(${backgroundImage}) no-repeat center center`, minHeight: '100vh', backgroundSize: 'contain' }}>
             </div>
         </div>
     </div>
-    <Footer />
+    {/* Footer component */}
+    <footer >
+        <Footer />
+    </footer>
 </div>
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

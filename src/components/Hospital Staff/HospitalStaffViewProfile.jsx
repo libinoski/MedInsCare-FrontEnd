@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/doc.jpg';
+import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 
 const HospitalStaffViewProfile = () => {
