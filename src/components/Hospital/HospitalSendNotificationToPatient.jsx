@@ -13,6 +13,11 @@ const HospitalSendNotificationToPatient = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!notificationMessage.trim()) {
+            setError('Message cannot be empty.');
+            return;
+        }
+
         const confirmed = window.confirm("Are you sure you want to send this notification to the patient?");
         if (!confirmed) return;
 
@@ -40,7 +45,7 @@ const HospitalSendNotificationToPatient = () => {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        setError(data.message || 'Validation failed.');
+                        setError(data.error || 'Validation failed.');
                         break;
                     case 401:
                     case 403:
@@ -65,15 +70,21 @@ const HospitalSendNotificationToPatient = () => {
     };
 
     return (
-        <div>
+        <div style={{ position: 'relative', minHeight: '100vh' }}>
+            {/* Navbar */}
             <Navbar />
-            <div className="container-fluid py-5 d-flex align-items-center justify-content-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-                <div className="container bg-transparent py-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-6">
-                            <div className="card bg-transparent border-0">
-                                <div className="card-body rounded-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}>
-                                    <form onSubmit={handleSubmit}>
+            <div className="container-fluid bg-blur" style={{ paddingTop: '56px' }}>
+                <div className="container py-5">
+                    <div className="row">
+                        {/* Left Side Image Container */}
+                        <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                            <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', width: 'auto' }} />
+                        </div>
+                        {/* Right Side Profile Details Card */}
+                        <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                            <div className="card bg-transparent border-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)', maxWidth: '100%' }}>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
                                         <div className="mb-3">
                                             <label htmlFor="notificationMessage" className="form-label">Message:</label>
                                             <textarea
@@ -82,7 +93,7 @@ const HospitalSendNotificationToPatient = () => {
                                                 className="form-control"
                                                 id="notificationMessage"
                                                 rows="5"
-                                                required
+                                                style={{ width: '100%' }}
                                             ></textarea>
                                         </div>
                                         {error && <div className="alert alert-danger">{error}</div>}
@@ -98,6 +109,7 @@ const HospitalSendNotificationToPatient = () => {
                     </div>
                 </div>
             </div>
+            {/* Footer */}
             <Footer />
         </div>
     );

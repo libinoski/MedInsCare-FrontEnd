@@ -71,72 +71,84 @@ const HospitalViewProfile = () => {
 
     return (
 <div>
+    {/* Navbar */}
     <Navbar />
-    <div
-        className="hospital-view-profile-container bg-image d-flex align-items-center position-relative"
+    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div className="row">
+
+            {/* Left Side Image Container */}
+            <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+                <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+            </div>
+
+            {/* Right Side Profile Details Card */}
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '600px' }}>
+                    {isLoading ? (
+                        <div className="card-body text-center">Loading profile...</div>
+                    ) : hospitalProfile ? (
+                        <div className="card-body">
+                            {/* Profile Image with Edit Icon */}
+                            <div className="text-center mb-4">
+                            <div className="position-relative d-inline-block">
+    <img
+        src={hospitalProfile && hospitalProfile.hospitalImage}
+        alt="Hospital"
+        className="img-fluid"
         style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            minHeight: 'calc(100vh - 56px)', // Adjusted for the navbar height
-            paddingTop: '56px',
-            paddingBottom: '80px', // Adjusted for the footer height
+            maxWidth: '300px', // Increased image size
+            maxHeight: '300px',
+            objectFit: 'contain',
+            border: '3px solid white',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
         }}
-    >
-        <div className="container" style={{ paddingLeft: '15px', paddingRight: '15px' }}>
-            <div className="row justify-content-center">
-                <div className="col-lg-8">
-                    <div className="card profile-card-wrapper">
-                        <div className="profile-card shadow-lg">
-                            {isLoading ? (
-                                <div className="card-body text-center">Loading profile...</div>
-                            ) : hospitalProfile ? (
-                                <div className="card-body text-start">
-                                    <div className="profile-image-details-container mb-2">
-                                        <div className="profile-image-container mb-1 position-relative">
-                                            <div className="position-relative">
-                                                <img
-                                                    src={hospitalProfile.hospitalImage}
-                                                    alt="Hospital"
-                                                    className="img-fluid profile-image rounded"
-                                                    style={{ width: '100%', height: 'auto', borderRadius: '15px' }}
-                                                />
-                                                <div className="position-absolute bottom-0 end-0 m-2">
-                                                    <Link to="/hospitalChangeImage" className="edit-image-link text-white" style={{ color: '#fff' }}>
-                                                        <FontAwesomeIcon icon={faEdit} className="update-image-icon" />
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="details-container">
-                                        <p className="profile-info"><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
-                                        <p className="profile-info"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
-                                        <p className="profile-info"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
-                                        <p className="profile-info"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
-                                        <p className="profile-info"><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
-                                        <p className="profile-info"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
-                                        <p className="profile-info"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
-                                    </div>
-                                    <div className="d-none d-lg-block position-absolute bottom-0 end-0 m-3">
-                                        <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="card-body text-center">No profile found.</div>
-                            )}
+    />
+    {/* Positioned inside the bottom-right of the image */}
+    <Link to="/hospitalChangeImage" className="position-absolute" style={{ 
+            bottom: '10px', // positions the icon inside the image at the bottom
+            right: '10px', // positions the icon inside the image at the right
+            backgroundColor: 'rgba(0, 0, 0, 0.6)', // dark semi-transparent background
+            borderRadius: '50%', // circular background
+            padding: '0.25rem', // padding inside the link
+        }}>
+        <FontAwesomeIcon 
+            icon={faEdit} 
+            className="text-white" 
+            style={{ 
+                fontSize: '1.25rem', // adjust as needed for icon size
+                boxShadow: '0 2px 4px rgba(0,0,0,0.75)',
+            }} 
+        />
+    </Link>
+</div>
+
+                            </div>
+                            {/* Profile Details */}
+                            <p className="mb-2"><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
+                            <p className="mb-2"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
+                            <p className="mb-2"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
+                            <p className="mb-2"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
+                            <p className="mb-2"><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
+                            <p className="mb-2"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
+                            <p className="mb-2"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
+                            <div className="text-center mt-4">
+                                <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
+                            </div>
                         </div>
-                        <div className="d-lg-none text-end p-3">
-                            <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
-                        </div>
-                    </div>
+                    ) : (
+                        <div className="card-body text-center">No profile found.</div>
+                    )}
                 </div>
             </div>
+
         </div>
     </div>
+    {/* Footer */}
     <Footer />
 </div>
+
+
+
 
 
 

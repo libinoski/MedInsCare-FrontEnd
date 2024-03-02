@@ -163,14 +163,22 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
 
     return (
 <div>
+    {/* Navbar */}
     <Navbar />
-    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-            {isLoading ? (
-                <p className="text-center">Loading provider details...</p>
-            ) : (
-                <div className="row justify-content-center">
-                    <div className="col-lg-6">
+    <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div className="row">
+
+            {/* Left Side Image Container */}
+            <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+                <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+            </div>
+
+            {/* Right Side Profile Details Card */}
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                {isLoading ? (
+                    <p className="text-center">Loading provider details...</p>
+                ) : (
+                    <div className="col-lg-8">
                         {providerDetails ? (
                             <div className="card profile-card shadow-lg border-0 w-100">
                                 <div className="card-body">
@@ -180,7 +188,6 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                                         </div>
                                     </div>
                                     <div className="mb-4">
-                                        <h2 className="mb-3" style={{ color: '#000', fontWeight: 'bold' }}>Provider Details</h2>
                                         <p className="mb-1" style={{ color: '#000' }}><strong>Provider Name:</strong> {providerDetails.insuranceProviderName}</p>
                                         <p className="mb-1" style={{ color: '#000' }}><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
                                         <p className="mb-1" style={{ color: '#000' }}><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
@@ -193,20 +200,24 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                                     </div>
                                 </div>
                                 <div className="card-footer text-center">
-                                    <button className="btn btn-success me-2" onClick={handleApproveProvider}>Approve</button>
-                                    <button className="btn btn-danger" onClick={handleDeleteProvider}>Delete</button>
+                                    <button className="btn btn-gradient btn-success me-2" onClick={handleApproveProvider}>Approve</button>
+                                    <button className="btn btn-gradient btn-danger" onClick={handleDeleteProvider}>Delete</button>
                                 </div>
                             </div>
                         ) : (
                             <p className="text-center">No provider details found.</p>
                         )}
                     </div>
-                </div>
-            )}
+                )}
+            </div>
+
         </div>
     </div>
     <Footer />
 </div>
+
+
+
 
 
 

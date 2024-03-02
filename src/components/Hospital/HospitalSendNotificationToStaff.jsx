@@ -13,8 +13,6 @@ const HospitalSendNotificationToStaff = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const confirmed = window.confirm("Are you sure you want to send this notification to staff?");
-        if (!confirmed) return;
 
         setIsLoading(true);
         try {
@@ -40,7 +38,7 @@ const HospitalSendNotificationToStaff = () => {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        setError(data.message || 'Validation failed.');
+                        setError(data.error || 'Validation failed.');
                         break;
                     case 401:
                     case 403:
@@ -65,44 +63,44 @@ const HospitalSendNotificationToStaff = () => {
     };
 
     return (
-<div>
-  <Navbar />
-  <div className="container-fluid py-5 d-flex align-items-center justify-content-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-    <div className="container bg-transparent py-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card bg-transparent border-0">
-            <div className="card-body rounded-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="notificationMessage" className="form-label">Message:</label>
-                  <textarea
-                    value={notificationMessage}
-                    onChange={(e) => setNotificationMessage(e.target.value)}
-                    className="form-control"
-                    id="notificationMessage"
-                    rows="5"
-                    required
-                  ></textarea>
+        <div>
+            <Navbar />
+            <div className="container-fluid bg-blur" style={{ position: 'relative', minHeight: '100vh', paddingTop: '56px' }}>
+                <div className="container py-5">
+                    <div className="row">
+                        <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                            <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', width: 'auto' }} />
+                        </div>
+                        <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                            <div className="card bg-transparent border-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)', maxWidth: '100%' }}>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
+                                        <div className="mb-3">
+                                            <label htmlFor="notificationMessage" className="form-label">Message:</label>
+                                            <textarea
+                                                value={notificationMessage}
+                                                onChange={(e) => setNotificationMessage(e.target.value)}
+                                                className="form-control"
+                                                id="notificationMessage"
+                                                rows="5"
+                                                style={{ width: '100%' }}
+                                            ></textarea>
+                                        </div>
+                                        {error && <div className="alert alert-danger">{error}</div>}
+                                        <div className="text-center">
+                                            <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading}>
+                                                {isLoading ? 'Sending...' : 'Send Notification'}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {error && <div className="alert alert-danger">{error}</div>}
-                <div className="text-center">
-                  <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading}>
-                    {isLoading ? 'Sending...' : 'Send Notification'}
-                  </button>
-                </div>
-              </form>
             </div>
-          </div>
+            <Footer />
         </div>
-      </div>
-    </div>
-  </div>
-  <Footer />
-  {/*  */}
-</div>
-
-
     );
 };
 

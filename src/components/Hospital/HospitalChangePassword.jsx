@@ -83,79 +83,70 @@ const HospitalChangePassword = () => {
     return (
         <div>
             <Navbar />
-            <div
-                className="container-fluid"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '100vh',
-                    paddingTop: '56px',
-                    position: 'relative',
-                }}
-            >
-                <div
-                    className="container"
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        maxWidth: '100%',
-                        padding: '50px 15px 0',
-                        overflowY: 'auto',
-                        maxHeight: 'calc(100% - 56px)',
-                    }}
-                >
-                    <div className="row justify-content-center">
-                        <div className="col-lg-4">
-                            <div className="card" style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 0, 0, 0.1)' }}>
-                                <div className="card-body">
-                                    {errorMessages.general && <p className="error" style={{ color: 'red' }}>{errorMessages.general}</p>}
-                                    <form onSubmit={handleSubmit} noValidate>
-                                        <div className="mb-3">
-                                            <label htmlFor="oldPassword" className="form-label">Old Password:</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type={showPassword ? 'text' : 'password'}
-                                                    name="oldPassword"
-                                                    value={passwordData.oldPassword}
-                                                    onChange={handleInputChange}
-                                                    className={`form-control ${errorMessages.oldPassword ? 'error' : ''}`}
-                                                    required
-                                                    style={{ height: 'calc(2.25rem + 2px)' }}
-                                                />
-                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
-                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                                                </button>
-                                            </div>
-                                            {errorMessages.oldPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.oldPassword}</p>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="newPassword" className="form-label">New Password:</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type={showPassword ? 'text' : 'password'}
-                                                    name="newPassword"
-                                                    value={passwordData.newPassword}
-                                                    onChange={handleInputChange}
-                                                    className={`form-control ${errorMessages.newPassword ? 'error' : ''}`}
-                                                    required
-                                                    style={{ height: 'calc(2.25rem + 2px)' }}
-                                                />
-                                                <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary" style={{ height: 'calc(2.25rem + 2px)' }}>
-                                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                                                </button>
-                                            </div>
-                                            {errorMessages.newPassword && <p className="error" style={{ color: 'red' }}>{errorMessages.newPassword}</p>}
-                                        </div>
-                                        <div className="text-center">
-                                            <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                                                {isLoading ? 'Changing Password...' : 'Change Password'}
+            <div className="container-fluid d-flex flex-column min-vh-100">
+                <div className="row flex-grow-1">
+                    <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center p-0 bg-cover bg-center bg-no-repeat" style={{
+                        backgroundImage: `url(${backgroundImage})`,
+                        minHeight: '100vh',
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                    }}>
+                        {/* Background Image Container */}
+                    </div>
+
+                    <div className="col-12 col-md-6 d-flex align-items-center justify-content-center p-0">
+                        <div className={`card mx-auto mb-3 ${errorMessages.oldPassword || errorMessages.newPassword ? 'border-danger' : ''} shadow`} style={{
+                            width: '90%',
+                            maxWidth: '400px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                            boxShadow: '0 0.5rem 1rem rgba(0, 0, 255, 0.15), 0 0.5rem 1rem rgba(0, 0, 255, 0.3)',
+                            border: errorMessages.oldPassword || errorMessages.newPassword ? '' : '2px solid #8A2BE2',
+                            marginTop: '20px'
+                        }}>
+                            <div className="card-body">
+                                <h2 className="card-title text-center">Change Password</h2>
+                                <form onSubmit={handleSubmit} noValidate>
+                                    <div className="mb-3">
+                                        <label htmlFor="oldPassword" className="form-label">Old Password:</label>
+                                        <div className="input-group">
+                                            <input
+                                                type={showPassword ? 'text' : 'password'}
+                                                name="oldPassword"
+                                                value={passwordData.oldPassword}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.oldPassword ? 'is-invalid' : ''}`}
+                                                required
+                                            />
+                                            <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
+                                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                                             </button>
+                                            {errorMessages.oldPassword && <div className="invalid-feedback">{errorMessages.oldPassword}</div>}
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="newPassword" className="form-label">New Password:</label>
+                                        <div className="input-group">
+                                            <input
+                                                type={showPassword ? 'text' : 'password'}
+                                                name="newPassword"
+                                                value={passwordData.newPassword}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.newPassword ? 'is-invalid' : ''}`}
+                                                required
+                                            />
+                                            <button type="button" onClick={togglePasswordVisibility} className="btn btn-outline-secondary">
+                                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                            </button>
+                                            {errorMessages.newPassword && <div className="invalid-feedback">{errorMessages.newPassword}</div>}
+                                        </div>
+                                    </div>
+                                    <div className="text-center">
+                                        <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
+                                            {isLoading ? 'Changing Password...' : 'Change Password'}
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -163,6 +154,7 @@ const HospitalChangePassword = () => {
             </div>
             <Footer />
         </div>
+
     );
 };
 

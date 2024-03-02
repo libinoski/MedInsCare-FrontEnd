@@ -152,77 +152,77 @@ const HospitalUpdateNews = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <div
-                className="container-fluid bg-blur"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '100vh',
-                    paddingTop: '56px',
-                    position: 'relative',
-                }}
-            >
-                <div className="container py-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-6">
-                            <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit} noValidate>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalNewsTitle" className="form-label">News Title:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalNewsTitle"
-                                                value={newsData.hospitalNewsTitle}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalNewsTitle ? 'is-invalid' : ''}`}
-                                                id="hospitalNewsTitle"
-                                                required
-                                            />
-                                            {errorMessages.hospitalNewsTitle && <div className="invalid-feedback">{errorMessages.hospitalNewsTitle}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalNewsContent" className="form-label">News Content:</label>
-                                            <textarea
-                                                name="hospitalNewsContent"
-                                                value={newsData.hospitalNewsContent}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalNewsContent ? 'is-invalid' : ''}`}
-                                                id="hospitalNewsContent"
-                                                rows="5"
-                                                required
-                                            ></textarea>
-                                            {errorMessages.hospitalNewsContent && <div className="invalid-feedback">{errorMessages.hospitalNewsContent}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalNewsImage" className="form-label">News Image:</label>
-                                            <input
-                                                type="file"
-                                                name="hospitalNewsImage"
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalNewsImage ? 'is-invalid' : ''}`}
-                                                id="hospitalNewsImage"
-                                            />
-                                            {errorMessages.hospitalNewsImage && <div className="invalid-feedback">{errorMessages.hospitalNewsImage}</div>}
-                                            {newsData.existingImageUrl && <img src={newsData.existingImageUrl} alt="Existing News" style={{ marginTop: '10px', maxWidth: '100%' }} />}
-                                        </div>
-                                        <div className="text-center">
-                                            <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
-                                                {isLoading ? 'Updating News...' : 'Update'}
-                                            </button>
-                                        </div>
-                                    </form>
+<div>
+    {/* Navbar */}
+    <Navbar />
+    <div className="container-fluid bg-blur" style={{ minHeight: '100vh', paddingTop: '56px', position: 'relative' }}>
+        <div className="container py-5">
+            <div className="row">
+
+                {/* Left Side Image Container */}
+                <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                </div>
+
+                {/* Right Side Profile Details Card */}
+                <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                    <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                        <div className="card-body">
+                            <form onSubmit={handleSubmit} noValidate>
+                                <div className="mb-3">
+                                    <label htmlFor="hospitalNewsTitle" className="form-label">News Title:</label>
+                                    <input
+                                        type="text"
+                                        name="hospitalNewsTitle"
+                                        value={newsData.hospitalNewsTitle}
+                                        onChange={handleInputChange}
+                                        className={`form-control ${errorMessages.hospitalNewsTitle ? 'is-invalid' : ''}`}
+                                        id="hospitalNewsTitle"
+                                        required
+                                    />
+                                    {errorMessages.hospitalNewsTitle && <div className="invalid-feedback">{errorMessages.hospitalNewsTitle}</div>}
                                 </div>
-                            </div>
+                                <div className="mb-3">
+                                    <label htmlFor="hospitalNewsContent" className="form-label">News Content:</label>
+                                    <textarea
+                                        name="hospitalNewsContent"
+                                        value={newsData.hospitalNewsContent}
+                                        onChange={handleInputChange}
+                                        className={`form-control ${errorMessages.hospitalNewsContent ? 'is-invalid' : ''}`}
+                                        id="hospitalNewsContent"
+                                        rows="5"
+                                        required
+                                    ></textarea>
+                                    {errorMessages.hospitalNewsContent && <div className="invalid-feedback">{errorMessages.hospitalNewsContent}</div>}
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="hospitalNewsImage" className="form-label">News Image:</label>
+                                    <input
+                                        type="file"
+                                        name="hospitalNewsImage"
+                                        onChange={handleInputChange}
+                                        className={`form-control ${errorMessages.hospitalNewsImage ? 'is-invalid' : ''}`}
+                                        id="hospitalNewsImage"
+                                    />
+                                    {errorMessages.hospitalNewsImage && <div className="invalid-feedback">{errorMessages.hospitalNewsImage}</div>}
+                                    {newsData.existingImageUrl && <img src={newsData.existingImageUrl} alt="Existing News" style={{ marginTop: '10px', maxWidth: '100%' }} />}
+                                </div>
+                                <div className="text-center">
+                                    <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
+                                        {isLoading ? 'Updating News...' : 'Update'}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+
             </div>
-            <Footer />
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

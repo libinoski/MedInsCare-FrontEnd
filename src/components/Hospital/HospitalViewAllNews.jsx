@@ -75,7 +75,7 @@ const HospitalViewAllNews = () => {
     return (
 <div>
     <Navbar />
-    <div className="container-fluid py-4" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
+    <div className="container-fluid py-4" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
         <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
             {isLoading ? (
                 <div className="d-flex justify-content-center">
@@ -84,12 +84,12 @@ const HospitalViewAllNews = () => {
                     </div>
                 </div>
             ) : (
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
                     {allNews.length > 0 ? (
                         allNews.map((news, index) => (
-                            <div className="col" key={index} onClick={() => handleViewNews(news.hospitalNewsId)} style={{cursor: 'pointer'}}>
+                            <div className="col" key={index} onClick={() => handleViewNews(news.hospitalNewsId)} style={{ cursor: 'pointer' }}>
                                 <div className="card h-100 border-0 shadow">
-                                    <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'cover', height: '200px' }} />
+                                    <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'contain', height: '200px', maxWidth: '100%' }} />
                                     <div className="card-body" style={{ background: '#f0f0f0', padding: '20px' }}>
                                         <h5 className="card-title" style={{ background: 'rgba(255, 255, 255, 0.8)', borderRadius: '5px', backdropFilter: 'blur(5px)', padding: '10px', marginBottom: '15px' }}>{news.hospitalNewsTitle}</h5>
                                         <p className="card-text text-muted" style={{ marginBottom: '10px' }}>{formatDate(news.addedDate)}</p>

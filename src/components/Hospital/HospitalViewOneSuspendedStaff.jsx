@@ -106,38 +106,50 @@ const HospitalViewOneSuspendedStaff = () => {
     return (
 <div>
     <Navbar />
-    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-            {isLoading ? (
-                <p className="text-center">Loading staff details...</p>
-            ) : (
-                <div className="row justify-content-center"> {/* Centering the row */}
-                    <div className="col-lg-6 mx-auto"> {/* Adding mx-auto class */}
-                        {staffDetails ? (
-                            <div className="card" style={{ borderRadius: '10px', padding: '20px' }}>
-                                <div className="card-body">
-                                <img src={staffDetails.hospitalStaffProfileImage} alt="Staff Profile" style={{ width: '100%', borderRadius: '10px', marginBottom: '10px', maxHeight: '400px', objectFit: 'contain' }} />
-                                    <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
-                                    <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                    <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                    <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                    <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                    <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
-                                </div>
-                                <div className="card-footer">
-                                    <button className="btn btn-success" onClick={handleUnsuspendStaff}>Unsuspend</button>
-                                </div>
+    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div className="row justify-content-center align-items-center">
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                {/* Ensure backgroundImage is not null */}
+                {backgroundImage && (
+                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                )}
+            </div>
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                {isLoading ? (
+                    <p className="text-center">Loading staff details...</p>
+                ) : (
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <div className="col-lg-8"> {/* Adjusted column size */}
+                                {staffDetails ? (
+                                    <div className="card" style={{ borderRadius: '10px', padding: '20px', width: '100%' }}> {/* Adjusted width */}
+                                        <div className="card-body">
+                                            <img src={staffDetails.hospitalStaffProfileImage} alt="Staff Profile" style={{ width: '100%', borderRadius: '10px', marginBottom: '10px', maxHeight: '300px', objectFit: 'contain' }} /> {/* Adjusted height */}
+                                            <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
+                                            <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                                            <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                                            <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                                            <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                                            <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
+                                        </div>
+                                        <div className="card-footer">
+                                            <button className="btn btn-success" onClick={handleUnsuspendStaff}>Unsuspend</button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <p className="text-center">No staff details found.</p>
+                                )}
                             </div>
-                        ) : (
-                            <p className="text-center">No staff details found.</p>
-                        )}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     </div>
     <Footer />
 </div>
+
+
 
 
 

@@ -160,57 +160,101 @@ const HospitalViewOneStaff = () => {
     };
 
     return (
+
 <div>
     <Navbar />
-    <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
-            {isLoading ? (
-                <p className="text-center">Loading staff details...</p>
-            ) : (
-                <div className="row justify-content-start">
-                    <div className="col-lg-6">
-                        {staffDetails ? (
-                            <div className="card profile-card shadow-lg border-0 w-100" style={{ borderRadius: '10px', padding: '20px', position: 'relative' }}>
-                                <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
-                                    <button className="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style={{ borderColor: '#007bff', color: '#007bff', boxShadow: '0 0 10px rgba(0,123,255,.5)' }}>
-                                        Actions
-                                    </button>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ position: 'absolute', left: '100%', top: '0', borderRadius: '0.5rem', backgroundColor: '#f8f9fa', boxShadow: '0 4px 6px rgba(0,0,0,.1)', transform: 'translateX(10px)' }}>
-                                        <li><button className="dropdown-item" onClick={handleDeleteStaff}>Delete Staff</button></li>
-                                        <li><button className="dropdown-item" onClick={handleSuspendStaff}>Suspend Staff</button></li>
-                                        <li><button className="dropdown-item" onClick={handleSendNotificationToStaff}>Send Notification</button></li>
-                                        <li><button className="dropdown-item" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button></li>
-                                    </ul>
-                                </div>
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <img src={staffDetails.hospitalStaffProfileImage} alt="Profile" className="img-fluid" style={{ maxWidth: '100%' }} />
+    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div className="row justify-content-center align-items-center">
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                {/* Ensure backgroundImage is not null */}
+                {backgroundImage && (
+                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                )}
+            </div>
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                {isLoading ? (
+                    <p className="text-center">Loading staff details...</p>
+                ) : staffDetails ? (
+                    <div className="card shadow-lg" style={{ borderRadius: '15px', maxWidth: '100%' }}>
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    {/* Ensure hospitalStaffProfileImage is not null */}
+                                    {staffDetails.hospitalStaffProfileImage && (
+                                        <div className="profile-image-container" style={{ maxWidth: '200px', maxHeight: '200px', overflow: 'hidden' }}>
+                                            <img 
+                                                src={staffDetails.hospitalStaffProfileImage} 
+                                                alt="Profile" 
+                                                className="img-fluid" 
+                                                // Remove inline styles for profile image
+                                            />
                                         </div>
-                                        <div className="col-md-8">
-                                            <h5 className="card-title" style={{ color: '#000', fontWeight: 'bold', marginBottom: '10px' }}>{staffDetails.hospitalStaffName}</h5>
-                                            <p><strong style={{ color: '#000' }}>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                            <p><strong style={{ color: '#000' }}>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                            <p><strong style={{ color: '#000' }}>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                            <p><strong style={{ color: '#000' }}>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                            <p><strong style={{ color: '#000' }}>Added Date:</strong> {staffDetails.addedDate}</p>
-                                        </div>
-                                    </div>
+                                    )}
                                 </div>
-                                <div className="card-footer text-center">
-                                    <img src={staffDetails.hospitalStaffIdProofImage} alt="ID Proof" className="img-fluid" style={{ maxWidth: '100%' }} />
+                                <div className="col-md-8">
+                                    <h5 className="card-title" style={{ color: '#0056b3', fontWeight: 'bold', marginBottom: '10px' }}>{staffDetails.hospitalStaffName}</h5>
+                                    <p><strong style={{ color: '#000' }}>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                                    <p><strong style={{ color: '#000' }}>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                                    <p><strong style={{ color: '#000' }}>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                                    <p><strong style={{ color: '#000' }}>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                                    <p><strong style={{ color: '#000' }}>Added Date:</strong> {staffDetails.addedDate}</p>
                                 </div>
                             </div>
-                        ) : (
-                            <p className="text-center">No staff details found.</p>
-                        )}
+                        </div>
+                        <div className="card-footer bg-light text-muted">
+                            {/* Ensure hospitalStaffIdProofImage is not null */}
+                            {staffDetails.hospitalStaffIdProofImage && (
+                                <div className="text-center mb-3">
+                                    <img 
+                                        src={staffDetails.hospitalStaffIdProofImage} 
+                                        alt="ID Proof" 
+                                        className="img-fluid" 
+                                        // Remove all inline styles for the ID proof image
+                                    />
+                                </div>
+                            )}
+                            <div className="row justify-content-center"> {/* Modified to use row */}
+                                <div className="col-md-12 text-center"> {/* Center aligning the buttons */}
+                                    <button className="btn btn-gradient btn-danger mx-1" onClick={handleDeleteStaff}>Delete Staff</button>
+                                    <button className="btn btn-gradient btn-warning mx-1" onClick={handleSuspendStaff}>Suspend Staff</button>
+                                    <button className="btn btn-gradient btn-primary mx-1" onClick={handleSendNotificationToStaff}>Send Notification</button>
+                                    <button className="btn btn-gradient btn-success mx-1" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            )}
+                ) : (
+                    <p className="text-center">No staff details found.</p>
+                )}
+            </div>
         </div>
     </div>
     <Footer />
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     );
 };

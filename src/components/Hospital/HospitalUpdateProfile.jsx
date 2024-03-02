@@ -146,112 +146,115 @@ const HospitalUpdateProfile = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <div
-                className="container-fluid bg-blur"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '100vh',
-                    paddingTop: '56px',
-                    position: 'relative',
-                }}
-            >
-                <div className="container py-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-6">
-                            <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit} noValidate>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalName" className="form-label">Hospital Name:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalName"
-                                                value={hospitalProfile.hospitalName}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalName ? 'is-invalid' : ''}`}
-                                                id="hospitalName"
-                                                required
-                                            />
-                                            {errorMessages.hospitalName && <div className="invalid-feedback">{errorMessages.hospitalName}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalWebSite" className="form-label">Website:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalWebSite"
-                                                value={hospitalProfile.hospitalWebSite}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalWebSite ? 'is-invalid' : ''}`}
-                                                id="hospitalWebSite"
-                                                required
-                                            />
-                                            {errorMessages.hospitalWebSite && <div className="invalid-feedback">{errorMessages.hospitalWebSite}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalAadhar" className="form-label">Aadhar:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalAadhar"
-                                                value={hospitalProfile.hospitalAadhar}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalAadhar ? 'is-invalid' : ''}`}
-                                                id="hospitalAadhar"
-                                                required
-                                            />
-                                            {errorMessages.hospitalAadhar && <div className="invalid-feedback">{errorMessages.hospitalAadhar}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalMobile" className="form-label">Mobile:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalMobile"
-                                                value={hospitalProfile.hospitalMobile}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalMobile ? 'is-invalid' : ''}`}
-                                                id="hospitalMobile"
-                                                required
-                                            />
-                                            {errorMessages.hospitalMobile && <div className="invalid-feedback">{errorMessages.hospitalMobile}</div>}
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalAddress" className="form-label">Address:</label>
-                                            <input
-                                                type="text"
-                                                name="hospitalAddress"
-                                                value={hospitalProfile.hospitalAddress}
-                                                onChange={handleInputChange}
-                                                className={`form-control ${errorMessages.hospitalAddress ? 'is-invalid' : ''}`}
-                                                id="hospitalAddress"
-                                                required
-                                            />
-                                            {errorMessages.hospitalAddress && <div className="invalid-feedback">{errorMessages.hospitalAddress}</div>}
-                                        </div>
-                                        <div className="text-center">
-                                            {showConfirmation ? (
-                                                <div>
-                                                    <p>Are you sure you want to update the hospital profile?</p>
-                                                    <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
-                                                    <button type="button" className="btn btn-success" onClick={handleConfirmSubmit}>Confirm</button>
-                                                </div>
-                                            ) : (
-                                                <button type="button" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} onClick={handleConfirmation} style={{width: '100px'}}>
-                                                    {isLoading ? 'Updating Profile...' : 'Update'}
-                                                </button>
-                                            )}
-                                        </div>
-                                    </form>
-                                </div>
+<div>
+    {/* Navbar */}
+    <Navbar />
+    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div className="row">
+            {/* Left Side Image Container */}
+            <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+                <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+            </div>
+
+            {/* Right Side Profile Details Card */}
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                <div className="card" style={{ width: '100%', maxWidth: '500px', backgroundColor: 'rgba(255, 255, 255, 0.5)', border: Object.keys(errorMessages).length > 0 ? '1px solid red' : 'none' }}>
+                    <div className="card-body">
+                        <form onSubmit={handleSubmit} noValidate>
+                            <div className="mb-3">
+                                <label htmlFor="hospitalName" className="form-label">Hospital Name:</label>
+                                <input
+                                    type="text"
+                                    name="hospitalName"
+                                    value={hospitalProfile.hospitalName}
+                                    onChange={handleInputChange}
+                                    className={`form-control ${errorMessages.hospitalName ? 'is-invalid' : ''}`}
+                                    id="hospitalName"
+                                    required
+                                />
+                                {errorMessages.hospitalName && <div className="invalid-feedback">{errorMessages.hospitalName}</div>}
                             </div>
-                        </div>
+
+                            <div className="mb-3">
+                                <label htmlFor="hospitalWebSite" className="form-label">Website:</label>
+                                <input
+                                    type="text"
+                                    name="hospitalWebSite"
+                                    value={hospitalProfile.hospitalWebSite}
+                                    onChange={handleInputChange}
+                                    className={`form-control ${errorMessages.hospitalWebSite ? 'is-invalid' : ''}`}
+                                    id="hospitalWebSite"
+                                    required
+                                />
+                                {errorMessages.hospitalWebSite && <div className="invalid-feedback">{errorMessages.hospitalWebSite}</div>}
+                            </div>
+
+                            <div className="mb-3">
+                                <label htmlFor="hospitalAadhar" className="form-label">Aadhar:</label>
+                                <input
+                                    type="text"
+                                    name="hospitalAadhar"
+                                    value={hospitalProfile.hospitalAadhar}
+                                    onChange={handleInputChange}
+                                    className={`form-control ${errorMessages.hospitalAadhar ? 'is-invalid' : ''}`}
+                                    id="hospitalAadhar"
+                                    required
+                                />
+                                {errorMessages.hospitalAadhar && <div className="invalid-feedback">{errorMessages.hospitalAadhar}</div>}
+                            </div>
+
+                            <div className="mb-3">
+                                <label htmlFor="hospitalMobile" className="form-label">Mobile:</label>
+                                <input
+                                    type="text"
+                                    name="hospitalMobile"
+                                    value={hospitalProfile.hospitalMobile}
+                                    onChange={handleInputChange}
+                                    className={`form-control ${errorMessages.hospitalMobile ? 'is-invalid' : ''}`}
+                                    id="hospitalMobile"
+                                    required
+                                />
+                                {errorMessages.hospitalMobile && <div className="invalid-feedback">{errorMessages.hospitalMobile}</div>}
+                            </div>
+
+                            <div className="mb-3">
+                                <label htmlFor="hospitalAddress" className="form-label">Address:</label>
+                                <input
+                                    type="text"
+                                    name="hospitalAddress"
+                                    value={hospitalProfile.hospitalAddress}
+                                    onChange={handleInputChange}
+                                    className={`form-control ${errorMessages.hospitalAddress ? 'is-invalid' : ''}`}
+                                    id="hospitalAddress"
+                                    required
+                                />
+                                {errorMessages.hospitalAddress && <div className="invalid-feedback">{errorMessages.hospitalAddress}</div>}
+                            </div>
+
+                            <div className="text-center">
+                                {showConfirmation ? (
+                                    <div>
+                                        <p>Are you sure you want to update the hospital profile?</p>
+                                        <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
+                                        <button type="button" className="btn btn-success" onClick={handleConfirmSubmit}>Confirm</button>
+                                    </div>
+                                ) : (
+                                    <button type="button" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} onClick={handleConfirmation} style={{ width: '100px' }}>
+                                        {isLoading ? 'Updating Profile...' : 'Update'}
+                                    </button>
+                                )}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
+    </div>
+    {/* Footer */}
+    <Footer />
+</div>
+
+
     );
 };
 
