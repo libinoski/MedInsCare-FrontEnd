@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../../images/HospitalStaff/7475685_3674981.svg'; // Import the background image
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -123,21 +122,16 @@ const HospitalRegistration = () => {
     };
 
     return (
-        <div className="container-fluid">
-            {/* Navbar Component */}
-            <div className="row">
-                <div className="col">
-                    <Navbar />
-                </div>
-            </div>
+        <div>
 
             <div className="row">
                 {/* Left Side Image Container */}
                 <div className="col-lg-6">
-                    <div className="d-flex align-items-center justify-content-center" style={{ height: '100%', minHeight: '100vh', background: `url(${backgroundImage})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-                        {/* Empty div for background image */}
-                    </div>
-                </div>
+  <div className="d-flex align-items-center justify-content-center" style={{ height: '100%', minHeight: '100vh' }}>
+    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+  </div>
+</div>
+
 
                 {/* Right Side Registration Card */}
                 <div className="col-lg-6 d-flex align-items-center justify-content-center">
