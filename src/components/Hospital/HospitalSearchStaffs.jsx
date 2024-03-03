@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/HospitalStaff/7475685_3674981.svg'; // Import the background image
+import backgroundImage from '../../images/HospitalStaff/staff2.svg'; // Import the background image
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 
@@ -108,9 +108,9 @@ const HospitalSearchStaffs = () => {
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     style={{
                                         borderRadius: '30px 0 0 30px',
-                                        fontSize: '1.2rem', // Increase font size
-                                        padding: '15px 20px', // Increase padding
-                                        height: 'auto', // Adjust height
+                                        fontSize: '1.2rem',
+                                        padding: '15px 20px',
+                                        height: 'auto',
                                     }}
                                 />
                                 <div className="input-group-append">
@@ -120,9 +120,9 @@ const HospitalSearchStaffs = () => {
                                         onClick={handleSearch}
                                         style={{
                                             borderRadius: '0 30px 30px 0',
-                                            fontSize: '1.2rem', // Increase font size
-                                            padding: '15px 30px', // Increase padding
-                                            height: 'auto', // Adjust height
+                                            fontSize: '1.2rem',
+                                            padding: '15px 30px',
+                                            height: 'auto',
                                         }}
                                     >
                                         Search
@@ -158,38 +158,17 @@ const HospitalSearchStaffs = () => {
                                             >
                                                 <div className="card-body" style={{ border: '2px solid transparent', padding: '20px' }}>
                                                     <div className="mb-4">
-                                                        <div className="image-frame">
+                                                        <div className="image-frame" style={{ width: '100%', height: '150px', overflow: 'hidden', borderRadius: '10px' }}>
                                                             <img
                                                                 src={staff.hospitalStaffProfileImage}
                                                                 alt="Profile"
-                                                                style={{ maxHeight: '150px', maxWidth: '100%', borderRadius: '10px' }}
+                                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                             />
                                                         </div>
                                                     </div>
                                                     <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                                                         {staff.hospitalStaffName}
                                                     </h5>
-                                                    <div className="card-text-frame mb-4" style={{ backgroundColor: '#f8f9fa', color: 'black', fontWeight: 'bold', padding: '10px', borderRadius: '10px' }}>
-                                                        <p>
-                                                            <strong>Email:</strong> {staff.hospitalStaffEmail}
-                                                        </p>
-                                                        <p>
-                                                            <strong>Aadhar:</strong> {staff.hospitalStaffAadhar}
-                                                        </p>
-                                                        <p>
-                                                            <strong>Mobile:</strong> {staff.hospitalStaffMobile}
-                                                        </p>
-                                                        <p>
-                                                            <strong>Address:</strong> {staff.hospitalStaffAddress}
-                                                        </p>
-                                                    </div>
-                                                    <div className="image-frame">
-                                                        <img
-                                                            src={staff.hospitalStaffIdProofImage}
-                                                            alt="ID Proof"
-                                                            style={{ maxHeight: '150px', maxWidth: '100%', borderRadius: '10px' }}
-                                                        />
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,6 +181,8 @@ const HospitalSearchStaffs = () => {
             </div>
             <Footer />
         </div>
+
+
     );
 };
 

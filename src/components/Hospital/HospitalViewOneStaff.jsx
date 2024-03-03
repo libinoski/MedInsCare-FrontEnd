@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
-import backgroundImage from '../../images/HospitalStaff/7475685_3674981.svg'; // Import the background image
+import backgroundImage from '../../images/HospitalStaff/staffs1.svg'; // Import the background image
 import Footer from '../Common/Footer';
 
 const HospitalViewOneStaff = () => {
@@ -160,66 +160,61 @@ const HospitalViewOneStaff = () => {
     };
 
     return (
-
 <div>
     <Navbar />
     <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row justify-content-center align-items-center">
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                {/* Ensure backgroundImage is not null */}
-                {backgroundImage && (
-                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                )}
-            </div>
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+        <div className="row justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+            <div className="col-12">
                 {isLoading ? (
                     <p className="text-center">Loading staff details...</p>
                 ) : staffDetails ? (
-                    <div className="card shadow-lg" style={{ borderRadius: '15px', maxWidth: '100%' }}>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-4">
-                                    {/* Ensure hospitalStaffProfileImage is not null */}
-                                    {staffDetails.hospitalStaffProfileImage && (
-                                        <div className="profile-image-container" style={{ maxWidth: '200px', maxHeight: '200px', overflow: 'hidden' }}>
-                                            <img 
-                                                src={staffDetails.hospitalStaffProfileImage} 
-                                                alt="Profile" 
-                                                className="img-fluid" 
-                                                // Remove inline styles for profile image
-                                            />
-                                        </div>
-                                    )}
+                    <div className="card shadow-lg" style={{ borderRadius: '15px', width: '100%' }}>
+                        <div className="card-body row">
+                            <div className="col-md-6">
+                                <div className="position-relative rounded-circle profile-image-container" style={{ width: '200px', height: '200px', overflow: 'hidden', margin: '0 auto', marginBottom: '20px' }}>
+                                    <img
+                                        src={staffDetails.hospitalStaffProfileImage}
+                                        alt="Profile"
+                                        className="img-fluid rounded-circle"
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
                                 </div>
-                                <div className="col-md-8">
-                                    <h5 className="card-title" style={{ color: '#0056b3', fontWeight: 'bold', marginBottom: '10px' }}>{staffDetails.hospitalStaffName}</h5>
-                                    <p><strong style={{ color: '#000' }}>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                    <p><strong style={{ color: '#000' }}>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                    <p><strong style={{ color: '#000' }}>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                    <p><strong style={{ color: '#000' }}>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                    <p><strong style={{ color: '#000' }}>Added Date:</strong> {staffDetails.addedDate}</p>
-                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <h5 className="card-title" style={{ color: '#0056b3', fontWeight: 'bold', marginBottom: '10px' }}>{staffDetails.hospitalStaffName}</h5>
+                                <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                                <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                                <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                                <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                                <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
                             </div>
                         </div>
                         <div className="card-footer bg-light text-muted">
-                            {/* Ensure hospitalStaffIdProofImage is not null */}
-                            {staffDetails.hospitalStaffIdProofImage && (
-                                <div className="text-center mb-3">
-                                    <img 
-                                        src={staffDetails.hospitalStaffIdProofImage} 
-                                        alt="ID Proof" 
-                                        className="img-fluid" 
-                                        // Remove all inline styles for the ID proof image
-                                    />
-                                </div>
-                            )}
-                            <div className="row justify-content-center"> {/* Modified to use row */}
-                                <div className="col-md-12 text-center"> {/* Center aligning the buttons */}
-                                    <button className="btn btn-gradient btn-danger mx-1" onClick={handleDeleteStaff}>Delete Staff</button>
-                                    <button className="btn btn-gradient btn-warning mx-1" onClick={handleSuspendStaff}>Suspend Staff</button>
-                                    <button className="btn btn-gradient btn-primary mx-1" onClick={handleSendNotificationToStaff}>Send Notification</button>
-                                    <button className="btn btn-gradient btn-success mx-1" onClick={() => navigate('/hospitalUpdateStaff')}>Update Staff</button>
-                                </div>
+                            <div className="d-flex justify-content-center">
+                                <button
+                                    className="btn mx-2"
+                                    onClick={handleDeleteStaff}
+                                    style={{ backgroundImage: 'linear-gradient(to right, #ff416c, #ff4b2b)', color: 'white', padding: '10px 20px', margin: '5px' }}>
+                                    Delete Staff
+                                </button>
+                                <button
+                                    className="btn mx-2"
+                                    onClick={handleSuspendStaff}
+                                    style={{ backgroundImage: 'linear-gradient(to right, #FFD200, #F7971E)', color: 'white', padding: '10px 20px', margin: '5px' }}>
+                                    Suspend Staff
+                                </button>
+                                <button
+                                    className="btn mx-2"
+                                    onClick={handleSendNotificationToStaff}
+                                    style={{ backgroundImage: 'linear-gradient(to right, #00B4DB, #0083B0)', color: 'white', padding: '10px 20px', margin: '5px' }}>
+                                    Send Notification
+                                </button>
+                                <button
+                                    className="btn mx-2"
+                                    onClick={() => navigate('/hospitalUpdateStaff')}
+                                    style={{ backgroundImage: 'linear-gradient(to right, #11998e, #38ef7d)', color: 'white', padding: '10px 20px', margin: '5px' }}>
+                                    Update Staff
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -227,10 +222,46 @@ const HospitalViewOneStaff = () => {
                     <p className="text-center">No staff details found.</p>
                 )}
             </div>
+            <div className="col-12 mt-3">
+                {backgroundImage && (
+                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                )}
+            </div>
         </div>
     </div>
     <Footer />
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

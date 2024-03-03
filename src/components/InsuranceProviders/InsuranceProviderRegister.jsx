@@ -147,24 +147,17 @@ const InsuranceProviderRegistration = () => {
     };
 
     return (
-        <div >
-            {/* Navbar */}
-            <div className="row">
+        <div>
+            {/* <Navbar /> */}
+            <div className="container-fluid">
+        <div className="row align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the row fills the screen height */}
 
-
-
-                <div className="row" style={{ marginTop: '56px' }}>        {/* Left Side Image Container */}
-                <div className="col-lg-6">
-  <div className="d-flex align-items-center justify-content-center" style={{ height: '100%', minHeight: '100vh' }}>
-    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-  </div>
-</div>
-
-
-                    {/* Right Side Registration Card */}
-
-                    <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                        <div className="card shadow-lg p-4" style={{ width: '90%', backdropFilter: 'blur(8px)', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '20px', boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.1)', position: 'relative' }}>
+                    {/* Background Image Column */}
+                    <div className="col-lg-6" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh' }}>
+                    </div>
+                    {/* Registration Card Column */}
+                    <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the column fills the screen height */}
+                <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '90%', minHeight: '100%', backdropFilter: 'blur(8px)', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '20px', boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.1)', position: 'relative' }}> {/* Updated: Added width: '100%' and minHeight: '100%' */}
                             {/* Card Body */}
                             <div className="card-body">
                                 {/* Your form elements go here... */}
@@ -172,62 +165,6 @@ const InsuranceProviderRegistration = () => {
                                     {submitFailed && <div className="text-danger">Registration failed. Please try again.</div>}
                                 </div>
                                 <form onSubmit={handleSubmit} noValidate className="needs-validation">
-
-                                    {/* Hospital Dropdown */}
-                                    <div className="mb-3 position-relative">
-                                        <div className="dropdown" style={{ position: 'relative', userSelect: 'none' }}>
-                                            <button
-                                                className="btn btn-outline-secondary dropdown-toggle"
-                                                type="button"
-                                                id="hospitalDropdown"
-                                                data-bs-toggle="dropdown"
-                                                aria-expanded="false"
-                                                style={{
-                                                    backgroundColor: '#f8f9fa',
-                                                    borderColor: '#6c757d',
-                                                    boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
-                                                    transition: 'box-shadow 0.3s ease'
-                                                }}
-                                                onMouseOver={(e) => e.currentTarget.style.boxShadow = '0 0 0 0.4rem rgba(13, 110, 253, 0.25)'}
-                                                onMouseOut={(e) => e.currentTarget.style.boxShadow = '0 0 0 0.25rem rgba(13, 110, 253, 0.25)'}
-                                            >
-                                                {selectedHospital ? hospitals.find(h => h.hospitalId === selectedHospital)?.hospitalName : "Select Hospital"}
-                                            </button>
-                                            <ul
-                                                className="dropdown-menu"
-                                                aria-labelledby="hospitalDropdown"
-                                                style={{
-                                                    marginTop: '0.5rem',
-                                                    backgroundColor: '#fff',
-                                                    boxShadow: '0 4px 6px rgba(0,0,0,.1)',
-                                                    borderRadius: '0.25rem',
-                                                    overflowY: 'scroll', // Make Y-axis scrollable
-                                                    maxHeight: '200px', // Set a maximum height
-                                                    transition: 'opacity 0.3s ease',
-                                                    opacity: 1
-                                                }}
-                                            >
-                                                {hospitals.map(hospital => (
-                                                    <li key={hospital.hospitalId}>
-                                                        <button
-                                                            className="dropdown-item d-flex align-items-center"
-                                                            type="button"
-                                                            onClick={() => handleHospitalChange(hospital.hospitalId)}
-                                                            style={{
-                                                                transition: 'background-color 0.2s ease-in-out'
-                                                            }}
-                                                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f0f0f0'}
-                                                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                                                        >
-                                                            <img src={hospital.hospitalImage} alt="Hospital Profile" className="rounded-circle me-2" style={{ width: '30px', height: '30px', objectFit: 'cover' }} />
-                                                            <span>{hospital.hospitalName}</span>
-                                                        </button>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                        {validationErrors.selectedHospital && <div className="invalid-feedback">{validationErrors.selectedHospital}</div>}
-                                    </div>
                                     {/* Name Field */}
                                     <div className="mb-3">
                                         <input type="text" className={`form-control ${validationErrors.insuranceProviderName ? 'is-invalid' : ''}`} id="insuranceProviderName" name="insuranceProviderName" placeholder="Name *" value={insuranceProviderData.insuranceProviderName} onChange={handleInputChange} required />
@@ -291,14 +228,71 @@ const InsuranceProviderRegistration = () => {
                                         {validationErrors.insuranceProviderPassword && <div className="invalid-feedback" style={{ display: 'block' }}>{validationErrors.insuranceProviderPassword}</div>}
                                     </div>
 
+                                    {/* Hospital Dropdown */}
+                                    <div className="mb-3 position-relative">
+                                        <div className="dropdown" style={{ position: 'relative', userSelect: 'none' }}>
+                                            <button
+                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                type="button"
+                                                id="hospitalDropdown"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false"
+                                                style={{
+                                                    backgroundColor: '#f8f9fa',
+                                                    borderColor: '#6c757d',
+                                                    boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+                                                    transition: 'box-shadow 0.3s ease'
+                                                }}
+                                                onMouseOver={(e) => e.currentTarget.style.boxShadow = '0 0 0 0.4rem rgba(13, 110, 253, 0.25)'}
+                                                onMouseOut={(e) => e.currentTarget.style.boxShadow = '0 0 0 0.25rem rgba(13, 110, 253, 0.25)'}
+                                            >
+                                                {selectedHospital ? hospitals.find(h => h.hospitalId === selectedHospital)?.hospitalName : "Select Hospital"}
+                                            </button>
+                                            <ul
+                                                className="dropdown-menu"
+                                                aria-labelledby="hospitalDropdown"
+                                                style={{
+                                                    marginTop: '0.5rem',
+                                                    backgroundColor: '#fff',
+                                                    boxShadow: '0 4px 6px rgba(0,0,0,.1)',
+                                                    borderRadius: '0.25rem',
+                                                    overflowY: 'scroll', // Make Y-axis scrollable
+                                                    maxHeight: '200px', // Set a maximum height
+                                                    transition: 'opacity 0.3s ease',
+                                                    opacity: 1
+                                                }}
+                                            >
+                                                {hospitals.map(hospital => (
+                                                    <li key={hospital.hospitalId}>
+                                                        <button
+                                                            className="dropdown-item d-flex align-items-center"
+                                                            type="button"
+                                                            onClick={() => handleHospitalChange(hospital.hospitalId)}
+                                                            style={{
+                                                                transition: 'background-color 0.2s ease-in-out'
+                                                            }}
+                                                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f0f0f0'}
+                                                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                                        >
+                                                            <img src={hospital.hospitalImage} alt="Hospital Profile" className="rounded-circle me-2" style={{ width: '30px', height: '30px', objectFit: 'cover' }} />
+                                                            <span>{hospital.hospitalName}</span>
+                                                        </button>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        {validationErrors.selectedHospital && <div className="invalid-feedback">{validationErrors.selectedHospital}</div>}
+                                    </div>
+
                                     {/* Register Button */}
-                                    <div className="mb-3">
+                                    <div className="mb-3 d-flex justify-content-end">
                                         <button type="submit" className={`btn ${submitFailed ? 'btn-danger' : 'btn-success'}`} disabled={isLoading}>
                                             {isLoading ? 'Submitting...' : 'Register'}
                                         </button>
                                     </div>
+
                                     {/* Login Button */}
-                                    <div className="text-center">
+                                    <div className="mb-3 d-flex justify-content-end">
                                         <button
                                             type="button"
                                             className="btn btn-outline-primary"
@@ -315,7 +309,7 @@ const InsuranceProviderRegistration = () => {
                                                 cursor: 'pointer'
                                             }}
                                         >
-                                            Already have an account? Login
+                                            Login
                                         </button>
                                     </div>
                                 </form>
@@ -323,64 +317,9 @@ const InsuranceProviderRegistration = () => {
                         </div>
                     </div>
                 </div>
-                {/* Footer */}
-                <div className="row mt-3">
-                    <div className="col">
-                        <footer className="footer">
-                            <Footer />
-                        </footer>
-                    </div>
-                </div>
             </div>
+            <Footer />
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

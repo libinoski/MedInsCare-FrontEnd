@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalViewAllUnapprovedInsuranceProviders = () => {
     const navigate = useNavigate();
@@ -66,7 +65,7 @@ const HospitalViewAllUnapprovedInsuranceProviders = () => {
     return (
 <div>
     <Navbar />
-    <div className="container-fluid" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
+    <div className="container-fluid" style={{ minHeight: '100vh', position: 'relative' }}>
         <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', padding: '0 15px', maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
             {isLoading ? (
                 <p className="text-center">Loading unapproved insurance providers...</p>
@@ -99,6 +98,7 @@ const HospitalViewAllUnapprovedInsuranceProviders = () => {
     </div>
     <Footer />
 </div>
+
 
 
 

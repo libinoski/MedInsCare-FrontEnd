@@ -107,47 +107,54 @@ const HospitalViewOneSuspendedStaff = () => {
 <div>
     <Navbar />
     <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row justify-content-center align-items-center">
+        <div className="row justify-content-center align-items-center" style={{ height: '100vh' }}>
+            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                {isLoading ? (
+                    <p className="text-center">Loading staff details...</p>
+                ) : (
+                    <div className="card shadow border border-danger" style={{ borderRadius: '15px', width: '100%' }}>
+                        <div className="card-body">
+                            <div className="row align-items-start justify-content-start"> {/* Align items and justify content to start */}
+                                <div className="col-md-4 text-center">
+                                    <img src={staffDetails.hospitalStaffProfileImage} alt="Staff Profile" className="img-fluid" style={{ width: '200px', height: '200px', objectFit: 'cover' }} />
+                                </div>
+                                <div className="col-md-8"> {/* Move the name and email to the left */}
+                                    <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
+                                    <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-footer bg-transparent border-0" style={{ position: 'absolute', bottom: '0', right: '0' }}> {/* Align button to bottom right */}
+                            <button className="btn btn-success btn-lg" onClick={handleUnsuspendStaff} style={{ borderRadius: '10px', backgroundImage: 'linear-gradient(to right, #00cc99, #006600)' }}>Unsuspend</button>
+                        </div>
+                    </div>
+                )}
+            </div>
             <div className="col-lg-6 d-flex align-items-center justify-content-center">
                 {/* Ensure backgroundImage is not null */}
                 {backgroundImage && (
                     <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                 )}
             </div>
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                {isLoading ? (
-                    <p className="text-center">Loading staff details...</p>
-                ) : (
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-lg-8"> {/* Adjusted column size */}
-                                {staffDetails ? (
-                                    <div className="card" style={{ borderRadius: '10px', padding: '20px', width: '100%' }}> {/* Adjusted width */}
-                                        <div className="card-body">
-                                            <img src={staffDetails.hospitalStaffProfileImage} alt="Staff Profile" style={{ width: '100%', borderRadius: '10px', marginBottom: '10px', maxHeight: '300px', objectFit: 'contain' }} /> {/* Adjusted height */}
-                                            <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
-                                            <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                            <p><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                            <p><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                            <p><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                            <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
-                                        </div>
-                                        <div className="card-footer">
-                                            <button className="btn btn-success" onClick={handleUnsuspendStaff}>Unsuspend</button>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <p className="text-center">No staff details found.</p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
         </div>
     </div>
     <Footer />
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

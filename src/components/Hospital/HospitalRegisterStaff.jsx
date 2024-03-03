@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import backgroundImage from '../../images/7435016_3644617.jpg'; // Import the background image
+import backgroundImage from '../../images/HospitalStaff/Male doctor medical equipment cartoon vector set.svg'; // Import the background image
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 

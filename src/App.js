@@ -46,6 +46,7 @@ import InsuranceProviderLogin from './components/InsuranceProviders/InsurancePro
 import HospitalViewAllUnApprovedInsuranceProviders from './components/Hospital/HospitalViewAllUnApprovedInsuranceProviders';
 import HospitalViewOneUnapprovedInsuranceProvider from './components/Hospital/HospitalViewOneUnApprovedInsuranceProvider';
 import PatientLogin from './components/Patient/PatientLogin';
+import InsuranceProviderViewProfile from './components/InsuranceProviders/InsuranceProviderViewProfile';
 
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
           <Route path='/hospitalViewAllUnApprovedInsuranceProviders' element={<HospitalViewAllUnApprovedInsuranceProviders />} />
           <Route path='/hospitalViewOneUnApprovedInsuranceProvider' element={<HospitalViewOneUnapprovedInsuranceProvider />} />
           <Route path='/patientLogin' element={<PatientLogin />} />
+          <Route path='/insuranceProviderViewProfile' element={<InsuranceProviderViewProfile />} />
 
         </Routes>
       </BrowserRouter>

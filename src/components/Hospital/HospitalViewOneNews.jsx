@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalViewOneNews = () => {
     const navigate = useNavigate();
@@ -123,46 +122,49 @@ const HospitalViewOneNews = () => {
     return (
 <div>
     <Navbar />
-    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                {/* Ensure backgroundImage is not null */}
-                {backgroundImage && (
-                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                )}
-            </div>
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                {/* Refactored content */}
-                <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', height: '100%' }}>
-                    {isLoading ? (
-                        <p className="text-center">Loading news details...</p>
-                    ) : (
-                        <div className="card w-100" style={{ borderRadius: '10px', position: 'relative' }}>
-                            <div className="card-body">
-                                {newsDetails ? (
-                                    <>
+    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
+        <div className="row justify-content-center align-items-center h-100">
+            <div className="col-lg-8">
+                {isLoading ? (
+                    <p className="text-center">Loading news details...</p>
+                ) : (
+                    <div className="card" style={{ borderRadius: '10px' }}>
+                        {newsDetails ? (
+                            <div className="row g-0">
+                                <div className="col-md-6 d-flex flex-column justify-content-between">
+                                    <div className="card-body">
                                         <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
-                                        <img src={newsDetails.hospitalNewsImage} className="card-img-top" alt="News" style={{ width: '100%', borderRadius: '10px', objectFit: 'cover' }} />
                                         <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p>
                                         <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p>
                                         {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
-                                        <div className="d-flex justify-content-between align-items-center" style={{ marginTop: '20px' }}>
-                                            <button className="btn btn-danger" onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}>Delete</button>
-                                            <button className="btn btn-primary" onClick={handleUpdateNews}>Update</button>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <p className="text-center">No news details found.</p>
-                                )}
+                                    </div>
+                                    <div className="d-flex justify-content-center pb-4">
+                                        <button className="btn btn-danger me-2" onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}>Delete</button>
+                                        <button className="btn btn-primary" onClick={handleUpdateNews}>Update</button>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <img src={newsDetails.hospitalNewsImage} className="img-fluid rounded-end" alt="News" style={{ objectFit: 'cover', height: '100%' }} />
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        ) : (
+                            <p className="text-center">No news details found.</p>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     </div>
     <Footer />
 </div>
+
+
+
+
+
+
+
+
 
 
 

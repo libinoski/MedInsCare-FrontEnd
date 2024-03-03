@@ -32,11 +32,11 @@ const InsuranceProviderLogin = () => {
         try {
             const response = await axios.post('http://localhost:1313/api/mic/insuranceProvider/insuranceProviderLogin', loginData);
             if (response.status === 200) {
-                alert(response.data.message);
+                // alert(response.data.message);
                 sessionStorage.setItem('insuranceProviderId', response.data.data.insuranceProvider.insuranceProviderId);
-                sessionStorage.setItem('insuranceProviderId', response.data.data.insuranceProvider.hopsitalId);
+                sessionStorage.setItem('hospitalId', response.data.data.insuranceProvider.hopsitalId);
                 sessionStorage.setItem('token', response.data.data.token);
-                // navigate('/insuranceProviderViewProfile');
+                navigate('/insuranceProviderViewProfile');
             }
         } catch (error) {
             if (error.response) {

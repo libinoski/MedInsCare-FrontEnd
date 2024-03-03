@@ -166,21 +166,16 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
     {/* Navbar */}
     <Navbar />
     <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row">
-
-            {/* Left Side Image Container */}
-            <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-                <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-            </div>
+        <div className="row justify-content-center align-items-center">
 
             {/* Right Side Profile Details Card */}
             <div className="col-lg-6 d-flex align-items-center justify-content-center">
                 {isLoading ? (
                     <p className="text-center">Loading provider details...</p>
                 ) : (
-                    <div className="col-lg-8">
+                    <div className="col-lg-10">
                         {providerDetails ? (
-                            <div className="card profile-card shadow-lg border-0 w-100">
+                            <div className="card profile-card shadow-lg border-0 w-100 h-100">
                                 <div className="card-body">
                                     <div className="d-flex justify-content-center mb-4">
                                         <div className="rounded-circle overflow-hidden" style={{ width: '200px', height: '200px' }}>
@@ -193,10 +188,7 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                                         <p className="mb-1" style={{ color: '#000' }}><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
                                         <p className="mb-1" style={{ color: '#000' }}><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
                                         <p className="mb-1" style={{ color: '#000' }}><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Registered Date:</strong> {formatDate(providerDetails.RegisteredDate)}</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <img src={providerDetails.insuranceProviderIdProofImage} alt="Provider ID Proof" className="img-fluid" style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover', borderRadius: '10px' }} />
+                                        <p className="mb-1" style={{ color: '#000' }}><strong>Registered Date:</strong> {formatDate(providerDetails.registeredDate)}</p>
                                     </div>
                                 </div>
                                 <div className="card-footer text-center">
@@ -210,11 +202,30 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                     </div>
                 )}
             </div>
+            
+        </div>
+        <div className="row">
 
+            {/* Left Side Image Container */}
+            <div className="col-lg-12 d-flex align-items-center justify-content-center">
+                {backgroundImage && (
+                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                )}
+            </div>
+            
         </div>
     </div>
     <Footer />
 </div>
+
+
+
+
+
+
+
+
+
 
 
 
