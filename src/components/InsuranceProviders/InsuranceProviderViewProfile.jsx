@@ -92,7 +92,7 @@ const InsuranceProviderViewProfile = () => {
                                             }}
                                         />
                                         {/* Positioned inside the bottom-right of the image */}
-                                        <Link to="/providerChangeImage" className="position-absolute" style={{
+                                        <Link to="/insuranceProviderChangeProfileImage" className="position-absolute" style={{
                                             bottom: '10px',
                                             right: '10px',
                                             backgroundColor: 'rgba(0, 0, 0, 0.6)',
@@ -118,7 +118,7 @@ const InsuranceProviderViewProfile = () => {
                                 <p className="mb-2"><strong>Registered Date:</strong> {formatDate(insuranceProviderProfile.registeredDate)}</p>
                                 <div className="text-center mt-4">
                                     {/* Update details */}
-                                    <Link to="/providerUpdateProfile" className="btn btn-primary">Update details</Link>
+                                    <Link to="/InsuranceProviderUpdateProfile" className="btn btn-primary">Update details</Link>
                                 </div>
                             </div>
                         ) : (

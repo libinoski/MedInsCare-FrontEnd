@@ -24,6 +24,9 @@ const InsuranceProviderNavbar = () => {
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><Link className="dropdown-item" to="/insuranceProviderViewProfile">View Profile</Link></li>
                                 <li><Link className="dropdown-item" to="/insuranceProviderChangePassword">Change Password</Link></li>
+                                <li><Link className="dropdown-item" to="/InsuranceProviderChangeIdProofImage">Change id proof</Link></li>
+                                <li><Link className="dropdown-item" to="/InsuranceProviderChangeProfileImage">Change profile image</Link></li>
+                                <li><Link className="dropdown-item" to="/InsuranceProviderUpdateProfile">update profile</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">

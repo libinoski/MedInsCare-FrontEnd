@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 
 const HospitalStaffViewProfile = () => {
@@ -71,9 +70,8 @@ const HospitalStaffViewProfile = () => {
 <div>
     <HospitalStaffNavbar />
     <div
-        className="hospital-view-profile-container bg-image"
+        className="hospital-view-profile-container"
         style={{
-            backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: 'calc(100vh - 56px - 80px)',
@@ -85,17 +83,6 @@ const HospitalStaffViewProfile = () => {
         }}
     >
         <div className="card profile-card shadow-lg" style={{ width: '80%', maxWidth: '600px', borderRadius: '15px', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.5)', height: '100%', marginBottom: '20px', position: 'relative' }}>
-            <div className="position-absolute top-0 end-0" style={{ marginTop: '10px', marginRight: '10px', zIndex: 1 }}>
-                <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
-                    <button className="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style={{borderColor: '#007bff', color: '#007bff', boxShadow: '0 0 10px rgba(0,123,255,.5)'}}>
-                        Actions
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{position: 'absolute', left: '100%', top: '0', borderRadius: '0.5rem', backgroundColor: '#f8f9fa', boxShadow: '0 4px 6px rgba(0,0,0,.1)', transform: 'translateX(10px)'}}>
-                        <li><Link to="/hospitalStaffChangeProfileImage" className="dropdown-item">Change Profile Image</Link></li>
-                        <li><Link to="/hospitalStaffChangeIdProofImage" className="dropdown-item">Change ID Proof Image</Link></li>
-                    </ul>
-                </div>
-            </div>
             {isLoading ? (
                 <div className="card-body text-center">Loading profile...</div>
             ) : staffProfile ? (
@@ -124,8 +111,12 @@ const HospitalStaffViewProfile = () => {
             ) : (
                 <div className="card-body text-center">No profile found.</div>
             )}
-            <div className="card-footer text-end">
-                <Link to="/hospitalStaffUpdateProfile" className="btn btn-primary">Update details</Link>
+            <div className="card-footer text-center">
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <button className="btn btn-outline-primary mb-3"><Link to="/hospitalStaffChangeProfileImage">Change Profile Image</Link></button>
+                    <button className="btn btn-outline-primary mb-3"><Link to="/hospitalStaffChangeIdProofImage">Change ID Proof Image</Link></button>
+                    <Link to="/hospitalStaffUpdateProfile" className="btn btn-primary">Update details</Link>
+                </div>
             </div>
         </div>
     </div>

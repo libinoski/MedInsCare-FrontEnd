@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 import Footer from '../Common/Footer';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 
@@ -69,72 +68,42 @@ const HospitalStaffViewAllPatients = () => {
     };
 
     return (
-        <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
-            <HospitalStaffNavbar />
-            <div
-                className="flex-grow-1 container-fluid p-0"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    paddingTop: '60px',
-                    overflowY: 'auto',
-                }}
-            >
-                {isLoading ? (
-                    <p className="text-center">Loading patients...</p>
-                ) : patientList.length > 0 ? (
-                    <div className="d-flex flex-column align-items-center justify-content-center pt-5 pb-5" style={{ maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
-                        {patientList.map((patient, index) => (
-                            <div
-                                key={index}
-                                className="d-flex align-items-center justify-content-start bg-white shadow rounded-3 mb-3 p-3 w-75"
-                                style={{
-                                    cursor: 'pointer',
-                                    backdropFilter: 'blur(5px)',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-                                }}
-                                onClick={() => handleViewPatient(patient.patientId)}
-                            >
-                                <div className="me-3">
-                                    <div className="d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
-                                        {patient.patientProfileImage && (
-                                            <img
-                                                src={patient.patientProfileImage}
-                                                className="img-fluid rounded-circle"
-                                                alt="Patient"
-                                                style={{
-                                                    objectFit: 'cover',
-                                                    width: '100%',
-                                                    height: '100%',
-                                                }}
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="flex-grow-1">
-                                    <p className="mb-1 fw-bold text-dark" style={{ fontSize: '1rem' }}>
-                                        {patient.patientName}
-                                    </p>
-                                    <p className="mb-1 text-muted" style={{ fontSize: '0.9rem' }}>
-                                        Registered Date: {new Date(patient.patientRegisteredDate).toLocaleDateString()} {/* Display registered date */}
-                                    </p>
-                                    <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                                        Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'} {/* Display discharge status */}
-                                    </p>
-                                    <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                                        Aadhar: {patient.patientAadhar}, Mobile: {patient.patientMobile}, Address: {patient.patientAddress}
-                                    </p>
+<div className="d-flex flex-column min-vh-100">
+    <HospitalStaffNavbar />
+    <div className="flex-grow-1 container-fluid py-4" style={{ overflowY: 'auto' }}>
+        <div className="container">
+            {isLoading ? (
+                <p className="text-center">Loading patients...</p>
+            ) : patientList.length > 0 ? (
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+                    {patientList.map((patient, index) => (
+                        <div key={index} className="col">
+                            <div className="card h-100 shadow-sm rounded-3" style={{ border: 'none', transition: 'all 0.3s ease-in-out' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.03)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} onClick={() => handleViewPatient(patient.patientId)}>
+                                <img src={patient.patientProfileImage} className="card-img-top rounded-top" alt="Patient" style={{ objectFit: 'cover', height: '200px' }} />
+                                <div className="card-body">
+                                    <h5 className="card-title mb-3">{patient.patientName}</h5>
+                                    <ul className="list-unstyled">
+                                        <li className="mb-2"><small className="text-muted">Registered Date: {new Date(patient.patientRegisteredDate).toLocaleDateString()}</small></li>
+                                        <li className="mb-2"><small className="text-muted">Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</small></li>
+                                        <li><small className="text-muted">Aadhar: {patient.patientAadhar}</small></li>
+                                        <li><small className="text-muted">Mobile: {patient.patientMobile}</small></li>
+                                        <li><small className="text-muted">Address: {patient.patientAddress}</small></li>
+                                    </ul>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                ) : (
-                    <p className="text-center mt-4">No patients found.</p>
-                )}
-            </div>
-            <Footer />
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p className="text-center mt-4">No patients found.</p>
+            )}
         </div>
+    </div>
+    <Footer className="mt-auto" />
+</div>
+
+
+
     );
 };
 

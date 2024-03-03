@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalViewProfile = () => {
     const navigate = useNavigate();
@@ -70,77 +67,55 @@ const HospitalViewProfile = () => {
     };
 
     return (
+       
 <div>
     {/* Navbar */}
     <Navbar />
-    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row">
-
-            {/* Left Side Image Container */}
-            <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-                <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-            </div>
-
-            {/* Right Side Profile Details Card */}
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '600px' }}>
+    <div class="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12">
+                <div class="card shadow-sm p-3 mb-5 bg-white rounded">
                     {isLoading ? (
-                        <div className="card-body text-center">Loading profile...</div>
-                    ) : hospitalProfile ? (
-                        <div className="card-body">
-                            {/* Profile Image with Edit Icon */}
-                            <div className="text-center mb-4">
-                            <div className="position-relative d-inline-block">
-    <img
-        src={hospitalProfile && hospitalProfile.hospitalImage}
-        alt="Hospital"
-        className="img-fluid"
-        style={{
-            maxWidth: '300px', // Increased image size
-            maxHeight: '300px',
-            objectFit: 'contain',
-            border: '3px solid white',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-        }}
-    />
-    {/* Positioned inside the bottom-right of the image */}
-    <Link to="/hospitalChangeImage" className="position-absolute" style={{ 
-            bottom: '10px', // positions the icon inside the image at the bottom
-            right: '10px', // positions the icon inside the image at the right
-            backgroundColor: 'rgba(0, 0, 0, 0.6)', // dark semi-transparent background
-            borderRadius: '50%', // circular background
-            padding: '0.25rem', // padding inside the link
-        }}>
-        <FontAwesomeIcon 
-            icon={faEdit} 
-            className="text-white" 
-            style={{ 
-                fontSize: '1.25rem', // adjust as needed for icon size
-                boxShadow: '0 2px 4px rgba(0,0,0,0.75)',
-            }} 
-        />
-    </Link>
-</div>
-
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                            {/* Profile Details */}
-                            <p className="mb-2"><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
-                            <p className="mb-2"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
-                            <p className="mb-2"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
-                            <p className="mb-2"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
-                            <p className="mb-2"><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
-                            <p className="mb-2"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
-                            <p className="mb-2"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
-                            <div className="text-center mt-4">
-                                <Link to="/hospitalUpdateProfile" className="btn btn-primary">Update details</Link>
+                        </div>
+                    ) : hospitalProfile ? (
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6 d-flex justify-content-center mb-3">
+                                    <div class="position-relative">
+                                        <img
+                                            src={hospitalProfile && hospitalProfile.hospitalImage}
+                                            alt="Hospital"
+                                            class="img-fluid rounded-circle"
+                                            style={{ width: '200px', height: '200px', objectFit: 'cover', border: '4px solid #fff', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex flex-column justify-content-center">
+                                    <p class="mb-2"><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
+                                    <p class="mb-2"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
+                                    <p class="mb-2"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
+                                    <p class="mb-2"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
+                                    <p class="mb-2"><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
+                                    <p class="mb-2"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
+                                    <p class="mb-2"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <Link to="/hospitalUpdateProfile" class="btn" style={{ background: 'linear-gradient(45deg, #007bff, #6610f2)', color: '#fff', padding: '10px 20px', borderRadius: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Details</Link>
+                                <Link to="/hospitalChangeImage" class="btn" style={{ background: 'linear-gradient(45deg, #20c997, #198754)', color: '#fff', padding: '10px 20px', marginLeft: '10px', borderRadius: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Image</Link>
                             </div>
                         </div>
                     ) : (
-                        <div className="card-body text-center">No profile found.</div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>No profile found.</p>
+                        </div>
                     )}
                 </div>
             </div>
-
         </div>
     </div>
     {/* Footer */}
@@ -150,38 +125,14 @@ const HospitalViewProfile = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    );
+    
+    
+          
+          
+          
+          );
+          
+          
 };
 
 export default HospitalViewProfile;

@@ -47,6 +47,10 @@ import HospitalViewAllUnApprovedInsuranceProviders from './components/Hospital/H
 import HospitalViewOneUnapprovedInsuranceProvider from './components/Hospital/HospitalViewOneUnApprovedInsuranceProvider';
 import PatientLogin from './components/Patient/PatientLogin';
 import InsuranceProviderViewProfile from './components/InsuranceProviders/InsuranceProviderViewProfile';
+import InsuranceProviderChangePassword from './components/InsuranceProviders/InsuranceProviderChangePassword';
+import InsuranceProviderChangeIdProofImage from './components/InsuranceProviders/InsuranceProviderChangeIdProofImage';
+import InsuranceProviderChangeProfileImage from './components/InsuranceProviders/InsuranceProviderChangeProfileImage';
+import InsuranceProviderUpdateProfile from './components/InsuranceProviders/InsuranceProviderUpdateProfile';
 
 
 function App() {
@@ -101,6 +105,10 @@ function App() {
           <Route path='/hospitalViewOneUnApprovedInsuranceProvider' element={<HospitalViewOneUnapprovedInsuranceProvider />} />
           <Route path='/patientLogin' element={<PatientLogin />} />
           <Route path='/insuranceProviderViewProfile' element={<InsuranceProviderViewProfile />} />
+          <Route path='/insuranceProviderChangePassword' element={<InsuranceProviderChangePassword />} />
+          <Route path='/InsuranceProviderChangeIdProofImage' element={<InsuranceProviderChangeIdProofImage />} />
+          <Route path='/InsuranceProviderChangeProfileImage' element={<InsuranceProviderChangeProfileImage />} />
+          <Route path='/InsuranceProviderUpdateProfile' element={<InsuranceProviderUpdateProfile />} />
 
         </Routes>
       </BrowserRouter>

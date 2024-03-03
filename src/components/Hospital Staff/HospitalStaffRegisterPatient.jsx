@@ -166,11 +166,17 @@ const HospitalStaffRegisterPatient = () => {
               <input type="text" className={`form-control ${validationErrors.patientAadhar ? 'is-invalid' : ''}`} name="patientAadhar" value={patientData.patientAadhar} onChange={handleInputChange} placeholder="Aadhar Number *" required />
               {validationErrors.patientAadhar && <div className="invalid-feedback">{validationErrors.patientAadhar}</div>}
             </div>
+            {/* Age  Field */}
+            <div className="mb-3">
+              <input type="text" className={`form-control ${validationErrors.patientAge ? 'is-invalid' : ''}`} name="patientAge" value={patientData.patientAge} onChange={handleInputChange} placeholder="Age *" required />
+              {validationErrors.patientAge && <div className="invalid-feedback">{validationErrors.patientAge}</div>}
+            </div>
             {/* Mobile Number Field */}
             <div className="mb-3">
-              <input type="tel" className={`form-control ${validationErrors.patientMobile ? 'is-invalid' : ''}`} name="hospitalStaffMobile" value={patientData.patientMobile} onChange={handleInputChange} placeholder="Mobile Number *" required />
-              {validationErrors.patientMobile && <div className="invalid-feedback">{validationErrors.patientMobile}</div>}
-            </div>
+  <input type="tel" className={`form-control ${validationErrors.patientMobile ? 'is-invalid' : ''}`} name="patientMobile" value={patientData.patientMobile} onChange={handleInputChange} placeholder="Mobile Number *" required />
+  {validationErrors.patientMobile && <div className="invalid-feedback">{validationErrors.patientMobile}</div>}
+</div>
+
             {/* Password Field */}
             <div className="mb-3">
               <div className={`input-group ${validationErrors.patientPassword ? 'is-invalid' : ''}`}>
@@ -183,15 +189,26 @@ const HospitalStaffRegisterPatient = () => {
             </div>
             {/* Address Field */}
             <div className="mb-3">
-              <textarea className={`form-control ${validationErrors.patientAddress ? 'is-invalid' : ''}`} name="hospitalStaffAddress" value={patientData.patientAddress} onChange={handleInputChange} placeholder="Address *" required></textarea>
-              {validationErrors.patientAddress && <div className="invalid-feedback">{validationErrors.patientAddress}</div>}
-            </div>
+  <textarea className={`form-control ${validationErrors.patientAddress ? 'is-invalid' : ''}`} name="patientAddress" value={patientData.patientAddress} onChange={handleInputChange} placeholder="Address *" required></textarea>
+  {validationErrors.patientAddress && <div className="invalid-feedback">{validationErrors.patientAddress}</div>}
+</div>
+                {/* Gender Field */}
+                <div className="mb-3">
+                  <select className={`form-select ${validationErrors.patientGender ? 'is-invalid' : ''}`} name="patientGender" value={patientData.patientGender} onChange={handleInputChange} required>
+                    <option value="">Select Gender *</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                  {validationErrors.patientGender && <div className="invalid-feedback">{validationErrors.patientGender}</div>}
+                </div>
+
             {/* ID Proof Image Upload */}
             <div className="mb-3">
               <button type="button" className={`btn ${validationErrors.patientIdProofImage ? 'btn-danger' : 'btn-outline-primary'} w-100`} onClick={() => fileInputIdProofRef.current.click()} style={{ marginBottom: '5px' }}>
                 {patientData.patientIdProofImage ? patientData.patientIdProofImage.name : 'ID Proof Image'}
               </button>
-              <input ref={fileInputIdProofRef} type="file" className={`form-control-file ${validationErrors.patientIdProofImage ? 'is-invalid' : ''}`} name="hospitalStaffIdProofImage" onChange={handleImageUpload('hospitalStaffIdProofImage')} accept=".jpg, .jpeg, .png" style={{ display: 'none' }} />
+              <input ref={fileInputIdProofRef} type="file" className={`form-control-file ${validationErrors.patientIdProofImage ? 'is-invalid' : ''}`} name="patientIdProofImage" onChange={handleImageUpload('patientIdProofImage')} accept=".jpg, .jpeg, .png" style={{ display: 'none' }} />
               {validationErrors.patientIdProofImage && <div className="invalid-feedback">{validationErrors.patientIdProofImage}</div>}
             </div>
             {/* Profile Image Upload */}
@@ -199,9 +216,10 @@ const HospitalStaffRegisterPatient = () => {
               <button type="button" className={`btn ${validationErrors.patientProfileImage ? 'btn-danger' : 'btn-outline-primary'} w-100`} onClick={() => fileInputProfileRef.current.click()} style={{ marginBottom: '5px' }}>
                 {patientData.patientProfileImage ? patientData.patientProfileImage.name : 'Profile Image'}
               </button>
-              <input ref={fileInputProfileRef} type="file" className={`form-control-file ${validationErrors.patientProfileImage ? 'is-invalid' : ''}`} name="hospitalStaffProfileImage" onChange={handleImageUpload('hospitalStaffProfileImage')} accept=".jpg, .jpeg, .png" style={{ display: 'none' }} />
+              <input ref={fileInputProfileRef} type="file" className={`form-control-file ${validationErrors.patientProfileImage ? 'is-invalid' : ''}`} name="patientProfileImage" onChange={handleImageUpload('patientProfileImage')} accept=".jpg, .jpeg, .png" style={{ display: 'none' }} />
               {validationErrors.patientProfileImage && <div className="invalid-feedback">{validationErrors.patientProfileImage}</div>}
             </div>
+
             {/* Submit Button */}
             <div className="text-center mt-4">
               <button type="submit" className={`btn ${submitFailed ? 'btn-danger' : 'btn-success'}`} disabled={isLoading}>{isLoading ? 'Submitting...' : 'Register'}</button>
