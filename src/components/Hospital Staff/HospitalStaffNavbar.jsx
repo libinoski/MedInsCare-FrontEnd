@@ -53,7 +53,7 @@ const HospitalStaffNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/hospitalLogin">
+                            <Link className="nav-link" to="/hospitalStaffLogin">
                                 {/* Apply color to the sign-out icon */}
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout

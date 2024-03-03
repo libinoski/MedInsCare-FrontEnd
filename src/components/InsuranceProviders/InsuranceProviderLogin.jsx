@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/InsuranceProvider/6976407_4587.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/insploginpurp.svg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -74,13 +74,15 @@ const InsuranceProviderLogin = () => {
     };
 
     return (
+
 <div>
     {/* Navbar */}
     <nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
         <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1 text-dark" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Login</span>
+            <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Login</span>
         </div>
     </nav>
+
     <div className="container-fluid d-flex flex-column min-vh-100">
         <div className="row flex-grow-1">
             {/* Background Image Container - Now displayed on medium and larger screens on the left */}
@@ -93,17 +95,18 @@ const InsuranceProviderLogin = () => {
 
             {/* Login Form Card - Now displayed on the right for medium and larger screens */}
             <div className="col-12 col-md-6 d-flex align-items-center justify-content-center p-0">
-                <div className={`card mx-auto mb-3 ${errorMessages.insuranceProviderEmail || errorMessages.insuranceProviderEmail ? 'border-danger' : ''} shadow`} style={{
+                <div className={`card mx-auto mb-3 shadow`} style={{
                     width: '90%',
                     maxWidth: '400px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    boxShadow: '0 0.5rem 1rem rgba(0, 0, 255, 0.15), 0 0.5rem 1rem rgba(0, 0, 255, 0.3)',
-                    border: errorMessages.insuranceProviderEmail || errorMessages.insuranceProviderEmail ? '' : '2px solid #8A2BE2',
-                    marginTop: '20px'
+                    backgroundColor: '#f8f9fa', // Background color
+                    borderRadius: '15px', // Rounded corners
+                    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.1)', // Box shadow
+                    border: errorMessages.insuranceProviderEmail || errorMessages.insuranceProviderPassword ? '2px solid red' : '2px solid #0000FF', // Border color changed to medium blue
+                    marginTop: '20px' // Margin at the top
                 }}>
                     <div className="card-body">
                         {/* Login Form */}
-                        <h2 className="card-title text-center">Login</h2>
+                        <h2 className="card-title text-center mb-4">Login</h2>
                         <form onSubmit={handleSubmit} noValidate>
                             {/* Email Field */}
                             <div className="mb-3">
@@ -139,7 +142,7 @@ const InsuranceProviderLogin = () => {
                             </div>
 
                             <div className="text-center">
-                                <button type="submit" className={`btn btn-primary ${errorMessages.insuranceProviderPassword || errorMessages.insuranceProviderPassword ? 'btn-danger' : ''}`} disabled={isLoading} style={{ width: 'auto' }}>
+                                <button type="submit" className={`btn btn-primary ${errorMessages.insuranceProviderEmail || errorMessages.insuranceProviderPassword ? 'btn-danger' : ''}`} disabled={isLoading} style={{ width: 'auto', background: 'linear-gradient(to right, #4169E1, #0000FF)', border: 'none', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', transition: 'all 0.3s ease' }}>
                                     {isLoading ? 'Logging in...' : 'Login'}
                                 </button>
                             </div>
@@ -148,18 +151,17 @@ const InsuranceProviderLogin = () => {
                             <p>Don't have an account?</p>
                             <button onClick={navigateToSignUp} className="btn btn-primary rounded-pill" style={{
                                 width: '100%',
-                                background: 'linear-gradient(to right, #8A2BE2, #A74AC7)',
+                                background: 'linear-gradient(to right, #4169E1, #0000FF)', // Medium blue gradient
                                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                                outline: 'none',
+                                borderRadius: '8px',
                                 border: 'none',
-                                color: '#fff'
+                                color: '#fff',
+                                transition: 'all 0.3s ease',
+                                outline: 'none'
                             }}>
                                 Sign up
                             </button>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -170,10 +172,19 @@ const InsuranceProviderLogin = () => {
         </div>
     </div>
     {/* Footer component */}
-    <footer >
+    <footer>
         <Footer />
     </footer>
 </div>
+
+
+
+
+
+
+
+
+
 
 
 

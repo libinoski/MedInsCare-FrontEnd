@@ -45,9 +45,13 @@ const HospitalRegistration = () => {
         setIsLoading(true);
         setValidationErrors({});
 
+
         try {
             const formData = new FormData();
-            formData.append('hospitalImage', hospitalData.hospitalImage);
+            for (const [key, value] of Object.entries(hospitalData)) {
+                formData.append(key, value);
+            }
+
 
             const response = await axios.post('http://localhost:1313/api/mic/hospital/hospitalRegistration', formData, {
                 headers: {
@@ -123,14 +127,20 @@ const HospitalRegistration = () => {
 
     return (
         <div>
+        {/* Navbar */}
+<nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
+  <div className="container-fluid">
+    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Hospital Registration</span>
+  </div>
+</nav>
 
             <div className="row">
                 {/* Left Side Image Container */}
                 <div className="col-lg-6">
-  <div className="d-flex align-items-center justify-content-center" style={{ height: '100%', minHeight: '100vh' }}>
-    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-  </div>
-</div>
+                    <div className="d-flex align-items-center justify-content-center" style={{ height: '100%', minHeight: '100vh' }}>
+                        <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                    </div>
+                </div>
 
 
                 {/* Right Side Registration Card */}
@@ -160,6 +170,25 @@ const HospitalRegistration = () => {
                                     <input type="tel" className={`form-control ${validationErrors.hospitalMobile ? 'is-invalid' : ''}`} name="hospitalMobile" value={hospitalData.hospitalMobile} onChange={handleInputChange} placeholder="Mobile Number *" required />
                                     {validationErrors.hospitalMobile && <div className="invalid-feedback">{validationErrors.hospitalMobile}</div>}
                                 </div>
+                                {/* Hospital Website Field */}
+                                <div className="mb-3">
+                                    <input type="text" className={`form-control ${validationErrors.hospitalWebSite ? 'is-invalid' : ''}`} name="hospitalWebSite" value={hospitalData.hospitalWebSite} onChange={handleInputChange} placeholder="Website" />
+                                    {validationErrors.hospitalWebSite && <div className="invalid-feedback">{validationErrors.hospitalWebSite}</div>}
+                                </div>
+                                {/* Address Field */}
+                                <div className="mb-3">
+                                    <input
+                                        type="text"
+                                        className={`form-control ${validationErrors.hospitalAddress ? 'is-invalid' : ''}`}
+                                        name="hospitalAddress"
+                                        value={hospitalData.hospitalAddress}
+                                        onChange={handleInputChange}
+                                        placeholder="Address *"
+                                        required
+                                    />
+                                    {validationErrors.hospitalAddress && <div className="invalid-feedback">{validationErrors.hospitalAddress}</div>}
+                                </div>
+
                                 {/* Password Field */}
                                 <div className="mb-3">
                                     <div className={`input-group ${validationErrors.hospitalPassword ? 'is-invalid' : ''}`}>
@@ -180,53 +209,53 @@ const HospitalRegistration = () => {
                                 </div>
 
                                 <div className="text-center mt-4">
-  <button
-    type="submit"
-    disabled={isLoading}
-    className={`btn ${submitFailed ? 'btn-danger' : ''} rounded-pill`}
-    style={{
-      width: '100%',
-      padding: '10px 0',
-      fontSize: '1rem',
-      cursor: isLoading ? 'not-allowed' : 'pointer',
-      color: '#fff',
-      border: 'none',
-      outline: 'none',
-      background: submitFailed ? '' : 'linear-gradient(to right, #56ab2f, #a8e063)', // Green gradient for success
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-      transition: 'all 0.3s ease',
-    }}
-  >
-    {isLoading ? 'Submitting...' : 'Register'}
-  </button>
-</div>
+                                    <button
+                                        type="submit"
+                                        disabled={isLoading}
+                                        className={`btn ${submitFailed ? 'btn-danger' : ''} rounded-pill`}
+                                        style={{
+                                            width: '100%',
+                                            padding: '10px 0',
+                                            fontSize: '1rem',
+                                            cursor: isLoading ? 'not-allowed' : 'pointer',
+                                            color: '#fff',
+                                            border: 'none',
+                                            outline: 'none',
+                                            background: submitFailed ? '' : 'linear-gradient(to right, #56ab2f, #a8e063)', // Green gradient for success
+                                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                            transition: 'all 0.3s ease',
+                                        }}
+                                    >
+                                        {isLoading ? 'Submitting...' : 'Register'}
+                                    </button>
+                                </div>
 
                                 {submitFailed && <div className="text-danger mt-3">Registration failed. Please try again.</div>}
                             </form>
                             {/* Add Login Button */}
                             <div className="text-center mt-2">
-  <button
-    type="button"
-    onClick={navigateToLogin}
-    className="btn" // Simplified class name
-    style={{
-      padding: '10px 20px', // Adjust padding
-      fontSize: '16px', // Adjust font size
-      letterSpacing: '1px', // Add letter spacing
-      background: 'linear-gradient(to right, #007bff, #4c9cf1)', // Updated gradient colors
-      border: 'none', // No border
-      color: 'white', // Text color
-      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Shadow for depth
-      transition: 'all 0.3s ease', // Smooth transition for mouse events
-      cursor: 'pointer', // Pointer on hover
-      width: '100%', // Maintain full width
-    }}
-    onMouseOver={(e) => e.currentTarget.style.background = 'linear-gradient(to right, #0062cc, #6699ff)'} // Darker gradient on hover
-    onMouseOut={(e) => e.currentTarget.style.background = 'linear-gradient(to right, #007bff, #4c9cf1)'} // Original gradient on mouse out
-  >
-    Already have an account? Login
-  </button>
-</div>
+                                <button
+                                    type="button"
+                                    onClick={navigateToLogin}
+                                    className="btn" // Simplified class name
+                                    style={{
+                                        padding: '10px 20px', // Adjust padding
+                                        fontSize: '16px', // Adjust font size
+                                        letterSpacing: '1px', // Add letter spacing
+                                        background: 'linear-gradient(to right, #007bff, #4c9cf1)', // Updated gradient colors
+                                        border: 'none', // No border
+                                        color: 'white', // Text color
+                                        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Shadow for depth
+                                        transition: 'all 0.3s ease', // Smooth transition for mouse events
+                                        cursor: 'pointer', // Pointer on hover
+                                        width: '100%', // Maintain full width
+                                    }}
+                                    onMouseOver={(e) => e.currentTarget.style.background = 'linear-gradient(to right, #0062cc, #6699ff)'} // Darker gradient on hover
+                                    onMouseOut={(e) => e.currentTarget.style.background = 'linear-gradient(to right, #007bff, #4c9cf1)'} // Original gradient on mouse out
+                                >
+                                    Already have an account? Login
+                                </button>
+                            </div>
 
 
                         </div>

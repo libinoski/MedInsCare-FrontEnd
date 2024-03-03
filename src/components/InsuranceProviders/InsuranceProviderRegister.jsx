@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/inspreggreen.jpg'; // Import the background image
 import { useNavigate } from 'react-router-dom';
 
 const InsuranceProviderRegistration = () => {
@@ -148,7 +148,12 @@ const InsuranceProviderRegistration = () => {
 
     return (
         <div>
-            {/* <Navbar /> */}
+{/* Navbar */}
+<nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
+  <div className="container-fluid">
+    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Registration</span>
+  </div>
+</nav>
             <div className="container-fluid">
         <div className="row align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the row fills the screen height */}
 
