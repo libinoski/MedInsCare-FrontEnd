@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faHospitalUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faHospitalUser, faBell } from '@fortawesome/free-solid-svg-icons';
 
 const HospitalStaffNavbar = () => {
     return (
@@ -37,7 +37,6 @@ const HospitalStaffNavbar = () => {
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownStaff">
                                 <li><Link className="dropdown-item" to="/hospitalStaffRegisterPatient">Register patient</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalStaffViewAllPatients">View All patients</Link></li>
-                                <li><Link className="dropdown-item" to="/hospitalSearchStaffs">Search Staffs</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -47,8 +46,16 @@ const HospitalStaffNavbar = () => {
                                 News Management
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownNews">
-                                <li><Link className="dropdown-item" to="/hospitalAddNews">Add News</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalStaffViewAllNews">View All News</Link></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNotifications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {/* Apply color to the bell icon */}
+                                <FontAwesomeIcon icon={faBell} className="me-2" style={{ color: '#ff0000' }} />
+                                Notifications
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownNotifications">
                                 <li><Link className="dropdown-item" to="/hospitalStaffViewAllNotifications">View All Notifications</Link></li>
                             </ul>
                         </li>

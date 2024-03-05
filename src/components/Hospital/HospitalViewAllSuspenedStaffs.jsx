@@ -66,7 +66,7 @@ const HospitalViewAllSuspendedStaffs = () => {
 
 <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
   <Navbar />
-  <div className="container my-5">
+  <div className="container my-5 flex-grow-1"> {/* Added flex-grow-1 */}
     <div className="row justify-content-center" style={{ gap: '1rem' }}>
       {isLoading ? (
         <div className="col-12 text-center">
@@ -98,6 +98,7 @@ const HospitalViewAllSuspendedStaffs = () => {
   </div>
   <Footer />
 </div>
+
 
 
 

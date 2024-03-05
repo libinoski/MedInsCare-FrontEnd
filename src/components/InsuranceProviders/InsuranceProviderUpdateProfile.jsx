@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './InsuranceProviderNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/InsuranceProvider/6976407_4587.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/ip1.svg'; // Import the background image
 
 const InsuranceProviderUpdateProfile = () => {
     const navigate = useNavigate();

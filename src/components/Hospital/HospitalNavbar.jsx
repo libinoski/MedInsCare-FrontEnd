@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserNurse, faNewspaper, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faUserInjured } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
     return (
@@ -57,6 +57,18 @@ const Navbar = () => {
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownNews">
                                 <li><Link className="dropdown-item" to="/hospitalAddNews">Add News</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalViewAllNews">View All News</Link></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownPatient" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#495057' }}>
+                                <FontAwesomeIcon icon={faUserInjured} className="me-2" style={{ color: '#007bff' }} />
+                                Patient Management
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownPatient">
+                                <li><Link className="dropdown-item" to="/hospitalViewAllPatients">View Patients</Link></li>
+                                <li><Link className="dropdown-item" to="/hospitalSearchPatients">Search Patients</Link></li>
+                                <li><Link className="dropdown-item" to="/HospitalViewAllMedicalRecords">View All Medical Records</Link></li>
+                                {/* Add more patient management related links as needed */}
                             </ul>
                         </li>
                         <li className="nav-item">

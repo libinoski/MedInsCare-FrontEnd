@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalStaffViewAllNotifications = () => {
     const navigate = useNavigate(); // Initialize the useNavigate hook
@@ -71,74 +70,66 @@ const HospitalStaffViewAllNotifications = () => {
     };
 
     return (
-<div>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <HospitalStaffNavbar />
-    <div
-        className="background-container"
-        style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: -1
-        }}
-    ></div>
-    <div style={{ paddingTop: '60px', paddingBottom: '60px' }}>
-        <div className="container p-0">
-            {isLoading ? (
-                <div className="d-flex justify-content-center p-5">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Loading...</span>
+    <div className="container" style={{ flex: 1 }}>
+        <div className="row">
+            <div className="col-12" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+                {isLoading ? (
+                    <div className="d-flex justify-content-center p-5">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
                     </div>
-                </div>
-            ) : notifications.length > 0 ? (
-                <ul className="list-group list-group-flush">
-                    {notifications.map((notification, index) => (
-                        <li
-                            key={index}
-                            className="list-group-item mb-3 shadow-sm border border-primary"
-                            style={{
-                                borderRadius: '1rem',
-                                background: 'rgba(255, 255, 255, 0.5)',
-                                backdropFilter: 'blur(5px)',
-                                cursor: 'pointer' // Add cursor pointer to indicate clickable item
-                            }}
-                            onClick={() => handleViewNotification(notification.notificationId)} // Add click event handler
-                        >
-                            <div className="d-flex align-items-center">
-                                {notification.hospitalImage && (
-                                    <div className="rounded-circle border border-primary overflow-hidden me-3" style={{ width: '60px', height: '60px' }}>
-                                        <img
-                                            src={notification.hospitalImage}
-                                            className="img-fluid"
-                                            alt="Hospital"
-                                        />
+                ) : notifications.length > 0 ? (
+                    <ul className="list-group list-group-flush">
+                        {notifications.map((notification, index) => (
+                            <li
+                                key={index}
+                                className="list-group-item mb-3 shadow-sm border border-primary"
+                                style={{
+                                    borderRadius: '1rem',
+                                    background: 'rgba(255, 255, 255, 0.5)',
+                                    backdropFilter: 'blur(5px)',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => handleViewNotification(notification.notificationId)}
+                            >
+                                <div className="d-flex align-items-center">
+                                    {notification.hospitalImage && (
+                                        <div style={{ flexShrink: 0 }}>
+                                            <div className="rounded-circle border border-primary overflow-hidden" 
+                                                style={{ width: '60px', height: '60px' }}>
+                                                <img
+                                                    src={notification.hospitalImage}
+                                                    className="img-fluid"
+                                                    alt="Hospital"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div className="flex-grow-1" style={{ overflow: 'hidden' }}>
+                                        <p className="mb-0 fw-bold" style={{ fontSize: '1rem', color: '#333', wordBreak: 'break-word', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                                            {notification.message}
+                                        </p>
+                                        <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
+                                            <span style={{ color: 'red' }}>{formatDate(notification.sendDate)}</span>
+                                        </p>
                                     </div>
-                                )}
-                                <div className="flex-grow-1">
-                                    <p className="mb-0 fw-bold" style={{ fontSize: '1rem', color: '#333', wordBreak: 'break-word' }}>
-                                        {notification.message}
-                                    </p>
-                                    <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                                        <span style={{ color: 'red' }}>{formatDate(notification.sendDate)}</span>
-                                    </p>
                                 </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p className="text-center mt-4">No notifications found.</p>
-            )}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p className="text-center mt-4">No notifications found.</p>
+                )}
+            </div>
         </div>
     </div>
     <Footer />
 </div>
+
 
     );
 };

@@ -130,6 +130,16 @@ const HospitalViewOneNews = () => {
                 <div className="card" style={{ borderRadius: '10px' }}>
                     {newsDetails ? (
                         <div className="row g-0">
+                            <div className="col-md-6">
+                                <div style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                                    <img 
+                                        src={newsDetails.hospitalNewsImage} 
+                                        className="img-fluid rounded-end" 
+                                        alt="News" 
+                                        style={{ objectFit: 'cover', width: '100%', height: '100%' }} 
+                                    />
+                                </div>
+                            </div>
                             <div className="col-md-6 d-flex flex-column justify-content-between">
                                 <div className="card-body">
                                     <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
@@ -142,9 +152,6 @@ const HospitalViewOneNews = () => {
                                     <button className="btn btn-primary" onClick={handleUpdateNews}>Update</button>
                                 </div>
                             </div>
-                            <div className="col-md-6">
-                                <img src={newsDetails.hospitalNewsImage} className="img-fluid rounded-end" alt="News" style={{ objectFit: 'cover', height: '100%' }} />
-                            </div>
                         </div>
                     ) : (
                         <p className="text-center">No news details found.</p>
@@ -155,6 +162,8 @@ const HospitalViewOneNews = () => {
     </div>
     <Footer />
 </div>
+
+
 
 
 

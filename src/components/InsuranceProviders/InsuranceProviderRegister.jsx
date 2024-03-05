@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/InsuranceProvider/inspreggreen.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/ip1.svg'; // Import the background image
 import { useNavigate } from 'react-router-dom';
 
 const InsuranceProviderRegistration = () => {
@@ -86,6 +86,7 @@ const InsuranceProviderRegistration = () => {
             switch (response.status) {
                 case 200:
                     alert(response.data.message || 'Insurance provider registered successfully');
+                    navigate('/insuranceProviderLogin')
                     resetForm();
                     setSelectedHospital('');
                     break;
@@ -179,6 +180,11 @@ const InsuranceProviderRegistration = () => {
                                     <div className="mb-3">
                                         <input type="email" className={`form-control ${validationErrors.insuranceProviderEmail ? 'is-invalid' : ''}`} id="insuranceProviderEmail" name="insuranceProviderEmail" placeholder="Email *" value={insuranceProviderData.insuranceProviderEmail} onChange={handleInputChange} required />
                                         {validationErrors.insuranceProviderEmail && <div className="invalid-feedback">{validationErrors.insuranceProviderEmail}</div>}
+                                    </div>
+                                    {/* Address Field */}
+                                    <div className="mb-3">
+                                        <input type="email" className={`form-control ${validationErrors.insuranceProviderAddress ? 'is-invalid' : ''}`} id="insuranceProviderAddress" name="insuranceProviderAddress" placeholder="Address *" value={insuranceProviderData.insuranceProviderAddress} onChange={handleInputChange} required />
+                                        {validationErrors.insuranceProviderAddress && <div className="invalid-feedback">{validationErrors.insuranceProviderAddress}</div>}
                                     </div>
                                     {/* Aadhar Number Field */}
                                     <div className="mb-3">

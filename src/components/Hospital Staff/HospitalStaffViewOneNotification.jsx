@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalStaffViewOneNotification = () => {
     const [notification, setNotification] = useState(null);
@@ -60,21 +59,6 @@ const HospitalStaffViewOneNotification = () => {
     return (
 <div style={{ position: 'relative', minHeight: '100vh' }}>
     <HospitalStaffNavbar />
-    <div
-        className="background-container"
-        style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: -1
-        }}
-    ></div>
     <div style={{ paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="container">
             {isLoading ? (
@@ -102,6 +86,7 @@ const HospitalStaffViewOneNotification = () => {
         <Footer />
     </div>
 </div>
+
 
 
     );

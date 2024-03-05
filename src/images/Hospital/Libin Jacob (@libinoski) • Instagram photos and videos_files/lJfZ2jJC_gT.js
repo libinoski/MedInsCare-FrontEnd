@@ -1,6 +1,0 @@
-;/*FB_PKG_DELIM*/
-
-__d("getPolarisStoriesV3IsReelSeen_reel.graphql",[],(function(a,b,c,d,e,f){"use strict";a={kind:"InlineDataFragment",name:"getPolarisStoriesV3IsReelSeen_reel"};e.exports=a}),null);
-__d("PolarisSettingsCommentsRoot.entrypoint",["JSResourceForInteraction"],(function(a,b,c,d,e,f,g){"use strict";a={getPreloadProps:function(a){return{queries:{}}},root:c("JSResourceForInteraction")("PolarisSettingsCommentsRoot.react").__setRef("PolarisSettingsCommentsRoot.entrypoint")};g["default"]=a}),98);
-__d("PolarisSettingsSharingRoot.entrypoint",["JSResourceForInteraction"],(function(a,b,c,d,e,f,g){"use strict";a={getPreloadProps:function(a){return{queries:{}}},root:c("JSResourceForInteraction")("PolarisSettingsSharingRoot.react").__setRef("PolarisSettingsSharingRoot.entrypoint")};g["default"]=a}),98);
-__d("getPolarisStoriesV3IsReelSeen",["CometRelay","getPolarisStoriesV3IsReelSeen_reel.graphql"],(function(a,b,c,d,e,f,g){"use strict";var h;function a(a){var c,e;a=d("CometRelay").readInlineData(h!==void 0?h:h=b("getPolarisStoriesV3IsReelSeen_reel.graphql"),a);c=Number((c=a.latest_reel_media)!=null?c:0);e=Number((e=a.seen)!=null?e:0);return a.muted===!0||e>=c}g["default"]=a}),98);

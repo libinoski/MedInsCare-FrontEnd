@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/HospitalStaff/staffs1.svg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hospital.svg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -63,7 +63,7 @@ const HospitalRegistration = () => {
                 case 200:
                     alert(response.data.message || 'Hospital registered successfully');
                     resetForm();
-                    navigate('/hospitalViewProfile');
+                    navigate('/hospitalLogin');
                     break;
                 default:
                     alert('An unexpected response was received from the server');

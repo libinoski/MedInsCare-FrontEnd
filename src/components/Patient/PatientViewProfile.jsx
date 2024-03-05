@@ -88,7 +88,7 @@ const PatientViewProfile = () => {
                                     <div className="row g-4 align-items-center">
                                         <div className="col-12 col-md-5 d-flex justify-content-center">
                                             <img
-                                                src={patientProfile && patientProfile.patientImage}
+                                                src={patientProfile && patientProfile.patientProfileImage}
                                                 alt="Patient"
                                                 className="img-thumbnail"
                                                 style={{ width: '250px', height: '250px', objectFit: 'cover', borderRadius: '50%', border: '5px solid #f8f9fa' }}
@@ -99,7 +99,6 @@ const PatientViewProfile = () => {
                                             <p className="mb-2"><strong>Email:</strong> {patientProfile.patientEmail}</p>
                                             <p className="mb-2"><strong>Aadhar:</strong> {patientProfile.patientAadhar}</p>
                                             <p className="mb-2"><strong>Mobile:</strong> {patientProfile.patientMobile}</p>
-                                            <p className="mb-2"><strong>Website:</strong> <a href={patientProfile.patientWebSite} className="text-decoration-none">{patientProfile.patientWebSite}</a></p>
                                             <p className="mb-2"><strong>Address:</strong> {patientProfile.patientAddress}</p>
                                             <p className="mb-2"><strong>Registered Date:</strong> {formatDate(patientProfile.registeredDate)}</p>
                                         </div>
@@ -121,10 +120,7 @@ const PatientViewProfile = () => {
             {/* Footer */}
             <Footer />
         </div>
-
     );
-
-
 };
 
 export default PatientViewProfile;

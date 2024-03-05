@@ -67,40 +67,50 @@ const HospitalStaffViewAllPatients = () => {
         navigate(`/hospitalStaffViewOnePatient`);
     };
 
+    // Function to format date and time
+    const formatDate = (dateTime) => {
+        const date = new Date(dateTime);
+        const formattedDate = date.toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
+        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false }); // Format: HH:MM
+        return `${formattedDate} ${formattedTime}`;
+    };
+
+
+
     return (
-<div className="d-flex flex-column min-vh-100">
-    <HospitalStaffNavbar />
-    <div className="flex-grow-1 container-fluid py-4" style={{ overflowY: 'auto' }}>
-        <div className="container">
-            {isLoading ? (
-                <p className="text-center">Loading patients...</p>
-            ) : patientList.length > 0 ? (
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-                    {patientList.map((patient, index) => (
-                        <div key={index} className="col">
-                            <div className="card h-100 shadow-sm rounded-3" style={{ border: 'none', transition: 'all 0.3s ease-in-out' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.03)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} onClick={() => handleViewPatient(patient.patientId)}>
-                                <img src={patient.patientProfileImage} className="card-img-top rounded-top" alt="Patient" style={{ objectFit: 'cover', height: '200px' }} />
-                                <div className="card-body">
-                                    <h5 className="card-title mb-3">{patient.patientName}</h5>
-                                    <ul className="list-unstyled">
-                                        <li className="mb-2"><small className="text-muted">Registered Date: {new Date(patient.patientRegisteredDate).toLocaleDateString()}</small></li>
-                                        <li className="mb-2"><small className="text-muted">Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</small></li>
-                                        <li><small className="text-muted">Aadhar: {patient.patientAadhar}</small></li>
-                                        <li><small className="text-muted">Mobile: {patient.patientMobile}</small></li>
-                                        <li><small className="text-muted">Address: {patient.patientAddress}</small></li>
-                                    </ul>
+        <div className="d-flex flex-column min-vh-100">
+            <HospitalStaffNavbar />
+            <div className="flex-grow-1 container-fluid py-4" style={{ overflowY: 'auto' }}>
+                <div className="container">
+                    {isLoading ? (
+                        <p className="text-center">Loading patients...</p>
+                    ) : patientList.length > 0 ? (
+                        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+                            {patientList.map((patient, index) => (
+                                <div key={index} className="col">
+                                    <div className="card h-100 shadow-sm rounded-3" style={{ border: 'none', transition: 'all 0.3s ease-in-out' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.03)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} onClick={() => handleViewPatient(patient.patientId)}>
+                                        <img src={patient.patientProfileImage} className="card-img-top rounded-top" alt="Patient" style={{ objectFit: 'cover', height: '200px' }} />
+                                        <div className="card-body">
+                                            <h5 className="card-title mb-3">{patient.patientName}</h5>
+                                            <ul className="list-unstyled">
+                                            <li className="mb-2"><small className="text-muted">Registered Date: {formatDate(patient.registeredDate)}</small></li>
+                                                <li className="mb-2"><small className="text-muted">Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</small></li>
+                                                <li><small className="text-muted">Aadhar: {patient.patientAadhar}</small></li>
+                                                <li><small className="text-muted">Mobile: {patient.patientMobile}</small></li>
+                                                <li><small className="text-muted">Address: {patient.patientAddress}</small></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        <p className="text-center mt-4">No patients found.</p>
+                    )}
                 </div>
-            ) : (
-                <p className="text-center mt-4">No patients found.</p>
-            )}
+            </div>
+            <Footer className="mt-auto" />
         </div>
-    </div>
-    <Footer className="mt-auto" />
-</div>
 
 
 

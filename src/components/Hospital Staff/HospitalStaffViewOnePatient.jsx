@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalStaffViewOnePatient = () => {
     const navigate = useNavigate();
@@ -63,46 +62,101 @@ const HospitalStaffViewOnePatient = () => {
     const handleSendNotificationToPatient = () => {
         navigate('/hospitalStaffSendNotificationToPatient');
     };
-    
+
+    const handleRequestDischarge = () => {
+        navigate('/hospitalStaffRequestDischarge'); // Navigating to the new component
+    };
+
+    const handleAddMedicalRecords = () => {
+        navigate('/hospitalStaffAddMedicalRecordOfPatient'); // Adjust the route according to your application
+    };
+
 
 
     return (
         <div>
             <HospitalStaffNavbar />
-            <div className="container-fluid py-5" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: '100%' }}>
+            <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     {isLoading ? (
                         <p className="text-center">Loading patient details...</p>
                     ) : (
-                        <div className="row justify-content-start">
-                            <div className="col-lg-6">
+                        <div className="row justify-content-center flex-grow-1">
+                            <div className="col-lg-8 d-flex flex-column" style={{ height: '100%' }}>
                                 {patientDetails ? (
-                                    <div className="card" style={{ borderRadius: '10px', padding: '20px', position: 'relative' }}>
-                                        <div className="dropdown" style={{ position: 'absolute', top: '20px', right: '20px' }}>
-                                            <button className="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style={{ borderColor: '#007bff', color: '#007bff', boxShadow: '0 0 10px rgba(0,123,255,.5)' }}>
-                                                Actions
-                                            </button>
-                                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ position: 'absolute', left: '100%', top: '0', borderRadius: '0.5rem', backgroundColor: '#f8f9fa', boxShadow: '0 4px 6px rgba(0,0,0,.1)', transform: 'translateX(10px)' }}>
-                                                <li><button className="dropdown-item" onClick={handleSendNotificationToPatient}>Send Notification</button></li>
-                                            </ul>
+                                    <div className="card shadow flex-grow-1" style={{ borderRadius: '20px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                                        <div className="d-flex flex-wrap justify-content-end" style={{ position: 'absolute', top: '20px', right: '20px' }}>
+                                            {/* Possible additional content */}
                                         </div>
-                                        <div className="card-body">
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <img src={patientDetails.patientProfileImage} alt="Profile" className="img-fluid" style={{ maxWidth: '100%' }} />
+                                        <div className="card-body p-4 p-md-5" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                            <div className="row align-items-center">
+                                                <div className="col-md-6 text-center mb-4 mb-md-0">
+                                                    <img
+                                                        src={patientDetails.patientProfileImage}
+                                                        alt="Profile"
+                                                        className="img-fluid rounded-circle border"
+                                                        style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+                                                    />
                                                 </div>
-                                                <div className="col-md-8">
-                                                    <h5 className="card-title">{patientDetails.patientName}</h5>
-                                                    <p><strong>Email:</strong> {patientDetails.patientEmail}</p>
-                                                    <p><strong>Aadhar:</strong> {patientDetails.patientAadhar}</p>
-                                                    <p><strong>Mobile:</strong> {patientDetails.patientMobile}</p>
-                                                    <p><strong>Address:</strong> {patientDetails.patientAddress}</p>
-                                                    <p><strong>Admitted Date:</strong> {patientDetails.patientRegisteredDate}</p>
+                                                <div className="col-md-6">
+                                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{patientDetails.patientName}</h2>
+                                                    <p className="mb-2"><strong>Email:</strong> {patientDetails.patientEmail}</p>
+                                                    <p className="mb-2"><strong>Aadhar:</strong> {patientDetails.patientAadhar}</p>
+                                                    <p className="mb-2"><strong>Mobile:</strong> {patientDetails.patientMobile}</p>
+                                                    <p className="mb-2"><strong>Address:</strong> {patientDetails.patientAddress}</p>
+                                                    <p><strong>Admitted Date:</strong> {patientDetails.registeredDate}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="card-footer">
-                                            <img src={patientDetails.patientIdProofImage} alt="ID Proof" className="img-fluid" style={{ maxWidth: '100%' }} />
+                                        <div className="card-footer d-flex justify-content-center align-items-center" style={{ padding: '0', margin: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+                                            <img
+                                                src={patientDetails.patientIdProofImage}
+                                                alt="ID Proof"
+                                                className="img-fluid"
+                                                style={{
+                                                    maxWidth: '100%',
+                                                    maxHeight: '100%',
+                                                    objectFit: 'contain',
+                                                    margin: 'auto'
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="d-flex justify-content-end p-2" style={{ gap: '10px' }}>
+                                            <button
+                                                className="btn d-flex align-items-center justify-content-center"
+                                                onClick={handleSendNotificationToPatient}
+                                                style={{
+                                                    backgroundImage: 'linear-gradient(135deg, #007bff, #0023b0)',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    padding: '0.375rem 0.75rem',
+                                                    borderRadius: '0.25rem',
+                                                    position: 'relative'
+                                                }}>
+                                                <i className="bi bi-envelope-fill" style={{ marginRight: '0.5rem' }}></i> Send Notification
+                                            </button>
+                                            <button
+                                                className="btn"
+                                                onClick={handleRequestDischarge}
+                                                style={{
+                                                    backgroundImage: 'linear-gradient(135deg, #56ab2f, #a8e063)',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    padding: '0.375rem 0.75rem',
+                                                    borderRadius: '0.25rem'
+                                                }}>Request Discharge
+                                            </button>
+                                            <button
+                                                className="btn"
+                                                onClick={handleAddMedicalRecords}
+                                                style={{
+                                                    backgroundImage: 'linear-gradient(135deg, #ffc107, #ff9800)',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    padding: '0.375rem 0.75rem',
+                                                    borderRadius: '0.25rem'
+                                                }}>Add Medical Records
+                                            </button>
                                         </div>
                                     </div>
                                 ) : (
@@ -115,6 +169,10 @@ const HospitalStaffViewOnePatient = () => {
             </div>
             <Footer />
         </div>
+
+
+
+
     );
 };
 

@@ -192,7 +192,18 @@ const HospitalViewOneStaff = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3' }}>
+                        <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                            <img
+                                src={staffDetails.hospitalStaffIdProofImage}
+                                alt="ID Proof"
+                                className="img-fluid"
+                                style={{
+                                    maxWidth: '100%',
+                                    maxHeight: '200px',  // Set maximum height here
+                                    objectFit: 'contain', // This will ensure the image scales properly within the constraints
+                                    marginBottom: '20px' // Add margin bottom for distance from buttons
+                                }}
+                            />
                             <div className="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
                                 <button className="btn" onClick={handleDeleteStaff} style={{ backgroundImage: 'linear-gradient(135deg, #ff416c, #ff4b2b)', color: 'white' }}>Delete Staff</button>
                                 <button className="btn" onClick={handleSuspendStaff} style={{ backgroundImage: 'linear-gradient(135deg, #FFD200, #F7971E)', color: 'white' }}>Suspend Staff</button>
@@ -209,6 +220,8 @@ const HospitalViewOneStaff = () => {
     </div>
     <Footer />
 </div>
+
+
 
 
 

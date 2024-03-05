@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
+import backgroundImage from '../../images/InsuranceProvider/ip1.svg'; // Import the background image
 import HospitalStaffNavbar from './InsuranceProviderNavbar';
 
 const InsuranceProviderChangeIdProofImage = () => {

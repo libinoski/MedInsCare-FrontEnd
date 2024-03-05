@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import hospitalImage from '../../images/Hospital/hl.jpg'; 
-import insuranceProviderImage from '../../images/InsuranceProvider/insploginpurp.svg';
-import hospitalStaffImage from '../../images/HospitalStaff/groupofstaffs.svg'; 
-import patientImage from '../../images/Patient/ptmain.svg'; 
+import hospitalImage from '../../images/Hospital/hospital.svg'; 
+import insuranceProviderImage from '../../images/InsuranceProvider/ip1.svg';
+import hospitalStaffImage from '../../images/HospitalStaff/hs.svg'; 
+import patientImage from '../../images/Patient/patient.svg'; 
 import Footer from '../Common/Footer';
 import logoImage from '../../images/Home/logonobg.png'; // Add your logo image path here
 

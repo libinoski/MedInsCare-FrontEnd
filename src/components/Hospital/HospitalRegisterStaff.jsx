@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import backgroundImage from '../../images/HospitalStaff/Male doctor medical equipment cartoon vector set.svg'; // Import the background image
+import backgroundImage from '../../images/Hospital/hospital.svg'; // Import the background image
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 
@@ -61,7 +61,7 @@ const HospitalRegisterStaff = () => {
                 case 200:
                     alert(response.data.message || 'Staff registered successfully');
                     resetForm();
-                    navigate('/hospitalViewProfile');
+                    navigate('/hospitalViewAllStaffs');
                     break;
                 default:
                     alert('An unexpected response was received from the server');
