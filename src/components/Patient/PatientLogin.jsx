@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Patient/ptlogin.svg'; // Import the background image
+import backgroundImage from '../../images/Patient/ptlogin3.svg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';

@@ -1,90 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import hospitalImage from '../../images/Hospital/hl.jpg'; 
-import insuranceProviderImage from  '../../images/InsuranceProvider/insploginpurp.svg';
+import insuranceProviderImage from '../../images/InsuranceProvider/insploginpurp.svg';
 import hospitalStaffImage from '../../images/HospitalStaff/groupofstaffs.svg'; 
-import patientImage from '../../images/Patient/ptlogin.svg'; 
+import patientImage from '../../images/Patient/ptmain.svg'; 
 import Footer from '../Common/Footer';
+import logoImage from '../../images/Home/logonobg.png'; // Add your logo image path here
 
 const HomePage = () => {
+    const [hoveredKey, setHoveredKey] = useState(null);
+
+    const handleMouseEnter = (key) => {
+        setHoveredKey(key);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredKey(null);
+    };
+
+    const cardStyle = (key) => {
+        let boxShadow = '';
+
+        if (hoveredKey === key) {
+            boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+        }
+
+        return {
+            transform: hoveredKey === key ? 'scale(1.05)' : 'scale(1)',
+            transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease, border-color 0.3s ease',
+            boxShadow: boxShadow,
+            borderWidth: '4px',
+            borderStyle: 'solid',
+            filter: hoveredKey && hoveredKey !== key ? 'blur(4px)' : 'none',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            padding: '1rem',
+            borderRadius: '15px',
+        };
+    };
+
     return (
         <div>
-            {/* Navbar */}
-            <nav className="navbar navbar-dark bg-light">
-                <div className="container">
-                    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Home</span>
-                </div>
-            </nav>
-            {/* End of Navbar */}
+            <div className="container py-5">
+                {/* First Row: Logo */}
+                <div className="row mb-4">
+    <div className="col-12 text-center d-flex justify-content-center align-items-center">
+        <img src={logoImage} alt="Logo" style={{ maxHeight: '200px', maxWidth: '100%', objectFit: 'contain' }} />
+    </div>
+</div>
 
-            {/* Main container */}
-            <div className="container mt-5 mb-5">
-                <div className="row justify-content-center">
-                    <div className="col-md-12 text-center mb-5">
+                {/* Second Row: Introduction Text */}
+                <div className="row mb-4">
+                    <div className="col-12 text-center">
                         <h2 className="fw-bold">Welcome to MedInsCare</h2>
                         <p className="lead">
                             Your premier solution for modern hospital management. Seamlessly integrating staff coordination, patient care, and insurance provider interactions, MedInsCare is your one-stop platform for optimizing hospital operations.
                         </p>
-                        <p className="lead">
-                            In today's fast-paced healthcare landscape, efficiency and precision are paramount. That's why MedInsCare offers an intuitive and comprehensive system, empowering hospital administrators to navigate complex tasks with ease. From scheduling staff shifts to coordinating patient appointments and liaising with insurance providers, our cutting-edge tools streamline every facet of hospital administration.
-                        </p>
-                        <p className="lead">
-                            At MedInsCare, we're dedicated to simplifying your workload, allowing you to focus on what truly matters – delivering exceptional care to your patients. Join us in revolutionizing hospital management and embrace a future of efficiency, innovation, and excellence with MedInsCare.
-                        </p>
                     </div>
                 </div>
-                <div className="row justify-content-center">
-                    <div className="col-md-3">
-                        <Link to="/hospitalLogin" className="text-decoration-none">
-                            <div className="card border-black border-2 rounded-3 shadow-lg mb-3" style={{ height: '100%' }}>
-                                <img src={hospitalImage} className="card-img-top" alt="Hospital" />
-                                <div className="card-body text-center">
-                                    <h5 className="card-title">Hospital Login</h5>
-                                    <p className="card-text">Are you a hospital administrator?</p>
+                {/* Third Row: Cards */}
+                <div className="row justify-content-center g-4">
+                    {[
+                        { link: "/hospitalLogin", image: hospitalImage, title: "Hospital Login", text: "Are you a hospital administrator?", key: "hospital" },
+                        { link: "/insuranceProviderLogin", image: insuranceProviderImage, title: "Insurance Provider Login", text: "Are you an insurance provider?", key: "insurance" },
+                        { link: "/hospitalStaffLogin", image: hospitalStaffImage, title: "Hospital Staff Login", text: "Are you a hospital staff member?", key: "staff" },
+                        { link: "/patientLogin", image: patientImage, title: "Patient Login", text: "Are you a patient?", key: "patient" }
+                    ].map((card, index) => (
+                        <div className="col-12 col-md-6 col-lg-3 d-flex align-items-stretch" key={index}>
+                            <Link to={card.link} className="text-decoration-none w-100">
+                                <div className="card border-0 shadow h-100" 
+                                    style={cardStyle(card.key)}
+                                    onMouseEnter={() => handleMouseEnter(card.key)}
+                                    onMouseLeave={handleMouseLeave}>
+                                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', borderRadius: '15px' }}>
+                                        <img src={card.image} style={{
+                                            maxHeight: '100%',
+                                            maxWidth: '100%',
+                                            objectFit: 'contain'
+                                        }} className="card-img-top" alt={card.title} />
+                                    </div>
+                                    <div className="text-center" style={{ margin: '0.5rem', padding: '1rem', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', textAlign: 'center', fontWeight: 'bold', borderRadius: '10px', transition: 'background-color 0.3s ease' }}>
+                                        <h5 className="card-title">{card.title}</h5>
+                                        <p className="card-text">{card.text}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="col-md-3">
-                        <Link to="/insuranceProviderLogin" className="text-decoration-none">
-                            <div className="card border-black border-2 rounded-3 shadow-lg mb-3" style={{ height: '100%' }}>
-                                <img src={insuranceProviderImage} className="card-img-top" alt="Insurance Provider" />
-                                <div className="card-body text-center">
-                                    <h5 className="card-title">Insurance Provider Login</h5>
-                                    <p className="card-text">Are you an insurance provider?</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="col-md-3">
-                        <Link to="/hospitalStaffLogin" className="text-decoration-none">
-                            <div className="card border-black border-2 rounded-3 shadow-lg mb-3" style={{ height: '100%' }}>
-                                <img src={hospitalStaffImage} className="card-img-top" alt="Hospital Staff" />
-                                <div className="card-body text-center">
-                                    <h5 className="card-title">Hospital Staff Login</h5>
-                                    <p className="card-text">Are you a hospital staff member?</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="col-md-3">
-                        <Link to="/patientLogin" className="text-decoration-none">
-                            <div className="card border-black border-2 rounded-3 shadow-lg mb-3" style={{ height: '100%' }}>
-                                <img src={patientImage} className="card-img-top" alt="Patient" />
-                                <div className="card-body text-center">
-                                    <h5 className="card-title">Patient Login</h5>
-                                    <p className="card-text">Are you a patient?</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
             </div>
-            {/* End of Main container */}
-            
-            {/* Footer */}
             <Footer />
-            {/* End of Footer */}
         </div>
     );
 }
