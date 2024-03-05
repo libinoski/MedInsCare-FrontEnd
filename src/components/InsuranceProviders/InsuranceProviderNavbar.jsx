@@ -27,6 +27,8 @@ const InsuranceProviderNavbar = () => {
                                 <li><Link className="dropdown-item" to="/InsuranceProviderChangeIdProofImage">Change id proof</Link></li>
                                 <li><Link className="dropdown-item" to="/InsuranceProviderChangeProfileImage">Change profile image</Link></li>
                                 <li><Link className="dropdown-item" to="/InsuranceProviderUpdateProfile">update profile</Link></li>
+                                <li><Link className="dropdown-item" to="/insuranceProviderAddInsurancePackage">Add insurance package</Link></li>
+                                <li><Link className="dropdown-item" to="/insuranceProviderViewAllClients">View all cients</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">

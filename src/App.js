@@ -64,6 +64,10 @@ import HospitalStaffAddMedicalRecordOfPatient from './components/Hospital Staff/
 import HospitalViewAllMedicalRecords from './components/Hospital/HospitalViewAllMedicalRecords';
 import PatientViewAllInsuranceProviders from './components/Patient/PatientViewAllInsuranceProviders';
 import PatientViewOneInsuranceProvider from './components/Patient/PatientViewOneInsuranceProvider';
+import InsuranceProviderAddInsurancePackage from './components/InsuranceProviders/InsuranceProviderAddInsurancePackage';
+import PatientViewAllInsurancePackages from './components/Patient/PatientViewAllInsurancePackages';
+import PatientViewOneInsurancePackage from './components/Patient/PatientViewOneInsurancePackage';
+import InsuranceProviderViewAllClients from './components/InsuranceProviders/InsuranceProvidersViewAllClients';
 
 
 function App() {
@@ -135,6 +139,10 @@ function App() {
           <Route path='/hospitalViewAllMedicalRecords' element={<HospitalViewAllMedicalRecords />} />
           <Route path='/patientViewAllInsuranceProviders' element={<PatientViewAllInsuranceProviders />} />
           <Route path='/patientViewOneInsuranceProvider' element={<PatientViewOneInsuranceProvider />} />
+          <Route path='/insuranceProviderAddInsurancePackage' element={<InsuranceProviderAddInsurancePackage />} />
+          <Route path='/patientViewAllInsurancePackages' element={<PatientViewAllInsurancePackages />} />
+          <Route path='/patientViewOneInsurancePackage' element={<PatientViewOneInsurancePackage />} />
+          <Route path='/insuranceProviderViewAllClients' element={<InsuranceProviderViewAllClients />} />
 
         </Routes>
       </BrowserRouter>

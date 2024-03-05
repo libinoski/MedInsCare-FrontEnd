@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/InsuranceProvider/ip1.svg'; // Import the background image
 import HospitalStaffNavbar from './InsuranceProviderNavbar';
 
 const InsuranceProviderChangeIdProofImage = () => {
@@ -90,60 +89,61 @@ const InsuranceProviderChangeIdProofImage = () => {
     };
 
     return (
-        <div>
-            <HospitalStaffNavbar />
-            <div
-                className="container-fluid bg-blur"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '100vh',
-                    paddingTop: '56px',
-                    position: 'relative',
-                }}
-            >
-                <div className="container py-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8">
-                            <div className="card transparent-card">
-                                <div className="card-body">
-                                    <form onSubmit={handleIdProofImageUpload} encType="multipart/form-data">
-                                        {currentImage && (
-                                            <div className="mb-3">
-                                                <img
-                                                    src={currentImage}
-                                                    alt="Current Id Proof"
-                                                    className="img-fluid img-preview"
-                                                />
-                                            </div>
-                                        )}
-                                        <div className="mb-3">
-                                            <label htmlFor="insuranceProviderIdProofImage" className="form-label">Choose New Id Proof Image:</label>
-                                            <input
-                                                type="file"
-                                                className={`form-control ${validationErrors.insuranceProviderIdProofImage ? 'is-invalid' : ''}`}
-                                                id="insuranceProviderIdProofImage"
-                                                ref={fileInputRef}
-                                            />
-                                            {validationErrors.insuranceProviderIdProofImage && (
-                                                <div className="invalid-feedback">{validationErrors.insuranceProviderIdProofImage}</div>
-                                            )}
-                                        </div>
-                                        <div className="d-grid mt-4">
-                                            <button type="submit" className={`btn btn-${Object.keys(validationErrors).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
-                                                {isLoading ? 'Uploading Image...' : 'Upload'}
-                                            </button>
-                                        </div>
-                                    </form>
+<div>
+    <HospitalStaffNavbar />
+    <div
+        className="container-fluid bg-blur"
+        style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '100vh',
+            paddingTop: '56px',
+            position: 'relative',
+        }}
+    >
+        <div className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-12">
+                    <div className="card transparent-card">
+                        <div className="card-body">
+                            <form onSubmit={handleIdProofImageUpload} encType="multipart/form-data">
+                                {currentImage && (
+                                    <div className="mb-3 text-center">
+                                        <img
+                                            src={currentImage}
+                                            alt="Current Id Proof"
+                                            className="img-fluid img-preview rounded-circle"
+                                            style={{ maxWidth: '200px', maxHeight: '200px' }}
+                                        />
+                                    </div>
+                                )}
+                                <div className="mb-3">
+                                    <label htmlFor="insuranceProviderIdProofImage" className="form-label">Choose New Id Proof Image:</label>
+                                    <input
+                                        type="file"
+                                        className={`form-control ${validationErrors.insuranceProviderIdProofImage ? 'is-invalid' : ''}`}
+                                        id="insuranceProviderIdProofImage"
+                                        ref={fileInputRef}
+                                    />
+                                    {validationErrors.insuranceProviderIdProofImage && (
+                                        <div className="invalid-feedback">{validationErrors.insuranceProviderIdProofImage}</div>
+                                    )}
                                 </div>
-                            </div>
+                                <div className="d-grid mt-4">
+                                    <button type="submit" className={`btn btn-${Object.keys(validationErrors).length ? 'danger' : 'success'}`} disabled={isLoading} style={{ width: '100%', borderRadius: '20px' }}>
+                                        {isLoading ? 'Uploading Image...' : 'Upload'}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 
