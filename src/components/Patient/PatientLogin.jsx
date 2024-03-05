@@ -30,7 +30,7 @@ const PatientLogin = () => {
             const response = await axios.post('http://localhost:1313/api/mic/patient/patientLogin', loginData);
             if (response.status === 200) {
                 // alert(response.data.message);
-                sessionStorage.setItem('hospitalId', response.data.data.patient.patientId);
+                sessionStorage.setItem('patientId', response.data.data.patient.patientId);
                 sessionStorage.setItem('hospitalId', response.data.data.patient.hospitalId);
 
                 sessionStorage.setItem('token', response.data.data.token);
@@ -66,10 +66,7 @@ const PatientLogin = () => {
         setShowPassword(!showPassword);
     };
 
-    // Define navigateToSignUp function here
-    const navigateToSignUp = () => {
-        navigate('/hospitalRegisterStaff'); // Change '/signup' to the path you use for your signup page
-    };
+
 
     return (
 <div>
@@ -145,19 +142,7 @@ const PatientLogin = () => {
                             </div>
                         </form>
 
-                        <div className="text-center mt-3">
-                            <p>Don't have an account?</p>
-                            <button onClick={navigateToSignUp} className="btn btn-primary rounded-pill" style={{
-                                width: '100%',
-                                background: 'linear-gradient(to right, #004d40, #388e3c)',
-                                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
-                                outline: 'none',
-                                border: 'none',
-                                color: '#fff'
-                            }}>
-                                Sign up
-                            </button>
-                        </div>
+
                     </div>
                 </div>
             </div>

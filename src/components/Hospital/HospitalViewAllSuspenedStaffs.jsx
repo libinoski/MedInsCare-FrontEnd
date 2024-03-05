@@ -64,39 +64,50 @@ const HospitalViewAllSuspendedStaffs = () => {
 
     return (
 
-<div>
-    <Navbar />
-    <div className="container-fluid py-5 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-        <div className="container overflow-auto p-0" style={{ maxWidth: '100%', maxHeight: '100%' }}>
-            {isLoading ? (
-                <p className="text-center">Loading suspended staffs...</p>
-            ) : (
-                <div className="row row-cols-1 row-cols-md-3 g-4">
-                    {suspendedStaffs.length > 0 ? (
-                        suspendedStaffs.map((staff, index) => (
-                            <div className="col" key={index} onClick={() => handleViewDetails(staff.hospitalStaffId)}>
-                                <div className="card h-100" style={{ cursor: 'pointer', border: '2px solid red', borderRadius: '10px' }}>
-                                    <img src={staff.hospitalStaffProfileImage} className="card-img-top" alt="Staff" style={{ height: '200px', objectFit: 'cover', borderRadius: '10px 10px 0 0' }} />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{staff.hospitalStaffName}</h5>
-                                        <p className="card-text"><strong>Email:</strong> {staff.hospitalStaffEmail}</p>
-                                        <p className="card-text"><strong>Mobile:</strong> {staff.hospitalStaffMobile}</p>
-                                        <p className="card-text"><strong>Address:</strong> {staff.hospitalStaffAddress}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <div className="col-12">
-                            <p className="text-center">No suspended staffs available.</p>
-                        </div>
-                    )}
-                </div>
-            )}
+<div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
+  <Navbar />
+  <div className="container my-5">
+    <div className="row justify-content-center" style={{ gap: '1rem' }}>
+      {isLoading ? (
+        <div className="col-12 text-center">
+          <div className="alert alert-info">Loading suspended staffs...</div>
         </div>
+      ) : suspendedStaffs.length > 0 ? (
+        suspendedStaffs.map((staff, index) => (
+          <div className="col-lg-4 col-md-6 d-flex align-items-stretch" key={index}>
+            <div className="card shadow-sm" style={{ width: '100%' }}>
+              <img src={staff.hospitalStaffProfileImage} className="card-img-top" alt="Staff" style={{ objectFit: 'cover', height: '200px' }} />
+              <div className="card-body">
+                <h5 className="card-title">{staff.hospitalStaffName}</h5>
+                <p className="card-text"><strong>Email:</strong> {staff.hospitalStaffEmail}</p>
+                <p className="card-text"><strong>Mobile:</strong> {staff.hospitalStaffMobile}</p>
+                <p className="card-text"><strong>Address:</strong> {staff.hospitalStaffAddress}</p>
+              </div>
+              <div className="card-footer bg-transparent">
+                <button className="btn btn-primary w-100" onClick={() => handleViewDetails(staff.hospitalStaffId)}>Take actions</button>
+              </div>
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className="col-12 text-center">
+          <div className="alert alert-warning">No suspended staffs available.</div>
+        </div>
+      )}
     </div>
-    <Footer />
+  </div>
+  <Footer />
 </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

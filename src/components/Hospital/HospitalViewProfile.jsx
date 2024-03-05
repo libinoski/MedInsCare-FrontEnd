@@ -67,50 +67,50 @@ const HospitalViewProfile = () => {
     };
 
     return (
-       
 <div>
     {/* Navbar */}
     <Navbar />
-    <div class="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-12">
-                <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="container" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div class="row justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card shadow-lg mb-5 bg-body rounded" style={{ borderRadius: '15px', overflow: 'hidden' }}>
+                    <div class="bg-primary" style={{ borderRadius: '15px 15px 0 0', padding: '20px', color: '#ffffff' }}>
+                        <h2 class="text-center">Hospital Profile</h2>
+                    </div>
                     {isLoading ? (
-                        <div class="card-body d-flex justify-content-center align-items-center">
+                        <div class="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
                             <div class="spinner-border text-primary" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                     ) : hospitalProfile ? (
                         <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-md-6 d-flex justify-content-center mb-3">
-                                    <div class="position-relative">
-                                        <img
-                                            src={hospitalProfile && hospitalProfile.hospitalImage}
-                                            alt="Hospital"
-                                            class="img-fluid rounded-circle"
-                                            style={{ width: '200px', height: '200px', objectFit: 'cover', border: '4px solid #fff', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}
-                                        />
-                                    </div>
+                            <div class="row g-4 align-items-center">
+                                <div class="col-12 col-md-5 d-flex justify-content-center">
+                                    <img
+                                        src={hospitalProfile && hospitalProfile.hospitalImage}
+                                        alt="Hospital"
+                                        class="img-thumbnail"
+                                        style={{ width: '250px', height: '250px', objectFit: 'cover', borderRadius: '50%', border: '5px solid #f8f9fa' }}
+                                    />
                                 </div>
-                                <div class="col-md-6 d-flex flex-column justify-content-center">
-                                    <p class="mb-2"><strong>Name:</strong> {hospitalProfile.hospitalName}</p>
+                                <div class="col-12 col-md-7">
+                                    <h3 class="mb-3 text-primary">{hospitalProfile.hospitalName}</h3>
                                     <p class="mb-2"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
                                     <p class="mb-2"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
                                     <p class="mb-2"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
-                                    <p class="mb-2"><strong>Website:</strong> {hospitalProfile.hospitalWebSite}</p>
+                                    <p class="mb-2"><strong>Website:</strong> <a href={hospitalProfile.hospitalWebSite} class="text-decoration-none">{hospitalProfile.hospitalWebSite}</a></p>
                                     <p class="mb-2"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
                                     <p class="mb-2"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-center mt-4">
-                                <Link to="/hospitalUpdateProfile" class="btn" style={{ background: 'linear-gradient(45deg, #007bff, #6610f2)', color: '#fff', padding: '10px 20px', borderRadius: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Details</Link>
-                                <Link to="/hospitalChangeImage" class="btn" style={{ background: 'linear-gradient(45deg, #20c997, #198754)', color: '#fff', padding: '10px 20px', marginLeft: '10px', borderRadius: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Image</Link>
+                            <div class="d-flex justify-content-center gap-3 mt-4">
+                                <Link to="/hospitalUpdateProfile" class="btn btn-primary" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Details</Link>
+                                <Link to="/hospitalChangeImage" class="btn btn-success" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Change Image</Link>
                             </div>
                         </div>
                     ) : (
-                        <div class="card-body d-flex justify-content-center align-items-center">
+                        <div class="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
                             <p>No profile found.</p>
                         </div>
                     )}
@@ -121,6 +121,8 @@ const HospitalViewProfile = () => {
     {/* Footer */}
     <Footer />
 </div>
+
+
 
 
 

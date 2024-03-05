@@ -75,46 +75,29 @@ const HospitalViewAllStaffs = () => {
     <div>
         <Navbar />
     </div>
-    <div className="flex-grow-1" style={{ overflowY: 'auto', paddingTop: '70px', paddingBottom: '70px' }}>
+    <div className="container flex-grow-1" style={{ overflowY: 'auto', paddingTop: '70px', paddingBottom: '70px' }}>
         {isLoading ? (
-            <p className="text-center">Loading staffs...</p>
+            <div className="text-center alert alert-info">Loading staffs...</div>
         ) : staffList.length > 0 ? (
-            <div className="d-flex flex-column align-items-center justify-content-center pt-5 pb-5">
+            <div className="d-flex flex-wrap justify-content-center pt-5 pb-5">
                 {staffList.map((staff, index) => (
                     <div
                         key={index}
-                        className="d-flex align-items-center justify-content-start bg-white shadow rounded-3 mb-3 p-3 w-75"
-                        style={{
-                            cursor: 'pointer',
-                            backdropFilter: 'blur(5px)',
-                            backgroundColor: 'rgba(255, 255, 255, 0.85)',
-                        }}
+                        className="card shadow-sm rounded-3 mb-3 mx-2" style={{ width: '18rem', cursor: 'pointer' }}
                         onClick={() => handleViewStaff(staff.hospitalStaffId)}
                     >
-                        {staff.hospitalStaffProfileImage && (
-                            <div className="me-3">
-                                <div className="d-flex justify-content-center align-items-center rounded-circle border border-primary" style={{ width: '60px', height: '60px', overflow: 'hidden' }}>
-                                    <img
-                                        src={staff.hospitalStaffProfileImage}
-                                        className="img-fluid"
-                                        alt="Staff"
-                                        style={{
-                                            objectFit: 'cover',
-                                            minWidth: '100%',
-                                            minHeight: '100%',
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        )}
-                        <div className="flex-grow-1">
-                            <p className="mb-1 fw-bold text-dark" style={{ fontSize: '1rem' }}>
-                                {staff.hospitalStaffName}
-                            </p>
-                            <p className="mb-1 text-muted" style={{ fontSize: '0.9rem' }}>
-                                {staff.hospitalStaffEmail}
-                            </p>
-                            <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
+                        <div className="card-body">
+                            {staff.hospitalStaffProfileImage && (
+                                <img
+                                    src={staff.hospitalStaffProfileImage}
+                                    className="card-img-top img-fluid rounded-circle mb-3"
+                                    alt="Staff"
+                                    style={{ height: '100px', width: '100px', objectFit: 'cover' }}
+                                />
+                            )}
+                            <h5 className="card-title">{staff.hospitalStaffName}</h5>
+                            <p className="card-text">{staff.hospitalStaffEmail}</p>
+                            <p className="card-text text-muted">
                                 Aadhar: {staff.hospitalStaffAadhar}, Mobile: {staff.hospitalStaffMobile}, Address: {staff.hospitalStaffAddress}
                             </p>
                         </div>
@@ -122,7 +105,7 @@ const HospitalViewAllStaffs = () => {
                 ))}
             </div>
         ) : (
-            <p className="text-center mt-4">No staffs found.</p>
+            <div className="text-center alert alert-warning mt-4">No staffs found.</div>
         )}
     </div>
     <div>

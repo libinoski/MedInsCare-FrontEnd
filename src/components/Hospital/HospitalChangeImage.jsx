@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalChangeImage = () => {
     const navigate = useNavigate();
@@ -86,66 +85,41 @@ const HospitalChangeImage = () => {
     };
 
     return (
-<div>
+<div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f0f2f7' }}>
     {/* Navbar */}
     <Navbar />
 
     {/* Main content */}
-    <div className="container-fluid">
-        <div className="row">
-            {/* Left column for background image */}
-            <div className="col-md-6 d-flex align-items-center justify-content-center">
-                <div
-                    className="container-fluid bg-blur"
-                    style={{
-                        backgroundImage: `url(${backgroundImage})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        minHeight: '100vh',
-                        position: 'relative',
-                    }}
-                ></div>
-            </div>
-            {/* Right column for card */}
-            <div className="col-md-6 d-flex align-items-center justify-content-center">
-                <div className="container py-5">
-                    <div className="row justify-content-center">
-                        <div className="col">
-                            <div className="card transparent-card">
-                                <div className="card-body">
-                                    <form onSubmit={handleImageUpload} encType="multipart/form-data">
-                                        <div className="row mb-3 justify-content-center">
-                                            <div className="col-md-6">
-                                                {currentImage && (
-                                                    <img
-                                                        src={currentImage}
-                                                        alt="Current Hospital"
-                                                        className="img-fluid img-preview"
-                                                    />
-                                                )}
-                                            </div>
-                                        </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="hospitalImage" className="form-label">Choose New Image:</label>
-                                            <input
-                                                type="file"
-                                                className={`form-control ${validationErrors.hospitalImage ? 'is-invalid' : ''}`}
-                                                id="hospitalImage"
-                                                ref={fileInputRef}
-                                            />
-                                            {validationErrors.hospitalImage && (
-                                                <div className="invalid-feedback">{validationErrors.hospitalImage}</div>
-                                            )}
-                                        </div>
-                                        <div className="d-grid mt-4">
-                                            <button type="submit" className={`btn btn-${Object.keys(validationErrors).length ? 'danger' : 'success'}`} disabled={isLoading} style={{ width: '100px' }}>
-                                                {isLoading ? 'Uploading Image...' : 'Upload'}
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+    <div className="container-fluid flex-grow-1 d-flex align-items-center justify-content-center">
+        <div className="col-12 col-md-8 col-lg-6">
+            <div className="container py-5 d-flex justify-content-center">
+                <div className="card shadow-sm" style={{ borderRadius: '20px', overflow: 'hidden', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+                    <div className="card-body">
+                        <form onSubmit={handleImageUpload} encType="multipart/form-data">
+                            <div className="mb-4 d-flex justify-content-center align-items-center">
+                                {currentImage && (
+                                    <img src={currentImage} alt="Current" className="img-thumbnail" style={{ width: '200px', height: '200px', borderRadius: '10px', objectFit: 'cover' }} />
+                                )}
                             </div>
-                        </div>
+                            <div className="mb-3">
+                                <label htmlFor="hospitalImage" className="form-label">Choose New Image:</label>
+                                <input
+                                    type="file"
+                                    className={`form-control ${validationErrors.hospitalImage ? 'is-invalid' : ''}`}
+                                    id="hospitalImage"
+                                    ref={fileInputRef}
+                                    style={{ borderRadius: '5px' }}
+                                />
+                                {validationErrors.hospitalImage && (
+                                    <div className="invalid-feedback">{validationErrors.hospitalImage}</div>
+                                )}
+                            </div>
+                            <div className="text-center">
+                                <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                                    {isLoading ? 'Uploading...' : 'Upload'}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -155,6 +129,7 @@ const HospitalChangeImage = () => {
     {/* Footer */}
     <Footer />
 </div>
+
 
     );
 };

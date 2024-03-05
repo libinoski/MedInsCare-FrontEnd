@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalViewOneUnapprovedInsuranceProvider = () => {
     const navigate = useNavigate();
@@ -163,37 +162,38 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
 
     return (
 <div>
-    {/* Navbar */}
     <Navbar />
-    <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+    <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px', backgroundColor: '#f0f2f5' }}>
         <div className="row justify-content-center align-items-center">
-
-            {/* Right Side Profile Details Card */}
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+            <div className="col-lg-8 d-flex align-items-center justify-content-center">
                 {isLoading ? (
-                    <p className="text-center">Loading provider details...</p>
+                    <div className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading provider details...</span>
+                        </div>
+                    </div>
                 ) : (
-                    <div className="col-lg-10">
+                    <div className="col-lg-12">
                         {providerDetails ? (
-                            <div className="card profile-card shadow-lg border-0 w-100 h-100">
+                            <div className="card profile-card shadow border-0 w-100 h-100" style={{ borderRadius: '20px' }}>
                                 <div className="card-body">
-                                    <div className="d-flex justify-content-center mb-4">
-                                        <div className="rounded-circle overflow-hidden" style={{ width: '200px', height: '200px' }}>
+                                    <div className="d-flex flex-column align-items-center mb-5">
+                                        <div className="profile-picture bg-light rounded-circle shadow" style={{ width: '200px', height: '200px', overflow: 'hidden', border: '5px solid white' }}>
                                             <img src={providerDetails.insuranceProviderProfileImage} alt="Provider" className="img-fluid" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                                         </div>
+                                        <h3 className="mt-4">{providerDetails.insuranceProviderName}</h3>
                                     </div>
-                                    <div className="mb-4">
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Provider Name:</strong> {providerDetails.insuranceProviderName}</p>
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
-                                        <p className="mb-1" style={{ color: '#000' }}><strong>Registered Date:</strong> {formatDate(providerDetails.registeredDate)}</p>
+                                    <div className="text-center">
+                                        <p className="mb-2"><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
+                                        <p className="mb-2"><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
+                                        <p className="mb-2"><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
+                                        <p className="mb-2"><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
+                                        <p className="mb-2"><strong>Registered Date:</strong> {formatDate(providerDetails.registeredDate)}</p>
                                     </div>
                                 </div>
-                                <div className="card-footer text-center">
-                                    <button className="btn btn-gradient btn-success me-2" onClick={handleApproveProvider}>Approve</button>
-                                    <button className="btn btn-gradient btn-danger" onClick={handleDeleteProvider}>Delete</button>
+                                <div className="card-footer d-flex justify-content-center bg-transparent border-top-0">
+                                    <button className="btn btn-primary me-3" onClick={handleApproveProvider} style={{ borderRadius: '50px', padding: '10px 30px', boxShadow: '0 4px 8px rgba(0,0,0,.1)' }}>Approve</button>
+                                    <button className="btn btn-danger" onClick={handleDeleteProvider} style={{ borderRadius: '50px', padding: '10px 30px', boxShadow: '0 4px 8px rgba(0,0,0,.1)' }}>Delete</button>
                                 </div>
                             </div>
                         ) : (
@@ -202,21 +202,12 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                     </div>
                 )}
             </div>
-            
-        </div>
-        <div className="row">
-
-            {/* Left Side Image Container */}
-            <div className="col-lg-12 d-flex align-items-center justify-content-center">
-                {backgroundImage && (
-                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                )}
-            </div>
-            
         </div>
     </div>
     <Footer />
 </div>
+
+
 
 
 

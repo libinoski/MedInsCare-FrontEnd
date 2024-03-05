@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalViewOneSuspendedStaff = () => {
     const navigate = useNavigate();
@@ -105,56 +104,52 @@ const HospitalViewOneSuspendedStaff = () => {
 
     return (
 <div>
-    <Navbar />
-    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                {isLoading ? (
-                    <p className="text-center">Loading staff details...</p>
-                ) : (
-                    <div className="card shadow border border-danger" style={{ borderRadius: '15px', width: '100%' }}>
-                        <div className="card-body">
-                            <div className="row align-items-start justify-content-start"> {/* Align items and justify content to start */}
-                                <div className="col-md-4 text-center">
-                                    <img src={staffDetails.hospitalStaffProfileImage} alt="Staff Profile" className="img-fluid" style={{ width: '200px', height: '200px', objectFit: 'cover' }} />
-                                </div>
-                                <div className="col-md-8"> {/* Move the name and email to the left */}
-                                    <h5 className="card-title">{staffDetails.hospitalStaffName}</h5>
-                                    <p><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card-footer bg-transparent border-0" style={{ position: 'absolute', bottom: '0', right: '0' }}> {/* Align button to bottom right */}
-                            <button className="btn btn-success btn-lg" onClick={handleUnsuspendStaff} style={{ borderRadius: '10px', backgroundImage: 'linear-gradient(to right, #00cc99, #006600)' }}>Unsuspend</button>
-                        </div>
+  <Navbar />
+  <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px', backgroundColor: '#f0f2f5' }}>
+    <div className="row justify-content-center align-items-center">
+      <div className="col-lg-8 d-flex align-items-center justify-content-center">
+        {isLoading ? (
+          <div className="text-center">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading staff details...</span>
+            </div>
+          </div>
+        ) : (
+          <div className="col-lg-12">
+            {staffDetails ? (
+              <div className="card profile-card shadow border-0 w-100 h-100" style={{ borderRadius: '20px' }}>
+                <div className="card-body">
+                  <div className="d-flex flex-column align-items-center mb-5">
+                    <div className="profile-picture bg-light rounded-circle shadow" style={{ width: '200px', height: '200px', overflow: 'hidden', border: '5px solid white' }}>
+                      <img src={staffDetails.hospitalStaffProfileImage} alt="Staff" className="img-fluid" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                     </div>
-                )}
-            </div>
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                {/* Ensure backgroundImage is not null */}
-                {backgroundImage && (
-                    <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                )}
-            </div>
-        </div>
+                    <h3 className="mt-4 text-center">{staffDetails.hospitalStaffName}</h3>
+                  </div>
+                  <div className="text-left">
+                    <p className="mb-2"><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                    <p className="mb-2"><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                    <p className="mb-2"><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                    <p className="mb-2"><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                  </div>
+                </div>
+                <div className="card-footer d-flex justify-content-center bg-transparent border-top-0">
+                  <button className="btn btn-primary me-3" onClick={handleUnsuspendStaff} style={{ borderRadius: '50px', padding: '10px 30px', boxShadow: '0 4px 8px rgba(0,0,0,.1)' }}>Unsuspend</button>
+                </div>
+              </div>
+            ) : (
+              <p className="text-center">No staff details found.</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
-    <Footer />
+  </div>
+  <Footer />
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
 
 
 

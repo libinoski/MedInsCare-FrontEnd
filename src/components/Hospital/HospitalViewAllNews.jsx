@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 
@@ -75,8 +74,8 @@ const HospitalViewAllNews = () => {
     return (
 <div>
     <Navbar />
-    <div className="container-fluid py-4" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '100vh', position: 'relative' }}>
-        <div className="container" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
+    <div className="container-fluid py-4" style={{ minHeight: '100vh', position: 'relative' }}>
+        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
             {isLoading ? (
                 <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status">
@@ -107,6 +106,8 @@ const HospitalViewAllNews = () => {
     </div>
     <Footer />
 </div>
+
+
 
     );
 };

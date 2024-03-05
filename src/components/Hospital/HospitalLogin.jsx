@@ -66,7 +66,7 @@ const HospitalLogin = () => {
 
         // Define navigateToSignUp function here
         const navigateToSignUp = () => {
-            navigate('/'); // Change '/signup' to the path you use for your signup page
+            navigate('/hospitalRegistration'); // Change '/signup' to the path you use for your signup page
         };
 
     return (

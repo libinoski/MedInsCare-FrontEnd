@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 import Footer from '../Common/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 const HospitalViewOnePatient = () => {
     const navigate = useNavigate();
@@ -114,81 +112,59 @@ const HospitalViewOnePatient = () => {
     };
 
     return (
-        <div>
+<div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
     <Navbar />
-    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="row justify-content-center align-items-center" style={{ minHeight: 'calc(50vh - 40px)' }}>
-                    <div className="col-lg-12">
-                        {isLoading ? (
-                            <p className="text-center">Loading patient details...</p>
-                        ) : patientDetails ? (
-                            <div className="card shadow-lg w-100 h-100 border-0" style={{ borderRadius: '15px', backgroundColor: '#f8f9fa' }}>
-                                <div className="card-body">
-                                    <div className="row align-items-center">
-                                        <div className="col-lg-4 text-center">
-                                            <img
-                                                src={patientDetails.patientProfileImage}
-                                                alt="Profile"
-                                                className="img-fluid rounded-circle"
-                                                style={{
-                                                    width: '200px', /* Increased size */
-                                                    height: '200px', /* Increased size */
-                                                    objectFit: 'cover'
-                                                }}
-                                            />
-                                            {patientDetails.isVerified && ( // Check if patient is verified
-                                                <FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green', position: 'absolute', bottom: 0, right: 0 }} />
-                                            )}
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h5 className="card-title">{patientDetails.patientName}</h5>
-                                            <p><strong>Email:</strong> {patientDetails.patientEmail}</p>
-                                            <p><strong>Aadhar:</strong> {patientDetails.patientAadhar}</p>
-                                            <p><strong>Mobile:</strong> {patientDetails.patientMobile}</p>
-                                            <p><strong>Address:</strong> {patientDetails.patientAddress}</p>
-                                            <p><strong>Admitted Date:</strong> {patientDetails.patientRegisteredDate}</p>
-                                        </div>
-                                    </div>
+    <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1 0 auto' }}>
+        <div className="row justify-content-center">
+            <div className="col-12 col-md-10 col-lg-8">
+                {isLoading ? (
+                    <div className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading patient details...</span>
+                        </div>
+                    </div>
+                ) : patientDetails ? (
+                    <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
+                        <div className="card-body p-4 p-md-5">
+                            <div className="row align-items-center">
+                                <div className="col-lg-4 text-center mb-4 mb-lg-0">
+                                    <img
+                                        src={patientDetails.patientProfileImage}
+                                        alt="Profile"
+                                        className="img-fluid rounded-circle border"
+                                        style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+                                    />
+                                    {patientDetails.isVerified && (
+                                        // Assuming FontAwesomeIcon component integration
+                                        <i className="fas fa-check-circle" style={{ color: 'green', position: 'absolute', bottom: '10px', right: '10px', fontSize: '24px' }}></i>
+                                    )}
                                 </div>
-                                <div className="card-footer border-0 bg-transparent">
-                                    <div className="d-flex justify-content-center">
-                                        <button
-                                            className="btn btn-danger mx-2"
-                                            onClick={handleDeletePatient}>
-                                            Delete Patient
-                                        </button>
-                                        <button
-                                            className="btn btn-warning mx-2"
-                                            onClick={handleSendNotificationToPatient}>
-                                            Send Notification
-                                        </button>
-                                        <button
-                                            className="btn btn-info mx-2"
-                                            onClick={() => navigate('/hospitalUpdatePatient')}>
-                                            Update Patient
-                                        </button>
-                                    </div>
+                                <div className="col-lg-8">
+                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{patientDetails.patientName}</h2>
+                                    <p className="mb-2"><strong>Email:</strong> {patientDetails.patientEmail}</p>
+                                    <p className="mb-2"><strong>Aadhar:</strong> {patientDetails.patientAadhar}</p>
+                                    <p className="mb-2"><strong>Mobile:</strong> {patientDetails.patientMobile}</p>
+                                    <p className="mb-2"><strong>Address:</strong> {patientDetails.patientAddress}</p>
+                                    <p><strong>Admitted Date:</strong> {patientDetails.patientRegisteredDate}</p>
                                 </div>
                             </div>
-                        ) : (
-                            <p className="text-center">No patient details found.</p>
-                        )}
+                        </div>
+                        <div className="card-footer d-flex justify-content-center bg-transparent">
+                            <button className="btn mx-2" onClick={handleDeletePatient} style={{ backgroundImage: 'linear-gradient(135deg, #ff416c, #ff4b2b)', color: 'white' }}>Delete Patient</button>
+                            <button className="btn mx-2" onClick={handleSendNotificationToPatient} style={{ backgroundImage: 'linear-gradient(135deg, #FFD200, #F7971E)', color: 'white' }}>Send Notification</button>
+                            <button className="btn mx-2" onClick={() => navigate('/hospitalUpdatePatient')} style={{ backgroundImage: 'linear-gradient(135deg, #00B4DB, #0083B0)', color: 'white' }}>Update Patient</button>
+                        </div>
                     </div>
-                </div>
-                <div className="row justify-content-center align-items-end" style={{ minHeight: 'calc(50vh - 40px)' }}>
-                    <div className="col-lg-12 d-flex align-items-center justify-content-center">
-                        {backgroundImage && (
-                            <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                        )}
-                    </div>
-                </div>
+                ) : (
+                    <p className="text-center">No patient details found.</p>
+                )}
             </div>
         </div>
     </div>
-    <Footer />
+    <Footer className="mt-auto" />
 </div>
+
+
 
 
 

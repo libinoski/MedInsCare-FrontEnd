@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalUpdateProfile = () => {
     const navigate = useNavigate();
@@ -151,13 +150,8 @@ const HospitalUpdateProfile = () => {
     <Navbar />
     <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
         <div className="row">
-            {/* Left Side Image Container */}
-            <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-                <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-            </div>
-
             {/* Right Side Profile Details Card */}
-            <div className="col-lg-6 d-flex align-items-center justify-content-center">
+            <div className="col-12 d-flex align-items-center justify-content-center">
                 <div className="card" style={{ width: '100%', maxWidth: '500px', backgroundColor: 'rgba(255, 255, 255, 0.5)', border: Object.keys(errorMessages).length > 0 ? '1px solid red' : 'none' }}>
                     <div className="card-body">
                         <form onSubmit={handleSubmit} noValidate>
@@ -253,6 +247,7 @@ const HospitalUpdateProfile = () => {
     {/* Footer */}
     <Footer />
 </div>
+
 
 
     );

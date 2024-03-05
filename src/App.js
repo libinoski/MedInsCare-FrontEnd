@@ -51,6 +51,14 @@ import InsuranceProviderChangePassword from './components/InsuranceProviders/Ins
 import InsuranceProviderChangeIdProofImage from './components/InsuranceProviders/InsuranceProviderChangeIdProofImage';
 import InsuranceProviderChangeProfileImage from './components/InsuranceProviders/InsuranceProviderChangeProfileImage';
 import InsuranceProviderUpdateProfile from './components/InsuranceProviders/InsuranceProviderUpdateProfile';
+import HospitalStaffAddMedicalRecord from './components/Hospital Staff/HospitalStaffAddMedicalRecord';
+import HomePage from './components/Common/Home';
+import HospitalSearchInsuranceProviders from './components/Hospital/HospitalSearchInsuranceProviders';
+import HospitalViewAllInsuranceProviders from './components/Hospital/HospitalViewAllInsuranceProviders';
+import HospitalViewOneInsuranceProvider from './components/Hospital/HospitalViewOneInsuranceProvider';
+import HospitalSendNotificationToInsuranceProvider from './components/Hospital/HospitalSendNotifictionToInsuranceProvider';
+import PatientChangePassword from './components/Patient/PatientChangePassword';
+import PatientViewProfile from './components/Patient/PatientViewProfile';
 
 
 function App() {
@@ -62,7 +70,7 @@ function App() {
           <Route path='/navbar' elemet={<Navbar />} />
           <Route path='/hospitalStaffNavbar' elemet={<HospitalStaffNavbar />} />
           <Route path='/footer' elemet={<Footer />} />
-          <Route path='/' element={<HospitalRegistration />} />
+          <Route path='/hospitalRegistration' element={<HospitalRegistration />} />
           <Route path='/hospitalLogin' element={<HospitalLogin />} />
           <Route path='/hospitalStaffLogin' element={<HospitalStaffLogin />} />
           <Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />
@@ -109,6 +117,14 @@ function App() {
           <Route path='/InsuranceProviderChangeIdProofImage' element={<InsuranceProviderChangeIdProofImage />} />
           <Route path='/InsuranceProviderChangeProfileImage' element={<InsuranceProviderChangeProfileImage />} />
           <Route path='/InsuranceProviderUpdateProfile' element={<InsuranceProviderUpdateProfile />} />
+          <Route path='/hospitalStaffAddMedicalRecord' element={<HospitalStaffAddMedicalRecord />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/hospitalSearchInsuranceProviders' element={<HospitalSearchInsuranceProviders />} />
+          <Route path='/hospitalViewAllInsuranceProviders' element={<HospitalViewAllInsuranceProviders />} />
+          <Route path='/hospitalViewOneInsuranceProvider' element={<HospitalViewOneInsuranceProvider />} />
+          <Route path='/hospitalSendNotificationToInsuranceProvider' element={<HospitalSendNotificationToInsuranceProvider />} />
+          <Route path='/patientChangePassword' element={<PatientChangePassword />} />
+          <Route path='/patientViewProfile' element={<PatientViewProfile />} />
 
         </Routes>
       </BrowserRouter>

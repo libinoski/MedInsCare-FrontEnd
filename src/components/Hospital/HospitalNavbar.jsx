@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faHospitalUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faUserNurse, faNewspaper, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light" style={{ background: '#f8f9fa', borderBottom: '1px solid #e0e0e0' }}>
             <div className="container">
-                <Link className="navbar-brand fw-bold" to="/" style={{ color: '#495057' }}>
-                    <FontAwesomeIcon icon={faHospitalUser} className="me-2" style={{ color: '#007bff' }} />
-                    MedInsCare
+                <Link className="navbar-brand fw-bold d-flex align-items-center" to="/" style={{ color: '#495057' }}>
+                    <span style={{ fontSize: '1.2rem' }}>MedInsCare</span>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -46,6 +45,8 @@ const Navbar = () => {
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
                                 <li><Link className="dropdown-item" to="/hospitalViewAllUnApprovedInsuranceProviders">View all unapproved insurance providers</Link></li>
+                                <li><Link className="dropdown-item" to="/hospitalViewAllInsuranceProviders">View all insurance providers</Link></li>
+                                <li><Link className="dropdown-item" to="/hospitalSearchInsuranceProviders">Search insurance providers</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">

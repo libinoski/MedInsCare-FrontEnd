@@ -70,48 +70,49 @@ const HospitalSendNotificationToPatient = () => {
     };
 
     return (
-        <div style={{ position: 'relative', minHeight: '100vh' }}>
-            {/* Navbar */}
-            <Navbar />
-            <div className="container-fluid bg-blur" style={{ paddingTop: '56px' }}>
-                <div className="container py-5">
-                    <div className="row">
-                        {/* Left Side Image Container */}
-                        <div className="col-lg-6 d-flex justify-content-center align-items-center">
-                            <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', width: 'auto' }} />
-                        </div>
-                        {/* Right Side Profile Details Card */}
-                        <div className="col-lg-6 d-flex justify-content-center align-items-center">
-                            <div className="card bg-transparent border-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)', maxWidth: '100%' }}>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
-                                        <div className="mb-3">
-                                            <label htmlFor="notificationMessage" className="form-label">Message:</label>
-                                            <textarea
-                                                value={notificationMessage}
-                                                onChange={(e) => setNotificationMessage(e.target.value)}
-                                                className="form-control"
-                                                id="notificationMessage"
-                                                rows="5"
-                                                style={{ width: '100%' }}
-                                            ></textarea>
-                                        </div>
-                                        {error && <div className="alert alert-danger">{error}</div>}
-                                        <div className="text-center">
-                                            <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading}>
-                                                {isLoading ? 'Sending...' : 'Send Notification'}
-                                            </button>
-                                        </div>
-                                    </form>
+<div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#f0f2f7' }}>
+    {/* Navbar */}
+    <Navbar />
+    <div className="container-fluid" style={{ paddingTop: '56px' }}>
+        <div className="container py-5">
+            <div className="row">
+                {/* Left Side Image Container */}
+                <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                    <img src={backgroundImage} className="img-fluid rounded-circle" alt="Background" style={{ maxHeight: '90%', width: 'auto', boxShadow: '0 8px 20px 0 rgba(0, 0, 0, 0.12)' }} />
+                </div>
+                {/* Right Side Profile Details Card */}
+                <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                    <div className="card bg-transparent border-0" style={{ backdropFilter: 'blur(10px)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '15px', maxWidth: '100%' }}>
+                        <div className="card-body">
+                            <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
+                                <div className="mb-4">
+                                    <label htmlFor="notificationMessage" className="form-label" style={{ fontWeight: '500' }}>Message:</label>
+                                    <textarea
+                                        value={notificationMessage}
+                                        onChange={(e) => setNotificationMessage(e.target.value)}
+                                        className="form-control"
+                                        id="notificationMessage"
+                                        rows="5"
+                                        style={{ borderRadius: '15px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.06)' }}
+                                    ></textarea>
                                 </div>
-                            </div>
+                                {error && <div className="alert alert-danger" style={{ borderRadius: '15px' }}>{error}</div>}
+                                <div className="text-center">
+                                    <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading} style={{ borderRadius: '25px', padding: '10px 30px', transition: 'background-color .3s', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                                        {isLoading ? 'Sending...' : 'Send Notification'}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* Footer */}
-            <Footer />
         </div>
+    </div>
+    {/* Footer */}
+    <Footer />
+</div>
+
     );
 };
 

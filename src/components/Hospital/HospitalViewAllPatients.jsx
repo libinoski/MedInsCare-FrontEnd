@@ -70,33 +70,63 @@ const HospitalViewAllPatients = () => {
     return (
 <div className="d-flex flex-column min-vh-100">
     <Navbar />
-    <div className="flex-grow-1 container-fluid p-0" style={{ paddingTop: '60px', overflowY: 'auto' }}>
+    <div className="flex-grow-1 container" style={{ paddingTop: '70px', paddingBottom: '70px', overflowY: 'auto' }}>
         {isLoading ? (
-            <p className="text-center">Loading patients...</p>
+            <p className="text-center alert alert-info">Loading patients...</p>
         ) : patientList.length > 0 ? (
-            <div className="d-flex flex-column align-items-center justify-content-center pt-5 pb-5" style={{ maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
+            <div className="d-flex flex-wrap justify-content-center pt-5 pb-5">
                 {patientList.map((patient, index) => (
-                    <div key={index} className="d-flex align-items-center justify-content-start bg-white shadow rounded-3 mb-3 p-3 w-75 border border-success" style={{ cursor: 'pointer' }} onClick={() => handleViewPatient(patient.patientId)}>
-                        <div className="me-3" style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
-                            {patient.patientProfileImage && (
-                                <img src={patient.patientProfileImage} className="img-fluid rounded-circle" alt="Patient" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                            )}
-                        </div>
-                        <div className="flex-grow-1">
-                            <p className="mb-1 fw-bold text-dark" style={{ fontSize: '1rem' }}>{patient.patientName}</p>
-                            <p className="mb-1 text-muted" style={{ fontSize: '0.9rem' }}>Registered Date: {new Date(patient.patientRegisteredDate).toLocaleDateString()}</p>
-                            <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</p>
-                            <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>Aadhar: {patient.patientAadhar}, Mobile: {patient.patientMobile}, Address: {patient.patientAddress}</p>
+                    <div
+                        key={index}
+                        className="card shadow-sm rounded-3 mb-3 mx-2" style={{ width: '18rem', cursor: 'pointer' }}
+                        onClick={() => handleViewPatient(patient.patientId)}
+                    >
+                        <div className="card-body">
+                            <div className="d-flex align-items-center mb-3">
+                                <div style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
+                                    {patient.patientProfileImage && (
+                                        <img
+                                            src={patient.patientProfileImage}
+                                            className="card-img-top img-fluid rounded-circle"
+                                            alt="Patient"
+                                            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                                        />
+                                    )}
+                                </div>
+                                <div className="flex-grow-1 ms-3">
+                                    <h5 className="card-title">{patient.patientName}</h5>
+                                </div>
+                            </div>
+                            <p className="card-text text-muted">
+                                <span style={{ fontWeight: 'bold' }}>Registered Date:</span> {new Date(patient.patientRegisteredDate).toLocaleDateString()}
+                            </p>
+                            <p className="card-text text-muted">
+                                <span style={{ fontWeight: 'bold' }}>Discharge Status:</span> {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}
+                            </p>
+                            <p className="card-text text-muted">
+                                <span style={{ fontWeight: 'bold' }}>Aadhar:</span> {patient.patientAadhar}
+                            </p>
+                            <p className="card-text text-muted">
+                                <span style={{ fontWeight: 'bold' }}>Mobile:</span> {patient.patientMobile}
+                            </p>
+                            <p className="card-text text-muted">
+                                <span style={{ fontWeight: 'bold' }}>Address:</span> {patient.patientAddress}
+                            </p>
                         </div>
                     </div>
                 ))}
             </div>
         ) : (
-            <p className="text-center mt-4">No patients found.</p>
+            <div className="text-center alert alert-warning mt-4">No patients found.</div>
         )}
     </div>
     <Footer />
 </div>
+
+
+
+
+
 
 
     

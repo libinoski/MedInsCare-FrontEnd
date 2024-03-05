@@ -1,25 +1,24 @@
-// eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 
-const HospitalViewOneStaff = () => {
+const HospitalViewOneInsuranceProvider = () => {
     const navigate = useNavigate();
-    const [staffDetails, setStaffDetails] = useState(null);
+    const [providerDetails, setProviderDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const fetchStaffDetails = async () => {
+        const fetchProviderDetails = async () => {
             setIsLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
                 const hospitalId = sessionStorage.getItem('hospitalId');
-                const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+                const insuranceProviderId = sessionStorage.getItem('insuranceProviderId');
                 const response = await axios.post(
-                    'http://localhost:1313/api/mic/hospital/viewOneHospitalStaff',
-                    { hospitalId, hospitalStaffId },
+                    'http://localhost:1313/api/mic/hospital/viewOneInsuranceProvider',
+                    { hospitalId, insuranceProviderId },
                     {
                         headers: {
                             token
@@ -27,7 +26,7 @@ const HospitalViewOneStaff = () => {
                     }
                 );
                 if (response.status === 200) {
-                    setStaffDetails(response.data.data);
+                    setProviderDetails(response.data.data);
                 }
             } catch (error) {
                 if (error.response) {
@@ -39,7 +38,7 @@ const HospitalViewOneStaff = () => {
                             navigate('/hospitalLogin');
                             break;
                         case 422:
-                            const errorMessage422 = data.error || "An error occurred while fetching staff details.";
+                            const errorMessage422 = data.error || "An error occurred while fetching provider details.";
                             alert(errorMessage422);
                             break;
                         case 500:
@@ -57,20 +56,20 @@ const HospitalViewOneStaff = () => {
             }
         };
 
-        fetchStaffDetails();
+        fetchProviderDetails();
     }, [navigate]);
 
-    const handleDeleteStaff = async () => {
-        const confirmed = window.confirm("Are you sure you want to delete this staff?");
+    const handleDeleteProvider = async () => {
+        const confirmed = window.confirm("Are you sure you want to delete this provider?");
         if (!confirmed) return;
 
         try {
             const token = sessionStorage.getItem('token');
             const hospitalId = sessionStorage.getItem('hospitalId');
-            const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+            const insuranceProviderId = sessionStorage.getItem('insuranceProviderId');
             const response = await axios.post(
-                'http://localhost:1313/api/mic/hospital/deleteHospitalStaff',
-                { hospitalId, hospitalStaffId },
+                'http://localhost:1313/api/mic/hospital/deleteOneInsuranceProvider',
+                { hospitalId, insuranceProviderId },
                 {
                     headers: {
                         token
@@ -79,7 +78,7 @@ const HospitalViewOneStaff = () => {
             );
             if (response.status === 200) {
                 alert(response.data.message);
-                navigate('/hospitalViewAllStaffs'); // Redirect to the home page or any other appropriate page
+                navigate('/hospitalViewAllInsuranceProviders'); // Redirect to the home page or any other appropriate page
             }
         } catch (error) {
             if (error.response) {
@@ -91,7 +90,7 @@ const HospitalViewOneStaff = () => {
                         navigate('/hospitalLogin');
                         break;
                     case 422:
-                        const errorMessage422 = data.error || "An error occurred while deleting the staff.";
+                        const errorMessage422 = data.error || "An error occurred while deleting the provider.";
                         alert(errorMessage422);
                         break;
                     case 500:
@@ -107,17 +106,17 @@ const HospitalViewOneStaff = () => {
         }
     };
 
-    const handleSuspendStaff = async () => {
-        const confirmed = window.confirm("Are you sure you want to suspend this staff?");
+    const handleSuspendProvider = async () => {
+        const confirmed = window.confirm("Are you sure you want to suspend this provider?");
         if (!confirmed) return;
 
         try {
             const token = sessionStorage.getItem('token');
             const hospitalId = sessionStorage.getItem('hospitalId');
-            const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+            const insuranceProviderId = sessionStorage.getItem('insuranceProviderId');
             const response = await axios.post(
-                'http://localhost:1313/api/mic/hospital/suspendHospitalStaff',
-                { hospitalId, hospitalStaffId },
+                'http://localhost:1313/api/mic/hospital/suspendInsuranceProvider',
+                { hospitalId, insuranceProviderId },
                 {
                     headers: {
                         token
@@ -126,7 +125,7 @@ const HospitalViewOneStaff = () => {
             );
             if (response.status === 200) {
                 alert(response.data.message);
-                navigate('/hospitalViewAllStaffs');
+                navigate('/hospitalViewAllInsuranceProviders');
             }
         } catch (error) {
             if (error.response) {
@@ -138,7 +137,7 @@ const HospitalViewOneStaff = () => {
                         navigate('/hospitalLogin');
                         break;
                     case 422:
-                        const errorMessage422 = data.error || "An error occurred while suspending the staff.";
+                        const errorMessage422 = data.error || "An error occurred while suspending the provider.";
                         alert(errorMessage422);
                         break;
                     case 500:
@@ -154,8 +153,8 @@ const HospitalViewOneStaff = () => {
         }
     };
 
-    const handleSendNotificationToStaff = () => {
-        navigate('/hospitalSendNotificationToStaff');
+    const handleSendNotificationToProvider = () => {
+        navigate('/hospitalSendNotificationToInsuranceProvider');
     };
 
     return (
@@ -167,106 +166,48 @@ const HospitalViewOneStaff = () => {
                 {isLoading ? (
                     <div className="text-center">
                         <div className="spinner-border text-primary" role="status">
-                            <span className="visually-hidden">Loading staff details...</span>
+                            <span className="visually-hidden">Loading provider details...</span>
                         </div>
                     </div>
-                ) : staffDetails ? (
+                ) : providerDetails ? (
                     <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
                         <div className="card-body p-4 p-md-5">
                             <div className="row align-items-center">
                                 <div className="col-md-6 text-center mb-4 mb-md-0">
                                     <img
-                                        src={staffDetails.hospitalStaffProfileImage}
+                                        src={providerDetails.insuranceProviderProfileImage}
                                         alt="Profile"
                                         className="img-fluid rounded-circle border"
                                         style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
                                     />
                                 </div>
                                 <div className="col-md-6">
-                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{staffDetails.hospitalStaffName}</h2>
-                                    <p className="mb-2"><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                                    <p className="mb-2"><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
-                                    <p className="mb-2"><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                                    <p className="mb-2"><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                    <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
+                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{providerDetails.insuranceProviderName}</h2>
+                                    <p className="mb-2"><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
+                                    <p className="mb-2"><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
+                                    <p className="mb-2"><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
+                                    <p className="mb-2"><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
+                                    <p><strong>Added Date:</strong> {providerDetails.addedDate}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3' }}>
                             <div className="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
-                                <button className="btn" onClick={handleDeleteStaff} style={{ backgroundImage: 'linear-gradient(135deg, #ff416c, #ff4b2b)', color: 'white' }}>Delete Staff</button>
-                                <button className="btn" onClick={handleSuspendStaff} style={{ backgroundImage: 'linear-gradient(135deg, #FFD200, #F7971E)', color: 'white' }}>Suspend Staff</button>
-                                <button className="btn" onClick={handleSendNotificationToStaff} style={{ backgroundImage: 'linear-gradient(135deg, #00B4DB, #0083B0)', color: 'white' }}>Send Notification</button>
-                                <button className="btn" onClick={() => navigate('/hospitalUpdateStaff')} style={{ backgroundImage: 'linear-gradient(135deg, #11998e, #38ef7d)', color: 'white' }}>Update Staff</button>
+                                <button className="btn" onClick={handleDeleteProvider} style={{ backgroundImage: 'linear-gradient(135deg, #ff416c, #ff4b2b)', color: 'white' }}>Delete Provider</button>
+                                <button className="btn" onClick={handleSuspendProvider} style={{ backgroundImage: 'linear-gradient(135deg, #FFD200, #F7971E)', color: 'white' }}>Suspend Provider</button>
+                                <button className="btn" onClick={handleSendNotificationToProvider} style={{ backgroundImage: 'linear-gradient(135deg, #00B4DB, #0083B0)', color: 'white' }}>Send Notification</button>
                             </div>
                         </div>
                     </div>
                 ) : (
-                    <p className="text-center">No staff details found.</p>
+                    <p className="text-center">No provider details found.</p>
                 )}
             </div>
         </div>
     </div>
     <Footer />
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     );
 };
 
-export default HospitalViewOneStaff;
+export default HospitalViewOneInsuranceProvider;

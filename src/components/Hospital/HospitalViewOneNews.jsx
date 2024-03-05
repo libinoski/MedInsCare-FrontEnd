@@ -122,41 +122,41 @@ const HospitalViewOneNews = () => {
     return (
 <div>
     <Navbar />
-    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
-        <div className="row justify-content-center align-items-center h-100">
-            <div className="col-lg-8">
-                {isLoading ? (
-                    <p className="text-center">Loading news details...</p>
-                ) : (
-                    <div className="card" style={{ borderRadius: '10px' }}>
-                        {newsDetails ? (
-                            <div className="row g-0">
-                                <div className="col-md-6 d-flex flex-column justify-content-between">
-                                    <div className="card-body">
-                                        <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
-                                        <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p>
-                                        <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p>
-                                        {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
-                                    </div>
-                                    <div className="d-flex justify-content-center pb-4">
-                                        <button className="btn btn-danger me-2" onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}>Delete</button>
-                                        <button className="btn btn-primary" onClick={handleUpdateNews}>Update</button>
-                                    </div>
+    <div className="container-fluid d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
+        <div className="col-lg-8">
+            {isLoading ? (
+                <p className="text-center">Loading news details...</p>
+            ) : (
+                <div className="card" style={{ borderRadius: '10px' }}>
+                    {newsDetails ? (
+                        <div className="row g-0">
+                            <div className="col-md-6 d-flex flex-column justify-content-between">
+                                <div className="card-body">
+                                    <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
+                                    <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p>
+                                    <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p>
+                                    {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
                                 </div>
-                                <div className="col-md-6">
-                                    <img src={newsDetails.hospitalNewsImage} className="img-fluid rounded-end" alt="News" style={{ objectFit: 'cover', height: '100%' }} />
+                                <div className="d-flex justify-content-center pb-4">
+                                    <button className="btn btn-danger me-2" onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}>Delete</button>
+                                    <button className="btn btn-primary" onClick={handleUpdateNews}>Update</button>
                                 </div>
                             </div>
-                        ) : (
-                            <p className="text-center">No news details found.</p>
-                        )}
-                    </div>
-                )}
-            </div>
+                            <div className="col-md-6">
+                                <img src={newsDetails.hospitalNewsImage} className="img-fluid rounded-end" alt="News" style={{ objectFit: 'cover', height: '100%' }} />
+                            </div>
+                        </div>
+                    ) : (
+                        <p className="text-center">No news details found.</p>
+                    )}
+                </div>
+            )}
         </div>
     </div>
     <Footer />
 </div>
+
+
 
 
 

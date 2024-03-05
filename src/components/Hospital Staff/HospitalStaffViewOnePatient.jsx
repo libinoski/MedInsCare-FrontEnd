@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
-import Footer from '../Common/Footer';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
+import Footer from '../Common/Footer';
+import backgroundImage from '../../images/Hospital/hr.jpg'; // Import the background image
 
 const HospitalStaffViewOnePatient = () => {
     const navigate = useNavigate();
@@ -63,6 +63,8 @@ const HospitalStaffViewOnePatient = () => {
     const handleSendNotificationToPatient = () => {
         navigate('/hospitalStaffSendNotificationToPatient');
     };
+    
+
 
     return (
         <div>
