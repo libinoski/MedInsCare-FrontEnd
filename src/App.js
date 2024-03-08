@@ -68,6 +68,10 @@ import InsuranceProviderAddInsurancePackage from './components/InsuranceProvider
 import PatientViewAllInsurancePackages from './components/Patient/PatientViewAllInsurancePackages';
 import PatientViewOneInsurancePackage from './components/Patient/PatientViewOneInsurancePackage';
 import InsuranceProviderViewAllClients from './components/InsuranceProviders/InsuranceProvidersViewAllClients';
+import Dashboard from './components/Hospital/HospitalDashboard';
+import HospitalSearchPatients from './components/Hospital/HospitalSeacrchPatients';
+import HospitalViewAllReviews from './components/Hospital/HospitalViewAllReviewsAboutInsuranceProviders';
+import PatientAddReview from './components/Patient/PatientAddReview';
 
 
 function App() {
@@ -76,9 +80,11 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path='/navbar' elemet={<Navbar />} />
-          <Route path='/hospitalStaffNavbar' elemet={<HospitalStaffNavbar />} />
-          <Route path='/footer' elemet={<Footer />} />
+          <Route path='/navbar' element={<Navbar />} />
+          <Route path='/hospitalStaffNavbar' element={<HospitalStaffNavbar />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/footer' element={<Footer />} />
+          <Route path='/hospitalSearchPatients' element={<HospitalSearchPatients />} />
           <Route path='/hospitalRegistration' element={<HospitalRegistration />} />
           <Route path='/hospitalLogin' element={<HospitalLogin />} />
           <Route path='/hospitalStaffLogin' element={<HospitalStaffLogin />} />
@@ -143,6 +149,8 @@ function App() {
           <Route path='/patientViewAllInsurancePackages' element={<PatientViewAllInsurancePackages />} />
           <Route path='/patientViewOneInsurancePackage' element={<PatientViewOneInsurancePackage />} />
           <Route path='/insuranceProviderViewAllClients' element={<InsuranceProviderViewAllClients />} />
+          <Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
+          <Route path='/patientAddReview' element={<PatientAddReview />} />
 
         </Routes>
       </BrowserRouter>

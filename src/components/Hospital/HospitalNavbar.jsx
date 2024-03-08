@@ -7,9 +7,10 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light" style={{ background: '#f8f9fa', borderBottom: '1px solid #e0e0e0' }}>
             <div className="container">
-                <Link className="navbar-brand fw-bold d-flex align-items-center" to="/" style={{ color: '#495057' }}>
+            <Link className="navbar-brand fw-bold d-flex align-items-center" to="/dashboard" style={{ color: '#495057' }}>
                     <span style={{ fontSize: '1.2rem' }}>MedInsCare</span>
                 </Link>
+
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -21,6 +22,7 @@ const Navbar = () => {
                                 Profile Settings
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                                <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalViewProfile">View Profile</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalChangePassword">Change Password</Link></li>
                             </ul>
@@ -47,6 +49,7 @@ const Navbar = () => {
                                 <li><Link className="dropdown-item" to="/hospitalViewAllUnApprovedInsuranceProviders">View all unapproved insurance providers</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalViewAllInsuranceProviders">View all insurance providers</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalSearchInsuranceProviders">Search insurance providers</Link></li>
+                                <li><Link className="dropdown-item" to="/viewAllReviews">View all reviews</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">

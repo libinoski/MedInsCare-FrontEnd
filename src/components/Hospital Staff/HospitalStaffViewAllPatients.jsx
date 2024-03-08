@@ -98,6 +98,8 @@ const HospitalStaffViewAllPatients = () => {
                                                 <li><small className="text-muted">Aadhar: {patient.patientAadhar}</small></li>
                                                 <li><small className="text-muted">Mobile: {patient.patientMobile}</small></li>
                                                 <li><small className="text-muted">Address: {patient.patientAddress}</small></li>
+                                                <li><small className="text-muted">Ward: {patient.admittedWard}</small></li>
+                                                <li><small className="text-muted">Diagnosis or disease type: {patient.diagnosisOrDiseaseType}</small></li>
                                             </ul>
                                         </div>
                                     </div>

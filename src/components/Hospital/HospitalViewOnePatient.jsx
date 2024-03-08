@@ -110,6 +110,14 @@ const HospitalViewOnePatient = () => {
     const handleSendNotificationToPatient = () => {
         navigate('/hospitalSendNotificationToPatient');
     };
+    // Function to format date and time
+    const formatDate = (dateTime) => {
+        const date = new Date(dateTime);
+        const formattedDate = date.toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
+        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false }); // Format: HH:MM
+        return `${formattedDate} ${formattedTime}`;
+    };
+
 
     return (
 <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -141,11 +149,14 @@ const HospitalViewOnePatient = () => {
                                 </div>
                                 <div className="col-lg-8">
                                     <h2 className="card-title" style={{ color: '#0056b3' }}>{patientDetails.patientName}</h2>
+                                    <p className="mb-2"><strong>Ward:</strong> {patientDetails.admittedWard}</p>
+                                    <p className="mb-2"><strong>Diagnosis or disease type	:</strong> {patientDetails.diagnosisOrDiseaseType	}</p>
+
                                     <p className="mb-2"><strong>Email:</strong> {patientDetails.patientEmail}</p>
                                     <p className="mb-2"><strong>Aadhar:</strong> {patientDetails.patientAadhar}</p>
                                     <p className="mb-2"><strong>Mobile:</strong> {patientDetails.patientMobile}</p>
                                     <p className="mb-2"><strong>Address:</strong> {patientDetails.patientAddress}</p>
-                                    <p><strong>Admitted Date:</strong> {patientDetails.patientRegisteredDate}</p>
+                                    <p><strong>Admitted Date:</strong> {formatDate(patientDetails.registeredDate)}</p>
                                 </div>
                             </div>
                         </div>

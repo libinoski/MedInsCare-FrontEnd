@@ -71,6 +71,14 @@ const HospitalStaffViewOnePatient = () => {
         navigate('/hospitalStaffAddMedicalRecordOfPatient'); // Adjust the route according to your application
     };
 
+        // Function to format date and time
+        const formatDate = (dateTime) => {
+            const date = new Date(dateTime);
+            const formattedDate = date.toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
+            const formattedTime = date.toLocaleTimeString('en-US', { hour12: false }); // Format: HH:MM
+            return `${formattedDate} ${formattedTime}`;
+        };
+    
 
 
     return (
@@ -104,7 +112,10 @@ const HospitalStaffViewOnePatient = () => {
                                                     <p className="mb-2"><strong>Aadhar:</strong> {patientDetails.patientAadhar}</p>
                                                     <p className="mb-2"><strong>Mobile:</strong> {patientDetails.patientMobile}</p>
                                                     <p className="mb-2"><strong>Address:</strong> {patientDetails.patientAddress}</p>
-                                                    <p><strong>Admitted Date:</strong> {patientDetails.registeredDate}</p>
+                                                    <p className="mb-2"><strong>Ward:</strong> {patientDetails.admittedWard}</p>
+                                                    <p className="mb-2"><strong>diagnosis or disease type:</strong> {patientDetails.diagnosisOrDiseaseType}</p>
+
+                                                    <p><strong>Admitted Date:</strong> {formatDate(patientDetails.registeredDate)}</p> {/* Format the date here */}
                                                 </div>
                                             </div>
                                         </div>

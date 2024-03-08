@@ -156,6 +156,31 @@ const HospitalStaffRegisterPatient = () => {
               <input type="text" className={`form-control ${validationErrors.patientName ? 'is-invalid' : ''}`} name="patientName" value={patientData.patientName} onChange={handleInputChange} placeholder="Name *" required />
               {validationErrors.patientName && <div className="invalid-feedback">{validationErrors.patientName}</div>}
             </div>
+
+{/* Admitted Ward Field */}
+<div className="mb-3">
+  <select className={`form-select ${validationErrors.admittedWard ? 'is-invalid' : ''}`} name="admittedWard" value={patientData.admittedWard} onChange={handleInputChange} required>
+    <option value="">Select Admitted Ward *</option>
+    <option value="ward1">Ward 1</option>
+    <option value="ward2">Ward 2</option>
+    {/* Add more options for other wards if needed */}
+  </select>
+  {validationErrors.admittedWard && <div className="invalid-feedback">{validationErrors.admittedWard}</div>}
+</div>
+
+{/* Diagnosis or Disease Type Field */}
+<div className="mb-3">
+  <select className={`form-select ${validationErrors.diagnosisOrDiseaseType ? 'is-invalid' : ''}`} name="diagnosisOrDiseaseType" value={patientData.diagnosisOrDiseaseType} onChange={handleInputChange} required>
+    <option value="">Select Diagnosis or Disease Type *</option>
+    <option value="diagnosis1">Diagnosis 1</option>
+    <option value="diagnosis2">Diagnosis 2</option>
+    {/* Add more options for other diagnoses or diseases if needed */}
+  </select>
+  {validationErrors.diagnosisOrDiseaseType && <div className="invalid-feedback">{validationErrors.diagnosisOrDiseaseType}</div>}
+</div>
+
+
+
             {/* Email Field */}
             <div className="mb-3">
               <input type="email" className={`form-control ${validationErrors.patientEmail ? 'is-invalid' : ''}`} name="patientEmail" value={patientData.patientEmail} onChange={handleInputChange} placeholder="Email *" required />

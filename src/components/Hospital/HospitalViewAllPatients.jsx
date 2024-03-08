@@ -109,6 +109,12 @@ const HospitalViewAllPatients = () => {
                                         <span style={{ fontWeight: 'bold' }}>Registered Date:</span> {formatDate(patient.registeredDate)}
                                     </p>
                                     <p className="card-text text-muted">
+                                        <span style={{ fontWeight: 'bold' }}>Ward:</span> {patient.admittedWard}
+                                    </p>
+                                    <p className="card-text text-muted">
+                                        <span style={{ fontWeight: 'bold' }}>Diagnosis or disease type:</span> {patient.diagnosisOrDiseaseType}
+                                    </p>
+                                    <p className="card-text text-muted">
                                         <span style={{ fontWeight: 'bold' }}>Discharge Status:</span> {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}
                                     </p>
                                     <p className="card-text text-muted">

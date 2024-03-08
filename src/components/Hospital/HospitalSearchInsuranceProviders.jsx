@@ -48,7 +48,7 @@ const HospitalSearchInsuranceProviders = () => {
                     alert(data.message || 'No insurance providers found.');
                     break;
                 case 500:
-                    alert(data.message || 'Internal server error. Please try again later.');
+                    alert(data.error || 'Internal server error. Please try again later.');
                     break;
                 default:
                     alert('An error occurred. Please try again.');
