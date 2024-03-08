@@ -64,19 +64,26 @@ const HospitalViewAllSuspendedStaffs = () => {
 
     return (
 
-<div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
+<div className="d-flex flex-column min-vh-100">
   <Navbar />
-  <div className="container my-5 flex-grow-1"> {/* Added flex-grow-1 */}
-    <div className="row justify-content-center" style={{ gap: '1rem' }}>
+  <div className="container my-5 flex-grow-1">
+    <div className="row g-4 justify-content-center">
       {isLoading ? (
         <div className="col-12 text-center">
-          <div className="alert alert-info">Loading suspended staffs...</div>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading suspended staffs...</span>
+          </div>
         </div>
       ) : suspendedStaffs.length > 0 ? (
         suspendedStaffs.map((staff, index) => (
-          <div className="col-lg-4 col-md-6 d-flex align-items-stretch" key={index}>
-            <div className="card shadow-sm" style={{ width: '100%' }}>
-              <img src={staff.hospitalStaffProfileImage} className="card-img-top" alt="Staff" style={{ objectFit: 'cover', height: '200px' }} />
+          <div className="col-lg-4 col-md-6" key={index}>
+            <div className="card h-100 shadow-sm">
+              <img 
+                src={staff.hospitalStaffProfileImage} 
+                className="card-img-top" 
+                alt="Staff" 
+                style={{ objectFit: 'contain', height: '200px', width: '100%' }} // Adjusted style for image
+              />
               <div className="card-body">
                 <h5 className="card-title">{staff.hospitalStaffName}</h5>
                 <p className="card-text"><strong>Email:</strong> {staff.hospitalStaffEmail}</p>
@@ -84,14 +91,16 @@ const HospitalViewAllSuspendedStaffs = () => {
                 <p className="card-text"><strong>Address:</strong> {staff.hospitalStaffAddress}</p>
               </div>
               <div className="card-footer bg-transparent">
-                <button className="btn btn-primary w-100" onClick={() => handleViewDetails(staff.hospitalStaffId)}>Take actions</button>
+                <button className="btn btn-primary w-100" onClick={() => handleViewDetails(staff.hospitalStaffId)}>Take Actions</button>
               </div>
             </div>
           </div>
         ))
       ) : (
         <div className="col-12 text-center">
-          <div className="alert alert-warning">No suspended staffs available.</div>
+          <div className="alert alert-warning" role="alert">
+            No suspended staffs available.
+          </div>
         </div>
       )}
     </div>

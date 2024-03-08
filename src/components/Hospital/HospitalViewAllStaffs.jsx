@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 
-
 const HospitalViewAllStaffs = () => {
     const navigate = useNavigate();
     const [staffList, setStaffList] = useState([]);
@@ -71,55 +70,42 @@ const HospitalViewAllStaffs = () => {
     };
 
     return (
-<div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
-    <div>
-        <Navbar />
-    </div>
-    <div className="container flex-grow-1" style={{ overflowY: 'auto', paddingTop: '70px', paddingBottom: '70px' }}>
-        {isLoading ? (
-            <div className="text-center alert alert-info">Loading staffs...</div>
-        ) : staffList.length > 0 ? (
-            <div className="d-flex flex-wrap justify-content-center pt-5 pb-5">
-                {staffList.map((staff, index) => (
-                    <div
-                        key={index}
-                        className="card shadow-sm rounded-3 mb-3 mx-2" style={{ width: '18rem', cursor: 'pointer' }}
-                        onClick={() => handleViewStaff(staff.hospitalStaffId)}
-                    >
-                        <div className="card-body">
-                            {staff.hospitalStaffProfileImage && (
-                                <img
-                                    src={staff.hospitalStaffProfileImage}
-                                    className="card-img-top img-fluid rounded-circle mb-3"
-                                    alt="Staff"
-                                    style={{ height: '100px', width: '100px', objectFit: 'cover' }}
-                                />
-                            )}
-                            <h5 className="card-title">{staff.hospitalStaffName}</h5>
-                            <p className="card-text">{staff.hospitalStaffEmail}</p>
-                            <p className="card-text text-muted">
-                                Aadhar: {staff.hospitalStaffAadhar}, Mobile: {staff.hospitalStaffMobile}, Address: {staff.hospitalStaffAddress}
-                            </p>
+        <div className="d-flex flex-column min-vh-100">
+            <Navbar />
+            <div className="container my-auto px-4 py-5" style={{ overflowY: 'auto' }}>
+                {isLoading ? (
+                    <div className="text-center mb-3">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                ))}
+                ) : staffList.length > 0 ? (
+                    <div className="row row-cols-1 row-cols-md-3 g-4">
+                        {staffList.map((staff, index) => (
+                            <div key={index} className="col" onClick={() => handleViewStaff(staff.hospitalStaffId)}>
+                                <div className="card h-100 shadow-sm">
+                                    {staff.hospitalStaffProfileImage && (
+                                        <img src={staff.hospitalStaffProfileImage} className="card-img-top img-fluid rounded-circle mx-auto mt-3" alt="Staff" style={{ height: '100px', width: '100px', objectFit: 'cover' }} />
+                                    )}
+                                    <div className="card-body text-center">
+                                        <h5 className="card-title">{staff.hospitalStaffName}</h5>
+                                        <p className="card-text">{staff.hospitalStaffEmail}</p>
+                                        <p className="card-text text-muted">
+                                            Aadhar: {staff.hospitalStaffAadhar}, Mobile: {staff.hospitalStaffMobile}, Address: {staff.hospitalStaffAddress}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="alert alert-warning text-center" role="alert">
+                        No staffs found.
+                    </div>
+                )}
             </div>
-        ) : (
-            <div className="text-center alert alert-warning mt-4">No staffs found.</div>
-        )}
-    </div>
-    <div>
-        <Footer />
-    </div>
-</div>
-
-
-
-
-
-
-
-
+            <Footer />
+        </div>
     );
 };
 

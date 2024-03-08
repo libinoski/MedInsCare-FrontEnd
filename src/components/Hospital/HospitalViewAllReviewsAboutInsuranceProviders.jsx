@@ -83,15 +83,17 @@ const HospitalViewAllReviews = () => {
                 {reviewList.map((review, index) => (
                     <div
                         key={index}
-                        className="card shadow-sm rounded-3 mb-3 mx-2" style={{ width: '18rem', cursor: 'pointer' }}
+                        className="card shadow-sm rounded-3 mb-3 mx-2"
+                        style={{ width: '18rem', cursor: 'pointer' }}
                         onClick={() => handleViewreview(review.reviewId)}
                     >
                         <div className="card-body">
- 
-                            <h5 className="card-title">{review.reviewContent}</h5>
-                            <p className="card-text">{review.insuranceProviderName}</p>
-                            <p className="card-text">{review.patientName}</p>
-
+                            {review.patientProfileImage && (
+                                <img src={review.patientProfileImage} alt="Patient" className="img-fluid rounded-circle mb-3" style={{ maxHeight: '100px', width: 'auto' }} />
+                            )}
+                            <h5 className="card-title">{review.patientName}</h5>
+                            <p className="card-text">Insurance Provider: <span style={{ color: 'red' }}>{review.insuranceProviderName}</span></p>
+                            <p className="card-text">{review.reviewContent}</p>
                             <p className="card-text">{review.sendDate}</p>
                         </div>
                     </div>
@@ -105,6 +107,9 @@ const HospitalViewAllReviews = () => {
         <Footer />
     </div>
 </div>
+
+
+
 
     );
 };

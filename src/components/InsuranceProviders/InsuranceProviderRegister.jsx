@@ -104,17 +104,17 @@ const InsuranceProviderRegistration = () => {
                         const validationErrors400 = data.results || {};
                         setValidationErrors(validationErrors400);
                         break;
-                    case 422:
-                        if (data && data.error) {
-                            let errorMessage = '';
-                            Object.entries(data.error).forEach(([field, messages]) => {
-                                errorMessage += `${field}: ${messages.join(', ')}\n`;
-                            });
-                            alert(errorMessage);
-                        } else {
-                            alert('Validation error during registration');
-                        }
-                        break;
+                        case 422:
+                            if (data && data.error) {
+                                let errorMessage = '';
+                                Object.entries(data.error).forEach(([field, messages]) => {
+                                    errorMessage += `${field}: ${messages.join(', ')}\n`;
+                                });
+                                alert(errorMessage);
+                            } else {
+                                alert('Validation error during registration');
+                            }
+                            break;
                     case 500:
                         alert(data.message || 'Internal server error. Please try again later.');
                         break;

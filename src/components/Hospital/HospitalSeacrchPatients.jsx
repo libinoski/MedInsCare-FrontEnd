@@ -137,12 +137,14 @@ const HospitalSearchPatients = () => {
                                             <img
                                                 src={patient.patientProfileImage}
                                                 alt="Profile"
-                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                                                style={{ width: '100%', maxHeight: '200px', objectFit: 'contain' }}
                                             />
                                         </div>
                                         <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                                            {patient.hospitalPatientName}
+                                            {patient.patientName}
                                         </h5>
+                                        <p className="mb-2"><strong>Admitted Ward:</strong> {patient.admittedWard}</p>
+                                        <p className="mb-0"><strong>Diagnosis/Disease:</strong> {patient.diagnosisOrDiseaseType}</p>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +156,7 @@ const HospitalSearchPatients = () => {
     </div>
     <Footer />
 </div>
+
     );
 };
 

@@ -61,7 +61,7 @@ const InsuranceProviderAddInsurancePackage = () => {
             if (response.status === 200) {
                 alert('Insurance package added successfully');
                 resetForm();
-                navigate('/insuranceProviderViewPackages');
+                navigate('/insuranceProviderViewProfile');
             }
         } catch (error) {
             handleErrors(error);

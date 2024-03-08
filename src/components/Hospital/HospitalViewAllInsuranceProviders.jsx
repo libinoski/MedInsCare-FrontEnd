@@ -68,60 +68,65 @@ const HospitalViewAllInsuranceProviders = () => {
     };
 
     return (
-        <div className="d-flex flex-column min-vh-100">
-            <Navbar />
-            <div className="flex-grow-1 container" style={{ paddingTop: '70px', paddingBottom: '70px', overflowY: 'auto' }}>
-                {isLoading ? (
-                    <p className="text-center alert alert-info">Loading insurance providers...</p>
-                ) : providerList && providerList.length > 0 ? ( // Add check for providerList to ensure it's not undefined
-                    <div className="d-flex flex-wrap justify-content-center pt-5 pb-5">
-                        {providerList.map((provider, index) => (
-                            <div
-                                key={index}
-                                className="card shadow-sm rounded-3 mb-3 mx-2" style={{ width: '18rem', cursor: 'pointer' }}
-                                onClick={() => handleViewProvider(provider.insuranceProviderId)}
-                            >
-                                <div className="card-body">
-                                    <div className="d-flex align-items-center mb-3">
-                                        <div style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
-                                            {provider.insuranceProviderProfileImage && (
-                                                <img
-                                                    src={provider.insuranceProviderProfileImage}
-                                                    className="card-img-top img-fluid rounded-circle"
-                                                    alt="Insurance Provider"
-                                                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                                                />
-                                            )}
-                                        </div>
-                                        <div className="flex-grow-1 ms-3">
-                                            <h5 className="card-title">{provider.insuranceProviderName}</h5>
-                                        </div>
-                                    </div>
-                                    <p className="card-text text-muted">
-                                        <span style={{ fontWeight: 'bold' }}>Registered Date:</span> {new Date(provider.registeredDate).toLocaleDateString()}
-                                    </p>
-                                    <p className="card-text text-muted">
-                                        <span style={{ fontWeight: 'bold' }}>Status:</span> {provider.isActive ? 'Active' : 'Inactive'}
-                                    </p>
-                                    <p className="card-text text-muted">
-                                        <span style={{ fontWeight: 'bold' }}>Email:</span> {provider.insuranceProviderEmail}
-                                    </p>
-                                    <p className="card-text text-muted">
-                                        <span style={{ fontWeight: 'bold' }}>Phone:</span> {provider.insuranceProviderMobile}
-                                    </p>
-                                    <p className="card-text text-muted">
-                                        <span style={{ fontWeight: 'bold' }}>Address:</span> {provider.insuranceProviderAddress}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="text-center alert alert-warning mt-4">No insurance providers found.</div>
-                )}
+<div className="d-flex flex-column min-vh-100">
+    <Navbar />
+    <div className="container flex-grow-1 py-5" style={{ overflowY: 'auto' }}>
+        {isLoading ? (
+            <div className="text-center">
+                <div className="spinner-border text-info" role="status">
+                    <span className="visually-hidden">Loading insurance providers...</span>
+                </div>
             </div>
-            <Footer />
-        </div>
+        ) : providerList && providerList.length > 0 ? (
+            <div className="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
+                {providerList.map((provider, index) => (
+                    <div key={index} className="col">
+                        <div className="card shadow-sm h-100" style={{ cursor: 'pointer' }} onClick={() => handleViewProvider(provider.insuranceProviderId)}>
+                            <div className="card-body d-flex flex-column align-items-center">
+                                <div className="mb-3" style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
+                                    {provider.insuranceProviderProfileImage ? (
+                                        <img
+                                            src={provider.insuranceProviderProfileImage}
+                                            alt="Insurance Provider"
+                                            className="img-fluid rounded-circle"
+                                            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                                        />
+                                    ) : (
+                                        <div className="bg-secondary d-flex justify-content-center align-items-center h-100 w-100 rounded-circle">
+                                            <i className="fas fa-building text-white"></i> {/* Placeholder icon if no image */}
+                                        </div>
+                                    )}
+                                </div>
+                                <h5 className="card-title text-center">{provider.insuranceProviderName}</h5>
+                                <p className="card-text text-muted text-center">
+                                    <strong>Registered Date:</strong> {new Date(provider.registeredDate).toLocaleDateString()}
+                                </p>
+                                <p className="card-text text-muted text-center">
+                                    <strong>Status:</strong> {provider.isActive ? 'Active' : 'Inactive'}
+                                </p>
+                                <p className="card-text text-muted text-center">
+                                    <strong>Email:</strong> {provider.insuranceProviderEmail}
+                                </p>
+                                <p className="card-text text-muted text-center">
+                                    <strong>Phone:</strong> {provider.insuranceProviderMobile}
+                                </p>
+                                <p className="card-text text-muted text-center">
+                                    <strong>Address:</strong> {provider.insuranceProviderAddress}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <div className="alert alert-warning text-center" role="alert">
+                No insurance providers found.
+            </div>
+        )}
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

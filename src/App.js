@@ -67,11 +67,12 @@ import PatientViewOneInsuranceProvider from './components/Patient/PatientViewOne
 import InsuranceProviderAddInsurancePackage from './components/InsuranceProviders/InsuranceProviderAddInsurancePackage';
 import PatientViewAllInsurancePackages from './components/Patient/PatientViewAllInsurancePackages';
 import PatientViewOneInsurancePackage from './components/Patient/PatientViewOneInsurancePackage';
-import InsuranceProviderViewAllClients from './components/InsuranceProviders/InsuranceProvidersViewAllClients';
 import Dashboard from './components/Hospital/HospitalDashboard';
 import HospitalSearchPatients from './components/Hospital/HospitalSeacrchPatients';
 import HospitalViewAllReviews from './components/Hospital/HospitalViewAllReviewsAboutInsuranceProviders';
 import PatientAddReview from './components/Patient/PatientAddReview';
+import InsuranceProviderViewAllClients from './components/InsuranceProviders/InsuranceProvierViewAllClients';
+import InsuranceProviderViewOneClient from './components/InsuranceProviders/InsuranceProviderViewOneClient';
 
 
 function App() {
@@ -151,6 +152,7 @@ function App() {
           <Route path='/insuranceProviderViewAllClients' element={<InsuranceProviderViewAllClients />} />
           <Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
           <Route path='/patientAddReview' element={<PatientAddReview />} />
+          <Route path='/insuranceProviderViewOneClient' element={<InsuranceProviderViewOneClient />} />
 
         </Routes>
       </BrowserRouter>

@@ -75,7 +75,7 @@ const Navbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/hospitalLogin" style={{ color: '#495057' }}>
+                            <Link className="nav-link" to="/" style={{ color: '#495057' }}>
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>

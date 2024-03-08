@@ -30,7 +30,7 @@ const InsuranceProviderNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/patientLogin">
+                            <Link className="nav-link" to="/">
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>

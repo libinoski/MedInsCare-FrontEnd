@@ -62,63 +62,54 @@ const InsuranceProviderViewAllClients = () => {
         fetchClients();
     }, [navigate]);
 
+    const handleViewClient = (clientId) => {
+        sessionStorage.setItem('clientId', clientId);
+        navigate('/insuranceProviderViewOneClient');
+    };
+
     return (
-<div className="d-flex flex-column min-vh-100">
-    <InsuranceProviderNavbar />
-    <div className="flex-grow-1 container-fluid py-4" style={{ overflowY: 'auto' }}>
-        <div className="container">
-            {isLoading ? (
-                <p className="text-center">Loading clients...</p>
-            ) : clientList.length > 0 ? (
-                clientList.map((client, index) => (
-                    <div key={index} className="card mb-3">
-                        <div className="card-body">
-                            <h5 className="card-title">Client ID: {client.clientId}</h5>
-                            <div className="row">
-                                <div className="col-lg-6 col-md-6 col-sm-12">
-                                    <p><strong>Patient ID:</strong> {client.patientId}</p>
-                                    <p><strong>Package ID:</strong> {client.packageId}</p>
-                                    <p><strong>Insurance Provider ID:</strong> {client.insuranceProviderId}</p>
-                                    <p><strong>Hospital ID:</strong> {client.hospitalId}</p>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-12">
-                                    <div className="mb-3">
-                                        <strong>Patient Details:</strong>
-                                        <p>Name: {client.patientDetails.name}</p>
-                                        <p>Email: {client.patientDetails.email}</p>
-                                        <p>Aadhar: {client.patientDetails.aadhar}</p>
-                                        <p>Mobile: {client.patientDetails.mobile}</p>
-                                    </div>
-                                    <div className="mb-3">
-                                        <strong>Package Details:</strong>
-                                        <p>Title: {client.packageDetails.title}</p>
-                                        <p>Details: {client.packageDetails.details}</p>
-                                        <p>Amount: {client.packageDetails.amount}</p>
-                                        <p>Duration: {client.packageDetails.duration}</p>
-                                    </div>
-                                    <div className="mb-3">
-                                        <strong>Hospital Details:</strong>
-                                        <p>Name: {client.hospitalDetails.name}</p>
-                                        <p>Email: {client.hospitalDetails.email}</p>
+        <div className="d-flex flex-column min-vh-100">
+            <InsuranceProviderNavbar />
+            <div className="flex-grow-1 container-fluid py-4">
+                <div className="container">
+                    {isLoading ? (
+                        <p className="text-center">Loading clients...</p>
+                    ) : clientList.length > 0 ? (
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {clientList.map((client, index) => (
+                                <div key={index} className="col">
+                                    <div className="card h-100 shadow-sm" onClick={() => handleViewClient(client.clientId)}>
+                                        <img
+                                            src={client.clientProfileImage}
+                                            className="card-img-top rounded-top"
+                                            alt={client.clientName}
+                                            style={{ objectFit: 'cover' }}
+                                        />
+                                        <div className="card-body d-flex flex-column justify-content-between">
+                                            <div>
+                                                <h5 className="card-title">{client.clientName}</h5>
+                                                <p className="card-text">Email: {client.clientEmail}</p>
+                                                <p className="card-text">Package Title: {client.packageTitle}</p>
+                                                <p className="card-text">Package Details: {client.packageDetails}</p>
+                                                <p className="card-text">Package Amount: {client.packageAmount}</p>
+                                                <p className="card-text">Package Duration: {client.packageDuration}</p>
+                                            </div>
+                                            <div>
+                                                <p className="card-text">Hospital: {client.hospitalName}</p>
+                                                <p className="card-text">Hospital Email: {client.hospitalEmail}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="text-center">
-                                <img src={client.patientDetails.profileImage} alt="Profile" className="img-fluid img-thumbnail" />
-                            </div>
+                            ))}
                         </div>
-                    </div>
-                ))
-            ) : (
-                <p className="text-center mt-4">No clients found.</p>
-            )}
+                    ) : (
+                        <p className="text-center mt-4">No clients found.</p>
+                    )}
+                </div>
+            </div>
+            <Footer className="mt-auto" />
         </div>
-    </div>
-    <Footer className="mt-auto" />
-</div>
-
-
-
     );
 };
 
