@@ -60,7 +60,7 @@ const InsuranceProviderViewOneClient = () => {
     }, [navigate]);
 
     const handleSendNotificationToclient = () => {
-        navigate('/insuranceProviderSendNotificationToclient');
+        navigate('/insuranceProviderSendNotificationToClient');
     };
 
 

@@ -73,6 +73,8 @@ import HospitalViewAllReviews from './components/Hospital/HospitalViewAllReviews
 import PatientAddReview from './components/Patient/PatientAddReview';
 import InsuranceProviderViewAllClients from './components/InsuranceProviders/InsuranceProvierViewAllClients';
 import InsuranceProviderViewOneClient from './components/InsuranceProviders/InsuranceProviderViewOneClient';
+import InsuranceProviderSendNotificationToClient from './components/InsuranceProviders/InsuranceProviderSendNotificationToClient';
+import PatientViewAllNotificationsFromInsuranceProvider from './components/Patient/PatientViewAllNotificationsFromInsuranceProvider';
 
 
 function App() {
@@ -153,6 +155,8 @@ function App() {
           <Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
           <Route path='/patientAddReview' element={<PatientAddReview />} />
           <Route path='/insuranceProviderViewOneClient' element={<InsuranceProviderViewOneClient />} />
+          <Route path='/insuranceProviderSendNotificationToClient' element={<InsuranceProviderSendNotificationToClient />} />
+          <Route path='/patientViewAllNotificationsFromInsuranceProvider' element={<PatientViewAllNotificationsFromInsuranceProvider />} />
 
         </Routes>
       </BrowserRouter>

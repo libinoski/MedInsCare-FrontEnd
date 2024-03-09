@@ -26,6 +26,7 @@ const InsuranceProviderNavbar = () => {
                                 <li><Link className="dropdown-item" to="/patientChangePassword">Change Password</Link></li>
                                 <li><Link className="dropdown-item" to="/patientViewAllInsuranceProviders">View all insurance providers</Link></li>
                                 <li><Link className="dropdown-item" to="/patientViewAllInsurancePackages">View all insurance packages</Link></li>
+                                <li><Link className="dropdown-item" to="/patientViewAllNotificationsFromInsuranceProvider">View all notifications from insurance provider</Link></li>
 
                             </ul>
                         </li>
