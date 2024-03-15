@@ -70,20 +70,41 @@ const HospitalViewAllInsuranceProviders = () => {
     return (
 <div className="d-flex flex-column min-vh-100">
     <Navbar />
-    <div className="container flex-grow-1 py-5" style={{ overflowY: 'auto' }}>
+    <div className="container my-auto px-4 py-5" style={{ overflowY: 'auto' }}>
         {isLoading ? (
-            <div className="text-center">
+            <div className="text-center mb-3">
                 <div className="spinner-border text-info" role="status">
                     <span className="visually-hidden">Loading insurance providers...</span>
                 </div>
             </div>
         ) : providerList && providerList.length > 0 ? (
-            <div className="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
+            <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
                 {providerList.map((provider, index) => (
-                    <div key={index} className="col">
-                        <div className="card shadow-sm h-100" style={{ cursor: 'pointer' }} onClick={() => handleViewProvider(provider.insuranceProviderId)}>
+                    <div key={index} className="col" onClick={() => handleViewProvider(provider.insuranceProviderId)}>
+                        <div className="card h-100 shadow"
+                             style={{
+                                 cursor: 'pointer',
+                                 transition: 'transform 0.3s ease, border 0.3s ease',
+                                 border: '1px solid transparent',
+                                 borderRadius: '15px'
+                             }}
+                             onMouseEnter={(e) => {
+                                 e.currentTarget.style.transform = 'scale(1.05)';
+                                 e.currentTarget.style.border = '1px solid #007bff';
+                             }}
+                             onMouseLeave={(e) => {
+                                 e.currentTarget.style.transform = 'scale(1)';
+                                 e.currentTarget.style.border = '1px solid transparent';
+                             }}>
                             <div className="card-body d-flex flex-column align-items-center">
-                                <div className="mb-3" style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
+                                <div style={{
+                                    width: '100px',
+                                    height: '100px',
+                                    overflow: 'hidden',
+                                    borderRadius: '50%',
+                                    border: '3px solid #007bff',
+                                    marginBottom: '1rem'
+                                }}>
                                     {provider.insuranceProviderProfileImage ? (
                                         <img
                                             src={provider.insuranceProviderProfileImage}
@@ -93,7 +114,7 @@ const HospitalViewAllInsuranceProviders = () => {
                                         />
                                     ) : (
                                         <div className="bg-secondary d-flex justify-content-center align-items-center h-100 w-100 rounded-circle">
-                                            <i className="fas fa-building text-white"></i> {/* Placeholder icon if no image */}
+                                            <i className="fas fa-building text-white"></i>
                                         </div>
                                     )}
                                 </div>
@@ -126,6 +147,7 @@ const HospitalViewAllInsuranceProviders = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };

@@ -87,6 +87,7 @@ const HospitalSearchPatients = () => {
                             fontSize: '1.2rem',
                             padding: '15px 20px',
                             height: 'auto',
+                            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' // Added shadow effect
                         }}
                     />
                     <div className="input-group-append">
@@ -99,6 +100,7 @@ const HospitalSearchPatients = () => {
                                 fontSize: '1.2rem',
                                 padding: '15px 30px',
                                 height: 'auto',
+                                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' // Added shadow effect
                             }}
                         >
                             Search
@@ -116,28 +118,31 @@ const HospitalSearchPatients = () => {
                         {searchResult.map((patient, index) => (
                             <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
                                 <div
-                                    className="card"
+                                    className="card h-100 text-center" // Adjusted for consistency and alignment
                                     style={{
                                         backgroundColor: 'white',
-                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                                        transition: 'border-color 0.3s ease',
-                                        textAlign: 'center',
-                                        height: '100%',
+                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Enhanced shadow for depth
+                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease', // Smooth transition for transform and shadow
+                                        cursor: 'pointer', // Indicates interactiveness
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.borderColor = 'blue';
+                                        e.currentTarget.style.transform = 'scale(1.03)'; // Scale effect on hover
+                                        e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)'; // Enhanced shadow on hover
+                                        e.currentTarget.style.borderColor = '#007bff'; // Blue border on hover
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.borderColor = 'transparent';
+                                        e.currentTarget.style.transform = 'scale(1)'; // Revert scale effect
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)'; // Revert shadow effect
+                                        e.currentTarget.style.borderColor = 'transparent'; // Hide border
                                     }}
                                     onClick={() => handleViewPatient(patient.patientId)}
                                 >
-                                    <div className="card-body" style={{ border: '2px solid transparent', padding: '20px', height: '100%' }}>
+                                    <div className="card-body" style={{ border: '2px solid transparent', padding: '20px' }}>
                                         <div className="mb-4">
                                             <img
                                                 src={patient.patientProfileImage}
                                                 alt="Profile"
-                                                style={{ width: '100%', maxHeight: '200px', objectFit: 'contain' }}
+                                                style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: '5px' }} // Rounded corners for the image
                                             />
                                         </div>
                                         <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
@@ -156,6 +161,7 @@ const HospitalSearchPatients = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };

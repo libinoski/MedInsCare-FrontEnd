@@ -64,49 +64,61 @@ const PatientViewOneInsuranceProvider = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar />
-            <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-10 col-lg-8">
-                        {isLoading ? (
-                            <div className="text-center">
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="visually-hidden">Loading provider details...</span>
-                                </div>
-                            </div>
-                        ) : providerDetails ? (
-                            <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
-                                <div className="card-body p-4 p-md-5">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-6 text-center mb-4 mb-md-0">
-                                            <img
-                                                src={providerDetails.insuranceProviderProfileImage}
-                                                alt="Profile"
-                                                className="img-fluid rounded-circle border"
-                                                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
-                                            />
-                                        </div>
-                                        <div className="col-md-6">
-                                            <h2 className="card-title" style={{ color: '#0056b3' }}>{providerDetails.insuranceProviderName}</h2>
-                                            <p className="mb-2"><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
-                                            <p className="mb-2"><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
-                                            <p className="mb-2"><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
-                                            <p className="mb-2"><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
-                                            <p><strong>Added Date:</strong> {providerDetails.addedDate}</p>
-                                            <button onClick={handleReviewInsuranceProvider}>Add Review</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <p className="text-center">No provider details found.</p>
-                        )}
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Navbar />
+    <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
+        <div className="row justify-content-center">
+            <div className="col-12 col-md-10 col-lg-8">
+                {isLoading ? (
+                    <div className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading provider details...</span>
+                        </div>
                     </div>
-                </div>
+                ) : providerDetails ? (
+                    <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
+                        <div className="card-body p-4 p-md-5">
+                            <div className="row align-items-center">
+                                <div className="col-md-6 text-center mb-4 mb-md-0">
+                                    <img
+                                        src={providerDetails.insuranceProviderProfileImage}
+                                        alt="Profile"
+                                        className="img-fluid rounded-circle border"
+                                        style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{providerDetails.insuranceProviderName}</h2>
+                                    <p className="mb-2"><strong>Email:</strong> {providerDetails.insuranceProviderEmail}</p>
+                                    <p className="mb-2"><strong>Aadhar:</strong> {providerDetails.insuranceProviderAadhar}</p>
+                                    <p className="mb-2"><strong>Mobile:</strong> {providerDetails.insuranceProviderMobile}</p>
+                                    <p className="mb-2"><strong>Address:</strong> {providerDetails.insuranceProviderAddress}</p>
+                                    <p><strong>Added Date:</strong> {providerDetails.addedDate}</p>
+                                    <button
+                                        onClick={handleReviewInsuranceProvider}
+                                        className="btn btn-primary"
+                                        style={{
+                                            background: 'linear-gradient(to right, #007bff, #00dbde)',
+                                            borderColor: 'transparent',
+                                            boxShadow: '0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)',
+                                            transition: 'all .2s',
+                                        }}
+                                    >
+                                        Add Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <p className="text-center">No provider details found.</p>
+                )}
             </div>
-            <Footer />
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

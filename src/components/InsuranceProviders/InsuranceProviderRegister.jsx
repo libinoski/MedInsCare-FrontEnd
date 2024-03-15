@@ -27,7 +27,8 @@ const InsuranceProviderRegistration = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [profileImageFileName, setProfileImageFileName] = useState('');
     const [idProofImageFileName, setIdProofImageFileName] = useState('');
-    const formRef = useRef();
+    const formRef = useRef(null);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -69,66 +70,73 @@ const InsuranceProviderRegistration = () => {
         setIsLoading(true);
         setValidationErrors({});
         setSubmitFailed(false);
-
+    
         try {
             const formData = new FormData();
             Object.entries(insuranceProviderData).forEach(([key, value]) => {
                 formData.append(key, value);
             });
             formData.append('hospitalId', selectedHospital);
-
+    
             const response = await axios.post('http://localhost:1313/api/mic/insuranceProvider/insuranceProviderRegister', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
-            switch (response.status) {
-                case 200:
-                    alert(response.data.message || 'Insurance provider registered successfully');
-                    navigate('/insuranceProviderLogin')
-                    resetForm();
-                    setSelectedHospital('');
-                    break;
-                default:
-                    alert('An unexpected response was received from the server');
-                    break;
+    
+            console.log('Response data:', response.data); // Log the response data
+    
+            if (response.data && response.data.status === "success") { // Check if response.data exists before accessing status
+                alert(response.data.message || 'Insurance provider registered successfully');
+                navigate('/insuranceProviderLogin')
+                resetForm();
+                setSelectedHospital('');
+            } else {
+                throw new Error('An unexpected response was received from the server');
             }
         } catch (error) {
             setSubmitFailed(true);
-
+    
             if (error.response) {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        const validationErrors400 = data.results || {};
-                        setValidationErrors(validationErrors400);
+                        setValidationErrors(data.results || {});
                         break;
-                        case 422:
-                            if (data && data.error) {
-                                let errorMessage = '';
-                                Object.entries(data.error).forEach(([field, messages]) => {
-                                    errorMessage += `${field}: ${messages.join(', ')}\n`;
-                                });
-                                alert(errorMessage);
-                            } else {
-                                alert('Validation error during registration');
-                            }
-                            break;
+                    case 401:
+                    case 403:
+                        alert(data.message || 'Unauthorized access. Please login again.');
+                        navigate('/hospitalLogin');
+                        break;
+                    case 422:
+                        if (data && data.error) {
+                            let errorMessage = '';
+                            Object.entries(data.error).forEach(([field, messages]) => {
+                                errorMessage += `${field}: ${messages.join(', ')}\n`;
+                            });
+                            alert(errorMessage);
+                        } else {
+                            alert('Validation error during registration');
+                        }
+                        break;
                     case 500:
                         alert(data.message || 'Internal server error. Please try again later.');
                         break;
                     default:
-                        alert(data.message || 'An error occurred. Please try again.');
+                        alert('An error occurred. Please try again.');
                         break;
                 }
             } else {
-                alert('An error occurred. Please try again.');
+                // This part should only handle unexpected errors, not successful responses
+                console.error('An unexpected error occurred:', error);
+                alert('An unexpected error occurred. Please try again.');
             }
         } finally {
             setIsLoading(false);
         }
     };
+    
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -137,9 +145,12 @@ const InsuranceProviderRegistration = () => {
     const resetForm = () => {
         setInsuranceProviderData(initialInsuranceProviderData);
         setValidationErrors({});
-        formRef.current.reset();
         setProfileImageFileName('');
         setIdProofImageFileName('');
+        if (formRef.current) {
+            formRef.current.reset();
+        }
+
 
     };
 
@@ -149,28 +160,28 @@ const InsuranceProviderRegistration = () => {
 
     return (
         <div>
-{/* Navbar */}
-<nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
-  <div className="container-fluid">
-    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Registration</span>
-  </div>
-</nav>
+            {/* Navbar */}
+            <nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
+                <div className="container-fluid">
+                    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Registration</span>
+                </div>
+            </nav>
             <div className="container-fluid">
-        <div className="row align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the row fills the screen height */}
+                <div className="row align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the row fills the screen height */}
 
                     {/* Background Image Column */}
                     <div className="col-lg-6" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh' }}>
                     </div>
                     {/* Registration Card Column */}
                     <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the column fills the screen height */}
-                <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '90%', minHeight: '100%', backdropFilter: 'blur(8px)', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '20px', boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.1)', position: 'relative' }}> {/* Updated: Added width: '100%' and minHeight: '100%' */}
+                        <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '90%', minHeight: '100%', backdropFilter: 'blur(8px)', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '20px', boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.1)', position: 'relative' }}> {/* Updated: Added width: '100%' and minHeight: '100%' */}
                             {/* Card Body */}
                             <div className="card-body">
                                 {/* Your form elements go here... */}
                                 <div className="text-center mb-3">
                                     {submitFailed && <div className="text-danger">Registration failed. Please try again.</div>}
                                 </div>
-                                <form onSubmit={handleSubmit} noValidate className="needs-validation">
+                                <form ref={formRef} onSubmit={handleSubmit} noValidate className="needs-validation">
                                     {/* Name Field */}
                                     <div className="mb-3">
                                         <input type="text" className={`form-control ${validationErrors.insuranceProviderName ? 'is-invalid' : ''}`} id="insuranceProviderName" name="insuranceProviderName" placeholder="Name *" value={insuranceProviderData.insuranceProviderName} onChange={handleInputChange} required />

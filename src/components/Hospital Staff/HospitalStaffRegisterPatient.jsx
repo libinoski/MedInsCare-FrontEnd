@@ -147,7 +147,6 @@ const HospitalStaffRegisterPatient = () => {
     <div className="col-lg-6 d-flex align-items-center justify-content-center">
       <div className="card shadow-lg p-4" style={{ width: '90%' }}>
         <div className="card-body">
-          <h1 className="text-center mb-4">Patient Registration</h1>
           {/* Registration Form */}
 
           <form onSubmit={handleSubmit} noValidate>

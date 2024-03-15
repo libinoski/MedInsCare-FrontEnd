@@ -163,24 +163,6 @@ const HospitalViewOneNews = () => {
     <Footer />
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     );
 };
 

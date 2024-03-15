@@ -66,90 +66,97 @@ const HospitalSearchInsuranceProviders = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar />
-            <div className="container flex-grow-1 mt-4">
-                <div className="row justify-content-center mb-5">
-                    <div className="col-lg-8 col-md-12 col-12">
-                        <div className="input-group" style={{ width: '100%' }}>
-                            <input
-                                type="text"
-                                className="form-control py-3"
-                                placeholder="Enter search query"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                style={{
-                                    borderRadius: '30px 0 0 30px',
-                                    fontSize: '1.2rem',
-                                    padding: '15px 20px',
-                                    height: 'auto',
-                                }}
-                            />
-                            <div className="input-group-append">
-                                <button
-                                    className="btn btn-primary px-5 py-3"
-                                    type="button"
-                                    onClick={handleSearch}
-                                    style={{
-                                        borderRadius: '0 30px 30px 0',
-                                        fontSize: '1.2rem',
-                                        padding: '15px 30px',
-                                        height: 'auto',
-                                    }}
-                                >
-                                    Search
-                                </button>
-                            </div>
-                        </div>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Navbar />
+    <div className="container flex-grow-1 mt-4">
+        <div className="row justify-content-center mb-5">
+            <div className="col-lg-8 col-md-12 col-12">
+                <div className="input-group" style={{ width: '100%' }}>
+                    <input
+                        type="text"
+                        className="form-control py-3"
+                        placeholder="Enter search query"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        style={{
+                            borderRadius: '30px 0 0 30px',
+                            fontSize: '1.2rem',
+                            padding: '15px 20px',
+                            height: 'auto',
+                            boxShadow: 'inset 0 1px 2px rgba(0,0,0,.075)' // Consistent shadow effect for the input
+                        }}
+                    />
+                    <div className="input-group-append">
+                        <button
+                            className="btn btn-primary px-5 py-3"
+                            type="button"
+                            onClick={handleSearch}
+                            style={{
+                                borderRadius: '0 30px 30px 0',
+                                fontSize: '1.2rem',
+                                padding: '15px 30px',
+                                height: 'auto',
+                                boxShadow: '0 2px 4px rgba(0,0,0,.2)' // Consistent shadow effect for the button
+                            }}
+                        >
+                            Search
+                        </button>
                     </div>
                 </div>
-                {isLoading ? (
-                    <p className="text-center">Searching insurance providers...</p>
-                ) : (
-                    <>
-                        {searchResult.length > 0 ? (
-                            <div className="row justify-content-center">
-                                {searchResult.map((provider, index) => (
-                                    <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
-                                        <div
-                                            className="card"
-                                            style={{
-                                                backgroundColor: 'white',
-                                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                                                transition: 'border-color 0.3s ease',
-                                                textAlign: 'center',
-                                                height: '100%',
-                                            }}
-                                            onMouseEnter={(e) => {
-                                                e.currentTarget.style.borderColor = 'blue';
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                e.currentTarget.style.borderColor = 'transparent';
-                                            }}
-                                            onClick={() => handleViewProvider(provider.insuranceProviderId)}
-                                        >
-                                            <div className="card-body" style={{ border: '2px solid transparent', padding: '20px', height: '100%' }}>
-                                                <div className="mb-4">
-                                                    <img
-                                                        src={provider.insuranceProviderProfileImage}
-                                                        alt="Provider Logo"
-                                                        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                    />
-                                                </div>
-                                                <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                                                    {provider.insuranceProviderName}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : searchExecuted && <p className="text-center">No insurance providers found.</p>}
-                    </>
-                )}
             </div>
-            <Footer />
         </div>
+        {isLoading ? (
+            <p className="text-center">Searching insurance providers...</p>
+        ) : (
+            <>
+                {searchResult.length > 0 ? (
+                    <div className="row justify-content-center">
+                        {searchResult.map((provider, index) => (
+                            <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
+                                <div
+                                    className="card h-100 text-center" // Consistent alignment and presentation
+                                    style={{
+                                        backgroundColor: 'white',
+                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease, border-color 0.3s ease', // Smooth transitions for transform, shadow, and border color
+                                        cursor: 'pointer', // Indicates interactivity
+                                        borderRadius: '15px', // Rounded corners for a modern appearance
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.05)'; // Scale effect on hover
+                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)'; // Enhanced shadow on hover
+                                        e.currentTarget.style.borderColor = '#007bff'; // Blue border on hover
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)'; // Revert scale effect
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Revert shadow effect
+                                        e.currentTarget.style.borderColor = 'transparent'; // Hide border
+                                    }}
+                                    onClick={() => handleViewProvider(provider.insuranceProviderId)}
+                                >
+                                    <div className="card-body" style={{ border: '2px solid transparent', padding: '20px', height: '100%' }}>
+                                        <div className="mb-4">
+                                            <img
+                                                src={provider.insuranceProviderProfileImage}
+                                                alt="Provider Logo"
+                                                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '15px 15px 0 0' }} // Rounded top corners for consistency
+                                            />
+                                        </div>
+                                        <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                            {provider.insuranceProviderName}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : searchExecuted && <p className="text-center">No insurance providers found.</p>}
+            </>
+        )}
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

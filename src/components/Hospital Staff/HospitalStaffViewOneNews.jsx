@@ -1,19 +1,20 @@
+// eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import HospitalStaffNavbar from './HospitalStaffNavbar';
+import Navbar from './HospitalStaffNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/HospitalStaff/hs.svg'; // Import the background image
 
 const HospitalStaffViewOneNews = () => {
     const navigate = useNavigate();
     const [newsDetails, setNewsDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
+    // Function to format date and time
     const formatDate = (dateTime) => {
         const date = new Date(dateTime);
-        const formattedDate = date.toLocaleDateString('en-GB');
-        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false });
+        const formattedDate = date.toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
+        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false }); // Format: HH:MM
         return `${formattedDate} ${formattedTime}`;
     };
 
@@ -67,59 +68,43 @@ const HospitalStaffViewOneNews = () => {
     }, [navigate]);
 
     return (
-<div>
-    <HospitalStaffNavbar />
-    <div className="container-fluid py-5" style={{ 
-        backgroundImage: `url(${backgroundImage})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-        minHeight: '100vh', 
-        position: 'relative', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center' 
-    }}>
-        <div className="container" style={{ 
-            maxWidth: '100%', 
-            padding: '0 15px', 
-            overflowY: 'auto', 
-            maxHeight: '100%', 
-            height: '80vh' 
-        }}> 
-            {isLoading ? (
-                <p className="text-center">Loading news details...</p>
-            ) : (
-                <div className="row justify-content-center">
-                    <div className="col-lg-8">
-                        {newsDetails ? (
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-body">
-                                    <h5 className="card-title text-center mb-4" style={{ 
-                                        fontSize: '24px', 
-                                        fontWeight: 'bold', 
-                                        color: '#333' 
-                                    }}>{newsDetails.hospitalNewsTitle}</h5>
-                                    <img src={newsDetails.hospitalNewsImage} className="card-img-top img-fluid rounded" alt="News" />
-                                    <p className="card-text" style={{ 
-                                        fontSize: '18px', 
-                                        lineHeight: '1.6', 
-                                        color: '#333' 
-                                    }}>{newsDetails.hospitalNewsContent}</p> 
-                                    <p className="card-text bg-yellow text-dark rounded-pill px-3 py-1 mb-2">Published on: {formatDate(newsDetails.addedDate)}</p> 
-                                    {newsDetails.updatedDate && <p className="card-text bg-lightgreen text-dark rounded-pill px-3 py-1">Updated on: {formatDate(newsDetails.updatedDate)}</p>}
+        <div>
+            <Navbar />
+            <div className="container-fluid d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
+                <div className="col-lg-8">
+                    {isLoading ? (
+                        <p className="text-center">Loading news details...</p>
+                    ) : (
+                        <div className="card" style={{ borderRadius: '10px' }}>
+                            {newsDetails ? (
+                                <div className="row g-0">
+                                    <div className="col-md-6">
+                                        <div style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                                            <img
+                                                src={newsDetails.hospitalNewsImage}
+                                                className="img-fluid rounded-end"
+                                                alt="News"
+                                                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 d-flex flex-column justify-content-between">
+                                        <div className="card-body">
+                                            <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
+                                            <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p>
+                                            <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <p className="text-center">No news details found.</p>
-                        )}
-                    </div>
+                            ) : (
+                                <p className="text-center">No news details found.</p>
+                            )}
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
-
     );
 };
 

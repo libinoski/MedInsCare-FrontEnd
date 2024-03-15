@@ -87,6 +87,8 @@ const HospitalSearchStaffs = () => {
                             fontSize: '1.2rem',
                             padding: '15px 20px',
                             height: 'auto',
+                            border: '1px solid #ced4da',
+                            boxShadow: 'inset 0 1px 2px rgba(0,0,0,.075)', // Existing shadow effect for input
                         }}
                     />
                     <div className="input-group-append">
@@ -99,6 +101,7 @@ const HospitalSearchStaffs = () => {
                                 fontSize: '1.2rem',
                                 padding: '15px 30px',
                                 height: 'auto',
+                                boxShadow: '0 2px 4px rgba(0,0,0,.2)', // Existing shadow effect for button
                             }}
                         >
                             Search
@@ -116,31 +119,36 @@ const HospitalSearchStaffs = () => {
                         {searchResult.map((staff, index) => (
                             <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
                                 <div
-                                    className="card"
+                                    className="card h-100 text-center" // Consistent text alignment
                                     style={{
                                         backgroundColor: 'white',
                                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                                        transition: 'border-color 0.3s ease',
-                                        textAlign: 'center',
-                                        height: '100%',
+                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease, border-color 0.3s ease', // Smooth transitions
+                                        cursor: 'pointer', // Interactivity indication
+                                        borderRadius: '15px', // Rounded corners for modern appearance
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.borderColor = 'blue';
+                                        e.currentTarget.style.transform = 'scale(1.05)'; // Scale effect on hover
+                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)'; // Enhanced shadow on hover
+                                        e.currentTarget.style.borderColor = '#007bff'; // Blue border on hover
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.borderColor = 'transparent';
+                                        e.currentTarget.style.transform = 'scale(1)'; // Revert scale effect
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Revert shadow effect
+                                        e.currentTarget.style.borderColor = 'transparent'; // Hide border
                                     }}
                                     onClick={() => handleViewStaff(staff.hospitalStaffId)}
                                 >
-                                    <div className="card-body" style={{ border: '2px solid transparent', padding: '20px', height: '100%' }}>
-                                        <div className="mb-4">
-                                            <img
-                                                src={staff.hospitalStaffProfileImage}
-                                                alt="Profile"
-                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                            />
-                                        </div>
-                                        <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                    <div style={{ backgroundColor: '#f8f9fa', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}>
+                                        <img
+                                            src={staff.hospitalStaffProfileImage}
+                                            alt="Profile"
+                                            className="card-img-top"
+                                            style={{ height: '200px', objectFit: 'contain', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }} // Consistent rounded corners
+                                        />
+                                    </div>
+                                    <div className="card-body" style={{ padding: '20px' }}>
+                                        <h5 className="card-title" style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '10px' }}>
                                             {staff.hospitalStaffName}
                                         </h5>
                                     </div>
@@ -154,12 +162,6 @@ const HospitalSearchStaffs = () => {
     </div>
     <Footer />
 </div>
-
-
-
-
-
-
 
     );
 };

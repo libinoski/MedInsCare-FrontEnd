@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hospital.svg'; // Import the background image
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../Hospital/HospitalNavbar';
+import PatientNavbar from './PatientNavbar';
 
 const PatientAddReview = () => {
     const [reviewContent, setReview] = useState('');
@@ -63,15 +62,12 @@ const PatientAddReview = () => {
     };
 
     return (
-<div>
-    <Navbar/>
-    <div className="container-fluid" style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#f0f2f7', paddingTop: '56px' }}>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <PatientNavbar />
+    <div className="container-fluid" style={{ position: 'relative', backgroundColor: '#f0f2f7', paddingTop: '56px', flex: '1' }}>
         <div className="container py-5">
-            <div className="row">
-                <div className="col-lg-6 d-flex justify-content-center align-items-center">
-                    <img src={backgroundImage} className="img-fluid rounded-circle" alt="Background" style={{ maxHeight: '90%', width: 'auto', boxShadow: '0 8px 20px 0 rgba(0, 0, 0, 0.12)' }} />
-                </div>
-                <div className="col-lg-6 d-flex justify-content-center align-items-center">
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-lg-6">
                     <div className="card bg-transparent border-0" style={{ backdropFilter: 'blur(10px)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '15px', maxWidth: '100%' }}>
                         <div className="card-body">
                             <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
@@ -101,6 +97,7 @@ const PatientAddReview = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };

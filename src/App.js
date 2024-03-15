@@ -41,7 +41,6 @@ import HospitalStaffChangeIdProofImage from './components/Hospital Staff/Hospita
 import HospitalStaffChangeProfileImage from './components/Hospital Staff/HospitalStaffChangeProfileImage';
 import HospitalChangeImage from './components/Hospital/HospitalChangeImage';
 import InsuranceProviderRegistration from './components/InsuranceProviders/InsuranceProviderRegister';
-import InsuranceProviderNavbar from './components/InsuranceProviders/InsuranceProviderNavbar';
 import InsuranceProviderLogin from './components/InsuranceProviders/InsuranceProviderLogin';
 import HospitalViewAllUnApprovedInsuranceProviders from './components/Hospital/HospitalViewAllUnApprovedInsuranceProviders';
 import HospitalViewOneUnapprovedInsuranceProvider from './components/Hospital/HospitalViewOneUnApprovedInsuranceProvider';
@@ -75,6 +74,10 @@ import InsuranceProviderViewAllClients from './components/InsuranceProviders/Ins
 import InsuranceProviderViewOneClient from './components/InsuranceProviders/InsuranceProviderViewOneClient';
 import InsuranceProviderSendNotificationToClient from './components/InsuranceProviders/InsuranceProviderSendNotificationToClient';
 import PatientViewAllNotificationsFromInsuranceProvider from './components/Patient/PatientViewAllNotificationsFromInsuranceProvider';
+import PatientNavbar from './components/Patient/PatientNavbar';
+import HospitalNavbar from './components/Hospital/HospitalNavbar';
+import InsuranceProviderViewAllNews from './components/InsuranceProviders/InsuranceProviderViewAllNews';
+import InsuranceProviderNavbar from './components/InsuranceProviders/InsuranceProviderNavbar';
 
 
 function App() {
@@ -125,7 +128,6 @@ function App() {
           <Route path='/hospitalStaffViewOnePatient' element={<HospitalStaffViewOnePatient />} />
           <Route path='/hospitalStaffSendNotificationToPatient' element={<HospitalStaffSendNotificationToPatient />} />
           <Route path='/insuranceProviderRegistration' element={<InsuranceProviderRegistration />} />
-          <Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
           <Route path='/insuranceProviderLogin' element={<InsuranceProviderLogin />} />
           <Route path='/hospitalViewAllUnApprovedInsuranceProviders' element={<HospitalViewAllUnApprovedInsuranceProviders />} />
           <Route path='/hospitalViewOneUnApprovedInsuranceProvider' element={<HospitalViewOneUnapprovedInsuranceProvider />} />
@@ -157,6 +159,10 @@ function App() {
           <Route path='/insuranceProviderViewOneClient' element={<InsuranceProviderViewOneClient />} />
           <Route path='/insuranceProviderSendNotificationToClient' element={<InsuranceProviderSendNotificationToClient />} />
           <Route path='/patientViewAllNotificationsFromInsuranceProvider' element={<PatientViewAllNotificationsFromInsuranceProvider />} />
+          <Route path='/patientNavbar' element={<PatientNavbar />} />
+          <Route path='/hospitalNavbar' element={<HospitalNavbar />} />
+          <Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
+          <Route path='/insuranceProviderViewAllNews' element={<InsuranceProviderViewAllNews />} />
 
         </Routes>
       </BrowserRouter>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './PatientNavbar';
 import Footer from '../Common/Footer';
+import PatientNavbar from './PatientNavbar';
 
 const PatientViewAllInsurancePackages = () => {
     const navigate = useNavigate();
@@ -68,7 +68,7 @@ const PatientViewAllInsurancePackages = () => {
 
     return (
         <div className="d-flex flex-column min-vh-100">
-            <Navbar />
+            <PatientNavbar />
             <div className="flex-grow-1 container" style={{ paddingTop: '70px', paddingBottom: '70px', overflowY: 'auto' }}>
                 {isLoading ? (
                     <p className="text-center alert alert-info">Loading insurance packages...</p>

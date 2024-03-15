@@ -77,63 +77,75 @@ const HospitalViewAllPatients = () => {
 
     return (
 <div className="d-flex flex-column min-vh-100">
-    <Navbar />
-    <div className="container flex-grow-1 my-5" style={{ overflowY: 'auto' }}>
-        {isLoading ? (
-            <div className="text-center">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading patients...</span>
+  <Navbar />
+  <div className="container flex-grow-1 my-5">
+    {isLoading ? (
+      <div className="text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading patients...</span>
+        </div>
+      </div>
+    ) : patientList.length > 0 ? (
+      <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+        {patientList.map((patient, index) => (
+          <div
+            key={index}
+            className="col"
+            onClick={() => handleViewPatient(patient.patientId)}
+          >
+            <div className="card h-100 shadow-sm position-relative"
+                 style={{
+                   cursor: 'pointer', 
+                   transition: 'transform 0.3s ease', 
+                   borderRadius: '.5rem', 
+                   border: '1px solid transparent'
+                 }}
+                 onMouseEnter={(e) => { 
+                   e.currentTarget.style.transform = 'scale(1.03)';
+                   e.currentTarget.style.boxShadow = '0 0.5rem 1rem rgba(0, 0, 0, 0.15)';
+                   e.currentTarget.style.zIndex = '1000';
+                   e.currentTarget.style.borderColor = '#007bff';
+                 }}
+                 onMouseLeave={(e) => { 
+                   e.currentTarget.style.transform = 'scale(1)';
+                   e.currentTarget.style.boxShadow = '';
+                   e.currentTarget.style.zIndex = '0';
+                   e.currentTarget.style.borderColor = 'transparent';
+                 }}
+            >
+              <div className="card-body">
+                <div className="d-flex align-items-center mb-3">
+                  <img
+                    src={patient.patientProfileImage || 'placeholder-image-url'} // Replace 'placeholder-image-url' with actual placeholder image URL
+                    alt="Patient"
+                    className="rounded-circle me-3"
+                    style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                  />
+                  <div>
+                    <h5 className="card-title">{patient.patientName}</h5>
+                    <p className="card-text">
+                      <small className="text-muted">Registered Date: {formatDate(patient.registeredDate)}</small><br/>
+                      <small className="text-muted">Ward: {patient.admittedWard}</small><br/>
+                      <small className="text-muted">Diagnosis: {patient.diagnosisOrDiseaseType}</small><br/>
+                      <small className="text-muted">Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</small>
+                    </p>
+                  </div>
                 </div>
+                <p className="card-text"><strong>Aadhar:</strong> {patient.patientAadhar}</p>
+                <p className="card-text"><strong>Mobile:</strong> {patient.patientMobile}</p>
+                <p className="card-text"><strong>Address:</strong> {patient.patientAddress}</p>
+              </div>
             </div>
-        ) : patientList.length > 0 ? (
-            <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-                {patientList.map((patient, index) => (
-                    <div
-                        key={index}
-                        className="col"
-                        onClick={() => handleViewPatient(patient.patientId)}
-                    >
-                        <div className="card h-100 shadow-sm">
-                            <div className="card-body">
-                                <div className="d-flex align-items-center mb-3">
-                                    <div className="flex-shrink-0">
-                                        <div className="d-flex align-items-center justify-content-center" style={{ width: '60px', height: '60px', overflow: 'hidden', borderRadius: '50%', border: '3px solid #007bff' }}>
-                                            {patient.patientProfileImage ? (
-                                                <img
-                                                    src={patient.patientProfileImage}
-                                                    alt="Patient"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                                />
-                                            ) : (
-                                                <i className="fas fa-user-alt fa-lg text-secondary"></i> // Placeholder icon if no image
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div className="ms-3">
-                                        <h5 className="card-title">{patient.patientName}</h5>
-                                    </div>
-                                </div>
-                                <div className="card-text">
-                                    <p className="text-muted mb-2"><strong>Registered Date:</strong> {formatDate(patient.registeredDate)}</p>
-                                    <p className="text-muted mb-2"><strong>Ward:</strong> {patient.admittedWard}</p>
-                                    <p className="text-muted mb-2"><strong>Diagnosis:</strong> {patient.diagnosisOrDiseaseType}</p>
-                                    <p className="text-muted mb-2"><strong>Discharge Status:</strong> {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</p>
-                                    <p className="text-muted mb-2"><strong>Aadhar:</strong> {patient.patientAadhar}</p>
-                                    <p className="text-muted mb-2"><strong>Mobile:</strong> {patient.patientMobile}</p>
-                                    <p className="text-muted"><strong>Address:</strong> {patient.patientAddress}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        ) : (
-            <div className="alert alert-warning text-center" role="alert">
-                No patients found.
-            </div>
-        )}
-    </div>
-    <Footer />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div className="alert alert-warning text-center" role="alert">
+        No patients found.
+      </div>
+    )}
+  </div>
+  <Footer />
 </div>
 
     );

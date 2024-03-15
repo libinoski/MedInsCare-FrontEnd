@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import Footer from '../Common/Footer';
+import PatientNavbar from './PatientNavbar';
 
 const PatientViewAllNotificationsFromInsuranceProvider = () => {
     const navigate = useNavigate(); // Initialize the useNavigate hook
@@ -70,52 +71,53 @@ const PatientViewAllNotificationsFromInsuranceProvider = () => {
 
     return (
 <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    
-    <div className="container" style={{ flex: 1 }}>
-        <div className="row">
-            <div className="col-12" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
-                {isLoading ? (
-                    <div className="d-flex justify-content-center p-5">
-                        <div className="spinner-border text-primary" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                ) : notifications.length > 0 ? (
-                    <ul className="list-group list-group-flush">
-                        {notifications.map((notification, index) => (
-                            <li
-                                key={index}
-                                className="list-group-item mb-3 shadow-sm border border-primary"
-                                style={{
-                                    borderRadius: '1rem',
-                                    background: 'rgba(255, 255, 255, 0.5)',
-                                    backdropFilter: 'blur(5px)',
-                                    cursor: 'pointer'
-                                }}
-                                onClick={() => handleViewNotification(notification.notificationId)}
-                            >
-                                <div className="d-flex align-items-center">
-                                    
-                                    <div className="flex-grow-1" style={{ overflow: 'hidden' }}>
-                                        <p className="mb-0 fw-bold" style={{ fontSize: '1rem', color: '#333', wordBreak: 'break-word', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-                                            {notification.message}
-                                        </p>
-                                        <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                                            <span style={{ color: 'red' }}>{formatDate(notification.sendDate)}</span>
-                                        </p>
-                                    </div>
+            <PatientNavbar />
+            <div className="container" style={{ flex: 1 }}>
+                <div className="row">
+                    <div className="col-12" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+                        {isLoading ? (
+                            <div className="d-flex justify-content-center p-5">
+                                <div className="spinner-border text-primary" role="status">
+                                    <span className="visually-hidden">Loading...</span>
                                 </div>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p className="text-center mt-4">No notifications found.</p>
-                )}
+                            </div>
+                        ) : notifications.length > 0 ? (
+                            <ul className="list-group list-group-flush">
+                                {notifications.map((notification, index) => (
+                                    <li
+                                        key={index}
+                                        className="list-group-item mb-3 shadow-sm border border-primary"
+                                        style={{
+                                            borderRadius: '1rem',
+                                            background: 'rgba(255, 255, 255, 0.5)',
+                                            backdropFilter: 'blur(5px)',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => handleViewNotification(notification.notificationId)}
+                                    >
+                                        <div className="d-flex align-items-center">
+                                            
+                                            <div className="flex-grow-1" style={{ overflow: 'hidden' }}>
+                                                <p className="mb-0 fw-bold" style={{ fontSize: '1rem', color: '#333', wordBreak: 'break-word', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                                                    {notification.message}
+                                                </p>
+                                                <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
+                                                    <span style={{ color: 'red' }}>{formatDate(notification.sendDate)}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-center mt-4">No notifications found.</p>
+                        )}
+                    </div>
+                </div>
             </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
+
 
 
     );

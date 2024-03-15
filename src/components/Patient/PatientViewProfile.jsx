@@ -67,57 +67,52 @@ const PatientViewProfile = () => {
     };
 
     return (
-        <div>
-            {/* Navbar */}
+        <div className="d-flex flex-column min-vh-100">
             <Navbar />
-            <div className="container" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-                <div className="row justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-                    <div className="col-12 col-md-10 col-lg-8">
-                        <div className="card shadow-lg mb-5 bg-body rounded" style={{ borderRadius: '15px', overflow: 'hidden' }}>
-                            <div className="bg-primary" style={{ borderRadius: '15px 15px 0 0', padding: '20px', color: '#ffffff' }}>
-                                <h2 className="text-center">Patient Profile</h2>
-                            </div>
-                            {isLoading ? (
-                                <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
-                                    <div className="spinner-border text-primary" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>
-                            ) : patientProfile ? (
-                                <div className="card-body">
-                                    <div className="row g-4 align-items-center">
-                                        <div className="col-12 col-md-5 d-flex justify-content-center">
-                                            <img
-                                                src={patientProfile && patientProfile.patientProfileImage}
-                                                alt="Patient"
-                                                className="img-thumbnail"
-                                                style={{ width: '250px', height: '250px', objectFit: 'cover', borderRadius: '50%', border: '5px solid #f8f9fa' }}
-                                            />
-                                        </div>
-                                        <div className="col-12 col-md-7">
-                                            <h3 className="mb-3 text-primary">{patientProfile.patientName}</h3>
-                                            <p className="mb-2"><strong>Email:</strong> {patientProfile.patientEmail}</p>
-                                            <p className="mb-2"><strong>Aadhar:</strong> {patientProfile.patientAadhar}</p>
-                                            <p className="mb-2"><strong>Mobile:</strong> {patientProfile.patientMobile}</p>
-                                            <p className="mb-2"><strong>Address:</strong> {patientProfile.patientAddress}</p>
-                                            <p className="mb-2"><strong>Registered Date:</strong> {formatDate(patientProfile.registeredDate)}</p>
-                                        </div>
-                                    </div>
-                                    <div className="d-flex justify-content-center gap-3 mt-4">
-                                        <Link to="/patientUpdateProfile" className="btn btn-primary" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Details</Link>
-                                        <Link to="/patientChangeImage" className="btn btn-success" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Change Image</Link>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
-                                    <p>No profile found.</p>
-                                </div>
-                            )}
+            <div className="container d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+                <div className="col-12 col-md-10 col-lg-8">
+                    <div className="card shadow-lg mb-5 bg-body rounded" style={{ borderRadius: '15px', overflow: 'hidden' }}>
+                        <div className="bg-primary" style={{ borderRadius: '15px 15px 0 0', padding: '20px', color: '#ffffff' }}>
+                            <h2 className="text-center">{patientProfile?.patientName}</h2>
                         </div>
+                        {isLoading ? (
+                            <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+                                <div className="spinner-border text-primary" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        ) : patientProfile ? (
+                            <div className="card-body">
+                                <div className="row g-4 align-items-center">
+                                    <div className="col-12 col-md-5 d-flex justify-content-center">
+                                        <img
+                                            src={patientProfile.patientProfileImage}
+                                            alt="Patient"
+                                            className="img-thumbnail"
+                                            style={{ width: '250px', height: '250px', objectFit: 'cover', borderRadius: '50%', border: '5px solid #f8f9fa' }}
+                                        />
+                                    </div>
+                                    <div className="col-12 col-md-7">
+                                        <p className="mb-2"><strong>Email:</strong> {patientProfile.patientEmail}</p>
+                                        <p className="mb-2"><strong>Aadhar:</strong> {patientProfile.patientAadhar}</p>
+                                        <p className="mb-2"><strong>Mobile:</strong> {patientProfile.patientMobile}</p>
+                                        <p className="mb-2"><strong>Address:</strong> {patientProfile.patientAddress}</p>
+                                        <p className="mb-2"><strong>Registered Date:</strong> {formatDate(patientProfile.registeredDate)}</p>
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-center gap-3 mt-4">
+                                    <Link to="/patientUpdateProfile" className="btn btn-primary" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Details</Link>
+                                    <Link to="/patientChangeImage" className="btn btn-success" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Change Image</Link>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+                                <p>No profile found.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
-            {/* Footer */}
             <Footer />
         </div>
     );

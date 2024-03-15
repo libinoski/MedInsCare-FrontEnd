@@ -68,68 +68,44 @@ const InsuranceProviderViewProfile = () => {
     };
 
     return (
-<div>
+<div className="d-flex flex-column min-vh-100">
     <InsuranceProviderNavbar />
-    <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="row justify-content-center">
-            <div className="col-lg-6 col-12 d-flex align-items-center justify-content-center">
-                {isLoading ? (
-                    <div>Loading profile...</div>
-                ) : insuranceProviderProfile ? (
-                    <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '600px' }}>
+    <div className="container d-flex justify-content-center" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+        <div className="col-12 col-md-10 col-lg-8">
+            <div className="card shadow-lg mb-5 bg-body rounded" style={{ borderRadius: '15px', overflow: 'hidden' }}>
+                <div className="bg-primary" style={{ borderRadius: '15px 15px 0 0', padding: '20px', color: '#ffffff' }}>
+                    <h2 className="text-center">{isLoading ? 'Loading profile...' : (insuranceProviderProfile ? insuranceProviderProfile.insuranceProviderName : 'No profile found.')}</h2>
+                </div>
+                {!isLoading && insuranceProviderProfile && (
+                    <div className="card-body">
                         <div className="text-center mb-4">
                             <div className="position-relative d-inline-block">
                                 <img
                                     src={insuranceProviderProfile.insuranceProviderProfileImage}
                                     alt="Profile"
-                                    className="img-fluid"
-                                    style={{
-                                        maxWidth: '300px',
-                                        maxHeight: '300px',
-                                        objectFit: 'contain',
-                                        border: '3px solid white',
-                                        boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-                                    }}
+                                    className="img-thumbnail rounded-circle"
+                                    style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #f8f9fa' }}
                                 />
-                                {/* Positioned inside the bottom-right of the image */}
-                                <Link to="/insuranceProviderChangeProfileImage" className="position-absolute" style={{
-                                    bottom: '10px',
-                                    right: '10px',
-                                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                                    borderRadius: '50%',
-                                    padding: '0.25rem',
-                                }}>
-                                    <FontAwesomeIcon
-                                        icon={faEdit}
-                                        className="text-white"
-                                        style={{
-                                            fontSize: '1.25rem',
-                                            boxShadow: '0 2px 4px rgba(0,0,0,0.75)',
-                                        }}
-                                    />
+                                <Link to="/insuranceProviderChangeProfileImage" className="position-absolute" style={{ bottom: '10px', right: '10px' }}>
+                                    <FontAwesomeIcon icon={faEdit} className="text-primary" style={{ fontSize: '1.5rem' }} />
                                 </Link>
                             </div>
                         </div>
-                        <p className="mb-2"><strong>Name:</strong> {insuranceProviderProfile.insuranceProviderName}</p>
                         <p className="mb-2"><strong>Email:</strong> {insuranceProviderProfile.insuranceProviderEmail}</p>
                         <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderProfile.insuranceProviderAadhar}</p>
                         <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderProfile.insuranceProviderMobile}</p>
                         <p className="mb-2"><strong>Address:</strong> {insuranceProviderProfile.insuranceProviderAddress}</p>
                         <p className="mb-2"><strong>Registered Date:</strong> {formatDate(insuranceProviderProfile.registeredDate)}</p>
                         <div className="text-center mt-4">
-                            {/* Update details */}
-                            <Link to="/InsuranceProviderUpdateProfile" className="btn btn-primary">Update details</Link>
+                            <Link to="/InsuranceProviderUpdateProfile" className="btn btn-primary" style={{ padding: '10px 20px', borderRadius: '25px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>Update Details</Link>
                         </div>
                     </div>
-                ) : (
-                    <div>No profile found.</div>
                 )}
             </div>
         </div>
     </div>
     <Footer />
 </div>
-
 
     );
 };

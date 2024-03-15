@@ -70,42 +70,69 @@ const HospitalViewAllStaffs = () => {
     };
 
     return (
-        <div className="d-flex flex-column min-vh-100">
-            <Navbar />
-            <div className="container my-auto px-4 py-5" style={{ overflowY: 'auto' }}>
-                {isLoading ? (
-                    <div className="text-center mb-3">
-                        <div className="spinner-border text-primary" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                ) : staffList.length > 0 ? (
-                    <div className="row row-cols-1 row-cols-md-3 g-4">
-                        {staffList.map((staff, index) => (
-                            <div key={index} className="col" onClick={() => handleViewStaff(staff.hospitalStaffId)}>
-                                <div className="card h-100 shadow-sm">
-                                    {staff.hospitalStaffProfileImage && (
-                                        <img src={staff.hospitalStaffProfileImage} className="card-img-top img-fluid rounded-circle mx-auto mt-3" alt="Staff" style={{ height: '100px', width: '100px', objectFit: 'cover' }} />
-                                    )}
-                                    <div className="card-body text-center">
-                                        <h5 className="card-title">{staff.hospitalStaffName}</h5>
-                                        <p className="card-text">{staff.hospitalStaffEmail}</p>
-                                        <p className="card-text text-muted">
-                                            Aadhar: {staff.hospitalStaffAadhar}, Mobile: {staff.hospitalStaffMobile}, Address: {staff.hospitalStaffAddress}
-                                        </p>
-                                    </div>
+<div className="d-flex flex-column min-vh-100">
+    <Navbar />
+    <div className="container flex-grow-1 my-5">
+        {isLoading ? (
+            <div className="text-center">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        ) : staffList.length > 0 ? (
+            <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                {staffList.map((staff, index) => (
+                    <div key={index} className="col" onClick={() => handleViewStaff(staff.hospitalStaffId)}>
+                        <div className="card h-100 shadow-sm position-relative"
+                             style={{
+                                 cursor: 'pointer',
+                                 transition: 'transform 0.3s ease',
+                                 borderRadius: '.5rem',
+                                 border: '1px solid transparent'
+                             }}
+                             onMouseEnter={(e) => {
+                                 e.currentTarget.style.transform = 'scale(1.03)';
+                                 e.currentTarget.style.boxShadow = '0 0.5rem 1rem rgba(0, 0, 0, 0.15)';
+                                 e.currentTarget.style.zIndex = '1000';
+                                 e.currentTarget.style.borderColor = '#007bff';
+                             }}
+                             onMouseLeave={(e) => {
+                                 e.currentTarget.style.transform = 'scale(1)';
+                                 e.currentTarget.style.boxShadow = '';
+                                 e.currentTarget.style.zIndex = '0';
+                                 e.currentTarget.style.borderColor = 'transparent';
+                             }}
+                        >
+                            <div className="card-body">
+                                <div className="text-center mb-3">
+                                    <img
+                                        src={staff.hospitalStaffProfileImage || 'placeholder-image-url'} // Replace 'placeholder-image-url' with actual placeholder image URL
+                                        alt="Staff"
+                                        className="rounded-circle mb-3"
+                                        style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                                    />
+                                    <h5 className="card-title">{staff.hospitalStaffName}</h5>
+                                    <p className="card-text">
+                                        <small className="text-muted">{staff.hospitalStaffEmail}</small><br/>
+                                        <small className="text-muted">Aadhar: {staff.hospitalStaffAadhar}</small><br/>
+                                        <small className="text-muted">Mobile: {staff.hospitalStaffMobile}</small><br/>
+                                        <small className="text-muted">Address: {staff.hospitalStaffAddress}</small>
+                                    </p>
                                 </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
-                ) : (
-                    <div className="alert alert-warning text-center" role="alert">
-                        No staffs found.
-                    </div>
-                )}
+                ))}
             </div>
-            <Footer />
-        </div>
+        ) : (
+            <div className="alert alert-warning text-center" role="alert">
+                No staffs found.
+            </div>
+        )}
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faNewspaper, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faNewspaper, faSignOutAlt, faBell } from '@fortawesome/free-solid-svg-icons'; // Added faBell for notifications icon
 
-const InsuranceProviderNavbar = () => {
+const PatientNavbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -16,22 +16,29 @@ const InsuranceProviderNavbar = () => {
                 </button>
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#28a745' }} />
-                                Profile Settings
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/patientChangePassword">
+                                <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#007bff' }} /> {/* Changed icon to faUser for user profile */}
+                                Profile
                             </Link>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                                <li><Link className="dropdown-item" to="/patientViewProfile">View Profile</Link></li>
-                                <li><Link className="dropdown-item" to="/patientChangePassword">Change Password</Link></li>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/patientViewAllNotificationsFromInsuranceProvider">
+                                <FontAwesomeIcon icon={faBell} className="me-2" style={{ color: '#6c757d' }} /> {/* Added icon for notifications */}
+                                Notifications
+                            </Link>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownInsurance" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Insurance
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
                                 <li><Link className="dropdown-item" to="/patientViewAllInsuranceProviders">View all insurance providers</Link></li>
                                 <li><Link className="dropdown-item" to="/patientViewAllInsurancePackages">View all insurance packages</Link></li>
-                                <li><Link className="dropdown-item" to="/patientViewAllNotificationsFromInsuranceProvider">View all notifications from insurance provider</Link></li>
-
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">
+                            <Link className="nav-link" to="/logout"> {/* Assuming "/logout" is the route for logout */}
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>
@@ -43,4 +50,4 @@ const InsuranceProviderNavbar = () => {
     );
 };
 
-export default InsuranceProviderNavbar;
+export default PatientNavbar;

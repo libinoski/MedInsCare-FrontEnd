@@ -72,9 +72,9 @@ const HospitalViewAllNews = () => {
     };
 
     return (
-<div>
+<div className="d-flex flex-column min-vh-100">
     <Navbar />
-    <div className="container-fluid py-4" style={{ minHeight: '100vh', position: 'relative' }}>
+    <div className="container-fluid py-4" style={{ position: 'relative', flex: '1 0 auto' }}>
         <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
             {isLoading ? (
                 <div className="d-flex justify-content-center">
@@ -87,9 +87,9 @@ const HospitalViewAllNews = () => {
                     {allNews.length > 0 ? (
                         allNews.map((news, index) => (
                             <div className="col" key={index} onClick={() => handleViewNews(news.hospitalNewsId)} style={{ cursor: 'pointer' }}>
-                                <div className="card h-100 border-0 shadow">
+                                <div className="card h-100 border-0 shadow mb-3" style={{ overflow: 'hidden' }}>
                                     <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'contain', height: '200px', maxWidth: '100%' }} />
-                                    <div className="card-body" style={{ background: '#f0f0f0', padding: '20px' }}>
+                                    <div className="card-body" style={{ background: '#f0f0f0', padding: '20px', maxHeight: '300px', overflow: 'hidden' }}> {/* Adjust maxHeight as needed */}
                                         <h5 className="card-title" style={{ background: 'rgba(255, 255, 255, 0.8)', borderRadius: '5px', backdropFilter: 'blur(5px)', padding: '10px', marginBottom: '15px' }}>{news.hospitalNewsTitle}</h5>
                                         <p className="card-text text-muted" style={{ marginBottom: '10px' }}>{formatDate(news.addedDate)}</p>
                                         <p className="card-text">{news.hospitalNewsContent}</p>

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../../images/Patient/patient.svg'; // Import the background image
-import Navbar from './PatientNavbar';
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import PatientNavbar from './PatientNavbar';
 
 const PatientChangePassword = () => {
     const navigate = useNavigate();
@@ -82,7 +82,7 @@ const PatientChangePassword = () => {
 
     return (
         <div>
-            <Navbar />
+            <PatientNavbar />
             <div className="container-fluid d-flex flex-column min-vh-100">
                 <div className="row justify-content-center align-items-center flex-grow-1">
                     <div className="col-12 col-md-6 p-0 order-md-2">

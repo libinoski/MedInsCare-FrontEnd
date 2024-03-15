@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faUserInjured } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = () => {
+const HospitalNavbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light" style={{ background: '#f8f9fa', borderBottom: '1px solid #e0e0e0' }}>
             <div className="container">
@@ -87,4 +87,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default HospitalNavbar;
