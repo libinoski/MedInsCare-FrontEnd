@@ -96,9 +96,6 @@ const PatientViewProfile = () => {
                                 <button className="btn btn-outline-secondary text-dark d-flex align-items-center justify-content-center" style={{ border: '2px solid #6c757d', color: '#6c757d', fontWeight: 'bold', boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)', padding: '0.375rem 0.75rem', borderRadius: '0.25rem', position: 'relative' }}>
                                     <Link to="/patientUpdateProfile" className="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Update Details</Link>
                                 </button>
-                                <button className="btn btn-outline-secondary text-dark" style={{ border: '2px solid #6c757d', color: '#6c757d', fontWeight: 'bold', boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)', padding: '0.375rem 0.75rem', borderRadius: '0.25rem' }}>
-                                    <Link to="/patientChangeImage" className="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Change Image</Link>
-                                </button>
                             </div>
                         </div>
                     ) : isLoading ? (

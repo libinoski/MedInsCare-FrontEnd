@@ -207,10 +207,25 @@ const HospitalUpdateNews = () => {
                                     {errorMessages.hospitalNewsImage && <div className="invalid-feedback">{errorMessages.hospitalNewsImage}</div>}
                                     {newsData.existingImageUrl && <img src={newsData.existingImageUrl} alt="Existing News" style={{ marginTop: '10px', maxWidth: '100%' }} />}
                                 </div>
-                                <div className="text-center">
-                                    <button type="submit" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
-                                        {isLoading ? 'Updating News...' : 'Update'}
-                                    </button>
+                                <div className="d-flex justify-content-center align-items-center" >
+                                <button
+    type="submit"
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    disabled={isLoading}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100px', // Maintaining the specified width
+        textDecoration: 'none'
+    }}
+>
+    {isLoading ? 'Updating News...' : 'Update'}
+</button>
+
                                 </div>
                             </form>
                         </div>

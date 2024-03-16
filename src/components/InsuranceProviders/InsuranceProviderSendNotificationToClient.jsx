@@ -47,9 +47,10 @@ const InsuranceProviderSendNotificationToClient = () => {
                         setError(data.error || 'Validation failed.');
                         break;
                     case 401:
-                    case 403:
-                        setError(data.message || 'Unauthorized access. Please log in again.');
-                        break;
+                        case 403:
+                            alert(data.message || 'Unauthorized access. Please login again.');
+                            navigate('/insuranceProviderLogin');
+                            break;
                     case 422:
                         setError(data.error || 'insuranceProvider not found or client not active.');
                         break;

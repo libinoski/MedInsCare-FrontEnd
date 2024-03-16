@@ -119,10 +119,26 @@ const HospitalChangeImage = () => {
                                     <div className="invalid-feedback">{validationErrors.hospitalImage}</div>
                                 )}
                             </div>
-                            <div className="text-center mt-4">
-                                <button type="submit" className={`btn btn-lg ${Object.keys(validationErrors).length ? 'btn-danger' : 'btn-primary'}`} disabled={isLoading}>
-                                    {isLoading ? 'Uploading...' : 'Upload'}
-                                </button>
+                            <div className="d-flex justify-content-center gap-3 mt-4">
+                            <button
+    type="submit"
+    className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%',
+        maxWidth: '200px',
+        textDecoration: 'none'
+    }}
+    disabled={isLoading}
+>
+    {isLoading ? 'Uploading...' : 'Upload'}
+</button>
+
                             </div>
                         </form>
                     </div>

@@ -148,8 +148,42 @@ const HospitalViewOneNews = () => {
                                     {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
                                 </div>
                                 <div className="d-flex justify-content-center pb-4">
-                                    <button className="btn btn-danger me-2" onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}>Delete</button>
-                                    <button className="btn btn-primary" onClick={handleUpdateNews}>Update</button>
+                                <button
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center me-2"
+    onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%',
+        maxWidth: '200px', // Adjust based on your preference for the "Delete" button
+        textDecoration: 'none',
+        marginRight: '8px' // Adjust the spacing between buttons as needed
+    }}
+>
+    Delete
+</button>
+<button
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    onClick={handleUpdateNews}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%',
+        maxWidth: '200px', // Adjust based on your preference for the "Update" button
+        textDecoration: 'none'
+    }}
+>
+    Update
+</button>
+
                                 </div>
                             </div>
                         </div>

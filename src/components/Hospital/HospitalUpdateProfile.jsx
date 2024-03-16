@@ -225,17 +225,66 @@ const HospitalUpdateProfile = () => {
                                 {errorMessages.hospitalAddress && <div className="invalid-feedback">{errorMessages.hospitalAddress}</div>}
                             </div>
 
-                            <div className="text-center">
+                            <div className="d-flex justify-content-center gap-3 mt-4">
                                 {showConfirmation ? (
-                                    <div>
+                                    <div className="d-flex justify-content-center">
                                         <p>Are you sure you want to update the hospital profile?</p>
-                                        <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
-                                        <button type="button" className="btn btn-success" onClick={handleConfirmSubmit}>Confirm</button>
+                                        <button
+    type="button"
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center mr-2"
+    onClick={() => setShowConfirmation(false)}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        textDecoration: 'none',
+        marginRight: '8px' // Adjusting spacing between buttons
+    }}
+>
+    Cancel
+</button>
+<button
+    type="button"
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    onClick={handleConfirmSubmit}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        textDecoration: 'none'
+    }}
+>
+    Confirm
+</button>
+
                                     </div>
                                 ) : (
-                                    <button type="button" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} onClick={handleConfirmation} style={{ width: '100px' }}>
-                                        {isLoading ? 'Updating Profile...' : 'Update'}
-                                    </button>
+                                    <button
+    type="button"
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    disabled={isLoading}
+    onClick={handleConfirmation}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%',
+        maxWidth: '200px', // Adjust based on your preference
+        textDecoration: 'none'
+    }}
+>
+    {isLoading ? 'Updating Profile...' : 'Update'}
+</button>
+
                                 )}
                             </div>
                         </form>

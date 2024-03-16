@@ -69,69 +69,68 @@ const InsuranceProviderViewProfile = () => {
 
     return (
 <div className="d-flex flex-column min-vh-100">
-    <InsuranceProviderNavbar />
-    <div className="container d-flex justify-content-center" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div className="col-12 col-md-10 col-lg-8">
-            {insuranceProviderProfile && (
-                <div className="card shadow-lg mb-5 bg-body rounded" style={{ borderRadius: '15px', overflow: 'hidden' }}>
-                    <div className="card-body d-flex align-items-center">
-                        <div className="position-relative d-inline-block me-3">
-                            <img
-                                src={insuranceProviderProfile.insuranceProviderProfileImage}
-                                alt="Profile"
-                                className="img-thumbnail rounded-circle"
-                                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #f8f9fa' }}
-                            />
-                            <Link to="/insuranceProviderChangeProfileImage" className="position-absolute" style={{ bottom: '10px', right: '10px' }}>
-                                <FontAwesomeIcon icon={faEdit} className="text-primary" style={{ fontSize: '1.5rem' }} />
-                            </Link>
-                        </div>
-                        <div>
-                            <h2 className="profile-name mb-4">{insuranceProviderProfile.insuranceProviderName}</h2>
-                            <div className="d-flex flex-column align-items-start">
-                                <p className="mb-2"><strong>Email:</strong> {insuranceProviderProfile.insuranceProviderEmail}</p>
-                                <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderProfile.insuranceProviderAadhar}</p>
-                                <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderProfile.insuranceProviderMobile}</p>
-                                <p className="mb-2"><strong>Address:</strong> {insuranceProviderProfile.insuranceProviderAddress}</p>
-                                <p className="mb-2"><strong>Registered Date:</strong> {formatDate(insuranceProviderProfile.registeredDate)}</p>
-                            </div>
-                            <div className="text-end mt-4">
-                                <button
-                                    className="btn btn-outline-secondary text-dark"
-                                    style={{
-                                        border: '2px solid #6c757d',
-                                        color: '#6c757d',
-                                        fontWeight: 'bold',
-                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-                                        padding: '10px 20px',
-                                        borderRadius: '25px'
-                                    }}
-                                >
-                                    <Link to="/InsuranceProviderUpdateProfile" className="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Update Details</Link>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {isLoading && (
-                <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            )}
-            {!isLoading && !insuranceProviderProfile && (
-                <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
-                    <p>No profile found.</p>
-                </div>
-            )}
+  <InsuranceProviderNavbar />
+
+  {/* Main Content */}
+  <div className="d-flex flex-grow-1 align-items-center justify-content-center" style={{ padding: '56px 0 80px' }}>
+    <div className="card shadow-lg bg-body rounded" style={{ maxWidth: '100%', width: '60%', borderRadius: '15px' }}>
+      {insuranceProviderProfile ? (
+        <div className="card-body d-flex align-items-center">
+          <div className="position-relative d-inline-block me-3">
+            <img
+              src={insuranceProviderProfile.insuranceProviderProfileImage}
+              alt="Profile"
+              className="img-thumbnail rounded-circle"
+              style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #f8f9fa' }}
+            />
+            <Link to="/insuranceProviderChangeProfileImage" className="position-absolute" style={{ bottom: '10px', right: '10px' }}>
+              <FontAwesomeIcon icon={faEdit} className="text-primary" style={{ fontSize: '1.5rem' }} />
+            </Link>
+          </div>
+          <div>
+            <h2 className="profile-name mb-4">{insuranceProviderProfile.insuranceProviderName}</h2>
+            <div className="d-flex flex-column align-items-start">
+              <p className="mb-2"><strong>Email:</strong> {insuranceProviderProfile.insuranceProviderEmail}</p>
+              <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderProfile.insuranceProviderAadhar}</p>
+              <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderProfile.insuranceProviderMobile}</p>
+              <p className="mb-2"><strong>Address:</strong> {insuranceProviderProfile.insuranceProviderAddress}</p>
+              <p className="mb-2"><strong>Registered Date:</strong> {formatDate(insuranceProviderProfile.registeredDate)}</p>
+            </div>
+          </div>
         </div>
+      ) : isLoading ? (
+        <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      ) : (
+        <div className="card-body d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+          <p>No profile found.</p>
+        </div>
+      )}
+      {insuranceProviderProfile && (
+        <div className="card-body text-end">
+          <button
+            className="btn btn-outline-secondary text-dark"
+            style={{
+              border: '2px solid #6c757d',
+              color: '#6c757d',
+              fontWeight: 'bold',
+              boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+              padding: '10px 20px',
+              borderRadius: '25px'
+            }}
+          >
+            <Link to="/InsuranceProviderUpdateProfile" className="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Update Details</Link>
+          </button>
+        </div>
+      )}
     </div>
-    <Footer />
+  </div>
+
+  <Footer />
 </div>
-
-
 
     );
 };

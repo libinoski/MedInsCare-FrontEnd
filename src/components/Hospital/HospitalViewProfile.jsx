@@ -68,77 +68,88 @@ const HospitalViewProfile = () => {
 
     return (
 <div className="d-flex flex-column min-vh-100">
-    {/* Navbar */}
-    <Navbar />
-    <div class="container d-flex justify-content-center" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
-        <div class="col-12 col-md-10 col-lg-8">
-            <div class="card shadow-lg mb-5 bg-body rounded" style={{ borderRadius: '15px', overflow: 'hidden' }}>
-                <div class="card-body">
-                    {isLoading ? (
-                        <div class="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
-                    ) : hospitalProfile ? (
-                        <div class="row g-4 align-items-center">
-                            <div class="col-12 col-md-5 d-flex justify-content-center">
-                                <img
-                                    src={hospitalProfile && hospitalProfile.hospitalImage}
-                                    alt="Hospital"
-                                    class="img-thumbnail"
-                                    style={{ width: '250px', height: '250px', objectFit: 'cover', borderRadius: '50%', border: '5px solid #f8f9fa' }}
-                                />
-                            </div>
-                            <div class="col-12 col-md-7">
-                            <h2 className="profile-name">{hospitalProfile.hospitalName}</h2>
-                                <p class="mb-2"><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
-                                <p class="mb-2"><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
-                                <p class="mb-2"><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
-                                <p class="mb-2"><strong>Website:</strong> <a href={hospitalProfile.hospitalWebSite} class="text-decoration-none">{hospitalProfile.hospitalWebSite}</a></p>
-                                <p class="mb-2"><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
-                                <p class="mb-2"><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div class="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
-                            <p>No profile found.</p>
-                        </div>
-                    )}
-                    <div class="d-flex justify-content-center gap-3 mt-4">
-                        <button
-                            class="btn btn-outline-secondary text-dark"
-                            style={{
-                                border: '2px solid #6c757d',
-                                color: '#6c757d',
-                                fontWeight: 'bold',
-                                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-                                padding: '10px 20px',
-                                borderRadius: '25px'
-                            }}
-                        >
-                            <Link to="/hospitalUpdateProfile" class="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Update Details</Link>
-                        </button>
-                        <button
-                            class="btn btn-outline-secondary text-dark"
-                            style={{
-                                border: '2px solid #6c757d',
-                                color: '#6c757d',
-                                fontWeight: 'bold',
-                                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-                                padding: '10px 20px',
-                                borderRadius: '25px'
-                            }}
-                        >
-                            <Link to="/hospitalChangeImage" class="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Change Image</Link>
-                        </button>
-                    </div>
-                </div>
+  {/* Navbar */}
+  <Navbar />
+
+  {/* Main Content */}
+  <div className="d-flex flex-grow-1 align-items-center justify-content-center" style={{ padding: '56px 0 80px' }}>
+    <div className="card shadow-lg bg-body rounded" style={{ maxWidth: '100%', width: '60%', borderRadius: '15px' }}>
+      <div className="card-body">
+        {isLoading ? (
+          <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
+          </div>
+        ) : hospitalProfile ? (
+          <div className="row">
+            <div className="col-md-5 d-flex justify-content-center align-items-center">
+              <img
+                src={hospitalProfile && hospitalProfile.hospitalImage}
+                alt="Hospital"
+                className="img-thumbnail"
+                style={{ width: '250px', height: '250px', objectFit: 'cover', borderRadius: '50%', border: '5px solid #f8f9fa' }}
+              />
+            </div>
+            <div className="col-md-7">
+              <h2 className="profile-name">{hospitalProfile.hospitalName}</h2>
+              <p><strong>Email:</strong> {hospitalProfile.hospitalEmail}</p>
+              <p><strong>Aadhar:</strong> {hospitalProfile.hospitalAadhar}</p>
+              <p><strong>Mobile:</strong> {hospitalProfile.hospitalMobile}</p>
+              <p><strong>Website:</strong> <a href={hospitalProfile.hospitalWebSite} className="text-decoration-none">{hospitalProfile.hospitalWebSite}</a></p>
+              <p><strong>Address:</strong> {hospitalProfile.hospitalAddress}</p>
+              <p><strong>Registered Date:</strong> {formatDate(hospitalProfile.registeredDate)}</p>
+            </div>
+          </div>
+        ) : (
+          <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+            <p>No profile found.</p>
+          </div>
+        )}
+      </div>
+      {hospitalProfile && (
+        <div className="card-body d-flex justify-content-center gap-3">
+          <Link to="/hospitalUpdateProfile" className="text-decoration-none">
+            <button
+              className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+              style={{
+                border: '2px solid #6c757d',
+                color: '#6c757d',
+                fontWeight: 'bold',
+                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                padding: '10px 20px',
+                borderRadius: '25px',
+                width: '100%',
+                maxWidth: '200px',
+              }}
+            >
+              Update Details
+            </button>
+          </Link>
+          <Link to="/hospitalChangeImage" className="text-decoration-none">
+            <button
+              className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+              style={{
+                border: '2px solid #6c757d',
+                color: '#6c757d',
+                fontWeight: 'bold',
+                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                padding: '10px 20px',
+                borderRadius: '25px',
+                width: '100%',
+                maxWidth: '200px',
+              }}
+            >
+              Change Image
+            </button>
+          </Link>
         </div>
+      )}
     </div>
-    {/* Footer */}
-    <Footer />
+  </div>
+
+  {/* Footer */}
+  <Footer />
 </div>
 
           );

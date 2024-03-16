@@ -47,8 +47,6 @@ import HospitalViewOneUnapprovedInsuranceProvider from './components/Hospital/Ho
 import PatientLogin from './components/Patient/PatientLogin';
 import InsuranceProviderViewProfile from './components/InsuranceProviders/InsuranceProviderViewProfile';
 import InsuranceProviderChangePassword from './components/InsuranceProviders/InsuranceProviderChangePassword';
-import InsuranceProviderChangeIdProofImage from './components/InsuranceProviders/InsuranceProviderChangeIdProofImage';
-import InsuranceProviderChangeProfileImage from './components/InsuranceProviders/InsuranceProviderChangeProfileImage';
 import InsuranceProviderUpdateProfile from './components/InsuranceProviders/InsuranceProviderUpdateProfile';
 import HomePage from './components/Common/Home';
 import HospitalSearchInsuranceProviders from './components/Hospital/HospitalSearchInsuranceProviders';
@@ -78,6 +76,10 @@ import PatientNavbar from './components/Patient/PatientNavbar';
 import HospitalNavbar from './components/Hospital/HospitalNavbar';
 import InsuranceProviderViewAllNews from './components/InsuranceProviders/InsuranceProviderViewAllNews';
 import InsuranceProviderNavbar from './components/InsuranceProviders/InsuranceProviderNavbar';
+import InsuranceProviderChangeIdProofImage from './components/InsuranceProviders/InsuranceProviderChangeIdProofImage';
+import InsuranceProviderChangeProfileImage from './components/InsuranceProviders/InsuranceProviderChangeProfileImage';
+import PatientChangeProfileImage from './components/Patient/PatientChangeProfileImage';
+import PatientChangeIdProofImage from './components/Patient/PatientChangeIdProofImage';
 
 
 function App() {
@@ -134,8 +136,6 @@ function App() {
           <Route path='/patientLogin' element={<PatientLogin />} />
           <Route path='/insuranceProviderViewProfile' element={<InsuranceProviderViewProfile />} />
           <Route path='/insuranceProviderChangePassword' element={<InsuranceProviderChangePassword />} />
-          <Route path='/InsuranceProviderChangeIdProofImage' element={<InsuranceProviderChangeIdProofImage />} />
-          <Route path='/InsuranceProviderChangeProfileImage' element={<InsuranceProviderChangeProfileImage />} />
           <Route path='/InsuranceProviderUpdateProfile' element={<InsuranceProviderUpdateProfile />} />
           <Route path='/' element={<HomePage />} />
           <Route path='/hospitalSearchInsuranceProviders' element={<HospitalSearchInsuranceProviders />} />
@@ -163,6 +163,10 @@ function App() {
           <Route path='/hospitalNavbar' element={<HospitalNavbar />} />
           <Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
           <Route path='/insuranceProviderViewAllNews' element={<InsuranceProviderViewAllNews />} />
+          <Route path='/insuranceProviderChangeIdProofImage' element={<InsuranceProviderChangeIdProofImage />} />
+          <Route path='/insuranceProviderChangeProfileImage' element={<InsuranceProviderChangeProfileImage />} />
+          <Route path='/patientChangeProfileImage' element={<PatientChangeProfileImage />} />
+          <Route path='/patientChangeIdProofImage' element={<PatientChangeIdProofImage />} />
 
         </Routes>
       </BrowserRouter>

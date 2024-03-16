@@ -144,98 +144,146 @@ const InsuranceProviderUpdateProfile = () => {
     };
 
     return (
-<div>
-    <Navbar />
-    <div
-        className="container-fluid bg-blur"
-        style={{
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh',
-            paddingTop: '56px',
-            position: 'relative',
-        }}
-    >
-        <div className="container py-5">
-            <div className="row justify-content-center">
-                <div className="col-12">
-                    <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                        <div className="card-body">
-                            <form onSubmit={handleSubmit} noValidate>
-                                <div className="mb-3">
-                                    <label htmlFor="insuranceProviderName" className="form-label">Name:</label>
-                                    <input
-                                        type="text"
-                                        name="insuranceProviderName"
-                                        value={profileData.insuranceProviderName}
-                                        onChange={handleInputChange}
-                                        className={`form-control ${errorMessages.insuranceProviderName ? 'is-invalid' : ''}`}
-                                        id="insuranceProviderName"
-                                        required
-                                    />
-                                    {errorMessages.insuranceProviderName && <div className="invalid-feedback">{errorMessages.insuranceProviderName}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="insuranceProviderMobile" className="form-label">Mobile:</label>
-                                    <input
-                                        type="text"
-                                        name="insuranceProviderMobile"
-                                        value={profileData.insuranceProviderMobile}
-                                        onChange={handleInputChange}
-                                        className={`form-control ${errorMessages.insuranceProviderMobile ? 'is-invalid' : ''}`}
-                                        id="insuranceProviderMobile"
-                                        required
-                                    />
-                                    {errorMessages.insuranceProviderMobile && <div className="invalid-feedback">{errorMessages.insuranceProviderMobile}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="insuranceProviderAddress" className="form-label">Address:</label>
-                                    <input
-                                        type="text"
-                                        name="insuranceProviderAddress"
-                                        value={profileData.insuranceProviderAddress}
-                                        onChange={handleInputChange}
-                                        className={`form-control ${errorMessages.insuranceProviderAddress ? 'is-invalid' : ''}`}
-                                        id="insuranceProviderAddress"
-                                        required
-                                    />
-                                    {errorMessages.insuranceProviderAddress && <div className="invalid-feedback">{errorMessages.insuranceProviderAddress}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="insuranceProviderAadhar" className="form-label">Aadhar Number:</label>
-                                    <input
-                                        type="text"
-                                        name="insuranceProviderAadhar"
-                                        value={profileData.insuranceProviderAadhar}
-                                        onChange={handleInputChange}
-                                        className={`form-control ${errorMessages.insuranceProviderAadhar ? 'is-invalid' : ''}`}
-                                        id="insuranceProviderAadhar"
-                                        required
-                                    />
-                                    {errorMessages.insuranceProviderAadhar && <div className="invalid-feedback">{errorMessages.insuranceProviderAadhar}</div>}
-                                </div>
-                                <div className="text-center">
-                                    {showConfirmation ? (
-                                        <div>
-                                            <p>Are you sure you want to update the profile?</p>
-                                            <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
-                                            <button type="button" className="btn btn-success" onClick={handleConfirmSubmit}>Confirm</button>
+        <div>
+            <Navbar />
+            <div
+                className="container-fluid bg-blur"
+                style={{
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    minHeight: '100vh',
+                    paddingTop: '56px',
+                    position: 'relative',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between', // Distribute space between Navbar/Footer and content
+                }}
+            >
+                <div className="container py-5">
+                    <div className="row justify-content-center">
+                        <div className="col-12">
+                            <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit} noValidate>
+                                        <div className="mb-3">
+                                            <label htmlFor="insuranceProviderName" className="form-label">Name:</label>
+                                            <input
+                                                type="text"
+                                                name="insuranceProviderName"
+                                                value={profileData.insuranceProviderName}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.insuranceProviderName ? 'is-invalid' : ''}`}
+                                                id="insuranceProviderName"
+                                                required
+                                            />
+                                            {errorMessages.insuranceProviderName && <div className="invalid-feedback">{errorMessages.insuranceProviderName}</div>}
                                         </div>
-                                    ) : (
-                                        <button type="button" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} onClick={handleConfirmation} style={{width: '100px'}}>
-                                            {isLoading ? 'Updating Profile...' : 'Update'}
-                                        </button>
-                                    )}
+                                        <div className="mb-3">
+                                            <label htmlFor="insuranceProviderMobile" className="form-label">Mobile:</label>
+                                            <input
+                                                type="text"
+                                                name="insuranceProviderMobile"
+                                                value={profileData.insuranceProviderMobile}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.insuranceProviderMobile ? 'is-invalid' : ''}`}
+                                                id="insuranceProviderMobile"
+                                                required
+                                            />
+                                            {errorMessages.insuranceProviderMobile && <div className="invalid-feedback">{errorMessages.insuranceProviderMobile}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="insuranceProviderAddress" className="form-label">Address:</label>
+                                            <input
+                                                type="text"
+                                                name="insuranceProviderAddress"
+                                                value={profileData.insuranceProviderAddress}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.insuranceProviderAddress ? 'is-invalid' : ''}`}
+                                                id="insuranceProviderAddress"
+                                                required
+                                            />
+                                            {errorMessages.insuranceProviderAddress && <div className="invalid-feedback">{errorMessages.insuranceProviderAddress}</div>}
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="insuranceProviderAadhar" className="form-label">Aadhar Number:</label>
+                                            <input
+                                                type="text"
+                                                name="insuranceProviderAadhar"
+                                                value={profileData.insuranceProviderAadhar}
+                                                onChange={handleInputChange}
+                                                className={`form-control ${errorMessages.insuranceProviderAadhar ? 'is-invalid' : ''}`}
+                                                id="insuranceProviderAadhar"
+                                                required
+                                            />
+                                            {errorMessages.insuranceProviderAadhar && <div className="invalid-feedback">{errorMessages.insuranceProviderAadhar}</div>}
+                                        </div>
+                                        <div className="text-center mt-auto mb-3" style={{ display: 'flex', justifyContent: 'center' }}> {/* Use flexbox */}
+                                            {showConfirmation ? (
+                                                <div className="d-flex justify-content-center">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center mr-2"
+                                                        onClick={() => setShowConfirmation(false)}
+                                                        style={{
+                                                            border: '2px solid #6c757d',
+                                                            color: '#6c757d',
+                                                            fontWeight: 'bold',
+                                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '25px',
+                                                            marginRight: '8px', // Adjust the spacing between buttons as needed
+                                                            textDecoration: 'none'
+                                                        }}
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                                                        onClick={handleConfirmSubmit}
+                                                        style={{
+                                                            border: '2px solid #6c757d',
+                                                            color: '#6c757d',
+                                                            fontWeight: 'bold',
+                                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '25px',
+                                                            textDecoration: 'none'
+                                                        }}
+                                                    >
+                                                        Confirm
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                                                    disabled={isLoading}
+                                                    onClick={handleConfirmation}
+                                                    style={{
+                                                        border: '2px solid #6c757d',
+                                                        color: '#6c757d',
+                                                        fontWeight: 'bold',
+                                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                        padding: '10px 20px',
+                                                        borderRadius: '25px',
+                                                        width: '100px', // Keeping the specified width
+                                                        textDecoration: 'none'
+                                                    }}
+                                                >
+                                                    {isLoading ? 'Updating Profile...' : 'Update'}
+                                                </button>
+                                            )}
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
 
     );
 };

@@ -209,10 +209,26 @@ const HospitalRegisterStaff = () => {
                     </div>
   
                     {/* Submit Button */}
-                    <div className="text-center mt-4">
-                      <button type="submit" className={`btn ${submitFailed ? 'btn-danger' : 'btn-success'}`} disabled={isLoading}>
-                        {isLoading ? 'Submitting...' : 'Register'}
-                      </button>
+                    <div className="d-flex justify-content-center gap-3 mt-4">
+                    <button
+    type="submit"
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    disabled={isLoading}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%',
+        maxWidth: '200px', // Adjust based on your preference
+        textDecoration: 'none'
+    }}
+>
+    {isLoading ? 'Submitting...' : 'Register'}
+</button>
+
                     </div>
                     {submitFailed && <div className="text-danger mt-3">Registration failed. Please try again.</div>}
                   </form>

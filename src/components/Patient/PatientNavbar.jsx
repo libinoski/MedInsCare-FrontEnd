@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faNewspaper, faSignOutAlt, faBell } from '@fortawesome/free-solid-svg-icons'; // Added faBell for notifications icon
+import { faUser, faNewspaper, faSignOutAlt, faBell } from '@fortawesome/free-solid-svg-icons';
 
 const PatientNavbar = () => {
     return (
@@ -18,27 +18,36 @@ const PatientNavbar = () => {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <Link className="nav-link" to="/patientChangePassword">
-                                <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#007bff' }} /> {/* Changed icon to faUser for user profile */}
+                                <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#007bff' }} aria-label="User Profile" />
                                 Profile
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/patientViewAllNotificationsFromInsuranceProvider">
-                                <FontAwesomeIcon icon={faBell} className="me-2" style={{ color: '#6c757d' }} /> {/* Added icon for notifications */}
+                                <FontAwesomeIcon icon={faBell} className="me-2" style={{ color: '#6c757d' }} aria-label="Notifications" />
                                 Notifications
                             </Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownInsurance" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Insurance
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profile
                             </Link>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
-                                <li><Link className="dropdown-item" to="/patientViewAllInsuranceProviders">View all insurance providers</Link></li>
-                                <li><Link className="dropdown-item" to="/patientViewAllInsurancePackages">View all insurance packages</Link></li>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                                <li><Link className="dropdown-item" to="/patientChangePassword">Change Password</Link></li>
+                                <li><Link className="dropdown-item" to="/patientViewAllNotificationsFromInsuranceProvider">View Notifications</Link></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownImages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Images
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownImages">
+                                <li><Link className="dropdown-item" to="/patientChangeProfileImage">Change Profile Image</Link></li>
+                                <li><Link className="dropdown-item" to="/patientChangeIdProofImage">Change ID Proof Image</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/logout"> {/* Assuming "/logout" is the route for logout */}
+                            <Link className="nav-link" to="/logout" aria-label="Logout"> {/* Assuming "/logout" is the route for logout */}
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>

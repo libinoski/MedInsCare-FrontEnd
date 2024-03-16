@@ -52,10 +52,10 @@ const InsuranceProviderChangePassword = () => {
                     case 401:
                         alert(data.message || 'Unauthorized access. Please login again.');
                         break; // Do not navigate
-                    case 403:
-                        alert(data.message || 'Unauthorized access. Please login again.');
-                        navigate('/providerLogin');
-                        break;
+                        case 403:
+                            alert(data.message || 'Unauthorized access. Please login again.');
+                            navigate('/insuranceProviderLogin');
+                            break;
                     case 422:
                         const errorMessage = data.error || "An error occurred during password change.";
                         alert(errorMessage);
@@ -129,9 +129,24 @@ const InsuranceProviderChangePassword = () => {
               </div>
             </div>
             <div className="text-center">
-              <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                {isLoading ? 'Changing Password...' : 'Change Password'}
-              </button>
+            <button
+    type="submit"
+    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+    disabled={isLoading}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%', // Adjust based on your layout needs
+        textDecoration: 'none'
+    }}
+>
+    {isLoading ? 'Changing Password...' : 'Change Password'}
+</button>
+
             </div>
           </form>
         </div>

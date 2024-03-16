@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/Hospital/hospital.svg'; // Import the background image
 
 const HospitalUpdatePatient = () => {
     const navigate = useNavigate();
@@ -130,61 +129,100 @@ const HospitalUpdatePatient = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            {/* Navbar */}
-            <Navbar />
-            <div className="container-fluid" style={{ flex: '1', paddingTop: '56px', paddingBottom: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="row" style={{ width: '100%' }}>
-
-                    {/* Left Side Image Container */}
-                    <div className="col-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '100%', padding: '0' }}>
-                        <img src={backgroundImage} className="img-fluid" alt="Background" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                    </div>
-
-                    {/* Right Side Profile Details Card */}
-                    <div className="col-lg-6 d-flex align-items-center justify-content-center">
-                        <div style={{ maxWidth: '400px', width: '100%', padding: '20px', border: Object.keys(errors).length > 0 ? '1px solid red' : 'none' }}>
-                            <form onSubmit={handleSubmit} noValidate>
-                                <div className="mb-3">
-                                    <label className="form-label">Name</label>
-                                    <input type="text" className={`form-control ${errors.patientName ? 'is-invalid' : ''}`} name="patientName" value={patient.patientName} onChange={handleChange} />
-                                    {errors.patientName && <div className="invalid-feedback">{errors.patientName}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Mobile</label>
-                                    <input type="text" className={`form-control ${errors.patientMobile ? 'is-invalid' : ''}`} name="patientMobile" value={patient.patientMobile} onChange={handleChange} />
-                                    {errors.patientMobile && <div className="invalid-feedback">{errors.patientMobile}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Address</label>
-                                    <input type="text" className={`form-control ${errors.patientAddress ? 'is-invalid' : ''}`} name="patientAddress" value={patient.patientAddress} onChange={handleChange} />
-                                    {errors.patientAddress && <div className="invalid-feedback">{errors.patientAddress}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Aadhar</label>
-                                    <input type="text" className={`form-control ${errors.patientAadhar ? 'is-invalid' : ''}`} name="patientAadhar" value={patient.patientAadhar} onChange={handleChange} />
-                                    {errors.patientAadhar && <div className="invalid-feedback">{errors.patientAadhar}</div>}
-                                </div>
-                                <div className="text-center">
-                                    <button type="button" className="btn btn-primary" onClick={handleConfirmation} disabled={isLoading}>
-                                        {isLoading ? 'Updating...' : 'Update'}
-                                    </button>
-                                </div>
-                            </form>
-                            {showConfirmation && (
-                                <div className="mt-3 text-center">
-                                    <p>Are you sure you want to update the patient details?</p>
-                                    <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
-                                    <button type="button" className="btn btn-success" onClick={handleSubmit}>Confirm</button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    {/* Navbar */}
+    <Navbar />
+    <div className="container-fluid d-flex justify-content-center align-items-center" style={{ flex: '1', paddingTop: '56px', paddingBottom: '80px' }}>
+        <div style={{ maxWidth: '400px', width: '100%', padding: '20px', border: Object.keys(errors).length > 0 ? '1px solid red' : 'none' }}>
+            <form onSubmit={handleSubmit} noValidate>
+                <div className="mb-3">
+                    <label className="form-label">Name</label>
+                    <input type="text" className={`form-control ${errors.patientName ? 'is-invalid' : ''}`} name="patientName" value={patient.patientName} onChange={handleChange} />
+                    {errors.patientName && <div className="invalid-feedback">{errors.patientName}</div>}
                 </div>
-            </div>
-            <Footer />
+                <div className="mb-3">
+                    <label className="form-label">Mobile</label>
+                    <input type="text" className={`form-control ${errors.patientMobile ? 'is-invalid' : ''}`} name="patientMobile" value={patient.patientMobile} onChange={handleChange} />
+                    {errors.patientMobile && <div className="invalid-feedback">{errors.patientMobile}</div>}
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Address</label>
+                    <input type="text" className={`form-control ${errors.patientAddress ? 'is-invalid' : ''}`} name="patientAddress" value={patient.patientAddress} onChange={handleChange} />
+                    {errors.patientAddress && <div className="invalid-feedback">{errors.patientAddress}</div>}
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Aadhar</label>
+                    <input type="text" className={`form-control ${errors.patientAadhar ? 'is-invalid' : ''}`} name="patientAadhar" value={patient.patientAadhar} onChange={handleChange} />
+                    {errors.patientAadhar && <div className="invalid-feedback">{errors.patientAadhar}</div>}
+                </div>
+                <div className="d-flex justify-content-center align-items-center" >
+                    <button
+                        type="button"
+                        className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                        onClick={handleConfirmation}
+                        disabled={isLoading}
+                        style={{
+                            border: '2px solid #6c757d',
+                            color: '#6c757d',
+                            fontWeight: 'bold',
+                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                            padding: '10px 20px',
+                            borderRadius: '25px',
+                            width: '100%',
+                            maxWidth: '200px', // Adjust based on your preference
+                            textDecoration: 'none'
+                        }}
+                    >
+                        {isLoading ? 'Updating...' : 'Update'}
+                    </button>
+                </div>
+            </form>
+            {showConfirmation && (
+                <div className="d-flex flex-column align-items-center" style={{ marginTop: '16px' }}>
+                    <p>Are you sure you want to update the patient details?</p>
+                    <div className="d-flex">
+                        <button
+                            type="button"
+                            className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center mr-2"
+                            onClick={() => setShowConfirmation(false)}
+                            style={{
+                                border: '2px solid #6c757d',
+                                color: '#6c757d',
+                                fontWeight: 'bold',
+                                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                padding: '10px 20px',
+                                borderRadius: '25px',
+                                marginRight: '8px', // Adjust the spacing between buttons as needed
+                                textDecoration: 'none'
+                            }}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                            onClick={handleSubmit}
+                            style={{
+                                border: '2px solid #6c757d',
+                                color: '#6c757d',
+                                fontWeight: 'bold',
+                                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                padding: '10px 20px',
+                                borderRadius: '25px',
+                                textDecoration: 'none'
+                            }}
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
+    </div>
+    <Footer />
+</div>
+
+
     );
 };
 
