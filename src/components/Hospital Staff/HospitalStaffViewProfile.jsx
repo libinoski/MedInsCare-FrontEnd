@@ -101,22 +101,8 @@ const HospitalStaffViewProfile = () => {
           <div className="card-footer text-center">
             <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
               {/* Buttons for actions */}
-              <button className="btn btn-outline-secondary text-dark" style={{
-                  border: '2px solid #6c757d',
-                  color: '#6c757d',
-                  fontWeight: 'bold',
-                  boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-              }}>
-                <Link to="/hospitalStaffChangeProfileImage" className="text-decoration-none text-dark">Change Profile Image</Link>
-              </button>
-              <button className="btn btn-outline-secondary text-dark" style={{
-                  border: '2px solid #6c757d',
-                  color: '#6c757d',
-                  fontWeight: 'bold',
-                  boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-              }}>
-                <Link to="/hospitalStaffChangeIdProofImage" className="text-decoration-none text-dark">Change ID Proof Image</Link>
-              </button>
+
+
               <button className="btn btn-outline-secondary text-dark" style={{
                   border: '2px solid #6c757d',
                   color: '#6c757d',

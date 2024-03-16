@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+
 import Footer from '../Common/Footer';
 import InsuranceProviderNavbar from './InsuranceProviderNavbar';
 
@@ -73,28 +72,27 @@ const InsuranceProviderViewProfile = () => {
 
   {/* Main Content */}
   <div className="d-flex flex-grow-1 align-items-center justify-content-center" style={{ padding: '56px 0 80px' }}>
-    <div className="card shadow-lg bg-body rounded" style={{ maxWidth: '100%', width: '60%', borderRadius: '15px' }}>
+    <div className="card shadow-lg bg-body rounded" style={{ width: '100%', maxWidth: '900px', borderRadius: '15px' }}>
       {insuranceProviderProfile ? (
-        <div className="card-body d-flex align-items-center">
-          <div className="position-relative d-inline-block me-3">
-            <img
-              src={insuranceProviderProfile.insuranceProviderProfileImage}
-              alt="Profile"
-              className="img-thumbnail rounded-circle"
-              style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #f8f9fa' }}
-            />
-            <Link to="/insuranceProviderChangeProfileImage" className="position-absolute" style={{ bottom: '10px', right: '10px' }}>
-              <FontAwesomeIcon icon={faEdit} className="text-primary" style={{ fontSize: '1.5rem' }} />
-            </Link>
-          </div>
-          <div>
-            <h2 className="profile-name mb-4">{insuranceProviderProfile.insuranceProviderName}</h2>
-            <div className="d-flex flex-column align-items-start">
-              <p className="mb-2"><strong>Email:</strong> {insuranceProviderProfile.insuranceProviderEmail}</p>
-              <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderProfile.insuranceProviderAadhar}</p>
-              <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderProfile.insuranceProviderMobile}</p>
-              <p className="mb-2"><strong>Address:</strong> {insuranceProviderProfile.insuranceProviderAddress}</p>
-              <p className="mb-2"><strong>Registered Date:</strong> {formatDate(insuranceProviderProfile.registeredDate)}</p>
+        <div className="card-body">
+          <div className="d-flex justify-content-between">
+            <div className="position-relative d-inline-block">
+              <img
+                src={insuranceProviderProfile.insuranceProviderProfileImage}
+                alt="Profile"
+                className="img-fluid img-thumbnail rounded-circle"
+                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #f8f9fa' }}
+              />
+            </div>
+            <div className="flex-grow-1 ms-3">
+              <h2 className="profile-name mb-4">{insuranceProviderProfile.insuranceProviderName}</h2>
+              <div className="d-flex flex-column">
+                <p className="mb-2"><strong>Email:</strong> {insuranceProviderProfile.insuranceProviderEmail}</p>
+                <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderProfile.insuranceProviderAadhar}</p>
+                <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderProfile.insuranceProviderMobile}</p>
+                <p className="mb-2"><strong>Address:</strong> {insuranceProviderProfile.insuranceProviderAddress}</p>
+                <p className="mb-2"><strong>Registered Date:</strong> {formatDate(insuranceProviderProfile.registeredDate)}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -110,7 +108,7 @@ const InsuranceProviderViewProfile = () => {
         </div>
       )}
       {insuranceProviderProfile && (
-        <div className="card-body text-end">
+        <div className="card-body d-flex justify-content-center" style={{ borderTop: '1px solid #ddd', paddingTop: '20px' }}>
           <button
             className="btn btn-outline-secondary text-dark"
             style={{
@@ -119,7 +117,8 @@ const InsuranceProviderViewProfile = () => {
               fontWeight: 'bold',
               boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
               padding: '10px 20px',
-              borderRadius: '25px'
+              borderRadius: '25px',
+              width: 'fit-content'
             }}
           >
             <Link to="/InsuranceProviderUpdateProfile" className="text-decoration-none text-dark" style={{ textDecoration: 'none', color: 'inherit' }}>Update Details</Link>
@@ -131,6 +130,8 @@ const InsuranceProviderViewProfile = () => {
 
   <Footer />
 </div>
+
+
 
     );
 };

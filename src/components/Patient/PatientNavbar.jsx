@@ -47,7 +47,7 @@ const PatientNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/logout" aria-label="Logout"> {/* Assuming "/logout" is the route for logout */}
+                            <Link className="nav-link" to="/" aria-label="Logout"> {/* Assuming "/logout" is the route for logout */}
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>

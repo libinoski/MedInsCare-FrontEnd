@@ -69,41 +69,58 @@ const HospitalStaffRequestDischarge = () => {
 
   return (
 <div className="d-flex flex-column min-vh-100" style={{
-    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
-}}>      <HospitalStaffNavbar />
-      <div className="container-fluid py-5">
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)',
+}}>
+    <HospitalStaffNavbar />
+    {/* This div acts as a flex container with vertical centering */}
+    <div className="container-fluid py-5 flex-grow-1 d-flex align-items-center">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6">
-              <div className="card bg-transparent border-0">
-                <div className="card-body rounded-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}>
-                  <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                      <label htmlFor="message" className="form-label">Discharge Message</label>
-                      <textarea
-                        className={`form-control ${errors.message ? 'is-invalid' : ''}`}
-                        id="message"
-                        rows="5"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                      ></textarea>
-                      {errors.message && <div className="invalid-feedback">{errors.message}</div>}
+            <div className="row justify-content-center">
+                <div className="col-md-6">
+                    <div className="card" style={{ borderRadius: '15px', backgroundColor: 'white', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }}>
+                        <div className="card-body">
+                            <h5 className="card-title text-center">Discharge Message</h5>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-4">
+                                    <textarea
+                                        className={`form-control ${errors.message ? 'is-invalid' : ''}`}
+                                        id="message"
+                                        rows="5"
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        required
+                                    ></textarea>
+                                    {errors.message && <div className="invalid-feedback">{errors.message}</div>}
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                <button 
+    type="submit" 
+    className={`btn mx-2 btn-outline-secondary text-dark ${isLoading ? 'btn-secondary' : ''}`} 
+    disabled={isLoading} 
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: 'auto'
+    }}
+>
+    {isLoading ? 'Submitting...' : 'Submit Request'}
+</button>
+
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="text-center">
-                      <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading}>
-                        {isLoading ? 'Submitting...' : 'Submit Request'}
-                      </button>
-                    </div>
-                  </form>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <Footer />
     </div>
+    <Footer />
+</div>
+
+
   );
 };
 

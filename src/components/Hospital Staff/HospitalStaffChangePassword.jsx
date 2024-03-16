@@ -130,9 +130,22 @@ const HospitalStaffChangePassword = () => {
               </div>
             </div>
             <div className="text-center">
-              <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                {isLoading ? 'Changing Password...' : 'Change Password'}
-              </button>
+            <button 
+    type="submit" 
+    className={`btn mx-2 btn-outline-secondary text-dark ${isLoading ? 'btn-secondary' : ''}`} 
+    disabled={isLoading} 
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d', // Keeping the color constant
+        fontWeight: 'bold',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: 'auto'
+    }}
+>
+    {isLoading ? 'Changing Password...' : 'Change Password'}
+</button>
+
             </div>
           </form>
         </div>

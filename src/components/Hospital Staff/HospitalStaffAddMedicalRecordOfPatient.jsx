@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import HospitalStaffNavbar from './HospitalStaffNavbar';
+import Footer from '../Common/Footer';
 
 const HospitalStaffAddMedicalRecordOfPatient = () => {
     const navigate = useNavigate();
@@ -57,12 +59,12 @@ const HospitalStaffAddMedicalRecordOfPatient = () => {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        setErrors(data.errors || {});
+                        setErrors(data.results || {});
                         break;
                     case 401:
                     case 403:
                         alert(data.message || 'Unauthorized access. Please log in again.');
-                        navigate('/login');
+                        navigate('/hospitalStaffLogin');
                         break;
                     case 500:
                         alert(data.message || 'Internal server error. Please try again later.');
@@ -80,41 +82,57 @@ const HospitalStaffAddMedicalRecordOfPatient = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-12">
-                    <div className="card">
-                        <div className="card-body">
-                            <h4 className="card-title mb-4">Add Medical Record</h4>
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="staffReport" className="form-label">Staff Report:</label>
-                                    <textarea className={`form-control ${errors.staffReport ? 'is-invalid' : ''}`} id="staffReport" name="staffReport" value={medicalRecord.staffReport} onChange={handleChange}></textarea>
-                                    {errors.staffReport && <div className="text-danger">{errors.staffReport}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="medicineAndLabCosts" className="form-label">Medicine and Lab Costs:</label>
-                                    <input type="text" className={`form-control ${errors.medicineAndLabCosts ? 'is-invalid' : ''}`} id="medicineAndLabCosts" name="medicineAndLabCosts" value={medicalRecord.medicineAndLabCosts} onChange={handleChange} />
-                                    {errors.medicineAndLabCosts && <div className="text-danger">{errors.medicineAndLabCosts}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="byStanderName" className="form-label">ByStander Name:</label>
-                                    <input type="text" className={`form-control ${errors.byStanderName ? 'is-invalid' : ''}`} id="byStanderName" name="byStanderName" value={medicalRecord.byStanderName} onChange={handleChange} />
-                                    {errors.byStanderName && <div className="text-danger">{errors.byStanderName}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="byStanderMobileNumber" className="form-label">ByStander Number:</label>
-                                    <input type="text" className={`form-control ${errors.byStanderMobileNumber ? 'is-invalid' : ''}`} id="byStanderMobileNumber" name="byStanderMobileNumber" value={medicalRecord.byStanderMobileNumber} onChange={handleChange} />
-                                    {errors.byStanderMobileNumber && <div className="text-danger">{errors.byStanderMobileNumber}</div>}
-                                </div>
+<div className="d-flex flex-column min-vh-100" style={{ background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)' }}>
+    <HospitalStaffNavbar />
+    <div className="container mt-5">
+        <div className="row">
+            <div className="col-12">
+                <div className="card shadow-lg" style={{borderRadius: '20px', overflow: 'hidden'}}>
+                    <div className="card-body p-5" style={{ background: '#fff'}}>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="staffReport" className="form-label">Staff Report:</label>
+                                <textarea className={`form-control ${errors.staffReport ? 'is-invalid' : ''}`} id="staffReport" name="staffReport" value={medicalRecord.staffReport} onChange={handleChange} style={{borderRadius: '15px'}}></textarea>
+                                {errors.staffReport && <div className="invalid-feedback">{errors.staffReport}</div>}
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="medicineAndLabCosts" className="form-label">Medicine and Lab Costs:</label>
+                                <input type="text" className={`form-control ${errors.medicineAndLabCosts ? 'is-invalid' : ''}`} id="medicineAndLabCosts" name="medicineAndLabCosts" value={medicalRecord.medicineAndLabCosts} onChange={handleChange} style={{borderRadius: '15px'}} />
+                                {errors.medicineAndLabCosts && <div className="invalid-feedback">{errors.medicineAndLabCosts}</div>}
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="byStanderName" className="form-label">ByStander Name:</label>
+                                <input type="text" className={`form-control ${errors.byStanderName ? 'is-invalid' : ''}`} id="byStanderName" name="byStanderName" value={medicalRecord.byStanderName} onChange={handleChange} style={{borderRadius: '15px'}} />
+                                {errors.byStanderName && <div className="invalid-feedback">{errors.byStanderName}</div>}
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="byStanderMobileNumber" className="form-label">ByStander Number:</label>
+                                <input type="text" className={`form-control ${errors.byStanderMobileNumber ? 'is-invalid' : ''}`} id="byStanderMobileNumber" name="byStanderMobileNumber" value={medicalRecord.byStanderMobileNumber} onChange={handleChange} style={{borderRadius: '15px'}} />
+                                {errors.byStanderMobileNumber && <div className="invalid-feedback">{errors.byStanderMobileNumber}</div>}
+                            </div>
 
-                                <button type="submit" className="btn btn-primary" disabled={isLoading}>{isLoading ? 'Adding...' : 'Add Medical Record'}</button>
-                            </form>
-                        </div>
+                            <button 
+                                type="submit" 
+                                className="btn btn-primary" 
+                                disabled={isLoading}
+                                style={{
+                                    fontWeight: 'bold',
+                                    padding: '10px 20px',
+                                    borderRadius: '25px',
+                                }}
+                            >
+                                {isLoading ? 'Adding...' : 'Add Medical Record'}
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <Footer />
+</div>
+
+
     );
 };
 

@@ -146,12 +146,13 @@ const HospitalStaffUpdateProfile = () => {
     return (
 <div className="d-flex flex-column min-vh-100" style={{
     background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
-}}>    <Navbar />
+}}>    
+    <Navbar />
     <div className="container" style={{ minHeight: '100vh', paddingTop: '56px', position: 'relative' }}>
         <div className="py-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                    <div className="card" style={{ backgroundColor: '#FFFFFF' }}>
                         <div className="card-body">
                             <form onSubmit={handleSubmit} noValidate>
                                 <div className="mb-3">
@@ -210,11 +211,50 @@ const HospitalStaffUpdateProfile = () => {
                                     {showConfirmation ? (
                                         <div>
                                             <p>Are you sure you want to update the profile?</p>
-                                            <button type="button" className="btn btn-secondary mr-2" onClick={() => setShowConfirmation(false)}>Cancel</button>
-                                            <button type="button" className="btn btn-success" onClick={handleConfirmSubmit}>Confirm</button>
+                                            <button 
+                                                type="button" 
+                                                className="btn mx-2 btn-outline-secondary text-dark" 
+                                                onClick={() => setShowConfirmation(false)}
+                                                style={{
+                                                    border: '2px solid #6c757d',
+                                                    color: '#6c757d',
+                                                    fontWeight: 'bold',
+                                                    padding: '10px 20px',
+                                                    borderRadius: '25px'
+                                                }}
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                className="btn mx-2 btn-outline-secondary text-dark" 
+                                                onClick={handleConfirmSubmit}
+                                                style={{
+                                                    border: '2px solid #6c757d',
+                                                    color: '#6c757d',
+                                                    fontWeight: 'bold',
+                                                    padding: '10px 20px',
+                                                    borderRadius: '25px'
+                                                }}
+                                            >
+                                                Confirm
+                                            </button>
                                         </div>
                                     ) : (
-                                        <button type="button" className={`btn btn-${Object.keys(errorMessages).length ? 'danger' : 'success'}`} disabled={isLoading} onClick={handleConfirmation} style={{width: '100px'}}>
+                                        <button 
+                                            type="button" 
+                                            className="btn mx-2 btn-outline-secondary text-dark" 
+                                            disabled={isLoading} 
+                                            onClick={handleConfirmation} 
+                                            style={{
+                                                border: '2px solid #6c757d',
+                                                color: '#6c757d',
+                                                fontWeight: 'bold',
+                                                padding: '10px 20px',
+                                                borderRadius: '25px',
+                                                width: 'auto'
+                                            }}
+                                        >
                                             {isLoading ? 'Updating Profile...' : 'Update'}
                                         </button>
                                     )}
@@ -228,6 +268,7 @@ const HospitalStaffUpdateProfile = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };
