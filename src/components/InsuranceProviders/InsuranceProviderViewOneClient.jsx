@@ -102,15 +102,17 @@ const InsuranceProviderViewOneClient = () => {
                                         <div className="col-md-6">
                                             <h2 className="card-title" style={{ color: '#0056b3' }}>{clientDetails.clientName}</h2>
                                             <p className="mb-2"><strong>Email:</strong> {clientDetails.clientEmail}</p>
-                                            <p className="mb-2"><strong>Aadhar:</strong> {clientDetails.clientAadhar}</p>
-                                            <p className="mb-2"><strong>Mobile:</strong> {clientDetails.clientMobile}</p>
-                                            <p className="mb-2"><strong>Address:</strong> {clientDetails.clientAddress}</p>
+                                            <p className="mb-2"><strong>Aadhar:</strong> {clientDetails.hospitalName}</p>
+                                            <p className="mb-2"><strong>Package:</strong> {clientDetails.packageTitle}</p>
+                                            <p className="mb-2"><strong>Details:</strong> {clientDetails.packageDetails}</p>
+                                            <p className="mb-2"><strong>Duration:</strong> {clientDetails.packageDuration}</p>
+                                            <p className="mb-2"><strong>Amount:</strong> {clientDetails.packageAmount}</p>
 
                                             <p><strong>Admitted Date:</strong> {formatDate(clientDetails.registeredDate)}</p> {/* Format the date here */}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="d-flex justify-content-end p-2" style={{ gap: '10px' }}>
+                                <div className="d-flex justify-content-center align-items-center">
                                     <button
                                         className="btn btn-outline-secondary text-dark"
                                         onClick={handleSendNotificationToclient}

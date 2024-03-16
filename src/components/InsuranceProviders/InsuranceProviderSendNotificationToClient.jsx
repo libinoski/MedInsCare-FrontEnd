@@ -93,10 +93,26 @@ const InsuranceProviderSendNotificationToClient = () => {
                                     ></textarea>
                                 </div>
                                 {error && <div className="alert alert-danger" style={{ borderRadius: '15px' }}>{error}</div>}
-                                <div className="text-center">
-                                    <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading} style={{ borderRadius: '25px', padding: '10px 30px', transition: 'background-color .3s', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                                        {isLoading ? 'Sending...' : 'Send Notification'}
-                                    </button>
+                                <div className="d-flex justify-content-center align-items-center">
+                                <button 
+    type="submit" 
+    className={`btn ${isLoading ? 'btn-outline-secondary' : 'btn-outline-secondary'} text-dark d-flex justify-content-center align-items-center`} 
+    disabled={isLoading} 
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '10px 20px',
+        borderRadius: '25px',
+        width: '100%',
+        maxWidth: '200px',
+        textDecoration: 'none',
+        transition: 'background-color .3s', // Keeping transition from your original button for smooth color change
+    }}>
+    {isLoading ? 'Sending...' : 'Send Notification'}
+</button>
+
                                 </div>
                             </form>
                         </div>
