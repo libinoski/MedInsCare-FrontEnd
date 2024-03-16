@@ -88,43 +88,39 @@ const HospitalViewAllPatients = () => {
     ) : patientList.length > 0 ? (
       <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
         {patientList.map((patient, index) => (
-          <div
-            key={index}
-            className="col"
-            onClick={() => handleViewPatient(patient.patientId)}
-          >
-            <div className="card h-100 shadow-sm position-relative"
-                 style={{
-                   cursor: 'pointer', 
-                   transition: 'transform 0.3s ease', 
-                   borderRadius: '.5rem', 
-                   border: '1px solid transparent'
-                 }}
-                 onMouseEnter={(e) => { 
-                   e.currentTarget.style.transform = 'scale(1.03)';
-                   e.currentTarget.style.boxShadow = '0 0.5rem 1rem rgba(0, 0, 0, 0.15)';
-                   e.currentTarget.style.zIndex = '1000';
-                   e.currentTarget.style.borderColor = '#007bff';
-                 }}
-                 onMouseLeave={(e) => { 
-                   e.currentTarget.style.transform = 'scale(1)';
-                   e.currentTarget.style.boxShadow = '';
-                   e.currentTarget.style.zIndex = '0';
-                   e.currentTarget.style.borderColor = 'transparent';
-                 }}
+          <div key={index} className="col">
+            <div
+              className="card h-100 shadow-sm"
+              style={{
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                borderRadius: '15px',
+                border: '1px solid transparent'
+              }}
+              onClick={() => handleViewPatient(patient.patientId)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.borderColor = '#007bff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
             >
               <div className="card-body">
                 <div className="d-flex align-items-center mb-3">
                   <img
-                    src={patient.patientProfileImage || 'placeholder-image-url'} // Replace 'placeholder-image-url' with actual placeholder image URL
+                    src={patient.patientProfileImage || 'placeholder-image-url'} // Placeholder image URL goes here
                     alt="Patient"
                     className="rounded-circle me-3"
-                    style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                    style={{ width: '60px', height: '60px', objectFit: 'cover', border: '3px solid #ffffff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
                   />
                   <div>
                     <h5 className="card-title">{patient.patientName}</h5>
                     <p className="card-text">
-                      <small className="text-muted">Registered Date: {formatDate(patient.registeredDate)}</small><br/>
+                      <small className="text-muted">Registered Date:{formatDate(patient.registeredDate)}</small><br/>
                       <small className="text-muted">Ward: {patient.admittedWard}</small><br/>
                       <small className="text-muted">Diagnosis: {patient.diagnosisOrDiseaseType}</small><br/>
                       <small className="text-muted">Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</small>

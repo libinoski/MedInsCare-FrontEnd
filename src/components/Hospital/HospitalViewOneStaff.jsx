@@ -163,7 +163,7 @@ const HospitalViewOneStaff = () => {
     <Navbar />
     <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
         <div className="row justify-content-center">
-            <div className="col-12 col-md-10 col-lg-8">
+            <div className="col-12 col-md-10 col-lg-8 d-flex justify-content-center"> {/* Centering the content */}
                 {isLoading ? (
                     <div className="text-center">
                         <div className="spinner-border text-primary" role="status">
@@ -171,7 +171,7 @@ const HospitalViewOneStaff = () => {
                         </div>
                     </div>
                 ) : staffDetails ? (
-                    <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
+                    <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden', maxWidth: '600px' }}> {/* Adjusted card width */}
                         <div className="card-body p-4 p-md-5">
                             <div className="row align-items-center">
                                 <div className="col-md-6 text-center mb-4 mb-md-0">
@@ -188,11 +188,11 @@ const HospitalViewOneStaff = () => {
                                     <p className="mb-2"><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
                                     <p className="mb-2"><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
                                     <p className="mb-2"><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                                    <p><strong>Added Date:</strong> {staffDetails.addedDate}</p>
+                                    <p className="mb-0"><strong>Added Date:</strong> {staffDetails.addedDate}</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                        <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> {/* Removed flex-direction: column */}
                             <img
                                 src={staffDetails.hospitalStaffIdProofImage}
                                 alt="ID Proof"
@@ -205,10 +205,63 @@ const HospitalViewOneStaff = () => {
                                 }}
                             />
                             <div className="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
-                                <button className="btn" onClick={handleDeleteStaff} style={{ backgroundImage: 'linear-gradient(135deg, #ff416c, #ff4b2b)', color: 'white' }}>Delete Staff</button>
-                                <button className="btn" onClick={handleSuspendStaff} style={{ backgroundImage: 'linear-gradient(135deg, #FFD200, #F7971E)', color: 'white' }}>Suspend Staff</button>
-                                <button className="btn" onClick={handleSendNotificationToStaff} style={{ backgroundImage: 'linear-gradient(135deg, #00B4DB, #0083B0)', color: 'white' }}>Send Notification</button>
-                                <button className="btn" onClick={() => navigate('/hospitalUpdateStaff')} style={{ backgroundImage: 'linear-gradient(135deg, #11998e, #38ef7d)', color: 'white' }}>Update Staff</button>
+                                <button 
+                                    className="btn btn-outline-secondary text-dark" 
+                                    onClick={handleDeleteStaff} 
+                                    style={{
+                                        border: '2px solid #6c757d',
+                                        color: '#6c757d',
+                                        fontWeight: 'bold',
+                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                    }}
+                                >
+                                    Delete
+                                </button>
+                                <button 
+                                    className="btn btn-outline-secondary text-dark" 
+                                    onClick={handleSuspendStaff} 
+                                    style={{
+                                        border: '2px solid #6c757d',
+                                        color: '#6c757d',
+                                        fontWeight: 'bold',
+                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                    }}
+                                >
+                                    Suspend
+                                </button>
+                                <button 
+                                    className="btn btn-outline-secondary text-dark" 
+                                    onClick={() => navigate('/hospitalUpdateStaff')} 
+                                    style={{
+                                        border: '2px solid #6c757d',
+                                        color: '#6c757d',
+                                        fontWeight: 'bold',
+                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                    }}
+                                >
+                                    Update
+                                </button>
+                                <button 
+                                    className="btn btn-outline-secondary text-dark" 
+                                    onClick={handleSendNotificationToStaff} 
+                                    style={{
+                                        border: '2px solid #6c757d',
+                                        color: '#6c757d',
+                                        fontWeight: 'bold',
+                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                    }}
+                                >
+                                    Send Notification
+                                </button>
+                
                             </div>
                         </div>
                     </div>
@@ -220,64 +273,6 @@ const HospitalViewOneStaff = () => {
     </div>
     <Footer />
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     );
 };

@@ -68,73 +68,94 @@ const PatientViewAllInsuranceProviders = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100">
-    <PatientNavbar />
-    <div className="flex-grow-1 container" style={{ paddingTop: '70px', paddingBottom: '70px', overflowY: 'auto' }}>
-        {isLoading ? (
-            <div className="text-center">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        ) : providerList && providerList.length > 0 ? (
-            <div className="row row-cols-1 row-cols-md-3 g-4 pt-5 pb-5 justify-content-center">
-                {providerList.map((provider, index) => (
-                    <div
-                        key={index}
-                        className="col"
-                        onClick={() => handleViewProvider(provider.insuranceProviderId)}
-                    >
-                        <div className="card h-100 border-primary"
-                             onMouseOver={(e) => e.currentTarget.classList.add('shadow-lg')}
-                             onMouseOut={(e) => e.currentTarget.classList.remove('shadow-lg')}
-                             style={{ cursor: 'pointer', transition: 'transform .2s, box-shadow .2s' }}>
-                            <div className="card-body">
-                                <div className="d-flex align-items-center mb-3">
-                                    <div className="overflow-hidden rounded-circle border border-3 border-primary" style={{ width: '60px', height: '60px' }}>
-                                        {provider.insuranceProviderProfileImage ? (
-                                            <img
-                                                src={provider.insuranceProviderProfileImage}
-                                                className="img-fluid"
-                                                alt="Insurance Provider"
-                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            />
-                                        ) : (
-                                            <div className="d-flex justify-content-center align-items-center h-100">
-                                                <span>No Image</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="flex-grow-1 ms-3">
-                                        <h5 className="card-title">{provider.insuranceProviderName}</h5>
-                                    </div>
-                                </div>
-                                <p className="card-text text-muted">
-                                    <strong>Registered Date:</strong> {new Date(provider.registeredDate).toLocaleDateString()}
-                                </p>
-                                <p className="card-text text-muted">
-                                    <strong>Status:</strong> {provider.isActive ? 'Active' : 'Inactive'}
-                                </p>
-                                <p className="card-text text-muted">
-                                    <strong>Email:</strong> {provider.insuranceProviderEmail}
-                                </p>
-                                <p className="card-text text-muted">
-                                    <strong>Phone:</strong> {provider.insuranceProviderMobile}
-                                </p>
-                                <p className="card-text text-muted">
-                                    <strong>Address:</strong> {provider.insuranceProviderAddress}
-                                </p>
-                            </div>
+        <div className="d-flex flex-column min-vh-100">
+            <PatientNavbar />
+            <div className="flex-grow-1 container" style={{ paddingTop: '70px', paddingBottom: '70px', overflowY: 'auto' }}>
+                {isLoading ? (
+                    <div className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                ))}
+                ) : providerList && providerList.length > 0 ? (
+                    <div className="row row-cols-1 row-cols-md-3 g-4 pt-5 pb-5 justify-content-center">
+                        {providerList.map((provider, index) => (
+                            <div
+                                key={index}
+                                className="col"
+                                onClick={() => handleViewProvider(provider.insuranceProviderId)}
+                            >
+                                <div className="card h-100 shadow-sm"
+                                    style={{
+                                        cursor: 'pointer',
+                                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                        borderRadius: '15px',
+                                        border: '1px solid transparent'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.05)';
+                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                                        e.currentTarget.style.borderColor = '#007bff';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                                        e.currentTarget.style.borderColor = 'transparent';
+                                    }}>
+                                    <div className="card-body">
+                                        <div className="d-flex align-items-center mb-3">
+                                            <div className="overflow-hidden rounded-circle" style={{ width: '60px', height: '60px' }}>
+                                                {provider.insuranceProviderProfileImage ? (
+                                                    <img
+                                                        src={provider.insuranceProviderProfileImage}
+                                                        className="img-fluid"
+                                                        alt="Insurance Provider"
+                                                        style={{
+                                                            width: '100%',
+                                                            height: '100%',
+                                                            objectFit: 'cover',
+                                                            borderRadius: '50%' // Ensure the image is rounded
+                                                        }}
+                                                    />
+                                                ) : (
+                                                    <div className="d-flex justify-content-center align-items-center h-100 bg-primary text-white">
+                                                        <span>No Image</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="flex-grow-1 ms-3">
+                                                <h5 className="card-title">{provider.insuranceProviderName}</h5>
+                                            </div>
+                                        </div>
+                                        {/* Additional details */}
+                                        <p className="card-text text-muted">
+                                            <strong>Registered Date:</strong> {new Date(provider.registeredDate).toLocaleDateString()}
+                                        </p>
+                                        <p className="card-text text-muted">
+                                            <strong>Status:</strong> {provider.isActive ? 'Active' : 'Inactive'}
+                                        </p>
+                                        <p className="card-text text-muted">
+                                            <strong>Email:</strong> {provider.insuranceProviderEmail}
+                                        </p>
+                                        <p className="card-text text-muted">
+                                            <strong>Phone:</strong> {provider.insuranceProviderMobile}
+                                        </p>
+                                        <p className="card-text text-muted">
+                                            <strong>Address:</strong> {provider.insuranceProviderAddress}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center alert alert-warning mt-4">No insurance providers found.</div>
+                )}
             </div>
-        ) : (
-            <div className="text-center alert alert-warning mt-4">No insurance providers found.</div>
-        )}
-    </div>
-    <Footer />
-</div>
+            <Footer />
+        </div>
+
 
     );
 };

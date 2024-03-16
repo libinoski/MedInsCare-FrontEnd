@@ -82,8 +82,9 @@ const HospitalStaffViewOnePatient = () => {
 
 
     return (
-        <div>
-            <HospitalStaffNavbar />
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}><HospitalStaffNavbar />
             <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
                 <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     {isLoading ? (
@@ -133,41 +134,45 @@ const HospitalStaffViewOnePatient = () => {
                                             />
                                         </div>
                                         <div className="d-flex justify-content-end p-2" style={{ gap: '10px' }}>
-                                            <button
-                                                className="btn d-flex align-items-center justify-content-center"
-                                                onClick={handleSendNotificationToPatient}
-                                                style={{
-                                                    backgroundImage: 'linear-gradient(135deg, #007bff, #0023b0)',
-                                                    color: 'white',
-                                                    border: 'none',
-                                                    padding: '0.375rem 0.75rem',
-                                                    borderRadius: '0.25rem',
-                                                    position: 'relative'
-                                                }}>
-                                                <i className="bi bi-envelope-fill" style={{ marginRight: '0.5rem' }}></i> Send Notification
-                                            </button>
-                                            <button
-                                                className="btn"
-                                                onClick={handleRequestDischarge}
-                                                style={{
-                                                    backgroundImage: 'linear-gradient(135deg, #56ab2f, #a8e063)',
-                                                    color: 'white',
-                                                    border: 'none',
-                                                    padding: '0.375rem 0.75rem',
-                                                    borderRadius: '0.25rem'
-                                                }}>Request Discharge
-                                            </button>
-                                            <button
-                                                className="btn"
-                                                onClick={handleAddMedicalRecords}
-                                                style={{
-                                                    backgroundImage: 'linear-gradient(135deg, #ffc107, #ff9800)',
-                                                    color: 'white',
-                                                    border: 'none',
-                                                    padding: '0.375rem 0.75rem',
-                                                    borderRadius: '0.25rem'
-                                                }}>Add Medical Records
-                                            </button>
+                                        <button
+    className="btn btn-outline-secondary text-dark d-flex align-items-center justify-content-center"
+    onClick={handleSendNotificationToPatient}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '0.375rem 0.75rem',
+        borderRadius: '0.25rem',
+        position: 'relative'
+    }}>
+    <i className="bi bi-envelope-fill" style={{ marginRight: '0.5rem' }}></i> Send Notification
+</button>
+<button
+    className="btn btn-outline-secondary text-dark"
+    onClick={handleRequestDischarge}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '0.375rem 0.75rem',
+        borderRadius: '0.25rem'
+    }}>Request Discharge
+</button>
+<button
+    className="btn btn-outline-secondary text-dark"
+    onClick={handleAddMedicalRecords}
+    style={{
+        border: '2px solid #6c757d',
+        color: '#6c757d',
+        fontWeight: 'bold',
+        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+        padding: '0.375rem 0.75rem',
+        borderRadius: '0.25rem'
+    }}>Add Medical Records
+</button>
+
                                         </div>
                                     </div>
                                 ) : (

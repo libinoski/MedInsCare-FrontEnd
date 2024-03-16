@@ -68,8 +68,9 @@ const HospitalStaffViewOneNews = () => {
     }, [navigate]);
 
     return (
-        <div>
-            <Navbar />
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}>            <Navbar />
             <div className="container-fluid d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
                 <div className="col-lg-8">
                     {isLoading ? (

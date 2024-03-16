@@ -78,22 +78,54 @@ const HospitalStaffViewAllPatients = () => {
 
 
     return (
-        <div className="d-flex flex-column min-vh-100">
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}>
             <HospitalStaffNavbar />
             <div className="flex-grow-1 container-fluid py-4" style={{ overflowY: 'auto' }}>
                 <div className="container">
                     {isLoading ? (
-                        <p className="text-center">Loading patients...</p>
+                        <p className="text-center" style={{ color: '#FFFFFF' }}>Loading patients...</p> // Optional: Adjust text color for visibility
                     ) : patientList.length > 0 ? (
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
                             {patientList.map((patient, index) => (
                                 <div key={index} className="col">
-                                    <div className="card h-100 shadow-sm rounded-3" style={{ border: 'none', transition: 'all 0.3s ease-in-out' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.03)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} onClick={() => handleViewPatient(patient.patientId)}>
-                                        <img src={patient.patientProfileImage} className="card-img-top rounded-top" alt="Patient" style={{ objectFit: 'cover', height: '200px' }} />
+                                    <div className="card h-100 shadow-sm rounded-3" style={{
+                                        border: '1px solid transparent',
+                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease, border 0.3s ease',
+                                        borderRadius: '15px',
+                                        backgroundColor: '#FFFFFF', // Ensure card background contrasts with the dark gradient
+                                    }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.transform = 'scale(1.05)';
+                                            e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                                            e.currentTarget.style.borderColor = '#007bff';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.transform = 'scale(1)';
+                                            e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                                            e.currentTarget.style.borderColor = 'transparent';
+                                        }}
+                                        onClick={() => handleViewPatient(patient.patientId)}
+                                    >
+                                        <div className="card-img-top rounded-circle overflow-hidden d-flex justify-content-center align-items-center" style={{
+                                            background: '#f0f0f0',
+                                            padding: '5px', // Adjusts the padding around the image for the frame effect
+                                            height: '200px', // Adjust height as necessary
+                                            width: '200px', // Adjust width as necessary
+                                            margin: '15px auto 0' // Centers the image on the card
+                                        }}>
+                                            <img src={patient.patientProfileImage} alt="Patient" style={{
+                                                height: '100%', // Ensures the image fully covers the frame area
+                                                width: '100%', // Ensures the image fully covers the frame area
+                                                objectFit: 'cover',
+                                                borderRadius: '50%', // Fully rounds the image
+                                            }} />
+                                        </div>
                                         <div className="card-body">
                                             <h5 className="card-title mb-3">{patient.patientName}</h5>
                                             <ul className="list-unstyled">
-                                            <li className="mb-2"><small className="text-muted">Registered Date: {formatDate(patient.registeredDate)}</small></li>
+                                                <li className="mb-2"><small className="text-muted">Registered Date: {formatDate(patient.registeredDate)}</small></li>
                                                 <li className="mb-2"><small className="text-muted">Discharge Status: {patient.dischargeStatus === 1 ? 'Discharged' : 'Not Discharged'}</small></li>
                                                 <li><small className="text-muted">Aadhar: {patient.patientAadhar}</small></li>
                                                 <li><small className="text-muted">Mobile: {patient.patientMobile}</small></li>
@@ -107,14 +139,13 @@ const HospitalStaffViewAllPatients = () => {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center mt-4">No patients found.</p>
+                        <p className="text-center mt-4" style={{ color: '#FFFFFF' }}>No patients found.</p> // Optional: Adjust text color for visibility
                     )}
                 </div>
             </div>
             <Footer className="mt-auto" />
         </div>
-
-
+        
 
     );
 };

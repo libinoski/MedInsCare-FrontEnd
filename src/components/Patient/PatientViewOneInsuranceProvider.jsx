@@ -96,12 +96,14 @@ const PatientViewOneInsuranceProvider = () => {
                                     <p><strong>Added Date:</strong> {providerDetails.addedDate}</p>
                                     <button
                                         onClick={handleReviewInsuranceProvider}
-                                        className="btn btn-primary"
+                                        className="btn btn-outline-secondary text-dark"
                                         style={{
-                                            background: 'linear-gradient(to right, #007bff, #00dbde)',
-                                            borderColor: 'transparent',
-                                            boxShadow: '0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)',
-                                            transition: 'all .2s',
+                                            border: '2px solid #6c757d',
+                                            color: '#6c757d',
+                                            fontWeight: 'bold',
+                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                            padding: '0.375rem 0.75rem',
+                                            borderRadius: '0.25rem',
                                         }}
                                     >
                                         Add Review
@@ -118,6 +120,7 @@ const PatientViewOneInsuranceProvider = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };

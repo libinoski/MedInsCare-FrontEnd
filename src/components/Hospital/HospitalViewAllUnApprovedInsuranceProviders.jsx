@@ -78,18 +78,26 @@ const HospitalViewAllUnapprovedInsuranceProviders = () => {
                     {unapprovedProviders.map((provider, index) => (
                         <div key={index} className="col">
                             <div
-                                className="card shadow h-100" style={{ cursor: 'pointer', transition: 'all 0.3s ease', borderRadius: '15px' }}
+                                className="card shadow h-100"
+                                style={{ cursor: 'pointer', transition: 'all 0.3s ease', borderRadius: '15px' }}
                                 onClick={() => handleViewDetails(provider.insuranceProviderId)}
-                                onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; }}
+                                onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)'; e.currentTarget.style.border = '1px solid blue'; }} // Added blue border on hover
+                                onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; e.currentTarget.style.border = 'none'; }} // Revert border on mouse leave
                             >
-                                <div className="card-body d-flex align-items-center">
+                                <div className="card-body d-flex flex-column" style={{ maxHeight: '300px', overflow: 'auto' }}>
                                     <img
                                         src={provider.insuranceProviderProfileImage}
-                                        className="me-3"
+                                        className="me-3 rounded-circle mb-3"
                                         alt="Provider Logo"
-                                        style={{ width: '60px', height: '60px', objectFit: 'contain' }} // Ensures image does not get cropped
+                                        style={{
+                                            width: '60px',
+                                            height: '60px',
+                                            objectFit: 'cover', // Ensure image covers the frame fully
+                                            border: '3px solid #ffffff', // Frame color
+                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' // Shadow for depth
+                                        }}
                                     />
+
                                     <div>
                                         <h5 className="card-title text-primary">{provider.insuranceProviderName}</h5>
                                         <p className="card-text"><strong>Email:</strong> {provider.insuranceProviderEmail}</p>
@@ -108,6 +116,7 @@ const HospitalViewAllUnapprovedInsuranceProviders = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };

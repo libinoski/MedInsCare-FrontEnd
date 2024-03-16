@@ -89,52 +89,42 @@ const HospitalStaffChangeIdProofImage = () => {
     };
 
     return (
-<div>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <HospitalStaffNavbar />
-    <div
-        className="container-fluid bg-blur"
-        style={{
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh',
-            paddingTop: '56px',
-            position: 'relative',
-        }}
-    >
-        <div className="container py-5">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card transparent-card">
-                        <div className="card-body">
-                            <form onSubmit={handleIdProofImageUpload} encType="multipart/form-data">
-                                {currentImage && (
-                                    <div className="mb-3">
-                                        <img
-                                            src={currentImage}
-                                            alt="Current Id Proof"
-                                            className="img-fluid img-preview"
-                                        />
-                                    </div>
-                                )}
+    <div className="container py-5">
+        <div className="row justify-content-center">
+            <div className="col-md-8">
+                <div className="card transparent-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(20px)' }}>
+                    <div className="card-body">
+                        <form onSubmit={handleIdProofImageUpload} encType="multipart/form-data">
+                            {currentImage && (
                                 <div className="mb-3">
-                                    <label htmlFor="hospitalStaffIdProofImage" className="form-label">Choose New Id Proof Image:</label>
-                                    <input
-                                        type="file"
-                                        className={`form-control ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
-                                        id="hospitalStaffIdProofImage"
-                                        ref={fileInputRef}
+                                    <img
+                                        src={currentImage}
+                                        alt="Current Id Proof"
+                                        className="img-fluid img-preview"
+                                        style={{ maxWidth: '500px', maxHeight: '300px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
                                     />
-                                    {validationErrors.hospitalStaffIdProofImage && (
-                                        <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>
-                                    )}
                                 </div>
-                                <div className="d-grid mt-4">
-                                    <button type="submit" className={`btn btn-${Object.keys(validationErrors).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100px'}}>
-                                        {isLoading ? 'Uploading Image...' : 'Upload'}
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            )}
+                            <div className="mb-3">
+                                <label htmlFor="hospitalStaffIdProofImage" className="form-label">Choose New Id Proof Image:</label>
+                                <input
+                                    type="file"
+                                    className={`form-control ${validationErrors.hospitalStaffIdProofImage ? 'is-invalid' : ''}`}
+                                    id="hospitalStaffIdProofImage"
+                                    ref={fileInputRef}
+                                />
+                                {validationErrors.hospitalStaffIdProofImage && (
+                                    <div className="invalid-feedback">{validationErrors.hospitalStaffIdProofImage}</div>
+                                )}
+                            </div>
+                            <div className="d-grid gap-2 mt-4">
+                                <button type="submit" className={`btn btn-lg btn-block btn-${Object.keys(validationErrors).length ? 'danger' : 'primary'}`} disabled={isLoading}>
+                                    {isLoading ? 'Uploading Image...' : 'Upload'}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

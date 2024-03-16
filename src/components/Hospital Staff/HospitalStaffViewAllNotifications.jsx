@@ -70,7 +70,9 @@ const HospitalStaffViewAllNotifications = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}>
     <HospitalStaffNavbar />
     <div className="container" style={{ flex: 1 }}>
         <div className="row">
@@ -89,7 +91,7 @@ const HospitalStaffViewAllNotifications = () => {
                                 className="list-group-item mb-3 shadow-sm border border-primary"
                                 style={{
                                     borderRadius: '1rem',
-                                    background: 'rgba(255, 255, 255, 0.5)',
+                                    background: 'white', // Changed to white background
                                     backdropFilter: 'blur(5px)',
                                     cursor: 'pointer'
                                 }}

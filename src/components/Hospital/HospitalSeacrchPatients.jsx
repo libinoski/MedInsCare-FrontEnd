@@ -87,7 +87,7 @@ const HospitalSearchPatients = () => {
                             fontSize: '1.2rem',
                             padding: '15px 20px',
                             height: 'auto',
-                            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' // Added shadow effect
+                            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'
                         }}
                     />
                     <div className="input-group-append">
@@ -100,7 +100,7 @@ const HospitalSearchPatients = () => {
                                 fontSize: '1.2rem',
                                 padding: '15px 30px',
                                 height: 'auto',
-                                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' // Added shadow effect
+                                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'
                             }}
                         >
                             Search
@@ -118,22 +118,24 @@ const HospitalSearchPatients = () => {
                         {searchResult.map((patient, index) => (
                             <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
                                 <div
-                                    className="card h-100 text-center" // Adjusted for consistency and alignment
+                                    className="card h-100 text-center shadow-sm"
                                     style={{
                                         backgroundColor: 'white',
-                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Enhanced shadow for depth
-                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease', // Smooth transition for transform and shadow
-                                        cursor: 'pointer', // Indicates interactiveness
+                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease',
+                                        cursor: 'pointer',
+                                        borderRadius: '15px',
+                                        border: '1px solid transparent'
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'scale(1.03)'; // Scale effect on hover
-                                        e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)'; // Enhanced shadow on hover
-                                        e.currentTarget.style.borderColor = '#007bff'; // Blue border on hover
+                                        e.currentTarget.style.transform = 'scale(1.05)';
+                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                                        e.currentTarget.style.borderColor = '#007bff';
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'scale(1)'; // Revert scale effect
-                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)'; // Revert shadow effect
-                                        e.currentTarget.style.borderColor = 'transparent'; // Hide border
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                                        e.currentTarget.style.borderColor = 'transparent';
                                     }}
                                     onClick={() => handleViewPatient(patient.patientId)}
                                 >
@@ -142,14 +144,20 @@ const HospitalSearchPatients = () => {
                                             <img
                                                 src={patient.patientProfileImage}
                                                 alt="Profile"
-                                                style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: '5px' }} // Rounded corners for the image
+                                                className="rounded-circle"
+                                                style={{ width: '60px', height: '60px', objectFit: 'cover', margin: '0 auto', border: '3px solid #ffffff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
                                             />
                                         </div>
                                         <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                                             {patient.patientName}
                                         </h5>
                                         <p className="mb-2"><strong>Admitted Ward:</strong> {patient.admittedWard}</p>
-                                        <p className="mb-0"><strong>Diagnosis/Disease:</strong> {patient.diagnosisOrDiseaseType}</p>
+                                        <p className="mb-2"><strong>Diagnosis/Disease:</strong> {patient.diagnosisOrDiseaseType}</p>
+                                        <p className="mb-2"><strong>Email:</strong> {patient.patientEmail}</p>
+                                        <p className="mb-2"><strong>Aadhar:</strong> {patient.patientAadhar}</p>
+                                        <p className="mb-2"><strong>Mobile:</strong> {patient.patientMobile}</p>
+                                        <p className="mb-2"><strong>Address:</strong> {patient.patientAddress}</p>
+                                        <p className="mb-0"><strong>Registered Date:</strong> {patient.registeredDate}</p>
                                     </div>
                                 </div>
                             </div>

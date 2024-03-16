@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Common/Footer';
-import HospitalStaffNavbar from './InsuranceProviderNavbar';
+import InsuranceProviderNavbar from './InsuranceProviderNavbar';
 
 const InsuranceProviderChangeProfileImage = () => {
     const navigate = useNavigate();
@@ -89,48 +89,48 @@ const InsuranceProviderChangeProfileImage = () => {
     };
 
     return (
-<div>
-    <HospitalStaffNavbar />
-    <div
-        className="container-fluid bg-blur"
-        style={{
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh',
-            paddingTop: '56px',
-            position: 'relative',
-        }}
-    >
-        <div className="container py-5">
-            <div className="row justify-content-center">
-                <div className="col-12">
-                    <div className="card transparent-card">
-                        <div className="card-body d-flex flex-column align-items-center">
-                            <form onSubmit={handleProfileImageUpload} encType="multipart/form-data" className="w-100">
-                                {currentImage && (
-                                    <div className="mb-3 text-center">
-                                        <img src={currentImage} className="img-fluid img-preview" alt="" style={{ maxHeight: '300px' }} />
-                                    </div>
-                                )}
-                                <div className="mb-3">
-                                    <label htmlFor="insuranceProviderProfileImage" className="form-label">Choose New Profile Image:</label>
-                                    <input
-                                        type="file"
-                                        className={`form-control ${validationErrors.insuranceProviderProfileImage ? 'is-invalid' : ''}`}
-                                        id="profileImage"
-                                        ref={fileInputRef}
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <InsuranceProviderNavbar />
+    <div className="container pt-5" style={{ marginTop: '56px' }}> {/* Adjusted padding-top with class */}
+        <div className="row justify-content-center">
+            <div className="col-md-8"> {/* Adjusted the column width */}
+                <div className="card transparent-card bg-opacity-50" style={{ backdropFilter: 'blur(20px)' }}> {/* Added Bootstrap classes for background transparency */}
+                    <div className="card-body d-flex flex-column align-items-center">
+                        <form onSubmit={handleProfileImageUpload} encType="multipart/form-data" className="w-100">
+                            {currentImage && (
+                                <div className="mb-3 text-center">
+                                    <img
+                                        src={currentImage}
+                                        className="img-fluid img-preview"
+                                        alt="User's Profile"
+                                        style={{ maxHeight: '300px' }}
                                     />
-                                    {validationErrors.insuranceProviderProfileImage && (
-                                        <div className="invalid-feedback">{validationErrors.insuranceProviderProfileImage}</div>
-                                    )}
                                 </div>
-                                <div className="d-grid mt-4">
-                                    <button type="submit" className={`btn btn-${Object.keys(validationErrors).length ? 'danger' : 'success'}`} disabled={isLoading} style={{width: '100%', borderRadius: '20px'}}>
-                                        {isLoading ? 'Uploading Image...' : 'Upload'}
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            )}
+                            <div className="mb-3">
+                                <label htmlFor="insuranceProviderProfileImage" className="form-label">Choose New Profile Image:</label>
+                                <input
+                                    type="file"
+                                    className={`form-control ${validationErrors.insuranceProviderProfileImage ? 'is-invalid' : ''}`}
+                                    id="insuranceProviderProfileImage"
+                                    ref={fileInputRef}
+                                />
+                                {validationErrors.insuranceProviderProfileImage && (
+                                    <div className="invalid-feedback">{validationErrors.insuranceProviderProfileImage}</div>
+                                )}
+                            </div>
+                            <div className="d-grid gap-2 mt-4">
+                            <button 
+  type="submit" 
+  className={`btn ${Object.keys(validationErrors).length ? 'btn-danger' : 'btn-primary'} rounded-pill px-5 py-2`} // Adjusted padding with px-5 and py-2 for horizontal and vertical padding
+  disabled={isLoading}
+  style={{ fontSize: '1rem', fontWeight: 'bold' }} // Added inline style for font size and weight
+>
+  {isLoading ? 'Uploading Image...' : 'Upload'}
+</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,6 @@ const InsuranceProviderChangeProfileImage = () => {
     </div>
     <Footer />
 </div>
-
 
 
     );

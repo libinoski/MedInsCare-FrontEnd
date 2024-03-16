@@ -85,22 +85,27 @@ const HospitalChangeImage = () => {
     };
 
     return (
-<div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f0f2f7' }}>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f0f2f7' }}>
     {/* Navbar */}
     <Navbar />
 
     {/* Main content */}
-    <div className="container-fluid flex-grow-1 d-flex align-items-center justify-content-center">
-        <div className="col-12 col-md-8 col-lg-6">
-            <div className="container py-5 d-flex justify-content-center">
-                <div className="card shadow-sm" style={{ borderRadius: '20px', overflow: 'hidden', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+    <div className="container py-5">
+        <div className="row justify-content-center">
+            <div className="col-md-8">
+                <div className="card shadow-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(10px)', borderRadius: '20px' }}>
                     <div className="card-body">
                         <form onSubmit={handleImageUpload} encType="multipart/form-data">
-                            <div className="mb-4 d-flex justify-content-center align-items-center">
-                                {currentImage && (
-                                    <img src={currentImage} alt="Current" className="img-thumbnail" style={{ width: '200px', height: '200px', borderRadius: '10px', objectFit: 'cover' }} />
-                                )}
-                            </div>
+                            {currentImage && (
+                                <div className="mb-3 d-flex justify-content-center">
+                                    <img
+                                        src={currentImage}
+                                        alt="Current"
+                                        className="img-thumbnail"
+                                        style={{ maxWidth: '500px', maxHeight: '300px', borderRadius: '10px', objectFit: 'cover', display: 'block' }}
+                                    />
+                                </div>
+                            )}
                             <div className="mb-3">
                                 <label htmlFor="hospitalImage" className="form-label">Choose New Image:</label>
                                 <input
@@ -114,8 +119,8 @@ const HospitalChangeImage = () => {
                                     <div className="invalid-feedback">{validationErrors.hospitalImage}</div>
                                 )}
                             </div>
-                            <div className="text-center">
-                                <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                            <div className="text-center mt-4">
+                                <button type="submit" className={`btn btn-lg ${Object.keys(validationErrors).length ? 'btn-danger' : 'btn-primary'}`} disabled={isLoading}>
                                     {isLoading ? 'Uploading...' : 'Upload'}
                                 </button>
                             </div>

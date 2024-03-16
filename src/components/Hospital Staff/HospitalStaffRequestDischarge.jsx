@@ -68,8 +68,9 @@ const HospitalStaffRequestDischarge = () => {
   };
 
   return (
-    <div>
-      <HospitalStaffNavbar />
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}>      <HospitalStaffNavbar />
       <div className="container-fluid py-5">
         <div className="container">
           <div className="row justify-content-center">

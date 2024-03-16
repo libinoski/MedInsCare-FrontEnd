@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Footer from '../Common/Footer';
-import backgroundImage from '../../images/HospitalStaff/hs.svg'; // Import the background image
+import backgroundImage from '../../images/HospitalStaff/hs.jpg'; // Import the background image
 import { useNavigate } from 'react-router-dom';
 import HospitalStaffNavbar from './HospitalStaffNavbar';
 
@@ -65,8 +65,9 @@ const HospitalStaffSendNotificationToPatient = () => {
     };
 
     return (
-        <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#f0f2f7' }}>
-            <HospitalStaffNavbar />
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}>            <HospitalStaffNavbar />
             <div className="container-fluid" style={{ paddingTop: '56px' }}>
                 <div className="container py-5">
                     <div className="row">

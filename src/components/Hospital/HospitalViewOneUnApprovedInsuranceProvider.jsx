@@ -166,7 +166,7 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
         <Navbar />
         <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px', backgroundColor: '#f0f2f5', flex: '1' }}>
             <div className="row justify-content-center align-items-center">
-                <div className="col-lg-8 d-flex align-items-center justify-content-center">
+                <div className="col-lg-8">
                     {isLoading ? (
                         <div className="text-center">
                             <div className="spinner-border text-primary" role="status">
@@ -174,9 +174,9 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="col-lg-12">
+                        <div className="col-lg-12 d-flex align-items-center justify-content-center">
                             {providerDetails ? (
-                                <div className="card profile-card shadow border-0 w-100 h-100" style={{ borderRadius: '20px' }}>
+                                <div className="card profile-card shadow border-0" style={{ borderRadius: '20px', maxWidth: '600px' }}> {/* Adjusted card width */}
                                     <div className="card-body">
                                         <div className="d-flex flex-column align-items-center mb-5">
                                             <div className="profile-picture bg-light rounded-circle shadow" style={{ width: '200px', height: '200px', overflow: 'hidden', border: '5px solid white' }}>
@@ -193,8 +193,34 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
                                         </div>
                                     </div>
                                     <div className="card-footer d-flex justify-content-center bg-transparent border-top-0">
-                                        <button className="btn btn-primary me-3" onClick={handleApproveProvider} style={{ borderRadius: '50px', padding: '10px 30px', boxShadow: '0 4px 8px rgba(0,0,0,.1)' }}>Approve</button>
-                                        <button className="btn btn-danger" onClick={handleDeleteProvider} style={{ borderRadius: '50px', padding: '10px 30px', boxShadow: '0 4px 8px rgba(0,0,0,.1)' }}>Delete</button>
+                                        <button 
+                                            className="btn btn-outline-secondary text-dark me-3" 
+                                            onClick={handleApproveProvider} 
+                                            style={{
+                                                borderRadius: '50px',
+                                                padding: '10px 30px',
+                                                boxShadow: '0 4px 8px rgba(0,0,0,.1)',
+                                                border: '2px solid #6c757d',
+                                                color: '#6c757d',
+                                                fontWeight: 'bold',
+                                            }}
+                                        >
+                                            Approve
+                                        </button>
+                                        <button 
+                                            className="btn btn-outline-secondary text-dark" 
+                                            onClick={handleDeleteProvider} 
+                                            style={{
+                                                borderRadius: '50px',
+                                                padding: '10px 30px',
+                                                boxShadow: '0 4px 8px rgba(0,0,0,.1)',
+                                                border: '2px solid #6c757d',
+                                                color: '#6c757d',
+                                                fontWeight: 'bold',
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
                                     </div>
                                 </div>
                             ) : (
@@ -206,39 +232,10 @@ const HospitalViewOneUnapprovedInsuranceProvider = () => {
             </div>
         </div>
     </div>
-    <div style={{ marginTop: 'auto' }}> {/* This div will push the footer to the bottom */}
+    <div style={{ marginTop: 'auto' }}>
         <Footer />
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     );
 };

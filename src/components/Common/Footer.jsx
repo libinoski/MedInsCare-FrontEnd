@@ -6,12 +6,12 @@ import { faInstagram, faYoutube, faFacebook, faTelegram } from '@fortawesome/fre
 
 const Footer = () => {
   return (
-    <footer className="py-5" style={{ background: 'linear-gradient(135deg, #ECE9E6 10%, #FFFFFF 100%)', borderTop: '5px solid #BDC3C7' }}>
+    <footer className="py-5" style={{ background: 'linear-gradient(135deg, #2C3E50 10%, #1B2631 100%)', borderTop: '5px solid #BDC3C7' }}>
       <div className="container">
         <div className="row">
           {/* Social media links */}
           <div className="col-lg-6 mb-4 mb-lg-0 d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start">
-            <p className="me-3 mb-3 mb-lg-0 fs-5 text-dark fw-bold"><FontAwesomeIcon icon={faUsers} className="me-2" />Connect with us:</p>
+            <p className="me-3 mb-3 mb-lg-0 fs-5 text-light fw-bold"><FontAwesomeIcon icon={faUsers} className="me-2" />Connect with us:</p>
             <div className="d-flex">
               <Link to="/instagram" className="text-reset text-decoration-none me-3">
                 <FontAwesomeIcon icon={faInstagram} size="2x" style={{ color: '#E4405F' }} />
@@ -36,7 +36,7 @@ const Footer = () => {
 
           {/* About Us link */}
           <div className="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-end">
-            <h5 className="mb-0 text-dark fw-bold"><FontAwesomeIcon icon={faInfoCircle} className="me-2" />About Us</h5>
+            <h5 className="mb-0 text-light fw-bold"><FontAwesomeIcon icon={faInfoCircle} className="me-2" />About Us</h5>
           </div>
         </div>
       </div>

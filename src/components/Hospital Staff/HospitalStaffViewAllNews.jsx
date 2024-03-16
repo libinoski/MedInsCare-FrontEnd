@@ -73,40 +73,77 @@ const HospitalStaffViewAllNews = () => {
     };
 
     return (
-        <div className="d-flex flex-column min-vh-100">
-            <HospitalStaffNavbar />
-            <div className="container-fluid py-4" style={{ position: 'relative', flex: '1 0 auto' }}>
-                <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100% - 100px)' }}>
-                    {isLoading ? (
-                        <div className="d-flex justify-content-center">
-                            <div className="spinner-border" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
-                            {allNews.length > 0 ? (
-                                allNews.map((news, index) => (
-                                    <div className="col" key={index} onClick={() => handleViewNews(news.hospitalNewsId)} style={{ cursor: 'pointer' }}>
-                                        <div className="card h-100 border-0 shadow mb-3" style={{ overflow: 'hidden' }}>
-                                            <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{ objectFit: 'contain', height: '200px', maxWidth: '100%' }} />
-                                            <div className="card-body" style={{ background: '#f0f0f0', padding: '20px', maxHeight: '300px', overflow: 'hidden' }}> {/* Adjust maxHeight as needed */}
-                                                <h5 className="card-title" style={{ background: 'rgba(255, 255, 255, 0.8)', borderRadius: '5px', backdropFilter: 'blur(5px)', padding: '10px', marginBottom: '15px' }}>{news.hospitalNewsTitle}</h5>
-                                                <p className="card-text text-muted" style={{ marginBottom: '10px' }}>{formatDate(news.addedDate)}</p>
-                                                <p className="card-text">{news.hospitalNewsContent}</p>
-                                            </div>
-                                        </div>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <HospitalStaffNavbar />
+    {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center flex-grow-1">
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    ) : (
+        <div className="container-fluid py-4" style={{ flex: '1', position: 'relative', overflowY: 'auto' }}>
+            <div className="container" style={{ maxWidth: '100%', padding: '0 15px' }}>
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                    {allNews.length > 0 ? (
+                        allNews.map((news, index) => (
+                            <div className="col" key={index} onClick={() => handleViewNews(news.hospitalNewsId)} style={{ cursor: 'pointer' }}>
+                                <div className="card h-100 shadow-sm mb-3" style={{
+                                    overflow: 'hidden',
+                                    transition: 'transform 0.3s ease, boxShadow 0.3s ease',
+                                    borderRadius: '15px',
+                                    border: '1px solid transparent'
+                                }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.05)';
+                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                                        e.currentTarget.style.borderColor = '#007bff';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                                        e.currentTarget.style.borderColor = 'transparent';
+                                    }}
+                                >
+                                    <img src={news.hospitalNewsImage} className="card-img-top img-fluid" alt="News" style={{
+                                        objectFit: 'cover', // Changed from 'contain' to 'cover' for a more consistent appearance
+                                        height: '200px',
+                                        maxWidth: '100%',
+                                        borderTopLeftRadius: '15px', // Added for consistency with card borderRadius
+                                        borderTopRightRadius: '15px', // Added for consistency with card borderRadius
+                                    }} />
+                                    <div className="card-body" style={{
+                                        background: '#f0f0f0',
+                                        padding: '20px',
+                                        maxHeight: '300px',
+                                        overflow: 'hidden', // Adjust overflow as needed
+                                        position: 'relative', // Needed for consistent text overlay
+                                    }}>
+                                        <h5 className="card-title" style={{
+                                            background: 'rgba(255, 255, 255, 0.8)',
+                                            borderRadius: '5px',
+                                            backdropFilter: 'blur(5px)',
+                                            padding: '10px',
+                                            marginBottom: '15px'
+                                        }}>{news.hospitalNewsTitle}</h5>
+                                        <p className="card-text text-muted" style={{ marginBottom: '10px' }}>{formatDate(news.addedDate)}</p>
+                                        <p className="card-text">{news.hospitalNewsContent}</p>
                                     </div>
-                                ))
-                            ) : (
-                                <p className="text-center w-100">No news available.</p>
-                            )}
-                        </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="text-center w-100">No news available.</p>
                     )}
                 </div>
             </div>
-            <Footer />
         </div>
+    )}
+    <Footer />
+</div>
+
+
+
     );
 };
 

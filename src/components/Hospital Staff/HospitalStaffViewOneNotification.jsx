@@ -57,8 +57,9 @@ const HospitalStaffViewOneNotification = () => {
     }, []);
 
     return (
-<div style={{ position: 'relative', minHeight: '100vh' }}>
-    <HospitalStaffNavbar />
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
+}}>    <HospitalStaffNavbar />
     <div style={{ paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="container">
             {isLoading ? (

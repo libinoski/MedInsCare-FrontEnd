@@ -122,55 +122,56 @@ const HospitalViewOneInsuranceProvider = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar />
-            <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-10 col-lg-8">
-                        {isLoading ? (
-                            <div className="text-center">
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="visually-hidden">Loading provider details...</span>
-                                </div>
-                            </div>
-                        ) : insuranceProviderDetails ? (
-                            <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
-                                <div className="card-body p-4 p-md-5">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-6 text-center mb-4 mb-md-0">
-                                            <img
-                                                src={insuranceProviderDetails.insuranceProviderProfileImage}
-                                                alt="Profile"
-                                                className="img-fluid rounded-circle border"
-                                                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
-                                            />
-                                        </div>
-                                        <div className="col-md-6">
-                                            <h2 className="card-title" style={{ color: '#0056b3' }}>{insuranceProviderDetails.insuranceProviderName}</h2>
-                                            <p className="mb-2"><strong>Email:</strong> {insuranceProviderDetails.insuranceProviderEmail}</p>
-                                            <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderDetails.insuranceProviderAadhar}</p>
-                                            <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderDetails.insuranceProviderMobile}</p>
-                                            <p className="mb-2"><strong>Address:</strong> {insuranceProviderDetails.insuranceProviderAddress}</p>
-                                            <p><strong>Added Date:</strong> {insuranceProviderDetails.addedDate}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3' }}>
-                                    <div className="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
-                                        <button className="btn" onClick={handleDeleteInsuranceProvider} style={{ backgroundImage: 'linear-gradient(135deg, #ff416c, #ff4b2b)', color: 'white' }}>Delete Provider</button>
-                                        <button className="btn" onClick={handleSuspendInsuranceProvider} style={{ backgroundImage: 'linear-gradient(135deg, #FFD200, #F7971E)', color: 'white' }}>Suspend Provider</button>
-                                        <button className="btn" onClick={handleSendNotificationToProvider} style={{ backgroundImage: 'linear-gradient(135deg, #00B4DB, #0083B0)', color: 'white' }}>Send Notification</button>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <p className="text-center">No provider details found.</p>
-                        )}
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Navbar />
+    <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
+        <div className="row justify-content-center">
+            <div className="col-12 col-md-10 col-lg-8 d-flex justify-content-center"> {/* Centering the content */}
+                {isLoading ? (
+                    <div className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading provider details...</span>
+                        </div>
                     </div>
-                </div>
+                ) : insuranceProviderDetails ? (
+                    <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden', maxWidth: '600px' }}> {/* Adjusted card width */}
+                        <div className="card-body p-4 p-md-5">
+                            <div className="row align-items-center">
+                                <div className="col-md-6 text-center mb-4 mb-md-0">
+                                    <img
+                                        src={insuranceProviderDetails.insuranceProviderProfileImage}
+                                        alt="Profile"
+                                        className="img-fluid rounded-circle border"
+                                        style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{insuranceProviderDetails.insuranceProviderName}</h2>
+                                    <p className="mb-2"><strong>Email:</strong> {insuranceProviderDetails.insuranceProviderEmail}</p>
+                                    <p className="mb-2"><strong>Aadhar:</strong> {insuranceProviderDetails.insuranceProviderAadhar}</p>
+                                    <p className="mb-2"><strong>Mobile:</strong> {insuranceProviderDetails.insuranceProviderMobile}</p>
+                                    <p className="mb-0"><strong>Address:</strong> {insuranceProviderDetails.insuranceProviderAddress}</p>
+                                    <p className="mb-0"><strong>Added Date:</strong> {insuranceProviderDetails.addedDate}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3' }}>
+                            <div className="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
+                                <button className="btn btn-outline-secondary text-dark" onClick={handleDeleteInsuranceProvider} style={{ border: '2px solid #6c757d', color: '#6c757d', fontWeight: 'bold', boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)', padding: '10px 20px', borderRadius: '25px' }}>Delete Provider</button>
+                                <button className="btn btn-outline-secondary text-dark" onClick={handleSuspendInsuranceProvider} style={{ border: '2px solid #6c757d', color: '#6c757d', fontWeight: 'bold', boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)', padding: '10px 20px', borderRadius: '25px' }}>Suspend Provider</button>
+                                <button className="btn btn-outline-secondary text-dark" onClick={handleSendNotificationToProvider} style={{ border: '2px solid #6c757d', color: '#6c757d', fontWeight: 'bold', boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)', padding: '10px 20px', borderRadius: '25px' }}>Send Notification</button>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <p className="text-center">No provider details found.</p>
+                )}
             </div>
-            <Footer />
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 

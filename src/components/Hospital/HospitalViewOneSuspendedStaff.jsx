@@ -103,11 +103,13 @@ const HospitalViewOneSuspendedStaff = () => {
     };
 
     return (
-<div>
+<div className="d-flex flex-column min-vh-100" style={{
+  background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)',
+}}>
   <Navbar />
-  <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px', backgroundColor: '#f0f2f5' }}>
+  <div className="container-fluid py-5" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
     <div className="row justify-content-center align-items-center">
-      <div className="col-lg-8 d-flex align-items-center justify-content-center">
+      <div className="col-lg-8"> {/* Adjusted the column width */}
         {isLoading ? (
           <div className="text-center">
             <div className="spinner-border text-primary" role="status">
@@ -115,44 +117,56 @@ const HospitalViewOneSuspendedStaff = () => {
             </div>
           </div>
         ) : (
-          <div className="col-lg-12">
+          <>
             {staffDetails ? (
-              <div className="card profile-card shadow border-0 w-100 h-100" style={{ borderRadius: '20px' }}>
-                <div className="card-body">
-                  <div className="d-flex flex-column align-items-center mb-5">
+              <div className="card profile-card shadow border-0" style={{ borderRadius: '20px', maxWidth: '600px', margin: 'auto' }}> {/* Adjusted card width and added margin */}
+                <div className="row g-0">
+                  <div className="col-md-4">
                     <div className="profile-picture bg-light rounded-circle shadow" style={{ width: '200px', height: '200px', overflow: 'hidden', border: '5px solid white' }}>
                       <img src={staffDetails.hospitalStaffProfileImage} alt="Staff" className="img-fluid" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                     </div>
-                    <h3 className="mt-4 text-center">{staffDetails.hospitalStaffName}</h3>
                   </div>
-                  <div className="text-left">
-                    <p className="mb-2"><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
-                    <p className="mb-2"><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
-                    <p className="mb-2"><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
-                    <p className="mb-2"><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h3 className="mt-4 text-center">{staffDetails.hospitalStaffName}</h3>
+                      <div className="text-left">
+                        <p className="mb-2"><strong>Email:</strong> {staffDetails.hospitalStaffEmail}</p>
+                        <p className="mb-2"><strong>Mobile:</strong> {staffDetails.hospitalStaffMobile}</p>
+                        <p className="mb-2"><strong>Address:</strong> {staffDetails.hospitalStaffAddress}</p>
+                        <p className="mb-2"><strong>Aadhar:</strong> {staffDetails.hospitalStaffAadhar}</p>
+                      </div>
+                    </div>
+                    <div className="card-footer d-flex justify-content-center bg-transparent border-top-0">
+                      <button 
+                        className="btn btn-outline-secondary text-dark" 
+                        onClick={handleUnsuspendStaff} 
+                        style={{
+                          border: '2px solid #6c757d',
+                          color: '#6c757d',
+                          fontWeight: 'bold',
+                          boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                          padding: '10px 20px',
+                          borderRadius: '25px',
+                        }}
+                      >
+                        Unsuspend Staff
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="card-footer d-flex justify-content-center bg-transparent border-top-0">
-                  <button className="btn btn-primary me-3" onClick={handleUnsuspendStaff} style={{ borderRadius: '50px', padding: '10px 30px', boxShadow: '0 4px 8px rgba(0,0,0,.1)' }}>Unsuspend</button>
                 </div>
               </div>
             ) : (
               <p className="text-center">No staff details found.</p>
             )}
-          </div>
+          </>
         )}
       </div>
     </div>
   </div>
-  <Footer />
+  <div style={{ marginTop: 'auto' }}>
+    <Footer />
+  </div>
 </div>
-
-
-  
-  
-
-
-
 
 
     );

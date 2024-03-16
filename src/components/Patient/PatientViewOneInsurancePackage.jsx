@@ -87,52 +87,53 @@ const PatientViewOneInsurancePackage = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar />
-            <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-10 col-lg-8">
-                        {isLoading ? (
-                            <div className="text-center">
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="visually-hidden">Loading Package Details...</span>
-                                </div>
-                            </div>
-                        ) : error ? (
-                            <p className="text-center text-danger">{error}</p>
-                        ) : packageDetails ? (
-                            <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
-                                <div className="card-body p-4 p-md-5">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-6 text-center mb-4 mb-md-0">
-                                            <img
-                                                src={packageDetails.packageImage}
-                                                alt="Package"
-                                                className="img-fluid rounded-circle border"
-                                                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
-                                            />
-                                        </div>
-                                        <div className="col-md-6">
-                                            <h2 className="card-title" style={{ color: '#0056b3' }}>{packageDetails.packageTitle}</h2>
-                                            <p className="mb-2"><strong>Description:</strong> {packageDetails.packageDescription}</p>
-                                            <p className="mb-2"><strong>Terms and Conditions:</strong> {packageDetails.packageTAndC}</p>
-                                            <p className="mb-2"><strong>Amount:</strong> {packageDetails.packageAmount}</p>
-                                            <p className="mb-2"><strong>Duration:</strong> {packageDetails.packageDuration}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                                    <button className="btn btn-primary" onClick={handleChoosePackage}>Choose Package</button>
-                                </div>
-                            </div>
-                        ) : (
-                            <p className="text-center">No package details found.</p>
-                        )}
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Navbar />
+    <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
+        <div className="row justify-content-center">
+            <div className="col-12 col-md-10 col-lg-8">
+                {isLoading ? (
+                    <div className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading Package Details...</span>
+                        </div>
                     </div>
-                </div>
+                ) : error ? (
+                    <p className="text-center text-danger">{error}</p>
+                ) : packageDetails ? (
+                    <div className="card shadow" style={{ borderRadius: '20px', overflow: 'hidden' }}>
+                        <div className="card-body p-4 p-md-5">
+                            <div className="row align-items-center">
+                                <div className="col-md-6 text-center mb-4 mb-md-0">
+                                    <img
+                                        src={packageDetails.packageImage}
+                                        alt="Package"
+                                        className="img-fluid rounded-circle border"
+                                        style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2 className="card-title" style={{ color: '#0056b3' }}>{packageDetails.packageTitle}</h2>
+                                    <p className="mb-2"><strong>Description:</strong> {packageDetails.packageDescription}</p>
+                                    <p className="mb-2"><strong>Terms and Conditions:</strong> {packageDetails.packageTAndC}</p>
+                                    <p className="mb-2"><strong>Amount:</strong> {packageDetails.packageAmount}</p>
+                                    <p className="mb-2"><strong>Duration:</strong> {packageDetails.packageDuration}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-footer text-muted" style={{ backgroundColor: '#eaeff3', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                            <button className="btn btn-outline-secondary text-dark" onClick={handleChoosePackage} style={{ border: '2px solid #6c757d', color: '#6c757d', fontWeight: 'bold', boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)', padding: '0.375rem 0.75rem', borderRadius: '0.25rem' }}>Choose Package</button>
+                        </div>
+                    </div>
+                ) : (
+                    <p className="text-center">No package details found.</p>
+                )}
             </div>
-            <Footer />
         </div>
+    </div>
+    <Footer />
+</div>
+
     );
 };
 
