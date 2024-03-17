@@ -45,6 +45,8 @@ const PatientNavbar = () => {
                                 <li><Link className="dropdown-item" to="/patientViewAllInsuranceProviders">View All Providers</Link></li>
                                 <li><Link className="dropdown-item" to="/patientViewAllInsurancePackages">View All Packages</Link></li>
                                 <li><Link className="dropdown-item" to="/patientSearchInsuranceProviders">Search Insurance Providers</Link></li>
+                                <li><Link className="dropdown-item" to="/patientViewAllBills">View all bills</Link></li>
+                                <li><Link className="dropdown-item" to="/patientViewAllPaidBills">View all paid bills</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">

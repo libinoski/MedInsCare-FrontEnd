@@ -122,81 +122,81 @@ const HospitalViewOneNews = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
 
-<HospitalNavbar />
-    <div className="container-fluid d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
-        <div className="col-lg-8">
-            {isLoading ? (
-                <p className="text-center">Loading news details...</p>
-            ) : (
-                <div className="card" style={{ borderRadius: '10px' }}>
-                    {newsDetails ? (
-                        <div className="row g-0">
-                            <div className="col-md-6">
-                                <div style={{ maxHeight: '400px', overflow: 'hidden' }}>
-                                    <img 
-                                        src={newsDetails.hospitalNewsImage} 
-                                        className="img-fluid rounded-end" 
-                                        alt="News" 
-                                        style={{ objectFit: 'cover', width: '100%', height: '100%' }} 
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-md-6 d-flex flex-column justify-content-between">
-                                <div className="card-body">
-                                    <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
-                                    <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p>
-                                    <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p>
-                                    {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
-                                </div>
-                                <div className="d-flex justify-content-center pb-4">
-                                <button
-    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center me-2"
-    onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}
-    style={{
-        border: '2px solid #6c757d',
-        color: '#6c757d',
-        fontWeight: 'bold',
-        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-        padding: '10px 20px',
-        borderRadius: '25px',
-        width: '100%',
-        maxWidth: '200px', // Adjust based on your preference for the "Delete" button
-        textDecoration: 'none',
-        marginRight: '8px' // Adjust the spacing between buttons as needed
-    }}
->
-    Delete
-</button>
-<button
-    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
-    onClick={handleUpdateNews}
-    style={{
-        border: '2px solid #6c757d',
-        color: '#6c757d',
-        fontWeight: 'bold',
-        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-        padding: '10px 20px',
-        borderRadius: '25px',
-        width: '100%',
-        maxWidth: '200px', // Adjust based on your preference for the "Update" button
-        textDecoration: 'none'
-    }}
->
-    Update
-</button>
-
-                                </div>
-                            </div>
-                        </div>
+            <HospitalNavbar />
+            <div className="container-fluid d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
+                <div className="col-lg-8">
+                    {isLoading ? (
+                        <p className="text-center">Loading news details...</p>
                     ) : (
-                        <p className="text-center">No news details found.</p>
+                        <div className="card" style={{ borderRadius: '10px' }}>
+                            {newsDetails ? (
+                                <div className="row g-0">
+                                    <div className="col-md-6">
+                                        <div style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                                            <img
+                                                src={newsDetails.hospitalNewsImage}
+                                                className="img-fluid rounded-end"
+                                                alt="News"
+                                                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 d-flex flex-column justify-content-between">
+                                        <div className="card-body">
+                                            <h5 className="card-title text-center mb-4" style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>{newsDetails.hospitalNewsTitle}</h5>
+                                            <p className="card-text" style={{ fontSize: '18px', lineHeight: '1.6', color: '#333' }}>{newsDetails.hospitalNewsContent}</p>
+                                            <p className="card-text" style={{ backgroundColor: 'yellow', padding: '5px', borderRadius: '5px', color: '#333' }}>Published on: {formatDate(newsDetails.addedDate)}</p>
+                                            {newsDetails.updatedDate && <p className="card-text" style={{ backgroundColor: 'lightgreen', padding: '5px', borderRadius: '5px', color: '#333' }}>Updated on: {formatDate(newsDetails.updatedDate)}</p>}
+                                        </div>
+                                        <div className="d-flex justify-content-center pb-4">
+                                            <button
+                                                class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center me-2"
+                                                onClick={() => handleDeleteNews(newsDetails.hospitalNewsId)}
+                                                style={{
+                                                    border: '2px solid #6c757d',
+                                                    color: '#6c757d',
+                                                    fontWeight: 'bold',
+                                                    boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                    padding: '10px 20px',
+                                                    borderRadius: '25px',
+                                                    width: '100%',
+                                                    maxWidth: '200px', // Adjust based on your preference for the "Delete" button
+                                                    textDecoration: 'none',
+                                                    marginRight: '8px' // Adjust the spacing between buttons as needed
+                                                }}
+                                            >
+                                                Delete
+                                            </button>
+                                            <button
+                                                class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                                                onClick={handleUpdateNews}
+                                                style={{
+                                                    border: '2px solid #6c757d',
+                                                    color: '#6c757d',
+                                                    fontWeight: 'bold',
+                                                    boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                    padding: '10px 20px',
+                                                    borderRadius: '25px',
+                                                    width: '100%',
+                                                    maxWidth: '200px', // Adjust based on your preference for the "Update" button
+                                                    textDecoration: 'none'
+                                                }}
+                                            >
+                                                Update
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <p className="text-center">No news details found.</p>
+                            )}
+                        </div>
                     )}
                 </div>
-            )}
+            </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
 
     );
 };

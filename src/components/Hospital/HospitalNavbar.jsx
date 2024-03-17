@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faUserInjured } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser, faUserNurse, faNewspaper, faSignOutAlt, faUserInjured, faFileInvoiceDollar
+} from '@fortawesome/free-solid-svg-icons';
 
 const HospitalNavbar = () => {
     return (
@@ -71,7 +73,18 @@ const HospitalNavbar = () => {
                                 <li><Link className="dropdown-item" to="/hospitalViewAllPatients">View Patients</Link></li>
                                 <li><Link className="dropdown-item" to="/hospitalSearchPatients">Search Patients</Link></li>
                                 <li><Link className="dropdown-item" to="/HospitalViewAllMedicalRecords">View All Medical Records</Link></li>
-                                {/* Add more patient management related links as needed */}
+                                <li><Link className="dropdown-item" to="/hospitalViewAllDischargeRequests">View All Discharge requests</Link></li>
+                            </ul>
+                        </li>
+                        {/* Bills Management Dropdown */}
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownBills" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faFileInvoiceDollar} className="me-2" style={{ color: '#ffc107' }} />
+                                Bills Management
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownBills">
+                                <li><Link className="dropdown-item" to="/hospitalViewAllBills">View All Bills</Link></li>
+                                <li><Link className="dropdown-item" to="/hospitalViewAllPaidBills">View All Paid Bills</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">

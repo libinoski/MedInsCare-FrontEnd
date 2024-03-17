@@ -84,6 +84,16 @@ import PatientUpdateProfile from './components/Patient/PatientUpdateProfile';
 import PatientSearchInsuranceProviders from './components/Patient/PatientSearchInsuranceProviders';
 import HospitalGenerateBill from './components/Hospital/HospitalGenerateOneBill';
 import HospitalViewOneMedicalRecord from './components/Hospital/HospitalViewOneMedicalRecord';
+import PatientViewAllBills from './components/Patient/PatientViewAllBills';
+import PatientViewOneBill from './components/Patient/PatientViewOneBill';
+import PatientViewOnePaidBill from './components/Patient/PatientViewOnePaidBill';
+import PatientViewAllPaidBills from './components/Patient/PatientViewAllPaidBills';
+import HospitalViewAllBills from './components/Hospital/HospitalViewAllBills';
+import HospitalViewOneBill from './components/Hospital/HospitalViewOneBill';
+import HospitalViewAllPaidBills from './components/Hospital/HospitalViewAllPaidBills';
+import HospitalViewOnePaidBill from './components/Hospital/HospitalViewOnePaidBill';
+import HospitalViewAllDischargeRequests from './components/Hospital/HospitalViewAllDischargeRequests';
+import HospitalViewOneDischargeRequest from './components/Hospital/HospitalViewOneDischargeRequest';
 
 
 function App() {
@@ -128,6 +138,12 @@ function App() {
 <Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
 <Route path='/hospitalGenerateOneBill' element={<HospitalGenerateBill />} />
 <Route path='/hospitalViewOneMedicalRecord' element={<HospitalViewOneMedicalRecord />} />
+<Route path='/hospitalViewAllBills' element={<HospitalViewAllBills />} />
+<Route path='/hospitalViewOneBill' element={<HospitalViewOneBill />} />
+<Route path='/hospitalViewAllPaidBills' element={<HospitalViewAllPaidBills />} />
+<Route path='/hospitalViewOnePaidBill' element={<HospitalViewOnePaidBill />} />
+<Route path='/hospitalViewAllDischargeRequests' element={<HospitalViewAllDischargeRequests />} />
+<Route path='/hospitalViewOneDischargeRequest' element={<HospitalViewOneDischargeRequest />} />
 
 
 {/* Hospital staff routes */}
@@ -185,6 +201,10 @@ function App() {
 <Route path='/patientAddReview' element={<PatientAddReview />} />
 <Route path='/patientUpdateProfile' element={<PatientUpdateProfile />} />
 <Route path='/patientSearchInsuranceProviders' element={<PatientSearchInsuranceProviders />} />
+<Route path='/patientViewAllBills' element={<PatientViewAllBills />} />
+<Route path='/patientViewOneBill' element={<PatientViewOneBill />} />
+<Route path='/patientViewAllPaidBills' element={<PatientViewAllPaidBills />} />
+<Route path='/patientViewOnePaidBill' element={<PatientViewOnePaidBill />} />
 
 
 {/* Common */}
