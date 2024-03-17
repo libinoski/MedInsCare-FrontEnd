@@ -29,7 +29,6 @@ const PatientAddReview = () => {
                 }
             );
             if (response.status === 200) {
-                // alert(response.data.message);
                 navigate('/patientViewAllInsuranceProviders', { state: { patientId } }); 
             }
         } catch (error) {
@@ -37,7 +36,7 @@ const PatientAddReview = () => {
                 const { status, data } = error.response;
                 switch (status) {
                     case 400:
-                        setError(data.error || 'Validation failed.');
+                        setError(data.results || 'Validation failed.');
                         break;
                     case 401:
                     case 403:
@@ -63,42 +62,51 @@ const PatientAddReview = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    <PatientNavbar />
-    <div className="container-fluid" style={{ position: 'relative', backgroundColor: '#f0f2f7', paddingTop: '56px', flex: '1' }}>
-        <div className="container py-5">
-            <div className="row d-flex justify-content-center align-items-center">
-                <div className="col-lg-6">
-                    <div className="card bg-transparent border-0" style={{ backdropFilter: 'blur(10px)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '15px', maxWidth: '100%' }}>
-                        <div className="card-body">
-                            <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
-                                <div className="mb-4">
-                                    <label htmlFor="notificationMessage" className="form-label" style={{ fontWeight: '500' }}>Content:</label>
-                                    <textarea
-                                        value={reviewContent}
-                                        onChange={(e) => setReview(e.target.value)}
-                                        className="form-control"
-                                        id="reviewContent"
-                                        rows="5"
-                                        style={{ borderRadius: '15px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.06)' }}
-                                    ></textarea>
+            <PatientNavbar />
+            <div className="container-fluid" style={{ position: 'relative', backgroundColor: '#f0f2f7', paddingTop: '56px', flex: '1' }}>
+                <div className="container py-5">
+                    <div className="row d-flex justify-content-center align-items-center">
+                        <div className="col-lg-6">
+                            <div className="card bg-transparent border-0" style={{ backdropFilter: 'blur(10px)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '15px', maxWidth: '100%' }}>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
+                                        <div className="mb-4">
+                                            <label htmlFor="notificationMessage" className="form-label" style={{ fontWeight: '500' }}>Content:</label>
+                                            <textarea
+                                                value={reviewContent}
+                                                onChange={(e) => setReview(e.target.value)}
+                                                className="form-control"
+                                                id="reviewContent"
+                                                rows="5"
+                                                style={{ borderRadius: '15px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.06)' }}
+                                            ></textarea>
+                                        </div>
+                                        {error && <div className="alert alert-danger" style={{ borderRadius: '15px' }}>{error.reviewContent}</div>}
+                                        <div className="text-center">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-outline-secondary text-dark"
+                                                style={{
+                                                    border: '2px solid #6c757d',
+                                                    fontWeight: 'bold',
+                                                    borderRadius: '25px',
+                                                    width: '100%',
+                                                    maxWidth: '200px',
+                                                }}
+                                                disabled={isLoading} // Disable button when loading
+                                            >
+                                                {isLoading ? 'Sending...' : 'Send review'}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                                {error && <div className="alert alert-danger" style={{ borderRadius: '15px' }}>{error}</div>}
-                                <div className="text-center">
-                                    <button type="submit" className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`} disabled={isLoading} style={{ borderRadius: '25px', padding: '10px 30px', transition: 'background-color .3s', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                                        {isLoading ? 'Sending...' : 'Send review'}
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
-    </div>
-    <Footer />
-</div>
-
-
     );
 };
 

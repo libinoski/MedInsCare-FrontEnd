@@ -126,14 +126,15 @@ const HospitalStaffRegisterPatient = () => {
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
 
-  {/* Navbar Component */}
-  <HospitalStaffNavbar />
+{/* Navbar Component */}
+<HospitalStaffNavbar />
 
-  {/* Registration Card */}
-  <div className="row justify-content-center align-items-center flex-grow-1">
-  <div className="col-lg-8 col-md-10 col-sm-12">
+{/* Main Content Container */}
+<div className="container flex-grow-1 my-3">
+  <div className="row justify-content-center align-items-center">
+    <div className="col-lg-8 col-md-10 col-sm-12">
       <div className="card shadow-lg p-4">
 
         <div className="card-body">
@@ -219,98 +220,96 @@ const HospitalStaffRegisterPatient = () => {
               {validationErrors.patientGender && <div className="invalid-feedback">{validationErrors.patientGender}</div>}
             </div>
 
- {/* ID Proof Image Upload */}
-<div className="mb-3">
-    <button 
-        type="button" 
-        className={`btn mx-2 btn-outline-secondary text-dark`} 
-        onClick={() => fileInputIdProofRef.current.click()} 
-        style={{
-            border: '2px solid #6c757d',
-            color: '#6c757d',
-            fontWeight: 'bold',
-            padding: '10px 20px',
-            borderRadius: '25px',
-            width: '100%', // Adapted to full width
-            marginBottom: '5px'
-        }}
-    >
-        {patientData.patientIdProofImage ? patientData.patientIdProofImage.name : 'ID Proof Image'}
-    </button>
-    <input 
-        ref={fileInputIdProofRef} 
-        type="file" 
-        className={`form-control-file ${validationErrors.patientIdProofImage ? 'is-invalid' : ''}`} 
-        name="patientIdProofImage" 
-        onChange={handleImageUpload('patientIdProofImage')} 
-        accept=".jpg, .jpeg, .png" 
-        style={{ display: 'none' }} 
-    />
-    {validationErrors.patientIdProofImage && <div className="invalid-feedback">{validationErrors.patientIdProofImage}</div>}
-</div>
+            {/* ID Proof Image Upload */}
+            <div className="mb-3">
+              <button 
+                type="button" 
+                className={`btn mx-2 btn-outline-secondary text-dark`} 
+                onClick={() => fileInputIdProofRef.current.click()} 
+                style={{
+                    border: '2px solid #6c757d',
+                    color: '#6c757d',
+                    fontWeight: 'bold',
+                    padding: '10px 20px',
+                    borderRadius: '25px',
+                    width: '100%',
+                    marginBottom: '5px'
+                }}
+              >
+                {patientData.patientIdProofImage ? patientData.patientIdProofImage.name : 'ID Proof Image'}
+              </button>
+              <input 
+                ref={fileInputIdProofRef} 
+                type="file" 
+                className={`form-control-file ${validationErrors.patientIdProofImage ? 'is-invalid' : ''}`} 
+                name="patientIdProofImage" 
+                onChange={handleImageUpload('patientIdProofImage')} 
+                accept=".jpg, .jpeg, .png" 
+                style={{ display: 'none' }} 
+              />
+              {validationErrors.patientIdProofImage && <div className="invalid-feedback">{validationErrors.patientIdProofImage}</div>}
+            </div>
 
-{/* Profile Image Upload */}
-<div className="mb-3">
-    <button 
-        type="button" 
-        className={`btn mx-2 btn-outline-secondary text-dark`} 
-        onClick={() => fileInputProfileRef.current.click()} 
-        style={{
-            border: '2px solid #6c757d',
-            color: '#6c757d',
-            fontWeight: 'bold',
-            padding: '10px 20px',
-            borderRadius: '25px',
-            width: '100%', // Adapted to full width
-            marginBottom: '5px'
-        }}
-    >
-        {patientData.patientProfileImage ? patientData.patientProfileImage.name : 'Profile Image'}
-    </button>
-    <input 
-        ref={fileInputProfileRef} 
-        type="file" 
-        className={`form-control-file ${validationErrors.patientProfileImage ? 'is-invalid' : ''}`} 
-        name="patientProfileImage" 
-        onChange={handleImageUpload('patientProfileImage')} 
-        accept=".jpg, .jpeg, .png" 
-        style={{ display: 'none' }} 
-    />
-    {validationErrors.patientProfileImage && <div className="invalid-feedback">{validationErrors.patientProfileImage}</div>}
-</div>
+            {/* Profile Image Upload */}
+            <div className="mb-3">
+              <button 
+                type="button" 
+                className={`btn mx-2 btn-outline-secondary text-dark`} 
+                onClick={() => fileInputProfileRef.current.click()} 
+                style={{
+                    border: '2px solid #6c757d',
+                    color: '#6c757d',
+                    fontWeight: 'bold',
+                    padding: '10px 20px',
+                    borderRadius: '25px',
+                    width: '100%',
+                    marginBottom: '5px'
+                }}
+              >
+                {patientData.patientProfileImage ? patientData.patientProfileImage.name : 'Profile Image'}
+              </button>
+              <input 
+                ref={fileInputProfileRef} 
+                type="file" 
+                className={`form-control-file ${validationErrors.patientProfileImage ? 'is-invalid' : ''}`} 
+                name="patientProfileImage" 
+                onChange={handleImageUpload('patientProfileImage')} 
+                accept=".jpg, .jpeg, .png" 
+                style={{ display: 'none' }} 
+              />
+              {validationErrors.patientProfileImage && <div className="invalid-feedback">{validationErrors.patientProfileImage}</div>}
+            </div>
 
-{/* Submit Button */}
-<div className="text-center mt-4">
-    <button 
-        type="submit" 
-        className={`btn mx-2 btn-outline-secondary text-dark }`} 
-        disabled={isLoading} 
-        style={{
-            border: '2px solid #6c757d',
-            color: '#6c757d',
-            fontWeight: 'bold',
-            padding: '10px 20px',
-            borderRadius: '25px',
-            width: 'auto'
-        }}
-    >
-        {isLoading ? 'Submitting...' : 'Register'}
-    </button>
-</div>
+            {/* Submit Button */}
+            <div className="text-center mt-4">
+              <button 
+                type="submit" 
+                className={`btn mx-2 btn-outline-secondary text-dark`} 
+                disabled={isLoading} 
+                style={{
+                    border: '2px solid #6c757d',
+                    color: '#6c757d',
+                    fontWeight: 'bold',
+                    padding: '10px 20px',
+                    borderRadius: '25px',
+                    width: 'auto'
+                }}
+              >
+                {isLoading ? 'Submitting...' : 'Register'}
+              </button>
+            </div>
 
             {submitFailed && <div className="text-danger mt-3">Registration failed. Please try again.</div>}
           </form>
-
         </div>
       </div>
     </div>
   </div>
+</div>
 
-      <Footer />
-    </div>
-
-
-
+{/* Footer */}
+<Footer />
+</div>
 
 
     );

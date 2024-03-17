@@ -99,11 +99,15 @@ const PatientViewOneInsuranceProvider = () => {
                                         className="btn btn-outline-secondary text-dark"
                                         style={{
                                             border: '2px solid #6c757d',
-                                            color: '#6c757d',
-                                            fontWeight: 'bold',
-                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-                                            padding: '0.375rem 0.75rem',
-                                            borderRadius: '0.25rem',
+    fontWeight: 'bold',
+    borderRadius: '25px',
+    width: '100%',
+    maxWidth: '200px',
+    textDecoration: 'none', // Removes default underline
+    color: 'inherit', // Inherits text color
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
                                         }}
                                     >
                                         Add Review

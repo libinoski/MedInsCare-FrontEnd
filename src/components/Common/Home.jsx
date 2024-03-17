@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import hospitalImage from '../../images/Hospital/hospital.svg'; 
+import hospitalImage from '../../images/Hospital/hospital.jpeg'; 
 import insuranceProviderImage from '../../images/InsuranceProvider/ip1.svg';
 import hospitalStaffImage from '../../images/HospitalStaff/hs.jpg'; 
 import patientImage from '../../images/Patient/patient.svg'; 

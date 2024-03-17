@@ -70,9 +70,8 @@ const HospitalSearchStaffs = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100" style={{
-    background: 'linear-gradient(to right, #1a1a1a, #000000)',
-}}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
     <HospitalNavbar />
     <div className="container flex-grow-1 mt-4">
         <div className="row justify-content-center mb-5">

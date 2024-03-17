@@ -99,19 +99,24 @@ const HospitalStaffViewProfile = () => {
             </div>
           </div>
           <div className="card-footer text-center">
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-              {/* Buttons for actions */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+  {/* Buttons for actions */}
+  <Link to="/hospitalStaffUpdateProfile" className="btn btn-outline-secondary text-dark" style={{
+    border: '2px solid #6c757d',
+    fontWeight: 'bold',
+    borderRadius: '25px',
+    width: '100%',
+    maxWidth: '200px',
+    textDecoration: 'none', // Removes default underline
+    color: 'inherit', // Inherits text color
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    Update Details
+  </Link>
+</div>
 
-
-              <button className="btn btn-outline-secondary text-dark" style={{
-                  border: '2px solid #6c757d',
-                  color: '#6c757d',
-                  fontWeight: 'bold',
-                  boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-              }}>
-                <Link to="/hospitalStaffUpdateProfile" className="text-decoration-none text-dark">Update Details</Link>
-              </button>
-            </div>
           </div>
         </div>
       ) : (

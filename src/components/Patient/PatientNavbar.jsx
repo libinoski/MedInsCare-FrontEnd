@@ -44,10 +44,11 @@ const PatientNavbar = () => {
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
                                 <li><Link className="dropdown-item" to="/patientViewAllInsuranceProviders">View All Providers</Link></li>
                                 <li><Link className="dropdown-item" to="/patientViewAllInsurancePackages">View All Packages</Link></li>
+                                <li><Link className="dropdown-item" to="/patientSearchInsuranceProviders">Search Insurance Providers</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/logout" aria-label="Logout" style={{ color: '#000' }}>
+                            <Link className="nav-link" to="/" aria-label="Logout" style={{ color: '#000' }}>
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>

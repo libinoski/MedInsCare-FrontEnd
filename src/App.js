@@ -80,6 +80,10 @@ import InsuranceProviderChangeProfileImage from './components/InsuranceProviders
 import PatientChangeProfileImage from './components/Patient/PatientChangeProfileImage';
 import PatientChangeIdProofImage from './components/Patient/PatientChangeIdProofImage';
 import InsuranceProviderViewOneNews from './components/InsuranceProviders/InsuranceProviderViewOneNews';
+import PatientUpdateProfile from './components/Patient/PatientUpdateProfile';
+import PatientSearchInsuranceProviders from './components/Patient/PatientSearchInsuranceProviders';
+import HospitalGenerateBill from './components/Hospital/HospitalGenerateOneBill';
+import HospitalViewOneMedicalRecord from './components/Hospital/HospitalViewOneMedicalRecord';
 
 
 function App() {
@@ -122,6 +126,8 @@ function App() {
 <Route path='/hospitalViewOneInsuranceProvider' element={<HospitalViewOneInsuranceProvider />} />
 <Route path='/hospitalSendNotificationToInsuranceProvider' element={<HospitalSendNotificationToInsuranceProvider />} />
 <Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
+<Route path='/hospitalGenerateOneBill' element={<HospitalGenerateBill />} />
+<Route path='/hospitalViewOneMedicalRecord' element={<HospitalViewOneMedicalRecord />} />
 
 
 {/* Hospital staff routes */}
@@ -177,6 +183,8 @@ function App() {
 <Route path='/patientViewAllNotificationsFromInsuranceProvider' element={<PatientViewAllNotificationsFromInsuranceProvider />} />
 <Route path='/patientNavbar' element={<PatientNavbar />} />
 <Route path='/patientAddReview' element={<PatientAddReview />} />
+<Route path='/patientUpdateProfile' element={<PatientUpdateProfile />} />
+<Route path='/patientSearchInsuranceProviders' element={<PatientSearchInsuranceProviders />} />
 
 
 {/* Common */}
