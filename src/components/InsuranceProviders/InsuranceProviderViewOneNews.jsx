@@ -1,20 +1,19 @@
-// eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import InsuranceProviderNavbar from './InsuranceProviderNavbar';
 import Footer from '../Common/Footer';
-import HospitalStaffNavbar from './HospitalStaffNavbar';
 
-const HospitalStaffViewOneNews = () => {
+
+const InsuranceProviderViewOneNews = () => {
     const navigate = useNavigate();
     const [newsDetails, setNewsDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    // Function to format date and time
     const formatDate = (dateTime) => {
         const date = new Date(dateTime);
-        const formattedDate = date.toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
-        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false }); // Format: HH:MM
+        const formattedDate = date.toLocaleDateString('en-GB');
+        const formattedTime = date.toLocaleTimeString('en-US', { hour12: false });
         return `${formattedDate} ${formattedTime}`;
     };
 
@@ -23,11 +22,11 @@ const HospitalStaffViewOneNews = () => {
             setIsLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
-                const hospitalStaffId = sessionStorage.getItem('hospitalStaffId');
+                const insuranceProviderId = sessionStorage.getItem('insuranceProviderId');
                 const hospitalNewsId = sessionStorage.getItem('hospitalNewsId');
                 const response = await axios.post(
-                    'http://localhost:1313/api/mic/hospitalStaff/hospitalStaffViewOneHospitalNews',
-                    { hospitalStaffId, hospitalNewsId },
+                    'http://localhost:1313/api/mic/insuranceProvider/insuranceProviderViewOneNews',
+                    { insuranceProviderId, hospitalNewsId },
                     {
                         headers: {
                             token
@@ -44,7 +43,7 @@ const HospitalStaffViewOneNews = () => {
                         case 401:
                         case 403:
                             alert(data.message || 'Unauthorized access. Please login again.');
-                            navigate('/hospitalStaffLogin');
+                            navigate('/insuranceProviderLogin');
                             break;
                         case 422:
                             alert(data.error || "An error occurred while fetching news details.");
@@ -69,7 +68,7 @@ const HospitalStaffViewOneNews = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-<HospitalStaffNavbar />
+            <InsuranceProviderNavbar />
             <div className="container-fluid d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px', minHeight: '100vh' }}>
                 <div className="col-lg-8">
                     {isLoading ? (
@@ -108,4 +107,4 @@ const HospitalStaffViewOneNews = () => {
     );
 };
 
-export default HospitalStaffViewOneNews;
+export default InsuranceProviderViewOneNews;

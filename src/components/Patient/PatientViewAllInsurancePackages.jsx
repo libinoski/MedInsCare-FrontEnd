@@ -67,7 +67,7 @@ const PatientViewAllInsurancePackages = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100">
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <PatientNavbar />
     <div className="flex-grow-1 container" style={{ paddingTop: '70px', paddingBottom: '70px', overflowY: 'auto' }}>
         {isLoading ? (

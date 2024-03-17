@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 
 const HospitalViewOnePatient = () => {
@@ -120,9 +120,10 @@ const HospitalViewOnePatient = () => {
 
 
     return (
-<div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-    <Navbar />
-    <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1 0 auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+<HospitalNavbar />
+    <div className="container-fluid py-5" style={{ flex: '1 0 auto' }}>
         <div className="row justify-content-center">
             <div className="col-12 col-md-10 col-lg-8 d-flex justify-content-center">
                 {isLoading ? (

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import backgroundImage from '../../images/Hospital/hospital.svg'; // Import the background image
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalRegisterStaff = () => {
     const initialStaffData = {
@@ -125,9 +125,10 @@ const HospitalRegisterStaff = () => {
 
     return (
         
-        <div>
-        {/* Navbar Component */}
-        <Navbar />
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+{/* Navbar Component */}
+        <HospitalNavbar />
   
         {/* Main Content Container */}
         <div className="container">

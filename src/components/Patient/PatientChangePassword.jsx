@@ -80,9 +80,8 @@ const PatientChangePassword = () => {
     };
 
     return (
-        <div className="d-flex flex-column min-vh-100" style={{
-            background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)',
-          }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
             <PatientNavbar />
             <div className="d-flex justify-content-center align-items-center flex-grow-1">
               <div className="p-0" style={{ maxWidth: '400px', width: '90%' }}>
@@ -128,24 +127,28 @@ const PatientChangePassword = () => {
                           {errorMessages.newPassword && <div className="invalid-feedback">{errorMessages.newPassword}</div>}
                         </div>
                       </div>
-                      <div className="text-center">
-                      <button 
-    type="submit" 
-    className="btn mx-2 btn-outline-secondary text-dark" 
-    disabled={isLoading} 
-    style={{
-        border: '2px solid #6c757d',
-        color: '#6c757d',
-        fontWeight: 'bold',
-        padding: '10px 20px',
-        borderRadius: '25px',
-        width: 'auto'
-    }}
->
-    {isLoading ? 'Changing Password...' : 'Change Password'}
-</button>
+                      <div className="text-center d-flex justify-content-center align-items-center">
+  <button 
+      type="submit" 
+      className={`btn ${'btn-outline-secondary text-dark'} ${isLoading ? 'disabled d-flex justify-content-center align-items-center' : 'd-flex justify-content-center align-items-center'}`}
+      disabled={isLoading}
+      style={{
+          border: '2px solid #6c757d',
+          color: '#6c757d',
+          fontWeight: 'bold',
+          boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+          padding: '10px 20px',
+          borderRadius: '25px',
+          width: '100%',
+          maxWidth: '200px', // Adjust based on your preference
+          textDecoration: 'none',
+          transition: 'background-color .3s' // Maintaining the transition effect for stylistic consistency
+      }}
+  >
+      {isLoading ? 'Changing Password...' : 'Change Password'}
+  </button>
+</div>
 
-                      </div>
                     </form>
                   </div>
                 </div>

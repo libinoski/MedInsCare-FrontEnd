@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faNewspaper, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faNewspaper, faSignOutAlt, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 
 const InsuranceProviderNavbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white"> {/* Changed bg-light to bg-white */}
             <div className="container">
                 <Link className="navbar-brand fw-bold" to="/">
                     <FontAwesomeIcon icon={faNewspaper} className="me-2" style={{ color: '#ffc107' }} />
@@ -26,11 +26,24 @@ const InsuranceProviderNavbar = () => {
                                 <li><Link className="dropdown-item" to="/insuranceProviderChangePassword">Change Password</Link></li>
                                 <li><Link className="dropdown-item" to="/InsuranceProviderChangeIdProofImage">Change id proof</Link></li>
                                 <li><Link className="dropdown-item" to="/InsuranceProviderChangeProfileImage">Change profile image</Link></li>
-                                <li><Link className="dropdown-item" to="/InsuranceProviderUpdateProfile">update profile</Link></li>
-                                <li><Link className="dropdown-item" to="/insuranceProviderAddInsurancePackage">Add insurance package</Link></li>
-                                <li><Link className="dropdown-item" to="/insuranceProviderViewAllClients">View all cients</Link></li>
-                                <li><Link className="dropdown-item" to="/insuranceProviderViewAllNews">View all news</Link></li>
+                                <li><Link className="dropdown-item" to="/InsuranceProviderUpdateProfile">Update profile</Link></li>
                             </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownInsurance" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <FontAwesomeIcon icon={faShieldAlt} className="me-2" style={{ color: '#007bff' }} />
+                                Insurance
+                            </Link>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
+                                <li><Link className="dropdown-item" to="/insuranceProviderAddInsurancePackage">Add Insurance Package</Link></li>
+                                <li><Link className="dropdown-item" to="/insuranceProviderViewAllClients">View All Clients</Link></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/insuranceProviderViewAllNews">
+                                <FontAwesomeIcon icon={faNewspaper} className="me-2" style={{ color: '#ffc107' }} />
+                                View All News
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/">

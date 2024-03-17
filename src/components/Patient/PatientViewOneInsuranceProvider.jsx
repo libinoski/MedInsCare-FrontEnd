@@ -64,7 +64,7 @@ const PatientViewOneInsuranceProvider = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <Navbar />
     <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', flex: '1' }}>
         <div className="row justify-content-center">

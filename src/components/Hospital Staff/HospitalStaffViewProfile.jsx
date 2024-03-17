@@ -67,9 +67,9 @@ const HospitalStaffViewProfile = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
   <HospitalStaffNavbar />
-  <div className="d-flex flex-column flex-grow-1" style={{ padding: '2rem 0', background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)' }}>
+  <div className="d-flex flex-column flex-grow-1" style={{ padding: '2rem 0' }}>
     <div className="container d-flex justify-content-center align-items-center flex-grow-1">
       {isLoading ? (
         <div className="card-body text-center">Loading profile...</div>

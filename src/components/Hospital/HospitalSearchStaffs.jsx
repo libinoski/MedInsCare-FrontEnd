@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalSearchStaffs = () => {
     const navigate = useNavigate();
@@ -70,8 +70,10 @@ const HospitalSearchStaffs = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    <Navbar />
+<div className="d-flex flex-column min-vh-100" style={{
+    background: 'linear-gradient(to right, #1a1a1a, #000000)',
+}}>
+    <HospitalNavbar />
     <div className="container flex-grow-1 mt-4">
         <div className="row justify-content-center mb-5">
             <div className="col-lg-8 col-md-12 col-12">
@@ -79,7 +81,7 @@ const HospitalSearchStaffs = () => {
                     <input
                         type="text"
                         className="form-control py-3"
-                        placeholder="Enter search query"
+                        placeholder="Enter staff name" // Adjusted placeholder text
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         style={{
@@ -88,7 +90,8 @@ const HospitalSearchStaffs = () => {
                             padding: '15px 20px',
                             height: 'auto',
                             border: '1px solid #ced4da',
-                            boxShadow: 'inset 0 1px 2px rgba(0,0,0,.075)', // Existing shadow effect for input
+                            boxShadow: 'inset 0 1px 2px rgba(0,0,0,.075)',
+                            backgroundColor: '#ffffff', // Changed background color to white
                         }}
                     />
                     <div className="input-group-append">
@@ -101,7 +104,9 @@ const HospitalSearchStaffs = () => {
                                 fontSize: '1.2rem',
                                 padding: '15px 30px',
                                 height: 'auto',
-                                boxShadow: '0 2px 4px rgba(0,0,0,.2)', // Existing shadow effect for button
+                                boxShadow: '0 2px 4px rgba(0,0,0,.2)',
+                                backgroundColor: '#007bff', // Changed background color to blue
+                                border: '1px solid #007bff', // Added border to match background color
                             }}
                         >
                             Search
@@ -111,7 +116,7 @@ const HospitalSearchStaffs = () => {
             </div>
         </div>
         {isLoading ? (
-            <p className="text-center">Searching staffs...</p>
+            <p className="text-center">Searching staffs...</p> // Updated loading message
         ) : (
             <>
                 {searchResult.length > 0 ? (
@@ -119,38 +124,43 @@ const HospitalSearchStaffs = () => {
                         {searchResult.map((staff, index) => (
                             <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
                                 <div
-                                    className="card h-100 text-center" // Consistent text alignment
+                                    className="card h-100 text-center"
                                     style={{
-                                        backgroundColor: 'white',
+                                        backgroundColor: '#ffffff',
                                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease, border-color 0.3s ease', // Smooth transitions
-                                        cursor: 'pointer', // Interactivity indication
-                                        borderRadius: '15px', // Rounded corners for modern appearance
+                                        transition: 'transform 0.3s ease, boxShadow 0.3s ease, border-color 0.3s ease',
+                                        cursor: 'pointer',
+                                        borderRadius: '15px',
+                                        border: '1px solid transparent', // Added transparent border
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'scale(1.05)'; // Scale effect on hover
-                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)'; // Enhanced shadow on hover
-                                        e.currentTarget.style.borderColor = '#007bff'; // Blue border on hover
+                                        e.currentTarget.style.transform = 'scale(1.05)';
+                                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                                        e.currentTarget.style.borderColor = '#007bff';
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'scale(1)'; // Revert scale effect
-                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Revert shadow effect
-                                        e.currentTarget.style.borderColor = 'transparent'; // Hide border
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                                        e.currentTarget.style.borderColor = 'transparent';
                                     }}
-                                    onClick={() => handleViewStaff(staff.hospitalStaffId)}
+                                    onClick={() => handleViewStaff(staff.hospitalStaffId)} // Function name unchanged
                                 >
                                     <div style={{ backgroundColor: '#f8f9fa', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}>
                                         <img
                                             src={staff.hospitalStaffProfileImage}
                                             alt="Profile"
-                                            className="card-img-top"
-                                            style={{ height: '200px', objectFit: 'contain', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }} // Consistent rounded corners
+                                            className="rounded-circle"
+                                            style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto', border: '3px solid #ffffff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }} // Rounded image
                                         />
                                     </div>
-                                    <div className="card-body" style={{ padding: '20px' }}>
-                                        <h5 className="card-title" style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '10px' }}>
+                                    <div className="card-body" style={{ border: '2px solid transparent', padding: '20px' }}>
+                                        <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                                             {staff.hospitalStaffName}
                                         </h5>
+                                        <p className="mb-2"><strong>Email:</strong> {staff.hospitalStaffEmail}</p>
+                                        <p className="mb-2"><strong>Aadhar:</strong> {staff.hospitalStaffAadhar}</p>
+                                        <p className="mb-2"><strong>Mobile:</strong> {staff.hospitalStaffMobile}</p>
+                                        <p className="mb-0"><strong>Address:</strong> {staff.hospitalStaffAddress}</p>
                                     </div>
                                 </div>
                             </div>
@@ -162,6 +172,8 @@ const HospitalSearchStaffs = () => {
     </div>
     <Footer />
 </div>
+
+
 
     );
 };

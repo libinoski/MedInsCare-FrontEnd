@@ -7,7 +7,6 @@ import HospitalLogin from './components/Hospital/HospitalLogin';
 import HospitalChangePassword from './components/Hospital/HospitalChangePassword';
 import HospitalViewProfile from './components/Hospital/HospitalViewProfile';
 import HospitalUpdateProfile from './components/Hospital/HospitalUpdateProfile';
-import Navbar from './components/Hospital/HospitalNavbar';
 import HospitalRegisterStaff from './components/Hospital/HospitalRegisterStaff';
 import HospitalViewAllStaffs from './components/Hospital/HospitalViewAllStaffs';
 import HospitalViewOneStaff from './components/Hospital/HospitalViewOneStaff';
@@ -80,6 +79,7 @@ import InsuranceProviderChangeIdProofImage from './components/InsuranceProviders
 import InsuranceProviderChangeProfileImage from './components/InsuranceProviders/InsuranceProviderChangeProfileImage';
 import PatientChangeProfileImage from './components/Patient/PatientChangeProfileImage';
 import PatientChangeIdProofImage from './components/Patient/PatientChangeIdProofImage';
+import InsuranceProviderViewOneNews from './components/InsuranceProviders/InsuranceProviderViewOneNews';
 
 
 function App() {
@@ -88,85 +88,102 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path='/navbar' element={<Navbar />} />
-          <Route path='/hospitalStaffNavbar' element={<HospitalStaffNavbar />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/footer' element={<Footer />} />
-          <Route path='/hospitalSearchPatients' element={<HospitalSearchPatients />} />
-          <Route path='/hospitalRegistration' element={<HospitalRegistration />} />
-          <Route path='/hospitalLogin' element={<HospitalLogin />} />
-          <Route path='/hospitalStaffLogin' element={<HospitalStaffLogin />} />
-          <Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />
-          <Route path='/hospitalViewProfile' element={<HospitalViewProfile />} />
-          <Route path='/hospitalstaffViewProfile' element={<HospitalStaffViewProfile />} />
-          <Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
-          <Route path='/hospitalStaffUpdateProfile' element={<HospitalStaffUpdateProfile />} />
-          <Route path='/hospitalChangeImage' element={<HospitalChangeImage />} />
-          <Route path='/hospitalRegisterStaff' element={<HospitalRegisterStaff />} />
-          <Route path='/hospitalUpdateStaff' element={<HospitalUpdateStaff />} />
-          <Route path='/hospitalViewAllStaffs' element={<HospitalViewAllStaffs />} />
-          <Route path='/hospitalViewOneStaff' element={<HospitalViewOneStaff />} />
-          <Route path='/hospitalSearchStaffs' element={<HospitalSearchStaffs />} />
-          <Route path='/hospitalAddNews' element={<HospitalAddNews />} />
-          <Route path='/hospitalViewOneNews' element={<HospitalViewOneNews />} />
-          <Route path='/hospitalUpdateNews' element={<HospitalUpdateNews />} />
-          <Route path='/hospitalViewAllNews' element={<HospitalViewAllNews />} />
-          <Route path='/hospitalViewAllSuspendedStaffs' element={<HospitalViewAllSuspendedStaffs />} />
-          <Route path='/hospitalViewOneSuspendedStaff' element={<HospitalViewOneSuspendedStaff />} />
-          <Route path='/hospitalSendNotificationToStaff' element={<HospitalSendNotificationToStaff />} />
 
-          <Route path='/hospitalStaffChangeIdProofImage' element={<HospitalStaffChangeIdProofImage />} />
-          <Route path='/hospitalStaffChangeProfileImage' element={<HospitalStaffChangeProfileImage />} />
-          <Route path='/hospitalStaffChangePassword' element={<HospitalStaffChangePassword />} />
-          <Route path='/hospitalStaffViewAllNews' element={<HospitalStaffViewAllNews />} />
-          <Route path='/hospitalStaffViewOneNews' element={<HospitalStaffViewOneNews />} />
-          <Route path='/hospitalStaffViewAllNotifications' element={<HospitalStaffViewAllNotifications />} />
-          <Route path='/hospitalStaffViewOneNotification' element={<HospitalStaffViewOneNotification />} />
-          <Route path='/hospitalStaffRegisterPatient' element={<HospitalStaffRegisterPatient />} />
-          <Route path='/hospitalViewAllPatients' element={<HospitalViewAllPatients />} />
-          <Route path='/hospitalStaffViewAllPatients' element={<HospitalStaffViewAllPatients />} />
-          <Route path='/hospitalViewOnePatient' element={<HospitalViewOnePatient />} />
-          <Route path='/hospitalSendNotificationToPatient' element={<HospitalSendNotificationToPatient />} />
-          <Route path='/hospitalStaffViewOnePatient' element={<HospitalStaffViewOnePatient />} />
-          <Route path='/hospitalStaffSendNotificationToPatient' element={<HospitalStaffSendNotificationToPatient />} />
-          <Route path='/insuranceProviderRegistration' element={<InsuranceProviderRegistration />} />
-          <Route path='/insuranceProviderLogin' element={<InsuranceProviderLogin />} />
-          <Route path='/hospitalViewAllUnApprovedInsuranceProviders' element={<HospitalViewAllUnApprovedInsuranceProviders />} />
-          <Route path='/hospitalViewOneUnApprovedInsuranceProvider' element={<HospitalViewOneUnapprovedInsuranceProvider />} />
-          <Route path='/patientLogin' element={<PatientLogin />} />
-          <Route path='/insuranceProviderViewProfile' element={<InsuranceProviderViewProfile />} />
-          <Route path='/insuranceProviderChangePassword' element={<InsuranceProviderChangePassword />} />
-          <Route path='/InsuranceProviderUpdateProfile' element={<InsuranceProviderUpdateProfile />} />
-          <Route path='/' element={<HomePage />} />
-          <Route path='/hospitalSearchInsuranceProviders' element={<HospitalSearchInsuranceProviders />} />
-          <Route path='/hospitalViewAllInsuranceProviders' element={<HospitalViewAllInsuranceProviders />} />
-          <Route path='/hospitalViewOneInsuranceProvider' element={<HospitalViewOneInsuranceProvider />} />
-          <Route path='/hospitalSendNotificationToInsuranceProvider' element={<HospitalSendNotificationToInsuranceProvider />} />
-          <Route path='/patientChangePassword' element={<PatientChangePassword />} />
-          <Route path='/patientViewProfile' element={<PatientViewProfile />} />
-          <Route path='/hospitalUpdatePatient' element={<HospitalUpdatePatient />} />
-          <Route path='/hospitalStaffRequestDischarge' element={<HospitalStaffRequestDischarge />} />
-          <Route path='/hospitalStaffAddMedicalRecordOfPatient' element={<HospitalStaffAddMedicalRecordOfPatient />} />
-          <Route path='/hospitalViewAllMedicalRecords' element={<HospitalViewAllMedicalRecords />} />
-          <Route path='/patientViewAllInsuranceProviders' element={<PatientViewAllInsuranceProviders />} />
-          <Route path='/patientViewOneInsuranceProvider' element={<PatientViewOneInsuranceProvider />} />
-          <Route path='/insuranceProviderAddInsurancePackage' element={<InsuranceProviderAddInsurancePackage />} />
-          <Route path='/patientViewAllInsurancePackages' element={<PatientViewAllInsurancePackages />} />
-          <Route path='/patientViewOneInsurancePackage' element={<PatientViewOneInsurancePackage />} />
-          <Route path='/insuranceProviderViewAllClients' element={<InsuranceProviderViewAllClients />} />
-          <Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
-          <Route path='/patientAddReview' element={<PatientAddReview />} />
-          <Route path='/insuranceProviderViewOneClient' element={<InsuranceProviderViewOneClient />} />
-          <Route path='/insuranceProviderSendNotificationToClient' element={<InsuranceProviderSendNotificationToClient />} />
-          <Route path='/patientViewAllNotificationsFromInsuranceProvider' element={<PatientViewAllNotificationsFromInsuranceProvider />} />
-          <Route path='/patientNavbar' element={<PatientNavbar />} />
-          <Route path='/hospitalNavbar' element={<HospitalNavbar />} />
-          <Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
-          <Route path='/insuranceProviderViewAllNews' element={<InsuranceProviderViewAllNews />} />
-          <Route path='/insuranceProviderChangeIdProofImage' element={<InsuranceProviderChangeIdProofImage />} />
-          <Route path='/insuranceProviderChangeProfileImage' element={<InsuranceProviderChangeProfileImage />} />
-          <Route path='/patientChangeProfileImage' element={<PatientChangeProfileImage />} />
-          <Route path='/patientChangeIdProofImage' element={<PatientChangeIdProofImage />} />
+{/* Hospital routes */}
+<Route path='/hospitalNavbar' element={<HospitalNavbar />} />
+<Route path='/hospitalStaffNavbar' element={<HospitalStaffNavbar />} />
+<Route path='/hospitalLogin' element={<HospitalLogin />} />
+<Route path='/hospitalChangePassword' element={<HospitalChangePassword />} />
+<Route path='/hospitalViewProfile' element={<HospitalViewProfile />} />
+<Route path='/hospitalUpdateProfile' element={<HospitalUpdateProfile />} />
+<Route path='/hospitalChangeImage' element={<HospitalChangeImage />} />
+<Route path='/hospitalRegisterStaff' element={<HospitalRegisterStaff />} />
+<Route path='/hospitalUpdateStaff' element={<HospitalUpdateStaff />} />
+<Route path='/hospitalViewAllStaffs' element={<HospitalViewAllStaffs />} />
+<Route path='/hospitalViewOneStaff' element={<HospitalViewOneStaff />} />
+<Route path='/hospitalSearchStaffs' element={<HospitalSearchStaffs />} />
+<Route path='/hospitalAddNews' element={<HospitalAddNews />} />
+<Route path='/hospitalViewOneNews' element={<HospitalViewOneNews />} />
+<Route path='/hospitalUpdateNews' element={<HospitalUpdateNews />} />
+<Route path='/hospitalViewAllUnApprovedInsuranceProviders' element={<HospitalViewAllUnApprovedInsuranceProviders />} />
+<Route path='/hospitalViewOneUnapprovedInsuranceProvider' element={<HospitalViewOneUnapprovedInsuranceProvider />} />
+<Route path='/hospitalViewAllNews' element={<HospitalViewAllNews />} />
+<Route path='/hospitalViewAllSuspendedStaffs' element={<HospitalViewAllSuspendedStaffs />} />
+<Route path='/hospitalViewOneSuspendedStaff' element={<HospitalViewOneSuspendedStaff />} />
+<Route path='/hospitalSendNotificationToStaff' element={<HospitalSendNotificationToStaff />} />
+<Route path='/hospitalSearchPatients' element={<HospitalSearchPatients />} />
+<Route path='/hospitalRegistration' element={<HospitalRegistration />} />
+<Route path='/hospitalUpdatePatient' element={<HospitalUpdatePatient />} />
+<Route path='/hospitalStaffRequestDischarge' element={<HospitalStaffRequestDischarge />} />
+<Route path='/hospitalStaffAddMedicalRecordOfPatient' element={<HospitalStaffAddMedicalRecordOfPatient />} />
+<Route path='/hospitalViewAllMedicalRecords' element={<HospitalViewAllMedicalRecords />} />
+<Route path='/hospitalSearchInsuranceProviders' element={<HospitalSearchInsuranceProviders />} />
+<Route path='/hospitalViewAllInsuranceProviders' element={<HospitalViewAllInsuranceProviders />} />
+<Route path='/hospitalViewOneInsuranceProvider' element={<HospitalViewOneInsuranceProvider />} />
+<Route path='/hospitalSendNotificationToInsuranceProvider' element={<HospitalSendNotificationToInsuranceProvider />} />
+<Route path='/viewAllReviews' element={<HospitalViewAllReviews />} />
+
+
+{/* Hospital staff routes */}
+
+<Route path='/hospitalStaffLogin' element={<HospitalStaffLogin />} />
+<Route path='/hospitalStaffChangeIdProofImage' element={<HospitalStaffChangeIdProofImage />} />
+<Route path='/hospitalStaffChangeProfileImage' element={<HospitalStaffChangeProfileImage />} />
+<Route path='/hospitalStaffChangePassword' element={<HospitalStaffChangePassword />} />
+<Route path='/hospitalStaffViewAllNews' element={<HospitalStaffViewAllNews />} />
+<Route path='/hospitalStaffViewOneNews' element={<HospitalStaffViewOneNews />} />
+<Route path='/hospitalStaffViewProfile' element={<HospitalStaffViewProfile />} />
+<Route path='/hospitalStaffUpdateProfile' element={<HospitalStaffUpdateProfile />} />
+<Route path='/hospitalStaffViewAllNotifications' element={<HospitalStaffViewAllNotifications />} />
+<Route path='/hospitalStaffViewOneNotification' element={<HospitalStaffViewOneNotification />} />
+<Route path='/hospitalStaffRegisterPatient' element={<HospitalStaffRegisterPatient />} />
+<Route path='/hospitalViewAllPatients' element={<HospitalViewAllPatients />} />
+<Route path='/hospitalStaffViewAllPatients' element={<HospitalStaffViewAllPatients />} />
+<Route path='/hospitalViewOnePatient' element={<HospitalViewOnePatient />} />
+<Route path='/hospitalSendNotificationToPatient' element={<HospitalSendNotificationToPatient />} />
+<Route path='/hospitalStaffViewOnePatient' element={<HospitalStaffViewOnePatient />} />
+<Route path='/hospitalStaffSendNotificationToPatient' element={<HospitalStaffSendNotificationToPatient />} />
+
+
+{/* Insurance provider routes */}
+
+<Route path='/insuranceProviderRegistration' element={<InsuranceProviderRegistration />} />
+<Route path='/insuranceProviderNavbar' element={<InsuranceProviderNavbar />} />
+<Route path='/insuranceProviderLogin' element={<InsuranceProviderLogin />} />
+<Route path='/insuranceProviderViewProfile' element={<InsuranceProviderViewProfile />} />
+<Route path='/insuranceProviderChangePassword' element={<InsuranceProviderChangePassword />} />
+<Route path='/InsuranceProviderUpdateProfile' element={<InsuranceProviderUpdateProfile />} />
+<Route path='/insuranceProviderViewAllNews' element={<InsuranceProviderViewAllNews />} />
+<Route path='/insuranceProviderViewOneNews' element={<InsuranceProviderViewOneNews />} />
+<Route path='/insuranceProviderChangeIdProofImage' element={<InsuranceProviderChangeIdProofImage />} />
+<Route path='/insuranceProviderChangeProfileImage' element={<InsuranceProviderChangeProfileImage />} />
+<Route path='/insuranceProviderAddInsurancePackage' element={<InsuranceProviderAddInsurancePackage />} />
+<Route path='/insuranceProviderViewAllClients' element={<InsuranceProviderViewAllClients />} />
+<Route path='/insuranceProviderViewOneClient' element={<InsuranceProviderViewOneClient />} />
+<Route path='/insuranceProviderSendNotificationToClient' element={<InsuranceProviderSendNotificationToClient />} />
+
+
+
+{/* Patient routes */}
+<Route path='/patientLogin' element={<PatientLogin />} />
+<Route path='/patientChangePassword' element={<PatientChangePassword />} />
+<Route path='/patientViewProfile' element={<PatientViewProfile />} />
+<Route path='/patientChangeProfileImage' element={<PatientChangeProfileImage />} />
+<Route path='/patientChangeIdProofImage' element={<PatientChangeIdProofImage />} />
+<Route path='/patientViewAllInsuranceProviders' element={<PatientViewAllInsuranceProviders />} />
+<Route path='/patientViewOneInsuranceProvider' element={<PatientViewOneInsuranceProvider />} />
+<Route path='/patientViewAllInsurancePackages' element={<PatientViewAllInsurancePackages />} />
+<Route path='/patientViewOneInsurancePackage' element={<PatientViewOneInsurancePackage />} />
+<Route path='/patientViewAllNotificationsFromInsuranceProvider' element={<PatientViewAllNotificationsFromInsuranceProvider />} />
+<Route path='/patientNavbar' element={<PatientNavbar />} />
+<Route path='/patientAddReview' element={<PatientAddReview />} />
+
+
+{/* Common */}
+<Route path='/dashboard' element={<Dashboard />} />
+<Route path='/footer' element={<Footer />} />
+<Route path='/' element={<HomePage />} />
+
 
         </Routes>
       </BrowserRouter>

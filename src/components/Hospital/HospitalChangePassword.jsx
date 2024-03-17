@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalChangePassword = () => {
     const navigate = useNavigate();
@@ -80,10 +80,10 @@ const HospitalChangePassword = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100" style={{
-  background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)',
-}}>
-  <Navbar />
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+
+  <HospitalNavbar />
   <div className="d-flex justify-content-center align-items-center flex-grow-1">
     <div className="p-0" style={{ maxWidth: '400px', width: '90%' }}>
       <div className={`card mb-3 shadow`} style={{
@@ -131,11 +131,28 @@ const HospitalChangePassword = () => {
               </div>
             </div>
             {/* Submit Button */}
-            <div className="text-center">
-              <button type="submit" className={`btn ${Object.keys(errorMessages).length ? 'btn-danger' : 'btn-primary'} ${isLoading ? 'disabled' : ''}`} disabled={isLoading}>
-                {isLoading ? 'Changing Password...' : 'Change Password'}
-              </button>
-            </div>
+            <div className="text-center d-flex justify-content-center align-items-center">
+  <button 
+      type="submit" 
+      className={`btn btn-outline-secondary text-dark ${isLoading ? 'disabled' : ''} d-flex justify-content-center align-items-center`}
+      disabled={isLoading}
+      style={{
+          border: '2px solid #6c757d',
+          color: '#6c757d',
+          fontWeight: 'bold',
+          boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+          padding: '10px 20px',
+          borderRadius: '25px',
+          width: '100%',
+          maxWidth: '200px', // Adjust based on your preference
+          textDecoration: 'none',
+          transition: 'background-color .3s' // Maintaining the transition effect for stylistic consistency
+      }}
+  >
+      {isLoading ? 'Changing Password...' : 'Change Password'}
+  </button>
+</div>
+
           </form>
         </div>
       </div>

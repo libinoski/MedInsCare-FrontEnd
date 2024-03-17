@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Common/Footer';
-import Navbar from './HospitalNavbar';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalViewAllMedicalRecords = () => {
     const navigate = useNavigate();
@@ -64,8 +64,9 @@ const HospitalViewAllMedicalRecords = () => {
     }, [navigate]);
 
     return (
-<div className="d-flex flex-column min-vh-100">
-  <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+<HospitalNavbar />
   <div className="flex-grow-1 container-fluid py-4" style={{ overflowY: 'auto' }}>
     <div className="container pt-5 pb-5">
       {isLoading ? (

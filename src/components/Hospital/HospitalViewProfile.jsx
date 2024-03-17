@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalViewProfile = () => {
     const navigate = useNavigate();
@@ -67,9 +67,12 @@ const HospitalViewProfile = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100">
-  {/* Navbar */}
-  <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+
+  {/* Content goes here */}
+
+<HospitalNavbar />
 
   {/* Main Content */}
   <div className="d-flex flex-grow-1 align-items-center justify-content-center" style={{ padding: '56px 0 80px' }}>

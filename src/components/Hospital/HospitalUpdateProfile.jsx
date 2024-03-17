@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalUpdateProfile = () => {
     const navigate = useNavigate();
@@ -145,14 +145,14 @@ const HospitalUpdateProfile = () => {
     };
 
     return (
-<div>
-    {/* Navbar */}
-    <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+{/* Navbar */}
+    <HospitalNavbar />
     <div className="container-fluid" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
         <div className="row">
             {/* Right Side Profile Details Card */}
             <div className="col-12 d-flex align-items-center justify-content-center">
-                <div className="card" style={{ width: '100%', maxWidth: '500px', backgroundColor: 'rgba(255, 255, 255, 0.5)', border: Object.keys(errorMessages).length > 0 ? '1px solid red' : 'none' }}>
+                <div className="card" style={{ width: '100%', maxWidth: '500px', backgroundColor: 'rgba(255, 255, 255, 1)', border: Object.keys(errorMessages).length > 0 ? '1px solid red' : 'none' }}>
                     <div className="card-body">
                         <form onSubmit={handleSubmit} noValidate>
                             <div className="mb-3">
@@ -230,61 +230,60 @@ const HospitalUpdateProfile = () => {
                                     <div className="d-flex justify-content-center">
                                         <p>Are you sure you want to update the hospital profile?</p>
                                         <button
-    type="button"
-    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center mr-2"
-    onClick={() => setShowConfirmation(false)}
-    style={{
-        border: '2px solid #6c757d',
-        color: '#6c757d',
-        fontWeight: 'bold',
-        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-        padding: '10px 20px',
-        borderRadius: '25px',
-        textDecoration: 'none',
-        marginRight: '8px' // Adjusting spacing between buttons
-    }}
->
-    Cancel
-</button>
-<button
-    type="button"
-    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
-    onClick={handleConfirmSubmit}
-    style={{
-        border: '2px solid #6c757d',
-        color: '#6c757d',
-        fontWeight: 'bold',
-        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-        padding: '10px 20px',
-        borderRadius: '25px',
-        textDecoration: 'none'
-    }}
->
-    Confirm
-</button>
+                                            type="button"
+                                            className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center mr-2"
+                                            onClick={() => setShowConfirmation(false)}
+                                            style={{
+                                                border: '2px solid #6c757d',
+                                                color: '#6c757d',
+                                                fontWeight: 'bold',
+                                                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                padding: '10px 20px',
+                                                borderRadius: '25px',
+                                                textDecoration: 'none',
+                                                marginRight: '8px' // Adjusting spacing between buttons
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                                            onClick={handleConfirmSubmit}
+                                            style={{
+                                                border: '2px solid #6c757d',
+                                                color: '#6c757d',
+                                                fontWeight: 'bold',
+                                                boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                                padding: '10px 20px',
+                                                borderRadius: '25px',
+                                                textDecoration: 'none'
+                                            }}
+                                        >
+                                            Confirm
+                                        </button>
 
                                     </div>
                                 ) : (
                                     <button
-    type="button"
-    class="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
-    disabled={isLoading}
-    onClick={handleConfirmation}
-    style={{
-        border: '2px solid #6c757d',
-        color: '#6c757d',
-        fontWeight: 'bold',
-        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-        padding: '10px 20px',
-        borderRadius: '25px',
-        width: '100%',
-        maxWidth: '200px', // Adjust based on your preference
-        textDecoration: 'none'
-    }}
->
-    {isLoading ? 'Updating Profile...' : 'Update'}
-</button>
-
+                                        type="button"
+                                        className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                                        disabled={isLoading}
+                                        onClick={handleConfirmation}
+                                        style={{
+                                            border: '2px solid #6c757d',
+                                            color: '#6c757d',
+                                            fontWeight: 'bold',
+                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                            padding: '10px 20px',
+                                            borderRadius: '25px',
+                                            width: '100%',
+                                            maxWidth: '200px', // Adjust based on your preference
+                                            textDecoration: 'none'
+                                        }}
+                                    >
+                                        {isLoading ? 'Updating Profile...' : 'Update'}
+                                    </button>
                                 )}
                             </div>
                         </form>
@@ -296,6 +295,7 @@ const HospitalUpdateProfile = () => {
     {/* Footer */}
     <Footer />
 </div>
+
 
 
 

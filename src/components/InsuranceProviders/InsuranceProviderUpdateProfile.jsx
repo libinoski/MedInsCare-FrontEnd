@@ -144,7 +144,7 @@ const InsuranceProviderUpdateProfile = () => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Navbar />
             <div
                 className="container-fluid bg-blur"

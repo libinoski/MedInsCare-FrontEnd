@@ -71,7 +71,7 @@ const InsuranceProviderViewAllNews = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <InsuranceProviderNavbar />
     {isLoading ? (
         <div className="d-flex justify-content-center align-items-center flex-grow-1">

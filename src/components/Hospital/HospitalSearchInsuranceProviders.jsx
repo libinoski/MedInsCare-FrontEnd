@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalSearchInsuranceProviders = () => {
     const navigate = useNavigate();
@@ -62,12 +62,13 @@ const HospitalSearchInsuranceProviders = () => {
 
     const handleViewProvider = (insuranceProviderId) => {
         sessionStorage.setItem('insuranceProviderId', insuranceProviderId);
-        navigate('/viewInsuranceProvider');
+        navigate('/hospitalViewOneInsuranceProvider');
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+    <HospitalNavbar />
     <div className="container flex-grow-1 mt-4">
         <div className="row justify-content-center mb-5">
             <div className="col-lg-8 col-md-12 col-12">
@@ -83,7 +84,8 @@ const HospitalSearchInsuranceProviders = () => {
                             fontSize: '1.2rem',
                             padding: '15px 20px',
                             height: 'auto',
-                            boxShadow: 'inset 0 1px 2px rgba(0,0,0,.075)' // Consistent shadow effect for the input
+                            boxShadow: 'inset 0 1px 2px rgba(0,0,0,.075)', // Consistent shadow effect for the input
+                            border: '1px solid #ced4da',
                         }}
                     />
                     <div className="input-group-append">
@@ -96,7 +98,7 @@ const HospitalSearchInsuranceProviders = () => {
                                 fontSize: '1.2rem',
                                 padding: '15px 30px',
                                 height: 'auto',
-                                boxShadow: '0 2px 4px rgba(0,0,0,.2)' // Consistent shadow effect for the button
+                                boxShadow: '0 2px 4px rgba(0,0,0,.2)', // Consistent shadow effect for the button
                             }}
                         >
                             Search
@@ -106,7 +108,7 @@ const HospitalSearchInsuranceProviders = () => {
             </div>
         </div>
         {isLoading ? (
-            <p className="text-center">Searching insurance providers...</p>
+            <p className="text-center">Searching insurance providers...</p> // Updated loading message
         ) : (
             <>
                 {searchResult.length > 0 ? (
@@ -114,13 +116,14 @@ const HospitalSearchInsuranceProviders = () => {
                         {searchResult.map((provider, index) => (
                             <div className="col-lg-3 col-md-4 col-12 mb-4" key={index}>
                                 <div
-                                    className="card h-100 text-center" // Consistent alignment and presentation
+                                    className="card h-100 text-center"
                                     style={{
                                         backgroundColor: 'white',
                                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
                                         transition: 'transform 0.3s ease, boxShadow 0.3s ease, border-color 0.3s ease', // Smooth transitions for transform, shadow, and border color
                                         cursor: 'pointer', // Indicates interactivity
                                         borderRadius: '15px', // Rounded corners for a modern appearance
+                                        border: '1px solid transparent', // Added transparent border
                                     }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.transform = 'scale(1.05)'; // Scale effect on hover
@@ -138,13 +141,18 @@ const HospitalSearchInsuranceProviders = () => {
                                         <div className="mb-4">
                                             <img
                                                 src={provider.insuranceProviderProfileImage}
-                                                alt="Provider Logo"
-                                                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '15px 15px 0 0' }} // Rounded top corners for consistency
+                                                alt="Profile"
+                                                className="rounded-circle"
+                                                style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto', border: '3px solid #ffffff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', borderRadius: '50%' }} // Applied rounded corners
                                             />
                                         </div>
                                         <h5 className="card-title mb-4" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                                             {provider.insuranceProviderName}
                                         </h5>
+                                        <p className="mb-2"><strong>Email:</strong> {provider.insuranceProviderEmail}</p>
+                                        <p className="mb-2"><strong>Aadhar:</strong> {provider.insuranceProviderAadhar}</p>
+                                        <p className="mb-2"><strong>Mobile:</strong> {provider.insuranceProviderMobile}</p>
+                                        <p className="mb-0"><strong>Address:</strong> {provider.insuranceProviderAddress}</p>
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +164,7 @@ const HospitalSearchInsuranceProviders = () => {
     </div>
     <Footer />
 </div>
+
 
     );
 };

@@ -68,7 +68,7 @@ const InsuranceProviderViewAllClients = () => {
     };
 
     return (
-        <div className="d-flex flex-column min-vh-100">
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <InsuranceProviderNavbar />
             <div className="flex-grow-1 container-fluid py-4">
                 <div className="container">

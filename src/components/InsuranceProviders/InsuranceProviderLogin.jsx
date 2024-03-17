@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import backgroundImage from '../../images/InsuranceProvider/ip1.svg'; // Import the background image
 import Footer from '../Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -76,13 +76,16 @@ const InsuranceProviderLogin = () => {
     const hasErrors = Object.keys(errorMessages).length > 0;
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             {/* Navbar */}
-            <nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
-                <div className="container-fluid">
-                    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Login</span>
-                </div>
-            </nav>
+            <nav className="navbar navbar-expand-lg navbar-light bg-white">
+    <div className="container-fluid">
+        <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Login</span>
+        <Link to="/" className="btn btn-outline-secondary rounded-pill" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }}>
+            Home
+        </Link>
+    </div>
+</nav>
 
             <div className="container-fluid d-flex flex-column min-vh-100">
                 <div className="row flex-grow-1">

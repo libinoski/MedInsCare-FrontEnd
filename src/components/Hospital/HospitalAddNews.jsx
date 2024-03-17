@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalAddNews = () => {
     const navigate = useNavigate();
@@ -92,7 +92,9 @@ const HospitalAddNews = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar />
+
+
+<HospitalNavbar />
             <div className="container-fluid" style={{ flex: 1, paddingTop: '56px', paddingBottom: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div className="row" style={{ width: '100%' }}>
                     <div className="col-lg-12 d-flex align-items-center justify-content-center">

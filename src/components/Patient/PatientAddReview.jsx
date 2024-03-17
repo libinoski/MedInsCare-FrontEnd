@@ -62,7 +62,7 @@ const PatientAddReview = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <PatientNavbar />
     <div className="container-fluid" style={{ position: 'relative', backgroundColor: '#f0f2f7', paddingTop: '56px', flex: '1' }}>
         <div className="container py-5">

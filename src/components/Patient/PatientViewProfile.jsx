@@ -67,7 +67,7 @@ const PatientViewProfile = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100">
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
   <Navbar />
   <div className="container-fluid flex-grow-1 d-flex justify-content-center align-items-center" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
       <div className="col-12 col-md-10 col-lg-8">

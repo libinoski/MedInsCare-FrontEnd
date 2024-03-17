@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 import { useNavigate } from 'react-router-dom';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalSendNotificationToStaff = () => {
     const [notificationMessage, setNotificationMessage] = useState('');
@@ -62,13 +62,15 @@ const HospitalSendNotificationToStaff = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    <Navbar />
-    <div className="container-fluid" style={{ position: 'relative', backgroundColor: '#f0f2f7', paddingTop: '56px', flex: '1' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+
+    <HospitalNavbar />
+    <div className="container-fluid" style={{ position: 'relative',  paddingTop: '56px', flex: '1' }}>
         <div className="container py-5">
             <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-lg-6">
-                    <div className="card bg-transparent border-0" style={{ backdropFilter: 'blur(10px)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '15px', maxWidth: '100%' }}>
+                    <div className="card border-0" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '15px', maxWidth: '100%' }}>
                         <div className="card-body">
                             <form onSubmit={handleSubmit} noValidate style={{ width: '100%' }}>
                                 <div className="mb-4">
@@ -84,28 +86,27 @@ const HospitalSendNotificationToStaff = () => {
                                 </div>
                                 {error && <div className="alert alert-danger" style={{ borderRadius: '15px' }}>{error}</div>}
                                 <div className="text-center mt-4"> {/* Center the button */}
-    <button
-        type="submit"
-        className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
-        disabled={isLoading}
-        style={{
-            border: '2px solid #6c757d',
-            color: '#6c757d',
-            fontWeight: 'bold',
-            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-            padding: '10px 20px',
-            borderRadius: '25px',
-            width: '100%',
-            maxWidth: '200px', // Adjust based on your preference
-            textDecoration: 'none',
-            transition: 'background-color .3s', // Maintaining the transition effect for stylistic consistency
-            margin: '0 auto' // Center horizontally
-        }}
-    >
-        {isLoading ? 'Sending...' : 'Send Notification'}
-    </button>
-</div>
-
+                                    <button
+                                        type="submit"
+                                        className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
+                                        disabled={isLoading}
+                                        style={{
+                                            border: '2px solid #6c757d',
+                                            color: '#6c757d',
+                                            fontWeight: 'bold',
+                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                            padding: '10px 20px',
+                                            borderRadius: '25px',
+                                            width: '100%',
+                                            maxWidth: '200px', // Adjust based on your preference
+                                            textDecoration: 'none',
+                                            transition: 'background-color .3s', // Maintaining the transition effect for stylistic consistency
+                                            margin: '0 auto' // Center horizontally
+                                        }}
+                                    >
+                                        {isLoading ? 'Sending...' : 'Send Notification'}
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -115,6 +116,7 @@ const HospitalSendNotificationToStaff = () => {
     </div>
     <Footer />
 </div>
+
 
 
     );

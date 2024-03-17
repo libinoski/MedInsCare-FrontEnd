@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalUpdateStaff = () => {
     const navigate = useNavigate();
@@ -129,9 +129,10 @@ const HospitalUpdateStaff = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    {/* Navbar */}
-    <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+{/* Navbar */}
+    <HospitalNavbar />
     <div className="container-fluid d-flex justify-content-center align-items-center" style={{ flex: '1', paddingTop: '56px', paddingBottom: '80px' }}>
         <div style={{ maxWidth: '400px', width: '100%', padding: '20px', border: Object.keys(errors).length > 0 ? '1px solid red' : 'none' }}>
             <form onSubmit={handleSubmit} noValidate>

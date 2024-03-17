@@ -82,7 +82,7 @@ const HospitalStaffAddMedicalRecordOfPatient = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100" style={{ background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <HospitalStaffNavbar />
     <div className="container mt-5">
         <div className="row">
@@ -113,12 +113,16 @@ const HospitalStaffAddMedicalRecordOfPatient = () => {
 
                             <button 
                                 type="submit" 
-                                className="btn btn-primary" 
+                                className="btn btn-outline-secondary text-dark d-flex justify-content-center align-items-center"
                                 disabled={isLoading}
                                 style={{
-                                    fontWeight: 'bold',
-                                    padding: '10px 20px',
-                                    borderRadius: '25px',
+                                    border: '2px solid #6c757d',
+                                                color: '#6c757d',
+                                                fontWeight: 'bold',
+                                                padding: '10px 20px',
+                                                borderRadius: '25px',
+                                                width: 'auto'
+                                    
                                 }}
                             >
                                 {isLoading ? 'Adding...' : 'Add Medical Record'}

@@ -59,7 +59,7 @@ const InsuranceProviderViewOneClient = () => {
         fetchclientDetails();
     }, [navigate]);
 
-    const handleSendNotificationToclient = () => {
+    const handleSendNotificationToClient = () => {
         navigate('/insuranceProviderSendNotificationToClient');
     };
 
@@ -75,70 +75,65 @@ const InsuranceProviderViewOneClient = () => {
 
 
     return (
-<div>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    {/* Navbar - positioned at the top */}
     <InsuranceProviderNavbar />
-    <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-            {isLoading ? (
-                <p className="text-center">Loading client details...</p>
-            ) : (
-                <div className="row justify-content-center flex-grow-1">
-                    <div className="col-lg-8 d-flex flex-column" style={{ height: '100%' }}>
-                        {clientDetails ? (
-                            <div className="card shadow flex-grow-1" style={{ borderRadius: '20px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                                <div className="d-flex flex-wrap justify-content-end" style={{ position: 'absolute', top: '20px', right: '20px' }}>
-                                    {/* Possible additional content */}
-                                </div>
-                                <div className="card-body p-4 p-md-5" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                    <div className="row align-items-center">
-                                        <div className="col-md-6 text-center mb-4 mb-md-0">
-                                            <img
-                                                src={clientDetails.clientProfileImage}
-                                                alt="Profile"
-                                                className="img-fluid rounded-circle border"
-                                                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
-                                            />
-                                        </div>
-                                        <div className="col-md-6">
-                                            <h2 className="card-title" style={{ color: '#0056b3' }}>{clientDetails.clientName}</h2>
-                                            <p className="mb-2"><strong>Email:</strong> {clientDetails.clientEmail}</p>
-                                            <p className="mb-2"><strong>Aadhar:</strong> {clientDetails.hospitalName}</p>
-                                            <p className="mb-2"><strong>Package:</strong> {clientDetails.packageTitle}</p>
-                                            <p className="mb-2"><strong>Details:</strong> {clientDetails.packageDetails}</p>
-                                            <p className="mb-2"><strong>Duration:</strong> {clientDetails.packageDuration}</p>
-                                            <p className="mb-2"><strong>Amount:</strong> {clientDetails.packageAmount}</p>
 
-                                            <p><strong>Admitted Date:</strong> {formatDate(clientDetails.registeredDate)}</p> {/* Format the date here */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <button
-                                        className="btn btn-outline-secondary text-dark"
-                                        onClick={handleSendNotificationToclient}
-                                        style={{
-                                            border: '2px solid #6c757d',
-                                            color: '#6c757d',
-                                            fontWeight: 'bold',
-                                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
-                                            padding: '10px 20px',
-                                            borderRadius: '25px'
-                                        }}
-                                    >
-                                        Send Notification
-                                    </button>
-                                </div>
-                            </div>
-                        ) : (
-                            <p className="text-center">No client details found.</p>
-                        )}
+    {/* Main content area - centered card with client details */}
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '56px 0', flex: '1 0 auto' }}>
+        {isLoading ? (
+            <p className="text-center fs-4">Loading client details...</p>
+        ) : clientDetails ? (
+            <div className="card shadow-sm" style={{ maxWidth: '600px', borderRadius: '20px', overflow: 'hidden', backgroundColor: '#ffffff', color: '#000' }}>
+                <div className="card-body p-4 p-md-5">
+                    <div className="row align-items-center">
+                        <div className="col-md-6 text-center mb-4 mb-md-0">
+                            <img
+                                src={clientDetails.clientProfileImage}
+                                alt="Profile"
+                                className="img-fluid rounded-circle"
+                                style={{ width: '200px', height: '200px', objectFit: 'cover', border: '5px solid #ffffff', boxShadow: '0 4px 8px rgba(0,0,0,0.05)' }}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <h2 className="card-title text-primary">{clientDetails.clientName}</h2>
+                            <p className="mb-2"><strong>Email:</strong> {clientDetails.clientEmail}</p>
+                            <p className="mb-2"><strong>Aadhar:</strong> {clientDetails.clientAadhar}</p> {/* Changed hospitalName to clientAadhar */}
+                            <p className="mb-2"><strong>Package:</strong> {clientDetails.packageTitle}</p>
+                            <p className="mb-2"><strong>Details:</strong> {clientDetails.packageDetails}</p>
+                            <p className="mb-2"><strong>Duration:</strong> {clientDetails.packageDuration}</p>
+                            <p className="mb-2"><strong>Amount:</strong> {clientDetails.packageAmount}</p>
+                            <p><strong>Admitted Date:</strong> {formatDate(clientDetails.registeredDate)}</p> {/* Assuming formatDate is a function you have defined elsewhere */}
+                        </div>
                     </div>
                 </div>
-            )}
-        </div>
+                <div className="d-flex justify-content-center align-items-center pb-4">
+                    <button
+                        className="btn btn-outline-secondary text-dark"
+                        onClick={handleSendNotificationToClient}
+                        style={{
+                            border: '2px solid #6c757d',
+                            color: '#6c757d',
+                            fontWeight: 'bold',
+                            boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                            padding: '10px 20px',
+                            borderRadius: '25px',
+                            transition: 'background-color .3s'
+                        }}
+                    >
+                        Send Notification
+                    </button>
+                </div>
+            </div>
+        ) : (
+            <p className="text-center fs-4">No client details found.</p>
+        )}
     </div>
+
+    {/* Footer - positioned at the bottom */}
     <Footer />
 </div>
+
 
     );
 };

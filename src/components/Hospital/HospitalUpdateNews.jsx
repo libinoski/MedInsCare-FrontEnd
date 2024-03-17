@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
 import backgroundImage from '../../images/Hospital/hospital.svg'; // Import the background image
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalUpdateNews = () => {
     const navigate = useNavigate();
@@ -152,9 +152,10 @@ const HospitalUpdateNews = () => {
     };
 
     return (
-<div>
-    {/* Navbar */}
-    <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+{/* Navbar */}
+    <HospitalNavbar />
     <div className="container-fluid bg-blur" style={{ minHeight: '100vh', paddingTop: '56px', position: 'relative' }}>
         <div className="container py-5">
             <div className="row">

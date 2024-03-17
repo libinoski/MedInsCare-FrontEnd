@@ -5,9 +5,9 @@ import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faUserInjured } from '@
 
 const HospitalNavbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light" style={{ background: 'linear-gradient(135deg, #2C3E50 10%, #1B2631 100%)', borderBottom: '1px solid #e0e0e0' }}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{ borderBottom: '1px solid #e0e0e0' }}>
             <div className="container">
-            <Link className="navbar-brand fw-bold d-flex align-items-center" to="/dashboard" style={{ color: '#fff' }}>
+                <Link className="navbar-brand fw-bold d-flex align-items-center" to="/dashboard" style={{ color: '#000' }}>
                     <span style={{ fontSize: '1.2rem' }}>MedInsCare</span>
                 </Link>
 
@@ -17,8 +17,8 @@ const HospitalNavbar = () => {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#fff' }}>
-                                <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#fff' }} />
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#007bff' }} />
                                 Profile Settings
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownProfile">
@@ -28,8 +28,8 @@ const HospitalNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownStaff" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#fff' }}>
-                                <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#fff' }} />
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownStaff" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#28a745' }} />
                                 Staff Management
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownStaff">
@@ -41,8 +41,8 @@ const HospitalNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownInsurance" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#fff' }}>
-                                <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#fff' }} />
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownInsurance" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#17a2b8' }} />
                                 Insurance Providers
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownInsurance">
@@ -53,8 +53,8 @@ const HospitalNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#fff' }}>
-                                <FontAwesomeIcon icon={faNewspaper} className="me-2" style={{ color: '#fff' }} />
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faNewspaper} className="me-2" style={{ color: '#ffc107' }} />
                                 News Management
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownNews">
@@ -63,8 +63,8 @@ const HospitalNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownPatient" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#fff' }}>
-                                <FontAwesomeIcon icon={faUserInjured} className="me-2" style={{ color: '#fff' }} />
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownPatient" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faUserInjured} className="me-2" style={{ color: '#dc3545' }} />
                                 Patient Management
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownPatient">
@@ -75,8 +75,8 @@ const HospitalNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/" style={{ color: '#fff' }}>
-                                <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#fff' }} />
+                            <Link className="nav-link" to="/" style={{ color: '#000' }}>
+                                <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#343a40' }} />
                                 Logout
                             </Link>
                         </li>

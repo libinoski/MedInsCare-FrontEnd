@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 const HospitalSearchPatients = () => {
     const navigate = useNavigate();
@@ -70,8 +70,9 @@ const HospitalSearchPatients = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+<HospitalNavbar />
     <div className="container flex-grow-1 mt-4">
         <div className="row justify-content-center mb-5">
             <div className="col-lg-8 col-md-12 col-12">

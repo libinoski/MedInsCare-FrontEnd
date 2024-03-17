@@ -82,9 +82,9 @@ const HospitalStaffViewOnePatient = () => {
 
 
     return (
-<div className="d-flex flex-column min-vh-100" style={{
-    background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)', 
-}}><HospitalStaffNavbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+<HospitalStaffNavbar />
             <div className="container-fluid py-5" style={{ backgroundColor: '#f0f4f7', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
                 <div className="container" style={{ maxWidth: '100%', padding: '0 15px', overflowY: 'auto', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     {isLoading ? (

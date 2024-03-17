@@ -70,7 +70,7 @@ const InsuranceProviderSendNotificationToClient = () => {
     };
 
     return (
-<div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#f0f2f7', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     {/* Navbar */}
     <InsuranceProviderNavbar />
     <div className="container-fluid" style={{ paddingTop: '56px', flex: '1' }}>

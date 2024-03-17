@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 
 const HospitalViewAllReviews = () => {
@@ -71,9 +71,10 @@ const HospitalViewAllReviews = () => {
     };
 
     return (
-<div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
-    <div>
-        <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+<div>
+        <HospitalNavbar />
     </div>
     <div className="container flex-grow-1" style={{ overflowY: 'auto', paddingTop: '70px', paddingBottom: '70px' }}>
         {isLoading ? (

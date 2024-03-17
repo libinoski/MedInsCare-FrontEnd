@@ -80,9 +80,8 @@ const InsuranceProviderChangePassword = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100" style={{
-  background: 'linear-gradient(180deg, #00B4D8 0%, #0077B6 100%)',
-}}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
   <InsuranceProviderNavbar />
   <div className="d-flex justify-content-center align-items-center flex-grow-1">
     <div className="p-0" style={{ maxWidth: '400px', width: '90%' }}>

@@ -64,7 +64,7 @@ const HospitalStaffSendNotificationToPatient = () => {
     };
 
     return (
-<div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#f0f2f7', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     {/* Navbar */}
     <HospitalStaffNavbar />
     

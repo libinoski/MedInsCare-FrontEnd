@@ -5,10 +5,9 @@ import { faUser, faUserNurse, faNewspaper, faSignOutAlt, faHospitalUser, faBell 
 
 const HospitalStaffNavbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div className="container">
-                <Link className="navbar-brand fw-bold" to="/">
-                    {/* Apply color to the hospital icon */}
+                <Link className="navbar-brand fw-bold" to="/" style={{ color: '#000' }}>
                     <FontAwesomeIcon icon={faHospitalUser} className="me-2" style={{ color: '#007bff' }} />
                     Hospital Staff Management
                 </Link>
@@ -18,8 +17,7 @@ const HospitalStaffNavbar = () => {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {/* Apply color to the user icon */}
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
                                 <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: '#28a745' }} />
                                 Profile Settings
                             </Link>
@@ -31,8 +29,7 @@ const HospitalStaffNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownStaff" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {/* Apply color to the nurse icon */}
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownStaff" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
                                 <FontAwesomeIcon icon={faUserNurse} className="me-2" style={{ color: '#17a2b8' }} />
                                 Patient Management
                             </Link>
@@ -42,8 +39,7 @@ const HospitalStaffNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {/* Apply color to the newspaper icon */}
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
                                 <FontAwesomeIcon icon={faNewspaper} className="me-2" style={{ color: '#ffc107' }} />
                                 News Management
                             </Link>
@@ -52,8 +48,7 @@ const HospitalStaffNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNotifications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {/* Apply color to the bell icon */}
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownNotifications" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: '#000' }}>
                                 <FontAwesomeIcon icon={faBell} className="me-2" style={{ color: '#ff0000' }} />
                                 Notifications
                             </Link>
@@ -62,8 +57,7 @@ const HospitalStaffNavbar = () => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">
-                                {/* Apply color to the sign-out icon */}
+                            <Link className="nav-link" to="/" style={{ color: '#000' }}>
                                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" style={{ color: '#dc3545' }} />
                                 Logout
                             </Link>

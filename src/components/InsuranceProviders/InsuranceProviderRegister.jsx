@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../Common/Footer';
 import backgroundImage from '../../images/InsuranceProvider/ip1.svg'; // Import the background image
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 const InsuranceProviderRegistration = () => {
     const initialInsuranceProviderData = {
@@ -159,13 +159,17 @@ const InsuranceProviderRegistration = () => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             {/* Navbar */}
-            <nav className="navbar navbar-dark" style={{ background: '#f2f2f2' }}>
-                <div className="container-fluid">
-                    <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Registration</span>
-                </div>
-            </nav>
+            <nav className="navbar navbar-expand-lg navbar-light bg-white">
+    <div className="container-fluid">
+        <span className="navbar-brand mb-0 h1 text-dark d-block mx-auto font-weight-bold" style={{ fontFamily: 'Arial, sans-serif' }}>MedInsCare Insurance Provider Registration</span>
+        <Link to="/" className="btn btn-outline-secondary rounded-pill" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }}>
+            Home
+        </Link>
+    </div>
+</nav>
+
             <div className="container-fluid">
                 <div className="row align-items-center justify-content-center" style={{ minHeight: '100vh' }}> {/* Updated: Added minHeight: '100vh' to ensure the row fills the screen height */}
 

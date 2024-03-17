@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './HospitalNavbar';
 import Footer from '../Common/Footer';
+import HospitalNavbar from './HospitalNavbar';
 
 // Function to format date and time
 const formatDate = (dateTime) => {
@@ -76,8 +76,9 @@ const HospitalViewAllPatients = () => {
     };
 
     return (
-<div className="d-flex flex-column min-vh-100">
-  <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+<HospitalNavbar />
   <div className="container flex-grow-1 my-5">
     {isLoading ? (
       <div className="text-center">

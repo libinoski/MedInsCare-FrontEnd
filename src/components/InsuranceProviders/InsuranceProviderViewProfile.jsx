@@ -67,7 +67,7 @@ const InsuranceProviderViewProfile = () => {
     };
 
     return (
-        <div className="d-flex flex-column min-vh-100">
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <InsuranceProviderNavbar />
 
             {/* Main Content */}

@@ -89,21 +89,21 @@ const InsuranceProviderChangeProfileImage = () => {
     };
 
     return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <InsuranceProviderNavbar />
     <div className="container py-5">
         <div className="row justify-content-center">
             <div className="col-md-8">
-                <div className="card transparent-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(20px)' }}>
+                <div className="card" style={{ backgroundColor: '#ffffff', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px' }}>
                     <div className="card-body">
                         <form onSubmit={handleProfileImageUpload} encType="multipart/form-data">
                             {currentImage && (
-                                <div className="mb-3">
+                                <div className="mb-3 text-center">
                                     <img
                                         src={currentImage}
                                         alt="Current Profile"
                                         className="img-fluid img-preview"
-                                        style={{ maxWidth: '500px', maxHeight: '300px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+                                        style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '5px' }}
                                     />
                                 </div>
                             )}
@@ -119,8 +119,24 @@ const InsuranceProviderChangeProfileImage = () => {
                                     <div className="invalid-feedback">{validationErrors.profileImage}</div>
                                 )}
                             </div>
-                            <div className="d-grid gap-2 mt-4">
-                                <button type="submit" className={`btn btn-lg btn-block btn-${Object.keys(validationErrors).length ? 'danger' : 'primary'}`} disabled={isLoading}>
+                            <div className="text-center d-flex justify-content-center align-items-center">
+                                <button 
+                                    type="submit" 
+                                    className={`btn ${isLoading ? 'btn-secondary' : 'btn-outline-secondary text-dark'} d-flex justify-content-center align-items-center`}
+                                    disabled={isLoading}
+                                    style={{
+                                        border: '2px solid #6c757d',
+                                        color: '#6c757d',
+                                        fontWeight: 'bold',
+                                        boxShadow: '0px 4px 8px rgba(108, 117, 125, 0.6)',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                        width: '100%',
+                                        maxWidth: '200px',
+                                        textDecoration: 'none',
+                                        transition: 'background-color .3s'
+                                    }}
+                                >
                                     {isLoading ? 'Uploading Image...' : 'Upload'}
                                 </button>
                             </div>
