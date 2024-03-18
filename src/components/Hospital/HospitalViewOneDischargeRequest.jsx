@@ -128,7 +128,6 @@ const HospitalViewOneDischargeRequest = () => {
                                 <div className="card-body p-4 p-md-5">
                                     <div className="d-flex align-items-center mb-3">
                                         
-                                            <h5 className="card-title">Discharge Request</h5>
                                             <p className="card-text">
                                                 <small className="text-muted">Patient Name: {dischargeRequestDetails.patientName}</small><br />
                                                 <small className="text-muted">Patient Email: {dischargeRequestDetails.patientEmail}</small><br />

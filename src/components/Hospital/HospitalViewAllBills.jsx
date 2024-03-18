@@ -122,6 +122,8 @@ const HospitalViewAllBills = () => {
             </div>
             <Footer />
         </div>
+
+
     );
 };
 

@@ -96,7 +96,7 @@ const HospitalViewAllDischargeRequests = () => {
                                         borderRadius: '15px',
                                         border: '1px solid transparent'
                                     }}
-                                    onClick={() => handleViewDischargeRequest(request.dischargeRequestId)}
+                                    onClick={() => handleViewDischargeRequest(request.requestId)}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.transform = 'scale(1.05)';
                                         e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
